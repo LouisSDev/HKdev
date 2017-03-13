@@ -1,7 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: LOUISSTEIMBERG
- * Date: 13/03/2017
- * Time: 12:05
- */
+
+require_once "lib/requireLibs.php";
+require_once "utils/randomHash.php";
+require_once "utils/devLogs.php";
+
+// Error Logging Facilities
+require_once "LoggerException.php";
+class logException extends LoggerException {}
