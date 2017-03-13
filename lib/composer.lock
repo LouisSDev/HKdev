@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "679b59a6a3606634f455293732764af3",
+    "content-hash": "277ef7e7cc5784c867614d2e317161b4",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -85,6 +85,43 @@
             "time": "2017-03-13T07:08:03+00:00"
         },
         {
+            "name": "os/php-excel",
+            "version": "2.1",
+            "target-dir": "PHPExcel",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ouardisoft/PHPExcel.git",
+                "reference": "1dcb280a82b94943a00d478eac099542aa0be2bd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ouardisoft/PHPExcel/zipball/1dcb280a82b94943a00d478eac099542aa0be2bd",
+                "reference": "1dcb280a82b94943a00d478eac099542aa0be2bd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.6"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "LOUARDI Abdeltif",
+                    "email": "louardi.abdeltif@yahoo.fr",
+                    "homepage": "http://phphub.net"
+                }
+            ],
+            "description": "PHP Excel Library",
+            "homepage": "http://github.com/ouardisoft/PHPExcel",
+            "keywords": [
+                "excel"
+            ],
+            "time": "2012-05-02T20:42:37+00:00"
+        },
+        {
             "name": "psr/log",
             "version": "1.0.2",
             "source": {
@@ -139,7 +176,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.0"
+        "php": ">=5.6"
     },
     "platform-dev": []
 }
