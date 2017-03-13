@@ -1,0 +1,10 @@
+#Alternate default index page
+DirectoryIndex rooting.php
+
+
+Options +FollowSymlinks
+RewriteEngine on
+RewriteOptions Inherit
+
+RewriteRule ^([^>]+)$ rooting.php
+
