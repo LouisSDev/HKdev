@@ -2,6 +2,9 @@
 
 class DatabaseConnection
 {
+    /**
+     * @var PDO
+     */
     var $db;
 
     public function __construct(){
@@ -25,6 +28,7 @@ class DatabaseConnection
             exit;
         }
     }
+
 
     public function getDatabase(){
         return $this->db;
