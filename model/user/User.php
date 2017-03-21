@@ -6,7 +6,7 @@ class User implements DatabaseEntity
      * @var integer
      *
      */
-    private $id;
+    private $id = -1;
 
     /**
      * @var string
@@ -62,6 +62,16 @@ class User implements DatabaseEntity
     public function getId()
     {
         return $this->id;
+    }
+    /**
+     * @param int
+     * @return User
+     *
+     */
+    private function setId($id)
+    {
+        $this->id = $id;
+        return $this;
     }
 
 
@@ -273,25 +283,34 @@ class User implements DatabaseEntity
     /**
      * @return User
      */
-    public function save()
+    public function save($db)
     {
-        // TODO: Implement save() method.
+        if($this->id == -1){
+            $newUser = $this->db->prepare('INSERT INTO user(nom, reference, prix, adressePhoto, TVA) 
+					VALUES(:nom, :reference, :prix, :adressePhoto, :TVA)');
+            $newUser->bindParam(':name',$this->name, PDO::PARAM_STR, strlen($this->name));
+            $newUser->execute();
+            $newUser->closeCursor();
+        }
         return $this;
     }
 
     /**
      * @return User
      */
-    public function delete()
+    public function delete($db)
     {
-        // TODO: Implement delete() method.
+        $request = $db->prepare('DELETE FROM user WHERE id = :id');
+        $request ->bindParam(':id', $this->id, PDO::PARAM_INT);
+        $request->execute();
+        $request->closeCursor();
         return $this;
     }
 
     /**
      * @return User
      */
-    public function createFromResults()
+    public function createFromResults($data)
     {
         // TODO: Implement createFromResults() method.
         return $this;
