@@ -8,6 +8,7 @@ require_once "utils/DatabaseConnection.php";
 require_once  "utils/JsonUtils.php";
 
 // Models
+require_once "model/DatabaseEntity.php";
 
 // User
 require_once "model/user/User.php";

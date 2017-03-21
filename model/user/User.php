@@ -1,9 +1,10 @@
 <?php
 
-class User
+class User implements DatabaseEntity
 {
     /**
      * @var integer
+     *
      */
     private $id;
 
@@ -51,8 +52,6 @@ class User
      * @var array
      */
     private $homes;
-
-
 
 
 
@@ -271,4 +270,30 @@ class User
         return $this;
     }
 
+    /**
+     * @return User
+     */
+    public function save()
+    {
+        // TODO: Implement save() method.
+        return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function delete()
+    {
+        // TODO: Implement delete() method.
+        return $this;
+    }
+
+    /**
+     * @return User
+     */
+    public function createFromResults()
+    {
+        // TODO: Implement createFromResults() method.
+        return $this;
+    }
 }
