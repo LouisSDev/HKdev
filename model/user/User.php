@@ -226,7 +226,7 @@ class User
     }
 
     /**
-     * Add home
+     * Remove home
      *
      * @param Home
      * @return User
@@ -234,7 +234,7 @@ class User
 
     public function removeHome($home){
         if(!in_array($home, $this->homes)) {
-            array_push($this->homes, $home);
+            unset($this->homes[array_search($home,$this->homes)]);
             $home->setUser(null);
         }
         return $this;
@@ -252,6 +252,21 @@ class User
         if(!in_array($building, $this->buildings)){
             array_push( $this->buildings, $building);
             $building->setUser($this);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove building
+     *
+     * @param Building
+     * @return User
+     */
+
+    public function removeBuilding($building){
+        if(!in_array($building, $this->buildings)){
+            unset($this->buildings[array_search($building,$this->buildings)]);
+            $building->setUser(null);
         }
         return $this;
     }
