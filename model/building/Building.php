@@ -24,9 +24,30 @@ class Building
     private $adress;
 
     /**
-     * @var User
+     * @var string
      */
     private $user;
+
+    /**
+     * @var array
+     */
+    private $homes;
+
+    /**
+     * @return array
+     */
+    public function getHomes(): array
+    {
+        return $this->homes;
+    }
+
+    /**
+     * @param array $homes
+     */
+    public function setHomes(array $homes)
+    {
+        $this->homes = $homes;
+    }
 
     /**
      * @return int
@@ -91,4 +112,5 @@ class Building
     {
         $this->user = $user;
     }
+
 }
