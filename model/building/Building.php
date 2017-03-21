@@ -24,7 +24,7 @@ class Building
     private $adress;
 
     /**
-     * @var string
+     * @var User
      */
     private $user;
 
@@ -111,6 +111,36 @@ class Building
     public function setUser(User $user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * Add home
+     *
+     * @param Home
+     * @return Building
+     */
+
+    public function addHome($home){
+        if(!in_array($home, $this->homes)){
+            array_push( $this->homes, $home);
+            $home->setBuilding($this);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove home
+     *
+     * @param Home
+     * @return Building
+     */
+
+    public function removeHome($home){
+        if(!in_array($home, $this->homes)) {
+            unset($this->homes[array_search($home,$this->homes)]);
+            $home->setBuilding(null);
+        }
+        return $this;
     }
 
 }
