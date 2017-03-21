@@ -24,7 +24,7 @@ class Home
     private $adress;
 
     /**
-     * @var string
+     * @var User
      */
     private $user;
 
@@ -82,7 +82,7 @@ class Home
     }
 
     /**
-     * @return string
+     * @return User
      */
     public function getUser(): string
     {
@@ -90,7 +90,7 @@ class Home
     }
 
     /**
-     * @param string $user
+     * @param User $user
      */
     public function setUser(string $user)
     {

@@ -220,6 +220,22 @@ class User
     public function addHome($home){
         if(!in_array($home, $this->homes)){
             array_push( $this->homes, $home);
+            $home->setUser($this);
+        }
+        return $this;
+    }
+
+    /**
+     * Add home
+     *
+     * @param Home
+     * @return User
+     */
+
+    public function removeHome($home){
+        if(!in_array($home, $this->homes)) {
+            array_push($this->homes, $home);
+            $home->setUser(null);
         }
         return $this;
     }
@@ -235,6 +251,7 @@ class User
     public function addBuilding($building){
         if(!in_array($building, $this->buildings)){
             array_push( $this->buildings, $building);
+            $building->setUser($this);
         }
         return $this;
     }
