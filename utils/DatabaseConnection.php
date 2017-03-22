@@ -8,7 +8,8 @@ class DatabaseConnection
     var $db;
 
     public function __construct(){
-        $dbConfig = JsonUtils::decodeJsonFileOrFail('config/config.json') -> database;
+        $config = JsonUtils::decodeJsonFileOrFail('config/config.json');
+        $dbConfig = $config -> database;
 
         $dbhostname = $dbConfig->database_host;
 
@@ -22,6 +23,7 @@ class DatabaseConnection
 
         try {
             $this->db = new PDO($dbhost, $dbidentifier, $dbpw ,array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $GLOBALS['salt'] = $config -> password_salt;
         }
         catch (Exception $e){
             require_once "view/connectionError.php";

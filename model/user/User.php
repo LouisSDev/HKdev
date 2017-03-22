@@ -37,6 +37,11 @@ class User implements DatabaseEntity
      * @var string
      */
     private $country;
+    /**
+     * @var string
+     */
+    private $password;
+
 
     /**
      * @var boolean
@@ -46,12 +51,12 @@ class User implements DatabaseEntity
     /**
      * @var array
      */
-    private $buildings;
+    private $buildings = array();
 
     /**
      * @var array
      */
-    private $homes;
+    private $homes = array();
 
 
     /**
@@ -64,8 +69,9 @@ class User implements DatabaseEntity
      */
     private $errorMessage;
 
-
-
+    /**
+     * User constructor.
+     */
 
 
     /**
@@ -192,6 +198,49 @@ class User implements DatabaseEntity
     }
 
     /**
+     * @return string
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+
+    public function setPassword($password, $passwordNew, $passwordConf, $encrypt)
+    {
+        // We first encrypt the passwords with our config salt for security purposes if needed (if $encrypt == true)
+        if($encrypt){
+            $password = sha1($password.$GLOBALS['salt']);
+            $passwordNew = sha1($passwordNew.$GLOBALS['salt']);
+            $passwordConf = sha1($passwordConf.$GLOBALS['salt']);
+        }
+
+        if($this->password == null){
+            if($password == $passwordConf){
+                $this->password = $password;
+            }else{
+                $this->error = true;
+                $this->errorMessage .= "<br>The two passwords are not the same.";
+            }
+        }else{
+            if($password == $this->password){
+                if($passwordNew == $passwordConf){
+                    $this->password = $passwordNew;
+                }else{
+                    $this->error = true;
+                    $this->errorMessage .= "<br>The two passwords are not the same.";
+                }
+            }else{
+                $this->error = true;
+                $this->errorMessage .= "<br>Your old password is not correctly entered.";
+            }
+        }
+
+        return $this;
+    }
+
+
+    /**
      * @param string $country
      * @return User
      */
@@ -306,8 +355,8 @@ class User implements DatabaseEntity
         if ($this->getValid()) {
             if ($this->id == -1) {
                 $newUser = $db->prepare('INSERT INTO 
-                    user(firstName, lastName, mail, cellPhoneNumber, address, country, adminBuilding) 
-					VALUES(:firstName, :lastName, :mail, :cellPhoneNumber, :address, :country, :adminBuilding)');
+                    user(firstName, lastName, mail, cellPhoneNumber, address, country, adminBuilding, password) 
+					VALUES(:firstName, :lastName, :mail, :cellPhoneNumber, :address, :country, :adminBuilding, :password)');
 
                 $newUser->bindParam(':firstName', $this->firstName, PDO::PARAM_STR, strlen($this->firstName));
                 $newUser->bindParam(':lastName', $this->lastName, PDO::PARAM_STR, strlen($this->lastName));
@@ -315,15 +364,15 @@ class User implements DatabaseEntity
                 $newUser->bindParam(':cellPhoneNumber', $this->cellPhoneNumber, PDO::PARAM_STR, strlen($this->cellPhoneNumber));
                 $newUser->bindParam(':address', $this->address, PDO::PARAM_STR, strlen($this->address));
                 $newUser->bindParam(':country', $this->country, PDO::PARAM_STR, strlen($this->country));
+                $newUser->bindParam(':password', $this->password, PDO::PARAM_STR, strlen($this->password));
                 $newUser->bindParam(':adminBuilding', $this->adminBuilding, PDO::PARAM_INT);
                 $newUser->execute();
                 $newUser->closeCursor();
                 $this->id = $db->lastInsertId();
-                // Get last id entered
             }else{
                 $updatedUser = $db->prepare('UPDATE user
 					SET firstName = :firstName, lastName = :lastName, mail = :mail, cellPhoneNumber = :cellPhoneNumber, 
-					address = :address, country = :country, adminBuilding = :adminBuilding
+					address = :address, country = :country, adminBuilding = :adminBuilding, password = :password
 					WHERE id = :id');
 
                 $updatedUser->bindParam(':firstName', $this->firstName, PDO::PARAM_STR, strlen($this->firstName));
@@ -333,13 +382,19 @@ class User implements DatabaseEntity
                 $updatedUser->bindParam(':address', $this->address, PDO::PARAM_STR, strlen($this->address));
                 $updatedUser->bindParam(':country', $this->country, PDO::PARAM_STR, strlen($this->country));
                 $updatedUser->bindParam(':adminBuilding', $this->adminBuilding, PDO::PARAM_INT);
+                $updatedUser->bindParam(':password', $this->password, PDO::PARAM_STR, strlen($this->password));
                 $updatedUser->bindParam(':id', $this->id, PDO::PARAM_INT);
                 $updatedUser->execute();
                 $updatedUser->closeCursor();
 
             }
 
-            // SAVE LES OBJETS QUI DEPENDENT
+            foreach($this->buildings as $building){
+                $building->save();
+            }
+            foreach($this->homes as $home){
+                $home->save();
+            }
             return $this;
 
         }else{
@@ -378,6 +433,7 @@ class User implements DatabaseEntity
                 && $this->cellPhoneNumber != null
                 && $this-> address != null
                 && $this->country != null
+                && $this->password != null
             ){
                 if($this->adminBuilding == null){
                     $this->adminBuilding = false;

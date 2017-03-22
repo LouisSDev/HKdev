@@ -10,7 +10,8 @@ $saveUser = $user
     ->setCountry("France")
     ->setFirstName("Louis")
     ->setLastName("Steimberg")
-    ->setMail("lalalo@hotmail.fr")
+    ->setMail("lasde@hotmail.fr")
+    ->setPassword("test", "", "test", true)
     ->save($db);
 if($saveUser == null){
     echo "<h1> Oups Database error, please enter correct informations</h1>";
@@ -22,7 +23,8 @@ if($saveUser == null){
         ->setCountry("France")
         ->setFirstName("Louis")
         ->setLastName("Steimberg")
-        ->setMail("ia@hotmail.fr")
+        ->setMail("lrd@hotmail.fr")
+        ->setPassword("test", "test1", "test1", true)
         ->save($db);
     if($saveUser == null){
         echo "<h1> Oups Database error, please enter correct informations</h1>";

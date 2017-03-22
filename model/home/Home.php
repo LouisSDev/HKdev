@@ -6,7 +6,7 @@
  * Date: 21/03/2017
  * Time: 09:22
  */
-class Home
+class Home implements DatabaseEntity
 {
     /**
      * @var integer
@@ -113,4 +113,23 @@ class Home
         $this->building = $building;
     }
 
+    public function save($db)
+    {
+        // TODO: Implement save() method.
+    }
+
+    public function delete($db)
+    {
+        // TODO: Implement delete() method.
+    }
+
+    public function createFromResults($data)
+    {
+        // TODO: Implement createFromResults() method.
+    }
+
+    public function getValid()
+    {
+        // TODO: Implement getValid() method.
+    }
 }
