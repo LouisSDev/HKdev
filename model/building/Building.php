@@ -36,7 +36,7 @@ class Building
     /**
      * @return array
      */
-    public function getHomes(): array
+    public function getHomes()
     {
         return $this->homes;
     }
@@ -52,7 +52,7 @@ class Building
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -68,7 +68,7 @@ class Building
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -84,7 +84,7 @@ class Building
     /**
      * @return string
      */
-    public function getAdress(): string
+    public function getAdress()
     {
         return $this->adress;
     }
@@ -100,7 +100,7 @@ class Building
     /**
      * @return User
      */
-    public function getUser(): User
+    public function getUser()
     {
         return $this->user;
     }

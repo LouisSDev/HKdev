@@ -36,7 +36,7 @@ class Home
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -52,7 +52,7 @@ class Home
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -68,7 +68,7 @@ class Home
     /**
      * @return string
      */
-    public function getAdress(): string
+    public function getAdress()
     {
         return $this->adress;
     }
@@ -84,7 +84,7 @@ class Home
     /**
      * @return User
      */
-    public function getUser(): string
+    public function getUser()
     {
         return $this->user;
     }
@@ -100,7 +100,7 @@ class Home
     /**
      * @return string
      */
-    public function getBuilding(): string
+    public function getBuilding()
     {
         return $this->building;
     }

@@ -17,7 +17,7 @@ require_once "model/user/User.php";
 require_once  "model/home/Home.php";
 
 // Building
-require_once  "model/buildings/Buildings.php";
+require_once  "model/building/Building.php";
 
 
 

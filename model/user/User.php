@@ -54,10 +54,22 @@ class User implements DatabaseEntity
     private $homes;
 
 
+    /**
+     * @var boolean
+     */
+    private $error;
+
+    /**
+     * @var string
+     */
+    private $errorMessage;
+
+
+
+
 
     /**
      * @return int
-     *
      */
     public function getId()
     {
@@ -125,7 +137,13 @@ class User implements DatabaseEntity
      */
     public function setMail($mail)
     {
-        $this->mail = $mail;
+        if(preg_match('#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#' ,$mail)){
+            $this->mail = $mail;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= "<br>The Mail address is incorrect";
+        }
         return $this;
     }
 
@@ -285,14 +303,48 @@ class User implements DatabaseEntity
      */
     public function save($db)
     {
-        if($this->id == -1){
-            $newUser = $this->db->prepare('INSERT INTO user(nom, reference, prix, adressePhoto, TVA) 
-					VALUES(:nom, :reference, :prix, :adressePhoto, :TVA)');
-            $newUser->bindParam(':name',$this->name, PDO::PARAM_STR, strlen($this->name));
-            $newUser->execute();
-            $newUser->closeCursor();
+        if ($this->getValid()) {
+            if ($this->id == -1) {
+                $newUser = $db->prepare('INSERT INTO 
+                    user(firstName, lastName, mail, cellPhoneNumber, address, country, adminBuilding) 
+					VALUES(:firstName, :lastName, :mail, :cellPhoneNumber, :address, :country, :adminBuilding)');
+
+                $newUser->bindParam(':firstName', $this->firstName, PDO::PARAM_STR, strlen($this->firstName));
+                $newUser->bindParam(':lastName', $this->lastName, PDO::PARAM_STR, strlen($this->lastName));
+                $newUser->bindParam(':mail', $this->mail, PDO::PARAM_STR, strlen($this->mail));
+                $newUser->bindParam(':cellPhoneNumber', $this->cellPhoneNumber, PDO::PARAM_STR, strlen($this->cellPhoneNumber));
+                $newUser->bindParam(':address', $this->address, PDO::PARAM_STR, strlen($this->address));
+                $newUser->bindParam(':country', $this->country, PDO::PARAM_STR, strlen($this->country));
+                $newUser->bindParam(':adminBuilding', $this->adminBuilding, PDO::PARAM_INT);
+                $newUser->execute();
+                $newUser->closeCursor();
+                $this->id = $db->lastInsertId();
+                // Get last id entered
+            }else{
+                $updatedUser = $db->prepare('UPDATE user
+					SET firstName = :firstName, lastName = :lastName, mail = :mail, cellPhoneNumber = :cellPhoneNumber, 
+					address = :address, country = :country, adminBuilding = :adminBuilding
+					WHERE id = :id');
+
+                $updatedUser->bindParam(':firstName', $this->firstName, PDO::PARAM_STR, strlen($this->firstName));
+                $updatedUser->bindParam(':lastName', $this->lastName, PDO::PARAM_STR, strlen($this->lastName));
+                $updatedUser->bindParam(':mail', $this->mail, PDO::PARAM_STR, strlen($this->mail));
+                $updatedUser->bindParam(':cellPhoneNumber', $this->cellPhoneNumber, PDO::PARAM_STR, strlen($this->cellPhoneNumber));
+                $updatedUser->bindParam(':address', $this->address, PDO::PARAM_STR, strlen($this->address));
+                $updatedUser->bindParam(':country', $this->country, PDO::PARAM_STR, strlen($this->country));
+                $updatedUser->bindParam(':adminBuilding', $this->adminBuilding, PDO::PARAM_INT);
+                $updatedUser->bindParam(':id', $this->id, PDO::PARAM_INT);
+                $updatedUser->execute();
+                $updatedUser->closeCursor();
+
+            }
+
+            // SAVE LES OBJETS QUI DEPENDENT
+            return $this;
+
+        }else{
+            return null;
         }
-        return $this;
     }
 
     /**
@@ -314,5 +366,42 @@ class User implements DatabaseEntity
     {
         // TODO: Implement createFromResults() method.
         return $this;
+    }
+
+    public function getValid(){
+        if($this->error){
+            return false;
+        }else{
+            if($this->firstName != null
+                && $this->lastName != null
+                && $this ->mail != null
+                && $this->cellPhoneNumber != null
+                && $this-> address != null
+                && $this->country != null
+            ){
+                if($this->adminBuilding == null){
+                    $this->adminBuilding = false;
+                }
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isError()
+    {
+        return $this->error;
+    }
+
+    /**
+     * @return string
+     */
+    public function getErrorMessage()
+    {
+        return $this->errorMessage;
     }
 }
