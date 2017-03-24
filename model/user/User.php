@@ -4,7 +4,6 @@ class User implements DatabaseEntity
 {
     /**
      * @var integer
-     *
      */
     private $id = -1;
 
@@ -14,7 +13,7 @@ class User implements DatabaseEntity
     private $firstName;
 
     /**
-         * @var string
+     * @var string
      */
     private $lastName;
 
@@ -69,9 +68,6 @@ class User implements DatabaseEntity
      */
     private $errorMessage;
 
-    /**
-     * User constructor.
-     */
 
 
     /**
@@ -220,7 +216,7 @@ class User implements DatabaseEntity
                 $this->password = $password;
             }else{
                 $this->error = true;
-                $this->errorMessage .= "<br>The two passwords are not the same.";
+                $this->errorMessage .= "<br>The two passwords are not identical.";
             }
         }else{
             if($password == $this->password){
@@ -228,7 +224,7 @@ class User implements DatabaseEntity
                     $this->password = $passwordNew;
                 }else{
                     $this->error = true;
-                    $this->errorMessage .= "<br>The two passwords are not the same.";
+                    $this->errorMessage .= "<br>The two passwords are not identical.";
                 }
             }else{
                 $this->error = true;

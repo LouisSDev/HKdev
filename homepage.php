@@ -18,11 +18,6 @@ if($saveUser == null){
     echo $user->getErrorMessage();
 }else{
     $saveUser = $user
-        ->setAddress("28 rue Notre Dame Des Champs")
-        ->setCellPhoneNumber("+3366085916")
-        ->setCountry("France")
-        ->setFirstName("Louis")
-        ->setLastName("Steimberg")
         ->setMail("lrd@hotmail.fr")
         ->setPassword("test", "test1", "test1", true)
         ->save($db);
@@ -31,3 +26,4 @@ if($saveUser == null){
         echo $user->getErrorMessage();
     }
 }
+

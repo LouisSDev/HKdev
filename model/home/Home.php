@@ -29,7 +29,7 @@ class Home implements DatabaseEntity
     private $user;
 
     /**
-     * @var string
+     * @var Building
      */
     private $building;
 
