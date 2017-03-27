@@ -24,6 +24,7 @@ class DatabaseConnection
         try {
             $this->db = new PDO($dbhost, $dbidentifier, $dbpw ,array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
             $GLOBALS['salt'] = $config -> password_salt;
+
             $this->createRepositories();
         }
         catch (Exception $e){
