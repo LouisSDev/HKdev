@@ -24,12 +24,15 @@ class Repository
             $this->user = $user;
         }
         else{
-            $this->connect($GLOBALS['mail'], $GLOBALS['password']);
-            try{
-                if($this->user == null){
-                    $this->user = $GLOBALS['repositories']['user'] -> getUser();
+            if(!empty($GLOBALS['mail']) && !empty($GLOBALS['password'])) {
+                $this->connect($GLOBALS['mail'], $GLOBALS['password']);
+                try {
+                    if ($this->user == null) {
+                        $this->user = $GLOBALS['repositories']['user']->getUser();
+                    }
+                } catch (Exception $e) {
                 }
-            }catch(Exception $e){}
+            }
         }
 
     }
