@@ -145,6 +145,19 @@ class Building implements DatabaseEntity
 
     public function save($db)
     {
+        if($this->getValid()){
+            if($this->id==-1){
+                $newBuilding=$db->prepare('INSERT INTO 
+                building(name,adress,user)  
+                VALUES(:name,:adress,:user)');
+                $newBuilding->bindParam(':name',$this->name,PDO::PARAM_STR,strlen($this->name));
+                $newBuilding->bindParam(':adress',$this->adress,PDO::PARAM_STR,strlen($this->adress));
+                $newBuilding->bindParam(':user',$this->user,PDO::PARAM_INT);
+            }
+            else{
+                //$updateBuilding=$db->
+            }
+        }
         // TODO: Implement save() method.
     }
 
