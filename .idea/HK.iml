@@ -17,11 +17,9 @@
     <orderEntry type="module-library">
       <library name="PHARS">
         <CLASSES>
-          <root url="phar://$MODULE_DIR$/lib/vendor/vdb/uri/bin/vdb-uri.phar/" />
           <root url="phar://$MODULE_DIR$/lib/composer.phar/" />
         </CLASSES>
         <SOURCES>
-          <root url="phar://$MODULE_DIR$/lib/vendor/vdb/uri/bin/vdb-uri.phar/" />
           <root url="phar://$MODULE_DIR$/lib/composer.phar/" />
         </SOURCES>
       </library>
