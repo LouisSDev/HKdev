@@ -2,7 +2,7 @@
 
 /**
  * Created by PhpStorm.
- * User: Desazars
+ * User:
  * Date: 21/03/2017
  * Time: 09:14
  */
@@ -153,10 +153,21 @@ class Building implements DatabaseEntity
                 $newBuilding->bindParam(':name',$this->name,PDO::PARAM_STR,strlen($this->name));
                 $newBuilding->bindParam(':adress',$this->adress,PDO::PARAM_STR,strlen($this->adress));
                 $newBuilding->bindParam(':user',$this->user,PDO::PARAM_INT);
+                $newBuilding->execute();
+                $newBuilding->closeCursor();
+                $this->id = $db->lastInsertId();
+
             }
-            else{
-                //$updateBuilding=$db->
+            else {
+                $updateBuilding = $db->prepare('UPDATE building SET name=:name,adress=:adress,user=:user WHERE id=:id');
+                $updateBuilding->bindParam(':name', $this->name, PDO::PARAM_STR, strlen($this->name));
+                $updateBuilding->bindParam(':adress', $this->adress, PDO::PARAM_STR, strlen($this->adress));
+                $updateBuilding->bindParam(':user', $this->user, PDO::PARAM_INT);
+                $updateBuilding->execute();
+                $updateBuilding->closeCursor();
+                $this->id = $db->lastInsertId();
             }
+            //foreach ($this->homes)
         }
         // TODO: Implement save() method.
     }
