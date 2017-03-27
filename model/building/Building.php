@@ -33,6 +33,8 @@ class Building implements DatabaseEntity
      */
     private $homes;
 
+    protected $error;
+
     /**
      * @return array
      */
@@ -56,6 +58,7 @@ class Building implements DatabaseEntity
     {
         return $this->id;
     }
+
 
     /**
      * @param int $id
@@ -167,23 +170,46 @@ class Building implements DatabaseEntity
                 $updateBuilding->closeCursor();
                 $this->id = $db->lastInsertId();
             }
-            //foreach ($this->homes)
+            foreach ($this->homes as $home){
+                $home->save;
+            }
+            return this;
+
         }
-        // TODO: Implement save() method.
+        else{
+            return null;
+        }
     }
 
     public function delete($db)
     {
-        // TODO: Implement delete() method.
+
+        $request = $db->prepare('DELETE FROM building WHERE id = :id');
+        $request ->bindParam(':id', $this->id, PDO::PARAM_INT);
+        $request->execute();
+        $request->closeCursor();
+        return $this;
+
     }
 
     public function createFromResults($data)
     {
-        // TODO: Implement createFromResults() method.
+        return $this;
+
     }
 
     public function getValid()
     {
-        // TODO: Implement getValid() method.
+        if ($this->error){
+            return false;
+        }
+        else{
+            if($this->name != null
+                && $this->adress!=null
+            ){
+                return true;
+            }
+        }
+
     }
 }
