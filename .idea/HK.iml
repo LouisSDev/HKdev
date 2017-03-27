@@ -18,9 +18,11 @@
       <library name="PHARS">
         <CLASSES>
           <root url="phar://$MODULE_DIR$/lib/composer.phar/" />
+          <root url="phar://$MODULE_DIR$/lib/vendor/vdb/uri/bin/vdb-uri.phar/" />
         </CLASSES>
         <SOURCES>
           <root url="phar://$MODULE_DIR$/lib/composer.phar/" />
+          <root url="phar://$MODULE_DIR$/lib/vendor/vdb/uri/bin/vdb-uri.phar/" />
         </SOURCES>
       </library>
     </orderEntry>
