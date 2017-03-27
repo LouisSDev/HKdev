@@ -21,7 +21,7 @@ class Home implements DatabaseEntity
     /**
      * @var string
      */
-    private $adress;
+    private $address;
 
     /**
      * @var User
@@ -68,17 +68,17 @@ class Home implements DatabaseEntity
     /**
      * @return string
      */
-    public function getAdress()
+    public function getAddress()
     {
-        return $this->adress;
+        return $this->address;
     }
 
     /**
      * @param string $adress
      */
-    public function setAdress(string $adress)
+    public function setAddress(string $address)
     {
-        $this->adress = $adress;
+        $this->address = $address;
     }
 
     /**
@@ -130,6 +130,22 @@ class Home implements DatabaseEntity
 
     public function getValid()
     {
-        // TODO: Implement getValid() method.
+        if($this->error){
+            return false;
+        }else{
+            if($this->id != null
+                && $this->name != null
+                && $this ->address != null
+                && $this->user != null
+                && $this-> building!= null
+            ){
+                if($this->adminBuilding == null){
+                    $this->adminBuilding = false;
+                }
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
 }
