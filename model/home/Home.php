@@ -34,6 +34,11 @@ class Home implements DatabaseEntity
     private $building;
 
     /**
+     * @var boolean $error
+     */
+    private $error;
+
+    /**
      * @return int
      */
     public function getId()
@@ -139,9 +144,6 @@ class Home implements DatabaseEntity
                 && $this->user != null
                 && $this-> building!= null
             ){
-                if($this->adminBuilding == null){
-                    $this->adminBuilding = false;
-                }
                 return true;
             }else{
                 return false;
