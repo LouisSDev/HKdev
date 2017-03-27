@@ -1,4 +1,4 @@
 **/logs
 **/lib/vendor
-**/config/config.json
+*config.json
 *.idea/vcs.xml
