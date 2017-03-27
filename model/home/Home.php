@@ -6,7 +6,7 @@
  * Date: 21/03/2017
  * Time: 09:22
  */
-class Home
+class Home implements DatabaseEntity
 {
     /**
      * @var integer
@@ -24,19 +24,19 @@ class Home
     private $adress;
 
     /**
-     * @var string
+     * @var User
      */
     private $user;
 
     /**
-     * @var string
+     * @var Building
      */
     private $building;
 
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -52,7 +52,7 @@ class Home
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -68,7 +68,7 @@ class Home
     /**
      * @return string
      */
-    public function getAdress(): string
+    public function getAdress()
     {
         return $this->adress;
     }
@@ -82,15 +82,15 @@ class Home
     }
 
     /**
-     * @return string
+     * @return User
      */
-    public function getUser(): string
+    public function getUser()
     {
         return $this->user;
     }
 
     /**
-     * @param string $user
+     * @param User $user
      */
     public function setUser(string $user)
     {
@@ -100,7 +100,7 @@ class Home
     /**
      * @return string
      */
-    public function getBuilding(): string
+    public function getBuilding()
     {
         return $this->building;
     }
@@ -113,4 +113,23 @@ class Home
         $this->building = $building;
     }
 
+    public function save($db)
+    {
+        // TODO: Implement save() method.
+    }
+
+    public function delete($db)
+    {
+        // TODO: Implement delete() method.
+    }
+
+    public function createFromResults($data)
+    {
+        // TODO: Implement createFromResults() method.
+    }
+
+    public function getValid()
+    {
+        // TODO: Implement getValid() method.
+    }
 }

@@ -6,7 +6,7 @@
  * Date: 21/03/2017
  * Time: 09:14
  */
-class Building
+class Building implements DatabaseEntity
 {
     /**
  * @var integer
@@ -29,9 +29,30 @@ class Building
     private $user;
 
     /**
+     * @var array
+     */
+    private $homes;
+
+    /**
+     * @return array
+     */
+    public function getHomes()
+    {
+        return $this->homes;
+    }
+
+    /**
+     * @param array $homes
+     */
+    public function setHomes(array $homes)
+    {
+        $this->homes = $homes;
+    }
+
+    /**
      * @return int
      */
-    public function getId(): int
+    public function getId()
     {
         return $this->id;
     }
@@ -47,7 +68,7 @@ class Building
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -63,7 +84,7 @@ class Building
     /**
      * @return string
      */
-    public function getAdress(): string
+    public function getAdress()
     {
         return $this->adress;
     }
@@ -79,7 +100,7 @@ class Building
     /**
      * @return User
      */
-    public function getUser(): User
+    public function getUser()
     {
         return $this->user;
     }
@@ -90,5 +111,55 @@ class Building
     public function setUser(User $user)
     {
         $this->user = $user;
+    }
+
+    /**
+     * Add home
+     *
+     * @param Home
+     * @return Building
+     */
+
+    public function addHome($home){
+        if(!in_array($home, $this->homes)){
+            array_push( $this->homes, $home);
+            $home->setBuilding($this);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove home
+     *
+     * @param Home
+     * @return Building
+     */
+
+    public function removeHome($home){
+        if(!in_array($home, $this->homes)) {
+            unset($this->homes[array_search($home,$this->homes)]);
+            $home->setBuilding(null);
+        }
+        return $this;
+    }
+
+    public function save($db)
+    {
+        // TODO: Implement save() method.
+    }
+
+    public function delete($db)
+    {
+        // TODO: Implement delete() method.
+    }
+
+    public function createFromResults($data)
+    {
+        // TODO: Implement createFromResults() method.
+    }
+
+    public function getValid()
+    {
+        // TODO: Implement getValid() method.
     }
 }
