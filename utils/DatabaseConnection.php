@@ -30,6 +30,7 @@ class DatabaseConnection
             require_once "view/connectionError.php";
             exit;
         }
+
     }
 
 
@@ -39,6 +40,7 @@ class DatabaseConnection
 
     private function createRepositories(){
         $GLOBALS['repositories']['user'] = new UserRepository($this->db);
+        $GLOBALS['repositories']['home'] = new HomeRepository($this->db, $GLOBALS['repositories']['user'] -> getUser() );
     }
 
 

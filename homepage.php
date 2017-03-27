@@ -3,6 +3,7 @@
 $dbConnector = new DatabaseConnection();
 $db = $dbConnector -> getDatabase();
 
+/*
 $user = new User();
 $saveUser = $user
     ->setAddress("35 rue du Bac")
@@ -26,4 +27,4 @@ if($saveUser == null){
         echo $user->getErrorMessage();
     }
 }
-
+*/
