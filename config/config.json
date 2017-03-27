@@ -3,7 +3,7 @@
       "database_host" : "localhost",
       "database_name" : "HK",
       "database_user" :  "root",
-      "database_password" : "root"
+      "database_password" : ""
   },
 
   "password_salt" : "juZE58yuh4"
