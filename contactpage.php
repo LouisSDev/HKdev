@@ -8,18 +8,21 @@
 </head>
 <body>
     <header>
+        <p>
+<img src="img/logo hk 3.png">
+</p>
         <ul>
-            <li> Ma Maison</li>
-            <li> Tableau de Bord</li>
-            <li> Mon Compte</li>
-            <li> Déconnexion</li>
+            <li>Ma Maison</li>
+            <li>Tableau de Bord</li>
+            <li>Mon Compte</li>
+            <li>Déconnexion</li>
         </ul>
     </header>
-    <ins>
-Home Kepper
-    28, rue Notre-Dame des Champs
-    75006 Paris
-</ins>
+        <ins>
+        Home Kepper
+        28, rue Notre-Dame des Champs
+        75006 Paris
+        </ins>
         <form>
             <input type="text" name="Nom" placeholder="Nom"></input>
             <input type="text" name="Prénom" placeholder="Prénom"></input>
