@@ -120,11 +120,45 @@ class Home implements DatabaseEntity
 
     public function save($db)
     {
+        if($this->getValid()){
+            if($this->id==-1){
+                $newHome=$db->prepare('INSERT INTO homes(name, address, user,building) VALUES (:name,:address,:user,:building)');
+                $newHome->bindParam(':name',$this->name,PDO::PARAM_STR,strlen($this->name));
+                $newHome->bindParam(':address',$this->address,PDO::PARAM_STR,strlen($this->address));
+                $newHome->bindParam(':user',$this->user,PDO::PARAM_INT);
+                $newHome->bindParam(':building',$this->building);
+                $newHome->execute();
+                $newHome->closeCursor();
+                $this->id = $db->lastInsertId();
+            }
+            else{
+                $newHome=$db->prepare('UPDATE homes SET name=:name address=:address user=:user building=:building' );
+                $newHome->bindParam(':name',$this->name,PDO::PARAM_STR,strlen($this->name));
+                $newHome->bindParam(':address',$this->address,PDO::PARAM_STR,strlen($this->address));
+                $newHome->bindParam(':user',$this->user,PDO::PARAM_INT);
+                $newHome->bindParam(':building',$this->building);
+                $newHome->execute();
+                $newHome->closeCursor();
+                $this->id = $db->lastInsertId();
+            }
+            foreach ($this->building as $building){
+                $building->save;
+            }
+            return this;
+        }
+        else{
+            return null;
+        }
         // TODO: Implement save() method.
     }
 
     public function delete($db)
     {
+        $request = $db->prepare('DELETE FROM home WHERE id = :id');
+        $request ->bindParam(':id', $this->id, PDO::PARAM_INT);
+        $request->execute();
+        $request->closeCursor();
+        return $this;
         // TODO: Implement delete() method.
     }
 
