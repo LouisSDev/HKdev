@@ -16,5 +16,5 @@ switch($globalPath){
         require_once "adminpage.php";
         break;
     default :
-        require_once "view/404.php";
+        require_once "404.php";
 }

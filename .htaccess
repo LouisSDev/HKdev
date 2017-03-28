@@ -1,7 +1,6 @@
 #Alternate default index page
 DirectoryIndex rooting.php
 
-
 Options +FollowSymlinks
 RewriteEngine on
 RewriteOptions Inherit
