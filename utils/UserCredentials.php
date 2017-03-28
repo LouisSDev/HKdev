@@ -11,6 +11,9 @@ class UserCredentials
         }else if(!empty($_SESSION['mail']) && !empty($_SESSION['password'])){
             $GLOBALS['mail'] = $_SESSION['mail'];
             $GLOBALS['password'] = $_SESSION['password'];
+        }else if(!empty($_COOKIE['mail']) && !empty($_COOKIE['password'])){
+            $GLOBALS['mail'] = $_COOKIE['mail'];
+            $GLOBALS['password'] = $_COOKIE['password'];
         }
     }
 
