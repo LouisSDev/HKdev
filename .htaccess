@@ -6,5 +6,13 @@ Options +FollowSymlinks
 RewriteEngine on
 RewriteOptions Inherit
 
+
+RewriteCond ${REQUEST_URI} ^.+$
+RewriteCond %{REQUEST_FILENAME} \.(gif|jpe?g|png|js|css|swf|php|ico|txt|pdf|xml)$ [OR]
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d [OR]
+RewriteCond %{REQUEST_FILENAME} -l
+RewriteRule ^ - [L]
+
 RewriteRule ^([^>]+)$ rooting.php
 
