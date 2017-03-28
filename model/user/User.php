@@ -415,7 +415,18 @@ class User implements DatabaseEntity
      */
     public function createFromResults($data)
     {
-        // TODO: Implement createFromResults() method.
+        $this->id = $data['id'];
+        $this->firstName = $data['firstName'];
+        $this->lastName = $data['lastName'];
+        $this->mail = $data['mail'];
+        $this->address = $data['address'];
+        $this->adminBuilding = $data['adminBuilding'];
+        $this->cellPhoneNumber = $data['cellPhoneNumber'];
+        $this->country = $data['country'];
+        $this->password = $data['password'];
+
+        $this -> buildings = $GLOBALS['repositories']['building'] -> getBuildingsFromUserId($this->id);
+        $this -> homes = $GLOBALS['repositories']['homes'] -> getHomessFromUserId($this->id);
         return $this;
     }
 

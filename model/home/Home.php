@@ -141,10 +141,11 @@ class Home implements DatabaseEntity
                 $newHome->closeCursor();
                 $this->id = $db->lastInsertId();
             }
+            /*
             foreach ($this->building as $building){
                 $building->save;
-            }
-            return this;
+            } */
+            return $this;
         }
         else{
             return null;
