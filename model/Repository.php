@@ -14,10 +14,6 @@ class Repository
      */
     protected $user;
 
-    /*
-     * @var $connectionTried boolean
-     */
-    protected $connectionTried;
 
     /**
      * UserRepository constructor.

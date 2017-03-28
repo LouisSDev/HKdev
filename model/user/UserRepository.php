@@ -4,6 +4,14 @@
 class UserRepository extends Repository
 {
 
+    /*
+     * @var $connected boolean
+     */
+    protected $connected = false;
+
+
+
+
     /**
      * @param string $mail
      * @param string $password
@@ -28,6 +36,7 @@ class UserRepository extends Repository
             $user = new User();
             $user -> createFromResults($userArray);
             $this->user = $user;
+            $this->connected = true;
         }
 
         return $this->user;
@@ -40,6 +49,14 @@ class UserRepository extends Repository
     {
         return $this->user;
     }
+    /**
+     * @return boolean
+     */
+    public function isConnected()
+    {
+        return $this->connected;
+    }
+
 
 
 }
