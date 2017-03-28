@@ -29,9 +29,14 @@ class Home implements DatabaseEntity
     private $user;
 
     /**
-     * @var Building
+     * @var $building Building
      */
     private $building;
+
+    /**
+     * @var $rooms
+     */
+    private $rooms;
 
     /**
      * @var boolean $error
@@ -141,8 +146,8 @@ class Home implements DatabaseEntity
                 $newHome->closeCursor();
                 $this->id = $db->lastInsertId();
             }
-            foreach ($this->building as $building){
-                $building->save;
+            foreach ($this->rooms as $room){
+                $room->save;
             }
             return this;
         }

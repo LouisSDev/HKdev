@@ -21,7 +21,7 @@ class Building implements DatabaseEntity
     /**
      * @var string
      */
-    private $adress;
+    private $address;
 
     /**
      * @var User
@@ -87,7 +87,7 @@ class Building implements DatabaseEntity
     /**
      * @return string
      */
-    public function getAdress()
+    public function getAddress()
     {
         return $this->address;
     }
@@ -95,7 +95,7 @@ class Building implements DatabaseEntity
     /**
      * @param string $adress
      */
-    public function setAdress(string $address)
+    public function setAddress(string $address)
     {
         $this->address = $address;
     }
