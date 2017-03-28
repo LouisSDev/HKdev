@@ -14,6 +14,11 @@ class Repository
      */
     protected $user;
 
+    /*
+     * @var $connectionTried boolean
+     */
+    protected $connectionTried;
+
     /**
      * UserRepository constructor.
      */
@@ -25,12 +30,10 @@ class Repository
         }
         else{
             if(!empty($GLOBALS['mail']) && !empty($GLOBALS['password'])) {
-                $this->connect($GLOBALS['mail'], $GLOBALS['password']);
-                try {
-                    if ($this->user == null) {
-                        $this->user = $GLOBALS['repositories']['user']->getUser();
-                    }
-                } catch (Exception $e) {
+                if($this instanceof UserRepository) {
+                    $this->connect($GLOBALS['mail'], $GLOBALS['password']);
+                }else{
+                    $this->user = $GLOBALS['repositories']['user']->getUser();
                 }
             }
         }
@@ -45,6 +48,7 @@ class Repository
      */
     public function connect($mail, $password, $encrypt = true)
     {
+
         return null;
     }
 }
