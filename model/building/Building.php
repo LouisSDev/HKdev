@@ -89,15 +89,15 @@ class Building implements DatabaseEntity
      */
     public function getAdress()
     {
-        return $this->adress;
+        return $this->address;
     }
 
     /**
      * @param string $adress
      */
-    public function setAdress(string $adress)
+    public function setAdress(string $address)
     {
-        $this->adress = $adress;
+        $this->address = $address;
     }
 
     /**
@@ -154,7 +154,7 @@ class Building implements DatabaseEntity
                 building(name,adress,user)  
                 VALUES(:name,:adress,:user)');
                 $newBuilding->bindParam(':name',$this->name,PDO::PARAM_STR,strlen($this->name));
-                $newBuilding->bindParam(':adress',$this->adress,PDO::PARAM_STR,strlen($this->adress));
+                $newBuilding->bindParam(':address',$this->address,PDO::PARAM_STR,strlen($this->adress));
                 $newBuilding->bindParam(':user',$this->user,PDO::PARAM_INT);
                 $newBuilding->execute();
                 $newBuilding->closeCursor();
@@ -164,7 +164,7 @@ class Building implements DatabaseEntity
             else {
                 $updateBuilding = $db->prepare('UPDATE building SET name=:name,adress=:adress,user=:user WHERE id=:id');
                 $updateBuilding->bindParam(':name', $this->name, PDO::PARAM_STR, strlen($this->name));
-                $updateBuilding->bindParam(':adress', $this->adress, PDO::PARAM_STR, strlen($this->adress));
+                $updateBuilding->bindParam(':address', $this->address, PDO::PARAM_STR, strlen($this->adress));
                 $updateBuilding->bindParam(':user', $this->user, PDO::PARAM_INT);
                 $updateBuilding->execute();
                 $updateBuilding->closeCursor();
