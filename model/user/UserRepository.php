@@ -12,15 +12,25 @@ class UserRepository extends Repository
      */
     public function connect($mail, $password, $encrypt = true){
         if($encrypt){
-            $password = sha1($password.$GLOBALS['salt']);
+            $passwordEncrypted = sha1($password.$GLOBALS['salt']);
+        }else{
+            $passwordEncrypted = $password;
         }
+
         $connect = $this->db->prepare('SELECT * FROM user WHERE mail = :mail AND password = :password');
-        $connect -> bindParam(':password', $password, PDO::PARAM_STR, strlen($password));
+        $connect -> bindParam(':password', $passwordEncrypted, PDO::PARAM_STR, strlen($passwordEncrypted));
         $connect -> bindParam(':mail', $mail, PDO::PARAM_STR, strlen($mail));
         $connect -> execute();
-        $user = $connect -> fetch(PDO::FETCH_ASSOC);
-        $this->user = $user;
-        return $user;
+
+        if($userArray = $connect -> fetch(PDO::FETCH_ASSOC)){
+            $_SESSION['mail'] = $GLOBALS['mail'];
+            $_SESSION['password'] = $GLOBALS['password'];
+            $user = new User();
+            $user -> createFromResults($userArray);
+            $this->user = $user;
+        }
+
+        return $this->user;
     }
 
     /**
