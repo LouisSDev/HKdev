@@ -6,13 +6,9 @@
  * Date: 28/03/2017
  * Time: 10:00
  */
-class Room implements DatabaseEntity
+class Room extends DatabaseEntity
 {
 
-    /**
-     * @var $id int;
-     */
-    private $id;
 
     /**
      * @var $name string
@@ -22,36 +18,19 @@ class Room implements DatabaseEntity
     /**
      * @var $sensors array;
      */
-    private $sensors;
+    private $sensors = array();
 
     /**
      * @var $home Home;
      */
     private $home;
 
-    /**
-     * @var boolean $error
-     */
-    private $error;
 
-    /**
-     * @var string $errorMessage
-     */
-    private $errorMessage;
-
-
-    /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
 
     /**
      * @return Home
      */
-    public function getHome(): Home
+    public function getHome()
     {
         return $this->home;
     }
@@ -59,7 +38,7 @@ class Room implements DatabaseEntity
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -67,18 +46,12 @@ class Room implements DatabaseEntity
     /**
      * @return array
      */
-    public function getSensors(): array
+    public function getSensors()
     {
         return $this->sensors;
     }
 
-    /**
-     * @param int $id
-     */
-    public function setId(int $id)
-    {
-        $this->id = $id;
-    }
+
 
     /**
      * @param Home $home
@@ -96,26 +69,28 @@ class Room implements DatabaseEntity
         $this->name = $name;
     }
 
-    /**
-     * @return string
-     */
-    public function getErrorMessage(): string
-    {
-        return $this->errorMessage;
-    }
 
-    /**
-     * @param string $errorMessage
-     */
-    public function setErrorMessage(string $errorMessage)
+    public function getValid()
     {
-        $this->errorMessage = $errorMessage;
+        if($this->error){
+            return false;
+        }else{
+            if($this->id != null
+                && $this->name != null
+                && $this ->home != null
+                && $this->sensors != null
+            ){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
 
     /**
      * @return Room
      *
-     */
+     *//*
     public function save($db){
 
         if ($this->getValid()){
@@ -155,22 +130,7 @@ class Room implements DatabaseEntity
         return $this;
     }
 
-    public function getValid()
-    {
-        if($this->error){
-            return false;
-        }else{
-            if($this->id != null
-                && $this->name != null
-                && $this ->home != null
-                && $this->sensors != null
-            ){
-                return true;
-            }else{
-                return false;
-            }
-        }
-    }
+
     public function delete($db)
     {
         $request = $db->prepare('DELETE FROM room WHERE id = :id');
@@ -185,5 +145,5 @@ class Room implements DatabaseEntity
     public function createFromResults($data)
     {
         // TODO: Implement createFromResults() method.
-    }
+    } */
 }

@@ -6,12 +6,8 @@
  * Date: 21/03/2017
  * Time: 09:22
  */
-class Home implements DatabaseEntity
+class Home extends DatabaseEntity
 {
-    /**
-     * @var integer
-     */
-    private $id;
 
     /**
      * @var string
@@ -36,28 +32,8 @@ class Home implements DatabaseEntity
     /**
      * @var $rooms
      */
-    private $rooms;
+    private $rooms = array();
 
-    /**
-     * @var boolean $error
-     */
-    private $error;
-
-    /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId(int $id)
-    {
-        $this->id = $id;
-    }
 
     /**
      * @return string
@@ -123,6 +99,25 @@ class Home implements DatabaseEntity
         $this->building = $building;
     }
 
+
+    public function getValid()
+    {
+        if($this->error){
+            return false;
+        }else{
+            if($this->id != null
+                && $this->name != null
+                && $this ->address != null
+                && $this->user != null
+                && $this-> building!= null
+            ){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+    /*
     public function save($db)
     {
         if($this->getValid()){
@@ -171,22 +166,6 @@ class Home implements DatabaseEntity
     {
         // TODO: Implement createFromResults() method.
     }
+*/
 
-    public function getValid()
-    {
-        if($this->error){
-            return false;
-        }else{
-            if($this->id != null
-                && $this->name != null
-                && $this ->address != null
-                && $this->user != null
-                && $this-> building!= null
-            ){
-                return true;
-            }else{
-                return false;
-            }
-        }
-    }
 }

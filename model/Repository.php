@@ -52,6 +52,11 @@ class Repository
         return $objects;
     }
 
+    public function getObjectsFromId(integer $id, string $fromObject){
+        $methodName = "getObjectsFrom" . $fromObject . "Id";
+        $this->$methodName($id);
+    }
+
     /**
      * @param string $mail
      * @param string $password

@@ -6,12 +6,8 @@
  * Date: 21/03/2017
  * Time: 09:14
  */
-class Building implements DatabaseEntity
+class Building extends DatabaseEntity
 {
-    /**
- * @var integer $id
- */
-    private $id;
 
     /**
      * @var string $name
@@ -31,18 +27,9 @@ class Building implements DatabaseEntity
     /**
      * @var array $homes
      */
-    private $homes;
-
-    /**
-     * @var boolean $error
-     */
-    protected $error = false;
+    private $homes = array();
 
 
-    /**
-     * @var string $errorMessage
-     */
-    protected $errorMessage = false;
 
     /**
      * @return array
@@ -60,22 +47,7 @@ class Building implements DatabaseEntity
         $this->homes = $homes;
     }
 
-    /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
-
-    /**
-     * @param int $id
-     */
-    public function setId(int $id)
-    {
-        $this->id = $id;
-    }
 
     /**
      * @return string
@@ -125,22 +97,6 @@ class Building implements DatabaseEntity
         $this->user = $user;
     }
 
-    /**
-     * @return string
-     */
-    public function getErrorMessage(): string
-    {
-        return $this->errorMessage;
-    }
-
-    /**
-     * @param string $errorMessage
-     */
-    public function setErrorMessage(string $errorMessage)
-    {
-        $this->errorMessage = $errorMessage;
-    }
-
 
     /**
      * Add home
@@ -172,6 +128,21 @@ class Building implements DatabaseEntity
         return $this;
     }
 
+    public function getValid()
+    {
+        if ($this->error){
+            return false;
+        }
+        else{
+            if($this->name != null
+                && $this->address!=null
+            ){
+                return true;
+            }
+        }
+        return false;
+    }
+/*
     public function save($db)
     {
         if($this->getValid()){
@@ -232,7 +203,7 @@ class Building implements DatabaseEntity
         $this->user = $data['user'];
         $this->address = $data['address'];
 
-        /** @var HomeRepository  $homeRepo */
+        /** @var HomeRepository  $homeRepo *//*
         $homeRepo = $GLOBALS['repositories']['home'];
         $this -> homes = $homeRepo -> getHomesFromBuildingId($this->id);
 
@@ -240,18 +211,6 @@ class Building implements DatabaseEntity
 
     }
 
-    public function getValid()
-    {
-        if ($this->error){
-            return false;
-        }
-        else{
-            if($this->name != null
-                && $this->address!=null
-            ){
-                return true;
-            }
-        }
-        return false;
-    }
+    */
+
 }

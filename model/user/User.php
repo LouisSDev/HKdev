@@ -1,11 +1,8 @@
 <?php
 
-class User implements DatabaseEntity
+class User extends DatabaseEntity
 {
-    /**
-     * @var integer
-     */
-    private $id = -1;
+
 
     /**
      * @var string $firstname
@@ -58,35 +55,9 @@ class User implements DatabaseEntity
     private $homes = array();
 
 
-    /**
-     * @var boolean
-     */
-    private $error;
-
-    /**
-     * @var string
-     */
-    private $errorMessage;
 
 
 
-    /**
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-    /**
-     * @param int
-     * @return User
-     *
-     */
-    private function setId($id)
-    {
-        $this->id = $id;
-        return $this;
-    }
 
 
     /**
@@ -283,22 +254,6 @@ class User implements DatabaseEntity
     }
 
     /**
-     * @return boolean
-     */
-    public function isError()
-    {
-        return $this->error;
-    }
-
-    /**
-     * @return string
-     */
-    public function getErrorMessage()
-    {
-        return $this->errorMessage;
-    }
-
-    /**
      * Add home
      *
      * @param Home
@@ -359,9 +314,31 @@ class User implements DatabaseEntity
         return $this;
     }
 
-    /**
-     * @return User
-     */
+
+    public function getValid(){
+        if($this->error){
+            return false;
+        }else{
+            if($this->firstName != null
+                && $this->lastName != null
+                && $this ->mail != null
+                && $this->cellPhoneNumber != null
+                && $this-> address != null
+                && $this->country != null
+                && $this->password != null
+            ){
+                if($this->adminBuilding == null){
+                    $this->adminBuilding = false;
+                }
+                return true;
+            }else{
+                $this->errorMessage .= '<br/>Vous n\'avez pas rentré toutes les informations nécessaires.';
+                return false;
+            }
+        }
+    }
+
+/*
     public function save($db)
     {
         if ($this->getValid()) {
@@ -416,7 +393,7 @@ class User implements DatabaseEntity
 
     /**
      * @return User
-     */
+     *//*
     public function delete($db)
     {
         $request = $db->prepare('DELETE FROM user WHERE id = :id');
@@ -428,7 +405,7 @@ class User implements DatabaseEntity
 
     /**
      * @return User
-     */
+     *//*
     public function createFromResults($data)
     {
         $this->id = $data['id'];
@@ -441,40 +418,19 @@ class User implements DatabaseEntity
         $this->country = $data['country'];
         $this->password = $data['password'];
 
-        /** @var BuildingRepository $buildingRepo */
+        /** @var BuildingRepository $buildingRepo *//*
         $buildingRepo = $GLOBALS['repositories']['building'];
         $this->buildings = $buildingRepo -> getBuildingsFromUserId($this->id);
 
 
-        /** @var HomeRepository  $homeRepo */
+        /** @var HomeRepository  $homeRepo *//*
         $homeRepo = $GLOBALS['repositories']['home'];
         $this -> homes = $homeRepo -> getHomesFromUserId($this->id);
 
         return $this;
     }
+*/
 
-    public function getValid(){
-        if($this->error){
-            return false;
-        }else{
-            if($this->firstName != null
-                && $this->lastName != null
-                && $this ->mail != null
-                && $this->cellPhoneNumber != null
-                && $this-> address != null
-                && $this->country != null
-                && $this->password != null
-            ){
-                if($this->adminBuilding == null){
-                    $this->adminBuilding = false;
-                }
-                return true;
-            }else{
-                $this->errorMessage .= '<br/>Vous n\'avez pas rentré toutes les informations nécessaires.';
-                return false;
-            }
-        }
-    }
 
 
 }
