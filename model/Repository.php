@@ -6,6 +6,7 @@ class Repository
      * @var PDO $db
      *
      */
+    const OBJECT_CLASS_NAME = '';
     protected $db;
 
     /*
@@ -34,6 +35,21 @@ class Repository
             }
         }
 
+    }
+
+
+    protected function getResultantObjects($objectsQuery){
+        $objects = array();
+        while($objectData = $objectsQuery -> fetch(PDO::FETCH_ASSOC)){
+
+            $objectClassName = self::OBJECT_CLASS_NAME;
+            $object = new $objectClassName();
+            $object -> createFromResults($objectData);
+
+            $objects[] = $object;
+        }
+
+        return $objects;
     }
 
     /**

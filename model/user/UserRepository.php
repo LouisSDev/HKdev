@@ -9,6 +9,8 @@ class UserRepository extends Repository
      */
     protected $connected = false;
 
+    const OBJECT_CLASS_NAME = 'model/user/User';
+
 
 
 

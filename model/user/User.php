@@ -8,7 +8,7 @@ class User implements DatabaseEntity
     private $id = -1;
 
     /**
-     * @var string
+     * @var string $firstname
      */
     private $firstName;
 
@@ -283,6 +283,22 @@ class User implements DatabaseEntity
     }
 
     /**
+     * @return boolean
+     */
+    public function isError()
+    {
+        return $this->error;
+    }
+
+    /**
+     * @return string
+     */
+    public function getErrorMessage()
+    {
+        return $this->errorMessage;
+    }
+
+    /**
      * Add home
      *
      * @param Home
@@ -430,9 +446,9 @@ class User implements DatabaseEntity
         $this->buildings = $buildingRepo -> getBuildingsFromUserId($this->id);
 
 
-        /** @var HomeRepository  homes */
+        /** @var HomeRepository  $homeRepo */
         $homeRepo = $GLOBALS['repositories']['home'];
-        $this -> homes = $homeRepo -> getHomesFromUserId($this);
+        $this -> homes = $homeRepo -> getHomesFromUserId($this->id);
 
         return $this;
     }
@@ -454,24 +470,11 @@ class User implements DatabaseEntity
                 }
                 return true;
             }else{
+                $this->errorMessage .= '<br/>Vous n\'avez pas rentré toutes les informations nécessaires.';
                 return false;
             }
         }
     }
 
-    /**
-     * @return boolean
-     */
-    public function isError()
-    {
-        return $this->error;
-    }
 
-    /**
-     * @return string
-     */
-    public function getErrorMessage()
-    {
-        return $this->errorMessage;
-    }
 }

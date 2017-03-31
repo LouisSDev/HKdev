@@ -6,7 +6,7 @@
  * Date: 28/03/2017
  * Time: 10:00
  */
-class Rooms implements DatabaseEntity
+class Room implements DatabaseEntity
 {
 
     /**
@@ -20,7 +20,7 @@ class Rooms implements DatabaseEntity
     private $name;
 
     /**
-     * @var $sensors Array;
+     * @var $sensors array;
      */
     private $sensors;
 
@@ -28,10 +28,17 @@ class Rooms implements DatabaseEntity
      * @var $home Home;
      */
     private $home;
+
     /**
      * @var boolean $error
      */
     private $error;
+
+    /**
+     * @var string $errorMessage
+     */
+    private $errorMessage;
+
 
     /**
      * @return int
@@ -88,30 +95,65 @@ class Rooms implements DatabaseEntity
     {
         $this->name = $name;
     }
-public function save($db){
-        if ($this->getValid){
-            if($this->id==-1){
-                $newRoom=$db->prepare('INSERT INTO room(name,home,sensors) VALUES (:name,:home,:sensors)');
-                $newRoom->bindParam('name',$this->name,PDO::PARAM_STR, strlen($this->name));
-                $newRoom->bindParam('home',$this->home);
-                $newRoom->bindParam('sensors',$this->sensors);
-                $newRoom->execute();
-                $newRoom->closeCursor();
-                $this->id = $db->lastInsertId();
+
+    /**
+     * @return string
+     */
+    public function getErrorMessage(): string
+    {
+        return $this->errorMessage;
+    }
+
+    /**
+     * @param string $errorMessage
+     */
+    public function setErrorMessage(string $errorMessage)
+    {
+        $this->errorMessage = $errorMessage;
+    }
+
+    /**
+     * @return Room
+     *
+     */
+    public function save($db){
+
+        if ($this->getValid()){
+            if($this -> id == -1){
+                $newRoom = $db -> prepare('INSERT INTO room(name, home) VALUES (:name, :home)');
+                $newRoom -> bindParam('name',$this->name,PDO::PARAM_STR, strlen($this->name));
+                $newRoom -> bindParam('home',$this->home);
+                $newRoom -> execute();
+                $newRoom -> closeCursor();
+                $this -> id = $db->lastInsertId();
 
             }
             else{
-                $newRoom=$db->prepare('UPDATE room SET name=:name home=:home sensors=:sensors ' );
-                $newRoom->bindParam(':name',$this->name,PDO::PARAM_STR,strlen($this->name));
-                $newRoom->bindParam(':home',$this->home);
-                $newRoom->bindParam(':sensors',$this->sensors);
-                $newRoom->execute();
-                $newRoom->closeCursor();
-                $this->id = $db->lastInsertId();
+                $updateRoom = $db->prepare('UPDATE room SET name = :name,  home = :home WHERE id = :id ' );
+                $updateRoom -> bindParam(':name',$this->name,PDO::PARAM_STR,strlen($this->name));
+                $updateRoom -> bindParam(':home', $this-> home -> getId(), PDO::PARAM_INT);
+                $updateRoom -> bindParam(':id', $this->id, PDO::PARAM_INT);
+                $updateRoom -> execute();
+                $updateRoom -> closeCursor();
             }
 
         }
-}
+
+        // TODO : Cascade
+        // TODO : Cascade
+        // TODO : Cascade
+        // TODO : Cascade
+        // TODO : Cascade
+        // TODO : Cascade
+        // TODO : Cascade
+        // TODO : Cascade
+        // TODO : Cascade
+        // TODO : Cascade
+        // TODO : Cascade
+        // TODO : Cascade
+
+        return $this;
+    }
 
     public function getValid()
     {

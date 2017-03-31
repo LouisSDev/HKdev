@@ -9,31 +9,40 @@
 class Building implements DatabaseEntity
 {
     /**
- * @var integer
+ * @var integer $id
  */
     private $id;
 
     /**
-     * @var string
+     * @var string $name
      */
     private $name;
 
     /**
-     * @var string
+     * @var string $address
      */
     private $address;
 
     /**
-     * @var User
+     * @var User $user
      */
     private $user;
 
     /**
-     * @var array
+     * @var array $homes
      */
     private $homes;
 
-    protected $error;
+    /**
+     * @var boolean $error
+     */
+    protected $error = false;
+
+
+    /**
+     * @var string $errorMessage
+     */
+    protected $errorMessage = false;
 
     /**
      * @return array
@@ -117,6 +126,23 @@ class Building implements DatabaseEntity
     }
 
     /**
+     * @return string
+     */
+    public function getErrorMessage(): string
+    {
+        return $this->errorMessage;
+    }
+
+    /**
+     * @param string $errorMessage
+     */
+    public function setErrorMessage(string $errorMessage)
+    {
+        $this->errorMessage = $errorMessage;
+    }
+
+
+    /**
      * Add home
      *
      * @param Home
@@ -151,8 +177,8 @@ class Building implements DatabaseEntity
         if($this->getValid()){
             if($this->id==-1){
                 $newBuilding=$db->prepare('INSERT INTO 
-                building(name,adress,user)  
-                VALUES(:name,:adress,:user)');
+                building(name, adress, user)  
+                VALUES(:name, :adress, :user)');
                 $newBuilding->bindParam(':name',$this->name,PDO::PARAM_STR,strlen($this->name));
                 $newBuilding->bindParam(':address',$this->address,PDO::PARAM_STR,strlen($this->adress));
                 $newBuilding->bindParam(':user',$this->user,PDO::PARAM_INT);
@@ -162,7 +188,7 @@ class Building implements DatabaseEntity
 
             }
             else {
-                $updateBuilding = $db->prepare('UPDATE building SET name=:name,adress=:adress,user=:user WHERE id=:id');
+                $updateBuilding = $db->prepare('UPDATE building SET name = :name, adress = :adress, user = :user WHERE id = :id');
                 $updateBuilding->bindParam(':name', $this->name, PDO::PARAM_STR, strlen($this->name));
                 $updateBuilding->bindParam(':address', $this->address, PDO::PARAM_STR, strlen($this->adress));
                 $updateBuilding->bindParam(':user', $this->user, PDO::PARAM_INT);
@@ -173,6 +199,12 @@ class Building implements DatabaseEntity
             foreach ($this->homes as $home){
                 $home->save;
             }
+
+            // TODO: CASCADE!!
+            // TODO: CASCADE!!
+            // TODO: CASCADE!!
+
+
             return $this;
 
         }
@@ -194,6 +226,16 @@ class Building implements DatabaseEntity
 
     public function createFromResults($data)
     {
+
+        $this->id = $data['id'];
+        $this->name = $data['name'];
+        $this->user = $data['user'];
+        $this->address = $data['address'];
+
+        /** @var HomeRepository  $homeRepo */
+        $homeRepo = $GLOBALS['repositories']['home'];
+        $this -> homes = $homeRepo -> getHomesFromBuildingId($this->id);
+
         return $this;
 
     }
@@ -210,6 +252,6 @@ class Building implements DatabaseEntity
                 return true;
             }
         }
-
+        return false;
     }
 }

@@ -9,5 +9,14 @@
 class RoomRepository extends Repository
 {
 
+    const OBJECT_CLASS_NAME = 'model/room/Room';
 
+    public function getRoomsFromHomeId(integer $id){
+
+        $roomsQuery = $this->db->prepare('SELECT * FROM room WHERE home = :home');
+        $roomsQuery -> bindParam(':home', $id, PDO::PARAM_INT);
+        $roomsQuery -> execute();
+
+        return $this -> getResultantObjects($roomsQuery);
+    }
 }

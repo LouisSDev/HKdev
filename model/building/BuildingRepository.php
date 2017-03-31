@@ -8,21 +8,15 @@
  */
 class BuildingRepository extends Repository
 {
+    const OBJECT_CLASS_NAME = 'model/building/Building';
+
+
     public function getBuildingsFromUserId(integer $id){
 
         $buildingsQuery = $this->db->prepare('SELECT * FROM building WHERE user = :user');
         $buildingsQuery -> bindParam(':user', $id, PDO::PARAM_INT);
         $buildingsQuery -> execute();
 
-        $buildings = array();
-        while($buildingData = $buildingsQuery -> fetch(PDO::FETCH_ASSOC)){
-
-            $building = new Building();
-            $building -> createFromResults($buildingData);
-
-            $buildings[] = $building;
-        }
-
-        return $buildings;
+        return $this -> getResultantObjects($buildingsQuery);
     }
 }
