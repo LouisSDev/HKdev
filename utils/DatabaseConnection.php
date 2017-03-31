@@ -43,6 +43,8 @@ class DatabaseConnection
     private function createRepositories(){
         $GLOBALS['repositories']['user'] = new UserRepository($this->db);
         $GLOBALS['repositories']['home'] = new HomeRepository($this->db, $GLOBALS['repositories']['user'] -> getUser() );
+        $GLOBALS['repositories']['building'] = new BuildingRepository($this->db, $GLOBALS['repositories']['user'] -> getUser() );
+        $GLOBALS['repositories']['room'] = new RoomRepository($this->db, $GLOBALS['repositories']['user'] -> getUser() );
     }
 
 

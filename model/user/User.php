@@ -425,8 +425,15 @@ class User implements DatabaseEntity
         $this->country = $data['country'];
         $this->password = $data['password'];
 
-        $this -> buildings = $GLOBALS['repositories']['building'] -> getBuildingsFromUserId($this->id);
-        $this -> homes = $GLOBALS['repositories']['homes'] -> getHomessFromUserId($this->id);
+        /** @var BuildingRepository $buildingRepo */
+        $buildingRepo = $GLOBALS['repositories']['building'];
+        $this->buildings = $buildingRepo -> getBuildingsFromUserId($this->id);
+
+
+        /** @var HomeRepository  homes */
+        $homeRepo = $GLOBALS['repositories']['home'];
+        $this -> homes = $homeRepo -> getHomesFromUserId($this);
+
         return $this;
     }
 

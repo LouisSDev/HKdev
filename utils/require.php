@@ -22,6 +22,11 @@ require_once "model/home/HomeRepository.php";
 
 // Building
 require_once  "model/building/Building.php";
+require_once "model/building/BuildingRepository.php";
+
+// Room
+require_once  "model/room/Room.php";
+require_once "model/room/RoomRepository.php";
 
 
 

@@ -173,7 +173,7 @@ class Building implements DatabaseEntity
             foreach ($this->homes as $home){
                 $home->save;
             }
-            return this;
+            return $this;
 
         }
         else{
@@ -205,7 +205,7 @@ class Building implements DatabaseEntity
         }
         else{
             if($this->name != null
-                && $this->adress!=null
+                && $this->address!=null
             ){
                 return true;
             }
