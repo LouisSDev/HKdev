@@ -91,7 +91,7 @@ class Rooms implements DatabaseEntity
 public function save($db){
         if ($this->getValid){
             if($this->id==-1){
-                $newRoom=$db->prepare('INSERT INTO rooms(name,home,sensors) VALUES (:name,:home,:sensors)');
+                $newRoom=$db->prepare('INSERT INTO room(name,home,sensors) VALUES (:name,:home,:sensors)');
                 $newRoom->bindParam('name',$this->name,PDO::PARAM_STR, strlen($this->name));
                 $newRoom->bindParam('home',$this->home);
                 $newRoom->bindParam('sensors',$this->sensors);
@@ -101,7 +101,7 @@ public function save($db){
 
             }
             else{
-                $newRoom=$db->prepare('UPDATE rooms SET name=:name home=:home sensors=:sensors ' );
+                $newRoom=$db->prepare('UPDATE room SET name=:name home=:home sensors=:sensors ' );
                 $newRoom->bindParam(':name',$this->name,PDO::PARAM_STR,strlen($this->name));
                 $newRoom->bindParam(':home',$this->home);
                 $newRoom->bindParam(':sensors',$this->sensors);
@@ -131,7 +131,7 @@ public function save($db){
     }
     public function delete($db)
     {
-        $request = $db->prepare('DELETE FROM rooms WHERE id = :id');
+        $request = $db->prepare('DELETE FROM room WHERE id = :id');
         $request ->bindParam(':id', $this->id, PDO::PARAM_INT);
         $request->execute();
         $request->closeCursor();
