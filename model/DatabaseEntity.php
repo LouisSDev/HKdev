@@ -59,7 +59,7 @@ abstract class DatabaseEntity
                     // It will in turn call the method getObjectsFromUserId of the given repository if it's from the
                     // User id that we search those objects
                     // We then put all of this in the corresponding array and we're done
-                    $this -> $name = $repository -> getObjectsFromId($this->id, self::class);
+                    $this -> $name = $repository -> getObjectsFromId($this->id, self::class, $repositoryName);
 
                 }
                 else if($name != "error" && $name != "errorMessage"){
@@ -190,7 +190,7 @@ abstract class DatabaseEntity
             }else{
 
                 // This is the same as above expect the request string is not the same and we also have
-                // To bind the id for the WHERE par of the request
+                // To bind the id for the WHERE part of the request
                 // Also, no need here to do $this->id = $db->lastInsertId();
                 $request = "UPDATE " . strtolower(self::class) . " SET ";
 

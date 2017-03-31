@@ -49,12 +49,27 @@ class Repository
             $objects[] = $object;
         }
 
+        $objectsQuery -> closeCursor();
+
         return $objects;
     }
 
-    public function getObjectsFromId(integer $id, string $fromObject){
-        $methodName = "getObjectsFrom" . $fromObject . "Id";
-        $this->$methodName($id);
+    // Example, we could call it with params : (3 , user, Home ) which means we'll search for the homes that belongs to user 3
+    public function getObjectsFromId(integer $id, string $fromObjectId, string $fromTable ){
+
+        // The from object name goes to lower case
+        $fromTable = strtolower($fromTable);
+
+        // We prepare the questy
+        $objectsQuery = $this->db->prepare('SELECT * FROM '
+            . $fromTable . ' WHERE ' . $fromObjectId . ' = :' . $fromObjectId ) ;
+            // Example :  SELECT * FROM room WHERE home = :home
+
+        // We bind the param and execute the request
+        $objectsQuery -> bindParam(':' . $fromObjectId , $id, PDO::PARAM_INT);
+        $objectsQuery -> execute();
+
+        return $this->getResultantObjects($objectsQuery);
     }
 
     /**
