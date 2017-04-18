@@ -94,6 +94,9 @@ class SensorType extends DatabaseEntity
         }
     }
 
+    public function getValid(){
 
+
+    }
 
 }
