@@ -27,7 +27,7 @@ class Effector extends DatabaseEntity{
     /**
      * @return EffectorType
      */
-    public function getEffectorType(): EffectorType
+    public function getEffectorType()
     {
         return $this->effectorType;
     }
