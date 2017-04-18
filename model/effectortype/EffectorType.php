@@ -41,7 +41,7 @@ class EffectorType extends DatabaseEntity
     /**
      * @return string
      */
-    public function getRef(): string
+    public function getRef()
     {
         return $this->ref;
     }
@@ -72,8 +72,8 @@ class EffectorType extends DatabaseEntity
         if($this->error){
             return false;
         }else{
-            if($this->id != null
-                && $this->name != null
+            if(
+                   $this->name != null
                 && $this ->ref != null
             ){
                 return true;
