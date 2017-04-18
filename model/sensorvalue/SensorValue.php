@@ -9,10 +9,33 @@
 class SensorValue extends DatabaseEntity
 {
     /**
+     * @var \DateTime $datetime
+     */
+    private $datetime;
+
+    /**
+     * @var Room $room;
+     */
+    private $room;
+
+    /**
      * @var boolean $state
-     * sdghj
      */
     private $state;
+
+    /**
+     * @var float $value
+     */
+    private $value;
+
+    /**
+     * SensorValue constructor.
+     */
+
+    public function __construct()
+    {
+        $this -> datetime = new \DateTime(date('m/d/Y H:i:s'));
+    }
 
     /**
      * @return boolean
@@ -30,5 +53,71 @@ class SensorValue extends DatabaseEntity
         $this->state = $state;
     }
 
+    /**
+     * @return Room
+     */
+    public function getRoom(){
+        return $this->room;
+    }
+
+    /**
+     * @param Room $room
+     * @return SensorValue
+     */
+    public function setRoom(Room $room){
+        $this->room = $room;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param float $value
+     * @return SensorValue
+     */
+    public function setValue(float $value)
+    {
+        $this->value = $value;
+        return $this;
+    }
+
+    /**
+     * @return DateTime
+     */
+    public function getDatetime()
+    {
+        return $this->datetime;
+    }
+
+    /**
+     * @param DateTime $datetime
+     * @return SensorValue
+     */
+    public function setDatetime(DateTime $datetime)
+    {
+        $this->datetime = $datetime;
+        return $this;
+    }
+
+    public function getValid()
+    {
+        if($this->error){
+            return false;
+        }else{
+            if($this->room != null
+                &&( $this->state != null || $this ->value != null)
+            ){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
 
 }

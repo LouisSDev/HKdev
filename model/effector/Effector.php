@@ -18,11 +18,17 @@ class Effector extends DatabaseEntity{
      */
     private $name;
 
-
     /**
      * @var Room $room;
      */
     private $room;
+
+    /**
+     * @var boolean $state
+     */
+    private $state;
+
+
 
     /**
      * @return EffectorType
@@ -84,7 +90,17 @@ class Effector extends DatabaseEntity{
 
 
     public function getValid(){
-
+        if($this->error){
+            return false;
+        }else{
+            if(    $this -> name != null
+                && $this ->ref != null
+            ){
+                return true;
+            }else{
+                return false;
+            }
+        }
     }
 
 
