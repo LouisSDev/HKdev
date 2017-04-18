@@ -1,0 +1,22 @@
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: rgba(163,216,250,0.5);
+}
+
+.page-title{
+    text-align: center;
+}
+
+.error{
+    display: block;
+}
+
+.page-content{
+    text-align: center;
+}
+
+img{
+    height: auto;
+    width: 30%;
+}
+
