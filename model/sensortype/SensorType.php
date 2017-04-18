@@ -83,8 +83,7 @@ class SensorType extends DatabaseEntity
         if($this->error){
             return false;
         }else{
-            if($this->id != null
-                && $this->name != null
+            if( $this->name != null
                 && $this ->ref != null
             ){
                 return true;
