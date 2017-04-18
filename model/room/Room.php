@@ -55,10 +55,12 @@ class Room extends DatabaseEntity
 
     /**
      * @param Home $home
+     * @return Room;
      */
     public function setHome(Home $home)
     {
         $this->home = $home;
+        return $this;
     }
 
     /**
@@ -67,6 +69,7 @@ class Room extends DatabaseEntity
     public function setName(string $name)
     {
         $this->name = $name;
+        return $this;
     }
 
 
