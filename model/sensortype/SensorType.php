@@ -53,6 +53,7 @@ class SensorType
     {
         $this->chart = $chart;
         return $this;
+
     }
 
 
