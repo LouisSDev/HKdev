@@ -7,7 +7,7 @@ body{
 
 .page-title{
     text-align: center;
-    margin-top: 5%;
+    margin-top: 6%;
 }
 
 .error{
@@ -20,5 +20,26 @@ body{
 
 .returnHP{
     text-align: center;
+    margin-top: 30%;
+
+}
+
+#back_homepage{
+    background-color: deepskyblue;
+    text-decoration: none;
+    text-align: center;
+    border: 0;
+    font-size: 20px;
+    padding: 15px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    display: inline-block;
+    cursor: pointer;
+    transition-duration: 0.4s;
+}
+
+#back_homepage:hover{
+    padding-left: 25px;
+    padding-right: 25px;
+    transition-duration: 0.4s;
 }
 

@@ -8,11 +8,10 @@
 </head>
 <body>
     <div class="error404">
-        <h1 class="page-title">Oups ! Un problème est survenu ! Veuillez choisir une page existante !</h1>
+        <h1 class="page-title">Oups ! Un problème est survenu ! </h1>
     </div>
     <div class="returnHP">
-        <button id="homepage">Retour à l'accueil</button>
+        <button id="back_homepage">Retour à l'accueil</button>
     </div>
-    <
 </body>
 </html>
