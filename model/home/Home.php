@@ -105,8 +105,7 @@ class Home extends DatabaseEntity
         if($this->error){
             return false;
         }else{
-            if($this->id != null
-                && $this->name != null
+            if( $this->name != null
                 && $this ->address != null
                 && $this->user != null
                 && $this-> building!= null
