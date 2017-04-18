@@ -8,23 +8,19 @@
 class Sensor extends DatabaseEntity{
 
     /**
-     * @var integer $i
+     * @var boolean $error;
      */
 
-
-
-
+    private $error;
 
     /**
      * @var SensorType $sensortype;
      */
-    private $sensortype ;
-
+    private $sensorType ;
     /**
      * @var string $name
      */
     private $name;
-
 
     /**
      * @var Room $room;
@@ -32,72 +28,71 @@ class Sensor extends DatabaseEntity{
     private $room;
 
     /**
-     * @return int
-     */
-    public function getId(): int
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param int $id
-     */
-    public function setId(int $id)
-    {
-        $this->id = $id;
-    }
-
-    /**
      * @return SensorType
      */
-    public function getSensortype(): SensorType
-    {
-        return $this->sensortype;
+    public function getSensorType(){
+        return $this->sensorType;
     }
 
     /**
-     * @param SensorType $sensortype
+     * @param SensorType $sensorType
+     * @return Sensor
      */
-    public function setSensortype(SensorType $sensortype)
-    {
-        $this->sensortype = $sensortype;
+    public function setSensorType(SensorType $sensorType){
+        $this->sensorType = $sensorType;
+        return $this;
     }
 
     /**
      * @return string
      */
-    public function getName(): string
-    {
+    public function getName(){
         return $this->name;
     }
 
     /**
      * @param string $name
+     * @return Sensor
      */
-    public function setName(string $name)
-    {
+    public function setName(string $name){
         $this->name = $name;
+        return $this;
     }
 
     /**
      * @return Room
+     *
      */
-    public function getRoom(): Room
-    {
+    public function getRoom(){
         return $this->room;
     }
 
     /**
      * @param Room $room
-     *
+     * @return Sensor
      */
     public function setRoom(Room $room)
     {
         $this->room = $room;
+        return $this;
     }
 
 
     public function getValid(){
+        if($this->error){
+            return false;
+        }
+        else{
+            if ($this->name != null
+                && $this->room != null
+                && $this->sensorType != null
+            ){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
 
     }
 
