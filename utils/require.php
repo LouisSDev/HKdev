@@ -28,6 +28,9 @@ require_once "model/building/BuildingRepository.php";
 require_once  "model/room/Room.php";
 require_once "model/room/RoomRepository.php";
 
+// SensorType
+require_once  "model/sensortype/SensorType.php";
+require_once "model/sensortype/SensorTypeRepository.php";
 
 
 // Error Logging Facilities
