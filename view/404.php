@@ -8,11 +8,11 @@
 </head>
 <body>
     <div class="error404">
-        <h1 class="page-title">Error 404</h1>
+        <h1 class="page-title">Oups ! Un problème est survenu ! Veuillez choisir une page existante !</h1>
     </div>
-    <div class="page-content">
-        <img src="<?php echo $GLOBALS['server_root']?>\ressources\img\error404.jpg" alt="Ismael est noir">
-        <p>Oups ! Un problème est survenu ! Veuillez choisir une page existante !</p>
+    <div class="returnHP">
+        <button id="homepage">Retour à l'accueil</button>
     </div>
+    <
 </body>
 </html>

@@ -8,12 +8,6 @@
 class Sensor extends DatabaseEntity{
 
     /**
-     * @var boolean $error;
-     */
-
-    private $error;
-
-    /**
      * @var SensorType $sensorType;
      */
     private $sensorType ;

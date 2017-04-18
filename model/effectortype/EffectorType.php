@@ -23,7 +23,7 @@ class EffectorType extends DatabaseEntity
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -41,7 +41,7 @@ class EffectorType extends DatabaseEntity
     /**
      * @return string
      */
-    public function getRef(): string
+    public function getRef()
     {
         return $this->ref;
     }
