@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Erreur 404</title>
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>\ressources\css\error404.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
     <div class="error404">
