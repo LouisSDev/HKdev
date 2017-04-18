@@ -7,14 +7,9 @@
  */
 class Sensor extends DatabaseEntity{
 
-    /**
-     * @var boolean $error;
-     */
-
-    private $error;
 
     /**
-     * @var SensorType $sensortype;
+     * @var SensorType $sensorType;
      */
     private $sensorType ;
     /**
@@ -26,6 +21,11 @@ class Sensor extends DatabaseEntity{
      * @var Room $room;
      */
     private $room;
+
+    /**
+     * @var array $sensorValues ;
+     */
+    private $sensorValues = array();
 
     /**
      * @return SensorType
@@ -78,6 +78,23 @@ class Sensor extends DatabaseEntity{
     }
 
 
+    /**
+     * @return array
+     */
+    public function getSensorValues()
+    {
+        return $this->sensorValues;
+    }
+
+    /**
+     * @param array $sensorValues
+     */
+    public function setSensorValues(array $sensorValues)
+    {
+        $this->sensorValues = $sensorValues;
+    }
+
+
     public function getValid(){
         if($this->error){
             return false;
@@ -86,6 +103,7 @@ class Sensor extends DatabaseEntity{
             if ($this->name != null
                 && $this->room != null
                 && $this->sensorType != null
+                && $this->sensorValues !=null
             ){
                 return true;
             }
@@ -93,8 +111,6 @@ class Sensor extends DatabaseEntity{
                 return false;
             }
         }
-
     }
-
 
 }
