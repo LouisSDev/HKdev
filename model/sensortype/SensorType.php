@@ -56,6 +56,9 @@ class SensorType
 
     }
 
+    public function getValid(){
 
+
+    }
 
 }
