@@ -75,10 +75,12 @@ class Building extends DatabaseEntity
 
     /**
      * @param string $adress
+     * @return Building
      */
     public function setAddress(string $address)
     {
         $this->address = $address;
+        return $this;
     }
 
     /**
@@ -91,10 +93,12 @@ class Building extends DatabaseEntity
 
     /**
      * @param User $user
+     * @return Building
      */
     public function setUser(User $user)
     {
         $this->user = $user;
+        return $this;
     }
 
 

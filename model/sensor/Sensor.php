@@ -94,6 +94,18 @@ class Sensor extends DatabaseEntity{
         $this->sensorValues = $sensorValues;
     }
 
+    public function addSensorValue($value){
+        if(!in_array($value , $this->sensorValues)){
+            array_push($this->sensorValues,$value);
+            //TODO: setting sensorsValues
+                return $this;
+        }
+
+    }
+    public function removeSensor(){
+
+    }
+
 
     public function getValid(){
         if($this->error){
