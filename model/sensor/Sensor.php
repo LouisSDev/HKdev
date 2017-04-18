@@ -9,7 +9,7 @@ class Sensor extends DatabaseEntity{
 
 
     /**
-     * @var SensorType $sensortype;
+     * @var SensorType $sensorType;
      */
     private $sensorType ;
     /**

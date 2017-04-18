@@ -27,7 +27,7 @@ class SensorType extends DatabaseEntity
     /**
      * @return string
      */
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
@@ -45,7 +45,7 @@ class SensorType extends DatabaseEntity
     /**
      * @return string
      */
-    public function getRef(): string
+    public function getRef()
     {
         return $this->ref;
     }
@@ -63,7 +63,7 @@ class SensorType extends DatabaseEntity
     /**
      * @return boolean
      */
-    public function isChart(): bool
+    public function isChart()
     {
         return $this->chart;
     }
