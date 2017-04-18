@@ -29,6 +29,15 @@ class SensorValue extends DatabaseEntity
     private $value;
 
     /**
+     * SensorValue constructor.
+     */
+
+    public function __construct()
+    {
+        $this -> datetime = new \DateTime(date('m/d/Y H:i:s'));
+    }
+
+    /**
      * @return boolean
      */
     public function getState()
