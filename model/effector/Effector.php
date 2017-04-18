@@ -26,7 +26,13 @@ class Effector extends DatabaseEntity{
     /**
      * @var boolean $state
      */
-    private $state;
+    private $state = false;
+
+    /**
+     * @var boolean $auto
+     */
+    private $auto = true;
+
 
 
 
@@ -88,13 +94,52 @@ class Effector extends DatabaseEntity{
         return $this;
     }
 
+    /**
+     * @return boolean
+     */
+    public function isState(): bool
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param boolean $state
+     * @return Effector
+     */
+    public function setState(bool $state)
+    {
+        $this->state = $state;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isAuto(): bool
+    {
+        return $this->auto;
+    }
+
+    /**
+     * @param boolean $auto
+     * @return Effector
+     */
+    public function setAuto(bool $auto)
+    {
+        $this->auto = $auto;
+        return $this;
+    }
+
+
+
 
     public function getValid(){
         if($this->error){
             return false;
         }else{
             if(    $this -> name != null
-                && $this ->ref != null
+                && $this -> room != null
+                && $this -> effectorType != null
             ){
                 return true;
             }else{
