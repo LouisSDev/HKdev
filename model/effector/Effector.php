@@ -54,10 +54,12 @@ class Effector extends DatabaseEntity{
 
     /**
      * @param string $name
+     * @return Effector
      */
     public function setName(string $name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -71,11 +73,13 @@ class Effector extends DatabaseEntity{
     /**
      *
      * @param Room $room
+     * @return Effector
      *
      */
     public function setRoom(Room $room)
     {
         $this->room = $room;
+        return $this;
     }
 
 
