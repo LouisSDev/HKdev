@@ -4,9 +4,9 @@
  * Created by PhpStorm.
  * User: LOUISSTEIMBERG
  * Date: 18/04/2017
- * Time: 08:45
+ * Time: 09:10
  */
-class SensorType extends DatabaseEntity
+class EffectorType extends DatabaseEntity
 {
 
     /**
@@ -19,10 +19,6 @@ class SensorType extends DatabaseEntity
      */
     private $ref;
 
-    /**
-     * @var boolean $chart
-     */
-    private $chart = true;
 
     /**
      * @return string
@@ -34,7 +30,7 @@ class SensorType extends DatabaseEntity
 
     /**
      * @param string $name
-     * @return SensorType
+     * @return EffectorType
      */
     public function setName(string $name)
     {
@@ -52,7 +48,7 @@ class SensorType extends DatabaseEntity
 
     /**
      * @param string $ref
-     * @return SensorType
+     * @return EffectorType
      */
     public function setRef(string $ref)
     {
@@ -60,17 +56,10 @@ class SensorType extends DatabaseEntity
         return $this;
     }
 
-    /**
-     * @return boolean
-     */
-    public function isChart(): bool
-    {
-        return $this->chart;
-    }
 
     /**
      * @param boolean $chart
-     * @return SensorType
+     * @return EffectorType
      */
     public function setChart(bool $chart)
     {
@@ -94,9 +83,5 @@ class SensorType extends DatabaseEntity
         }
     }
 
-    public function getValid(){
-
-
-    }
 
 }
