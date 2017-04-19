@@ -5,49 +5,49 @@ class User extends DatabaseEntity
 
 
     /**
-     * @var string $firstname
+     * @var string $firstName
      */
     private $firstName;
 
     /**
-     * @var string
+     * @var string $lastName
      */
     private $lastName;
 
     /**
-     * @var string
+     * @var string $mail
      */
     private $mail;
 
     /**
-     * @var string
+     * @var  $cellPhoneNumber
      */
     private $cellPhoneNumber;
 
     /**
-     * @var string
+     * @var string $address
      */
     private $address;
 
     /**
-     * @var string
+     * @var string $city
+     */
+    private $city;
+
+    /**
+     * @var string $country
      */
     private $country;
+
     /**
-     * @var string
+     * @var string $password
      */
     private $password;
 
-
     /**
-     * @var boolean
+     * @var boolean $admin
      */
-    private $adminBuilding;
-
-    /**
-     * @var array
-     */
-    private $buildings = array();
+    private $admin = false;
 
     /**
      * @var array
@@ -172,6 +172,44 @@ class User extends DatabaseEntity
         return $this->password;
     }
 
+    /**
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     * @return User
+     */
+    public function setCity(string $city)
+    {
+        $this->city = $city;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isAdmin()
+    {
+        return $this->admin;
+    }
+
+    /**
+     * @param boolean $admin
+     * @return User
+     */
+    public function setAdmin(bool $admin)
+    {
+        $this->admin = $admin;
+        return $this;
+    }
+
+
+
 
     public function setPassword($password, $passwordNew, $passwordConf, $encrypt)
     {
@@ -217,24 +255,6 @@ class User extends DatabaseEntity
         return $this;
     }
 
-    /**
-     * @return boolean
-     */
-
-    public function isAdminBuilding()
-    {
-        return $this->adminBuilding;
-    }
-
-    /**
-     * @param boolean $adminBuilding
-     * @return User
-     */
-    public function setAdminBuilding($adminBuilding)
-    {
-        $this->adminBuilding = $adminBuilding;
-        return $this;
-    }
 
 
     /**
@@ -246,12 +266,16 @@ class User extends DatabaseEntity
     }
 
     /**
-     * @return array
+     * @param array $homes
+     * @return User
      */
-    public function getBuildings()
+    public function setHomes($homes)
     {
-        return $this->buildings;
+        $this -> homes = null;
+        return $this;
     }
+
+
 
     /**
      * Add home
@@ -260,7 +284,7 @@ class User extends DatabaseEntity
      * @return User
      */
 
-    public function addHome($home){
+    public function addHome(Home $home){
         if(!in_array($home, $this->homes)){
             array_push( $this->homes, $home);
             $home->setUser($this);
@@ -275,7 +299,7 @@ class User extends DatabaseEntity
      * @return User
      */
 
-    public function removeHome($home){
+    public function removeHome(Home $home){
         if(!in_array($home, $this->homes)) {
             unset($this->homes[array_search($home,$this->homes)]);
             $home->setUser(null);
@@ -284,35 +308,7 @@ class User extends DatabaseEntity
     }
 
 
-    /**
-     * Add building
-     *
-     * @param Building
-     * @return User
-     */
 
-    public function addBuilding($building){
-        if(!in_array($building, $this->buildings)){
-            array_push( $this->buildings, $building);
-            $building->setUser($this);
-        }
-        return $this;
-    }
-
-    /**
-     * Remove building
-     *
-     * @param Building
-     * @return User
-     */
-
-    public function removeBuilding($building){
-        if(!in_array($building, $this->buildings)){
-            unset($this->buildings[array_search($building,$this->buildings)]);
-            $building->setUser(null);
-        }
-        return $this;
-    }
 
 
     public function getValid(){

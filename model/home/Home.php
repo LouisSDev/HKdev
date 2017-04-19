@@ -15,9 +15,19 @@ class Home extends DatabaseEntity
     private $name;
 
     /**
-     * @var string
+     * @var string $address
      */
     private $address;
+
+    /**
+     * @var string $city
+     */
+    private $city;
+
+    /**
+     * @var string $country
+     */
+    private $country;
 
     /**
      * @var User
@@ -25,9 +35,14 @@ class Home extends DatabaseEntity
     private $user;
 
     /**
-     * @var $building Building
+     * @var $building Home
      */
-    private $building;
+    private $building = null;
+
+    /**
+     * @var $homes array
+     */
+    private $homes = null;
 
     /**
      * @var $rooms
@@ -84,7 +99,7 @@ class Home extends DatabaseEntity
     }
 
     /**
-     * @return string
+     * @return Home
      */
     public function getBuilding()
     {
@@ -92,11 +107,154 @@ class Home extends DatabaseEntity
     }
 
     /**
-     * @param string $building
+     * @param Home $building
      */
-    public function setBuilding(string $building)
+    public function setBuilding(Home $building)
     {
         $this->building = $building;
+    }
+
+
+
+
+    /**
+     * @return string
+     */
+    public function getCity()
+    {
+        return $this->city;
+    }
+
+    /**
+     * @param string $city
+     * @return Home
+     */
+    public function setCity(string $city)
+    {
+        $this->city = $city;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param string $country
+     * @return Home
+     */
+    public function setCountry(string $country)
+    {
+        $this->country = $country;
+        return $this;
+    }
+
+
+
+
+    /**
+     * @return array
+     */
+    public function getHomes()
+    {
+        return $this->homes;
+    }
+
+    /**
+     * @param array $homes
+     * @return Home
+     */
+    public function setHomes($homes)
+    {
+        $this -> homes = $homes;
+        return $this;
+    }
+
+
+
+    /**
+     * Add home
+     *
+     * @param Home
+     * @return Home
+     */
+
+    public function addHome(Home $home){
+        if(!in_array($home, $this->homes)){
+            array_push( $this->homes, $home);
+            $home->setBuilding($this);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove home
+     *
+     * @param Home
+     * @return Home
+     */
+
+    public function removeHome(Home $home){
+        if(!in_array($home, $this->homes)) {
+            unset($this->homes[array_search($home,$this->homes)]);
+            $home->setBuilding(null);
+        }
+        return $this;
+    }
+
+
+    /**
+     * @return array
+     */
+    public function getRooms()
+    {
+        return $this->rooms;
+    }
+
+    /**
+     * @param array $homes
+     * @return Home
+     */
+    public function setRooms($rooms)
+    {
+        $this -> rooms = $rooms;
+        return $this;
+    }
+
+
+
+    /**
+     * Add room
+     *
+     * @param Room
+     * @return Home
+     */
+
+    public function addRoom(Room $room){
+        if(!in_array($room, $this->rooms)){
+            array_push( $this->rooms, $room);
+            $room->setHome($this);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove room
+     *
+     * @param Room
+     * @return Home
+     */
+
+    public function removeRoom(Room $room){
+        if(!in_array($room, $this->rooms)) {
+            unset($this->rooms[array_search($room, $this->rooms)]);
+            $room->setHome(null);
+        }
+        return $this;
     }
 
 
@@ -116,6 +274,7 @@ class Home extends DatabaseEntity
             }
         }
     }
+
 
 
     // TODO:: rooms!!!
