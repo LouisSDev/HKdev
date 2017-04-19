@@ -42,6 +42,7 @@ class EffectorType extends DatabaseEntity
             $this -> error = true;
             $this -> errorMessage .= '<br/> This name is too long';
         }
+
         return $this;
     }
 
