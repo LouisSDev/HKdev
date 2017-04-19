@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -5,7 +7,6 @@
 <body>
 <include_once ("view/header.php");
     <img src="img/photoaccueil.png">
-
     <img src="img/entreprise.png">
     <textarea>
         Ces de ces deux constats qu’est né le projet HomeKeeper et c'est la raison pour laquelle nous mettons chaque jour toute notre énergie pour combattre ce fléau.
