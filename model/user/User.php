@@ -193,7 +193,7 @@ class User extends DatabaseEntity
     /**
      * @return boolean
      */
-    public function isAdmin()
+    public function getAdmin()
     {
         return $this->admin;
     }
@@ -323,15 +323,21 @@ class User extends DatabaseEntity
                 && $this->country != null
                 && $this->password != null
             ){
-                if($this->adminBuilding == null){
-                    $this->adminBuilding = false;
-                }
                 return true;
             }else{
                 $this->errorMessage .= '<br/>Vous n\'avez pas rentré toutes les informations nécessaires.';
                 return false;
             }
         }
+    }
+
+    public function getClassName(){
+        return self::class;
+    }
+
+
+    public function getObjectVars(){
+        return get_object_vars($this);
     }
 
 /*

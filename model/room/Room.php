@@ -111,6 +111,14 @@ class Room extends DatabaseEntity
         }
     }
 
+    public function getClassName(){
+        return self::class;
+    }
+
+    public function getObjectVars(){
+        return get_object_vars($this);
+    }
+
     /**
      * @return Room
      *
@@ -137,6 +145,8 @@ class Room extends DatabaseEntity
             }
 
         }
+
+
 
         // TODO : Cascade
         // TODO : Cascade

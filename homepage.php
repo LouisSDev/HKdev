@@ -8,7 +8,7 @@ if($GLOBALS['repositories']['user'] -> isConnected()){
 }else{
 
 }
-/*
+
 $user = new User();
 $saveUser = $user
     ->setAddress("35 rue du Bac")
@@ -16,7 +16,7 @@ $saveUser = $user
     ->setCountry("France")
     ->setFirstName("Louis")
     ->setLastName("Steimberg")
-    ->setMail("lasde@hotmail.fr")
+    ->setMail("weshalors@hotmail.fr")
     ->setPassword("test", "", "test", true)
     ->save($db);
 if($saveUser == null){
@@ -32,5 +32,5 @@ if($saveUser == null){
         echo $user->getErrorMessage();
     }
 }
-*/
+
 ?>

@@ -3,8 +3,8 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<include_once ("view/header.php");
 <body>
+<include_once ("view/header.php");
 <ins>
 Home Kepper
     28, rue Notre-Dame des Champs
@@ -21,9 +21,3 @@ Home Kepper
 </body>
 </html>
 
-/**
- * Created by PhpStorm.
- * User: Bocquet
- * Date: 18/04/2017
- * Time: 09:30
- */
