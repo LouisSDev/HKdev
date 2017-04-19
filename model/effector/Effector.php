@@ -97,7 +97,7 @@ class Effector extends DatabaseEntity{
     /**
      * @return boolean
      */
-    public function isState(): bool
+    public function isState()
     {
         return $this->state;
     }
@@ -115,7 +115,7 @@ class Effector extends DatabaseEntity{
     /**
      * @return boolean
      */
-    public function isAuto(): bool
+    public function isAuto()
     {
         return $this->auto;
     }
