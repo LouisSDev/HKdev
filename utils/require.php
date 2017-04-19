@@ -20,10 +20,6 @@ require_once "model/user/UserRepository.php";
 require_once  "model/home/Home.php";
 require_once "model/home/HomeRepository.php";
 
-// Building
-require_once  "model/building/Building.php";
-require_once "model/building/BuildingRepository.php";
-
 // Room
 require_once  "model/room/Room.php";
 require_once "model/room/RoomRepository.php";
@@ -43,6 +39,11 @@ require_once "model/effectortype/EffectorTypeRepository.php";
 // Sensor
 require_once  "model/sensor/Sensor.php";
 require_once "model/sensor/SensorRepository.php";
+
+// SensorValue
+require_once  "model/sensorvalue/SensorValue.php";
+require_once "model/sensorvalue/SensorValueRepository.php";
+
 
 
 // Error Logging Facilities
