@@ -14,19 +14,19 @@ class SensorValue extends DatabaseEntity
     private $datetime;
 
     /**
-     * @var Room $room;
-     */
-    private $room;
-
-    /**
      * @var boolean $state
      */
-    private $state;
+    private $state = false;
 
     /**
      * @var float $value
      */
     private $value;
+
+    /**
+     * @var Sensor $sensor
+     */
+    private $sensor;
 
     /**
      * SensorValue constructor.
@@ -53,21 +53,6 @@ class SensorValue extends DatabaseEntity
         $this->state = $state;
     }
 
-    /**
-     * @return Room
-     */
-    public function getRoom(){
-        return $this->room;
-    }
-
-    /**
-     * @param Room $room
-     * @return SensorValue
-     */
-    public function setRoom(Room $room){
-        $this->room = $room;
-        return $this;
-    }
 
     /**
      * @return float
@@ -104,6 +89,26 @@ class SensorValue extends DatabaseEntity
         $this->datetime = $datetime;
         return $this;
     }
+
+    /**
+     * @return Sensor
+     */
+    public function getSensor(): Sensor
+    {
+        return $this->sensor;
+    }
+
+    /**
+     * @param Sensor $sensor
+     * @return SensorValue
+     */
+    public function setSensor(Sensor $sensor)
+    {
+        $this->sensor = $sensor;
+        return $this;
+    }
+
+
 
     public function getValid()
     {

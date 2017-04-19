@@ -34,7 +34,14 @@ class EffectorType extends DatabaseEntity
      */
     public function setName(string $name)
     {
-        $this->name = $name;
+        if(strlen($name) > 40 ){
+
+            $this->name = $name;
+        }
+        else{
+            $this -> error = true;
+            $this -> errorMessage .= '<br/> This name is too long';
+        }
         return $this;
     }
 
