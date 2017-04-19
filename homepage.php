@@ -3,10 +3,6 @@
 $dbConnector = new DatabaseConnection();
 $db = $dbConnector -> getDatabase();
 
-
-
-
-
 if($GLOBALS['repositories']['user'] -> isConnected()){
     // The user is connected, we'll probably open a special page for him
 
@@ -14,7 +10,6 @@ if($GLOBALS['repositories']['user'] -> isConnected()){
 }else{
 
 }
-
 /*
 $user = new User();
 $saveUser = $user
