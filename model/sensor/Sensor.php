@@ -129,4 +129,12 @@ class Sensor extends DatabaseEntity{
         }
     }
 
+    public function getClassName(){
+        return self::class;
+    }
+
+    public function getObjectVars(){
+        return get_object_vars($this);
+    }
+
 }
