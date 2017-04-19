@@ -120,7 +120,7 @@ class Home extends DatabaseEntity
     /**
      * @return string
      */
-    public function getCity(): string
+    public function getCity()
     {
         return $this->city;
     }
@@ -138,7 +138,7 @@ class Home extends DatabaseEntity
     /**
      * @return string
      */
-    public function getCountry(): string
+    public function getCountry()
     {
         return $this->country;
     }

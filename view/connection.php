@@ -10,13 +10,13 @@
 </head>
 <body>
     <div class="container">
-        <form action="" method="post" >
+        <form action="<?php echo $GLOBALS['server_root']?>" method="post" >
             <input type="text" required="" placeholder="Nom d'utilisateur" name="userMail"><br/>
             <input type="password" required="" placeholder="Mot de passe" name="userPassword"><br/>
             <input type="checkbox">Se souvenir de moi ?<br/>
             <input class="btn" type="submit" name="Envoyer">
         </form>
-            <a href="" target="_self">Mot de passe oublié ?</a>
+        <a href="" target="_self">Mot de passe oublié ?</a>
     </div>
 </body>
 </html>

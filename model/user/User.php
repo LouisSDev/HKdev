@@ -175,7 +175,7 @@ class User extends DatabaseEntity
     /**
      * @return string
      */
-    public function getCity(): string
+    public function getCity()
     {
         return $this->city;
     }
@@ -193,7 +193,7 @@ class User extends DatabaseEntity
     /**
      * @return boolean
      */
-    public function isAdmin(): bool
+    public function isAdmin()
     {
         return $this->admin;
     }

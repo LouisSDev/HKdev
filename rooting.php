@@ -20,6 +20,9 @@ switch($globalPath){
     case "backoffice" :
         require_once "adminpage.php";
         break;
+    case "connection" :
+        require_once "view/connection.php";
+        break;
     default :
         require_once "404.php";
 }
