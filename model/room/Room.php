@@ -55,16 +55,30 @@ class Room extends DatabaseEntity
      */
     public function setHome(Home $home)
     {
-        $this->home = $home;
+        if($home instanceof Home){
+            $this->home = $home;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> The parameter $home is not a instance of the class Home ';
+        }
+
         return $this;
     }
 
     /**
      * @param string $name
      */
-    public function setName(string $name)
+    public function setName($name)
     {
-        $this->name = $name;
+        if(strlen($name)<=40){
+            $this->name = $name;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This name is too long ';
+        }
+
         return $this;
     }
 
