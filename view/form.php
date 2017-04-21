@@ -12,11 +12,11 @@
 
     <form action="tag-html-balise-form" method="get" enctype="multipart/form-data">
         <p>
-            <input class=box type="text" name="First Name" value="Nom"/><br>
-            <input class=box type="text" name="Last Name" value="Prénom"/><br>
-            <input class=box type="text" name="Adress" value="Adresse"/><br>
-            <input class=box type="text" name="City" value="Ville"/><br>
-            <input class=box type="text" name="Mail" value="Adresse mail"/><br>
+            <input class=box type="text" name="First Name" placeholder="Nom"/><br>
+            <input class=box type="text" name="Last Name" placeholder="Prénom"/><br>
+            <input class=box type="text" name="Adress" placeholder="Adresse"/><br>
+            <input class=box type="text" name="City" placeholder="Ville"/><br>
+            <input class=box type="text" name="Mail" placeholder="Adresse mail"/><br>
             <input class=box type="file" name="MyFile" /><br />
             <input class=box type="submit" value="Envoyer" />
         </p>
