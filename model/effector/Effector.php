@@ -70,7 +70,15 @@ class Effector extends DatabaseEntity{
      */
     public function setName(string $name)
     {
-        $this->name = $name;
+
+        if(strlen($name)<=40){
+            $this->name = $name;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This name is too long ';
+        }
+
         return $this;
     }
 
@@ -90,7 +98,14 @@ class Effector extends DatabaseEntity{
      */
     public function setRoom(Room $room)
     {
-        $this->room = $room;
+        if($room instanceof Room){
+            $this->room = $room;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> The parameter is not a Room ';
+        }
+
         return $this;
     }
 
