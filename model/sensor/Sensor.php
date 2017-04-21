@@ -97,17 +97,17 @@ class Sensor extends DatabaseEntity{
     public function addSensorValue(SensorValue $value){
         if(!in_array($value , $this->sensorValues)){
             array_push($this->sensorValues,$value);
-            $value->setRoom(null);
-                return $this;
-        }
+            $value->setSensor(null);
 
+        }
+        return $this;
     }
     public function removeSensorValue(SensorValue $value){
         if(!in_array($value,$this->sensorValues)){
            unset($this->sensorValues[array_search($value,$this->sensorValues)]);
-           $value->setRoom(null);
+           $value->setSensor(null);
         }
-
+        return $this;
     }
 
 
@@ -127,6 +127,14 @@ class Sensor extends DatabaseEntity{
                 return false;
             }
         }
+    }
+
+    public function getClassName(){
+        return self::class;
+    }
+
+    public function getObjectVars(){
+        return get_object_vars($this);
     }
 
 }

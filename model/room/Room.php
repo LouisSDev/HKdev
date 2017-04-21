@@ -25,8 +25,6 @@ class Room extends DatabaseEntity
      */
     private $home;
 
-
-
     /**
      * @return Home
      */
@@ -51,8 +49,6 @@ class Room extends DatabaseEntity
         return $this->sensors;
     }
 
-
-
     /**
      * @param Home $home
      * @return Room;
@@ -72,6 +68,32 @@ class Room extends DatabaseEntity
         return $this;
     }
 
+    /**
+     * Add sensor
+     * @param Sensor $sensor
+     * @return $this
+     */
+
+    public function addSensor(Sensor $sensor){
+        if(! in_array($sensor,$this->sensors)){
+            array_push($this->sensors,$sensor);
+            $sensor->setSensorType(null);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove sensor
+     * @param Sensor $sensor
+     * @return $this
+     */
+    public function removeSensor(Sensor $sensor){
+        if(! in_array($sensor,$this->sensors)){
+            unset($this->sensors[array_search($sensor,$this->sensors)]);
+            $sensor->setSensorType(null);
+        }
+        return $this;
+    }
 
     public function getValid()
     {
@@ -87,6 +109,14 @@ class Room extends DatabaseEntity
                 return false;
             }
         }
+    }
+
+    public function getClassName(){
+        return self::class;
+    }
+
+    public function getObjectVars(){
+        return get_object_vars($this);
     }
 
     /**
@@ -115,6 +145,8 @@ class Room extends DatabaseEntity
             }
 
         }
+
+
 
         // TODO : Cascade
         // TODO : Cascade

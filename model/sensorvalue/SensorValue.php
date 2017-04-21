@@ -93,7 +93,7 @@ class SensorValue extends DatabaseEntity
     /**
      * @return Sensor
      */
-    public function getSensor(): Sensor
+    public function getSensor()
     {
         return $this->sensor;
     }
@@ -123,6 +123,14 @@ class SensorValue extends DatabaseEntity
                 return false;
             }
         }
+    }
+
+    public function getClassName(){
+        return self::class;
+    }
+
+    public function getObjectVars(){
+        return get_object_vars($this);
     }
 
 }

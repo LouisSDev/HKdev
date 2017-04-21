@@ -59,7 +59,7 @@ abstract class DatabaseEntity
                     // It will in turn call the method getObjectsFromUserId of the given repository if it's from the
                     // User id that we search those objects
                     // We then put all of this in the corresponding array and we're done
-                    $this -> $name = $repository -> getObjectsFromId($this->id, self::class, $repositoryName);
+                    $this -> $name = $repository -> getObjectsFromId($this->id, $this -> getClassName() , $repositoryName);
 
                 }
                 else if($name != "error" && $name != "errorMessage"){
@@ -84,7 +84,7 @@ abstract class DatabaseEntity
         // Note that if you are in an object whose class extends this one, the parameters will be the parameters
         // of this extended class.
         // For example, in a User object, the parameters will be :  homes, buildings, address, firstName, mail...
-        $rawParameters = get_object_vars($this);
+        $rawParameters = $this -> getObjectVars();
 
         // This array will stock the sorted out parameters that will be saved in the database:
         // For example, in the class user, the array homes won't appear in this array
@@ -143,7 +143,7 @@ abstract class DatabaseEntity
             if ($this->id == -1) {
 
                 // We create the request string which will be and INSERT INTO + database name which is the entity class name in lowercase
-                $request = "INSERT INTO " . strtolower(self::class) . "(";
+                $request = "INSERT INTO " . strtolower($this -> getClassName()) . " (";
                 //End of the request is created as well because both needs to cross the parameters array so we shall do this all at once
                 $endRequest = ' VALUES (';
 
@@ -156,7 +156,7 @@ abstract class DatabaseEntity
                         // Then we add ':firstName, ' for example to the VALUES ( *** params here***) part of the request
                         $endRequest .= ":" . $name . ", ";
                     }
-                 }
+                }
 
                 // We delete the last ' ,'
                 $request = substr($request, 0, strlen($request) - 2);
@@ -165,20 +165,28 @@ abstract class DatabaseEntity
                 // We put all together
                 $request .= ')' . $endRequest . ") ";
 
+                //throw new \Exception($request);
+
                 // And sends the request
                 $newEntity = $db -> prepare($request);
 
                 // Now, for each param we need to bind its value
                 foreach($parameters as $name => $value){
+
+                    $getterName = 'get' . strtoupper($name[0]) .  substr($name, 1, strlen($name) -1);
+                    $val =  $this->$getterName();
+
+
                     // If it's a string type field
                     if($value['type'] == PDO::PARAM_STR){
                         // We will bind it with the right infos
-                        $newEntity->bindParam(':' . $name, $this->$name, $value['type'], strlen($this->$name));
+                        $newEntity->bindParam(':' . $name, $val, $value['type'], strlen($val));
                     }else{
                         // Or bind it differently if it's an integer
-                        $newEntity->bindParam(':' . $name, $this->$name, $value['type']);
+                        $newEntity->bindParam(':' . $name, $val, $value['type']);
                     }
                 }
+
 
                 // Finally, we execute the request and close the cursor
                 $newEntity->execute();
@@ -192,7 +200,7 @@ abstract class DatabaseEntity
                 // This is the same as above expect the request string is not the same and we also have
                 // To bind the id for the WHERE part of the request
                 // Also, no need here to do $this->id = $db->lastInsertId();
-                $request = "UPDATE " . strtolower(self::class) . " SET ";
+                $request = "UPDATE " . strtolower($this -> getClassName())  . " SET ";
 
                 foreach($parameters as $name => $value){
                     if($name != 'id') {
@@ -242,7 +250,7 @@ abstract class DatabaseEntity
      */
     public function delete($db)
     {
-        $request = $db->prepare('DELETE FROM ' . strtolower(self::class) . ' WHERE id = :id');
+        $request = $db->prepare('DELETE FROM ' . strtolower($this -> getClassName()) . ' WHERE id = :id');
         $request ->bindParam(':id', $this->id, PDO::PARAM_INT);
         $request->execute();
         $request->closeCursor();
@@ -301,6 +309,14 @@ abstract class DatabaseEntity
     public function setErrorMessage(string $errorMessage)
     {
         $this->errorMessage = $errorMessage;
+    }
+
+    public function getClassName(){
+        return self::class;
+    }
+
+    public function getObjectVars(){
+        return get_object_vars($this);
     }
 
 

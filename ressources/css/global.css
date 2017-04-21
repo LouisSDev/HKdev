@@ -21,3 +21,9 @@ body{
     padding-right: 25px;
     transition-duration: 0.4s;
 }
+
+.box{
+    background-color: lightgray;
+    border: 0;
+    padding: 10px;
+}
