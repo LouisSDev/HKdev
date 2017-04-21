@@ -10,6 +10,7 @@
 <body>
 <?php include_once("header.php");?>
     <img class="photoaccueil" src="<?php echo $GLOBALS['server_root']?>/ressources/img/home.jpg"/>
+    <img class="arrow" src="<?php echo $GLOBALS['server_root']?>/ressources/img/fleche.png"/>
     <img class="entreprise" src="<?php echo $GLOBALS['server_root']?>/ressources/img/entreprise.jpg"/>
     <textarea>
         Ces de ces deux constats qu’est né le projet HomeKeeper et c'est la raison pour laquelle nous mettons chaque jour toute notre énergie pour combattre ce fléau.
