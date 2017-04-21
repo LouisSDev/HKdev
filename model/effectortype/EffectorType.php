@@ -32,9 +32,9 @@ class EffectorType extends DatabaseEntity
      * @param string $name
      * @return EffectorType
      */
-    public function setName(string $name)
+    public function setName($name)
     {
-        if(strlen($name) > 40 ){
+        if(strlen($name) <= 40 ){
 
             $this->name = $name;
         }
@@ -58,9 +58,15 @@ class EffectorType extends DatabaseEntity
      * @param string $ref
      * @return EffectorType
      */
-    public function setRef(string $ref)
+    public function setRef($ref)
     {
-        $this->ref = $ref;
+        if(is_integer($ref)){
+            $this->ref = $ref;
+        }
+        else{
+            $this -> error = true;
+            $this -> errorMessage .= '<br/> The parameter $ref is not a integer';
+        }
         return $this;
     }
 
