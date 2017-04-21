@@ -142,7 +142,11 @@ class Home extends DatabaseEntity
      */
     public function setBuilding(Home $building)
     {
-        $this->building = $building;
+        if (is_integer($building)){$this->building = $building;
+        }
+        else{
+
+        }
         return $this;
     }
 
@@ -190,7 +194,7 @@ class Home extends DatabaseEntity
      */
     public function setCountry($country)
     {
-        if(strlen($country)<=40){
+        if(strlen($country)<=20){
             $this->country = $country;
         }
         else{
