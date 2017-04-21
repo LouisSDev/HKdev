@@ -84,7 +84,15 @@ class Home extends DatabaseEntity
      */
     public function setAddress($address)
     {
-        $this->address = $address;
+        if(strlen($address)<=80){
+            $this->address = $address;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This address is too long ';
+        }
+
+
         return $this;
     }
 
