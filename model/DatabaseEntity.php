@@ -176,16 +176,24 @@ abstract class DatabaseEntity
                     $getterName = 'get' . strtoupper($name[0]) .  substr($name, 1, strlen($name) -1);
                     $val =  $this->$getterName();
 
+                    $GLOBALS['val'] = $val;
 
-                    // If it's a string type field
-                    if($value['type'] == PDO::PARAM_STR){
-                        // We will bind it with the right infos
-                        $newEntity->bindParam(':' . $name, $val, $value['type'], strlen($val));
-                    }else{
-                        // Or bind it differently if it's an integer
-                        $newEntity->bindParam(':' . $name, $val, $value['type']);
+
+                    if($name !==  'id') {
+                        // If it's a string type field
+                        if ($value['type'] == PDO::PARAM_STR) {
+                            // We will bind it with the right infos
+                            $newEntity->bindParam(':' . $name, $GLOBALS['val'] , PDO::PARAM_STR, strlen($GLOBALS['val']));
+                        } else {
+                            // Or bind it differently if it's an integer
+                            $newEntity->bindParam(':' . $name, $GLOBALS['val'], $value['type']);
+                        }
+
+                        unset($GLOBALS['val']);
                     }
                 }
+
+                //throw new Exception($newEntity -> debugDumpParams());
 
 
                 // Finally, we execute the request and close the cursor
@@ -216,11 +224,20 @@ abstract class DatabaseEntity
                 $updateEntity = $db -> prepare($request);
 
                 foreach($parameters as $name => $value){
+
+                    $getterName = 'get' . strtoupper($name[0]) .  substr($name, 1, strlen($name) -1);
+                    $val =  $this->$getterName();
+
+
+                    $GLOBALS['val'] = $val;
+
+
                     if($value['type'] == PDO::PARAM_STR){
-                        $updateEntity->bindParam(':' . $name, $this->$name, PDO::PARAM_STR, strlen($this->$name));
+                        $updateEntity->bindParam(':' . $name, $GLOBALS['val'], PDO::PARAM_STR, strlen($GLOBALS['val']));
                     }else{
-                        $updateEntity->bindParam(':' . $name, $this->$name, PDO::PARAM_INT);
+                        $updateEntity->bindParam(':' . $name, $GLOBALS['val'], $value['type']);
                     }
+                    unset($GLOBALS['val']);
                 }
 
                 $updateEntity->execute();
