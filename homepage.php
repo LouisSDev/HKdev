@@ -1,3 +1,5 @@
+
+
 <?php
 
 
@@ -9,7 +11,7 @@ if($GLOBALS['repositories']['user'] -> isConnected()){
 
 }
 
-$user = new User();
+/*$user = new User();
 $saveUser = $user
     ->setAddress("35 rue du Bac")
     ->setCellPhoneNumber("+3366085916")
@@ -31,6 +33,6 @@ if($saveUser == null){
         echo "<h1> Oups Database error, please enter correct informations</h1>";
         echo $user->getErrorMessage();
     }
-}
+}*/
 
 ?>
