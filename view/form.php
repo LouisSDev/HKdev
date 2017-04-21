@@ -9,18 +9,20 @@
 <body>
     <h1>Vous êtes intéressé ?</h1>
     <h1>Demander un devis !</h1>
+    <div>
+        <form action="tag-html-balise-form" method="get" enctype="multipart/form-data">
+            <p>
+                <input class=box type="text" name="First Name" placeholder="Nom"/><br>
+                <input class=box type="text" name="Last Name" placeholder="Prénom"/><br>
+                <input class=box type="text" name="Adress" placeholder="Adresse"/><br>
+                <input class=box type="text" name="City" placeholder="Ville"/><br>
+                <input class=box type="text" name="Mail" placeholder="Adresse mail"/><br>
+                <input type="file" name="MyFile" /><br />
+                <input type="submit" value="Envoyer" />
+            </p>
+        </form>
+    </div>
 
-    <form action="tag-html-balise-form" method="get" enctype="multipart/form-data">
-        <p>
-            <input class=box type="text" name="First Name" placeholder="Nom"/><br>
-            <input class=box type="text" name="Last Name" placeholder="Prénom"/><br>
-            <input class=box type="text" name="Adress" placeholder="Adresse"/><br>
-            <input class=box type="text" name="City" placeholder="Ville"/><br>
-            <input class=box type="text" name="Mail" placeholder="Adresse mail"/><br>
-            <input class=box type="file" name="MyFile" /><br />
-            <input type="submit" value="Envoyer" />
-        </p>
-    </form>
     <?php
     // Testons si le fichier a bien été envoyé et s'il n'y a pas d'erreur
     if (isset($_FILES['MyFile']) AND $_FILES['MyFile']['error'] == 0)
