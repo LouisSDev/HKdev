@@ -1,0 +1,25 @@
+ /* HEADER */
+.header{
+    position: fixed;
+    left: 0;
+    right: 0;
+    height: 80px;
+    line-height: 80px;
+    background-color: #222222;
+}
+
+
+.menu a{
+    font-weight: bold;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 0 10px;
+    color: #FFF;
+    transition: all 0.1s ease 0.2s;
+}
+
+
+.menu a:hover{
+    color: #62bcda;
+    transition: all 0.3s ease 0.2s;
+}

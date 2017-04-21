@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <title>title</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
-    <meta charset="utf-8"/>
-</head>
 
 
 <header class="header">
@@ -17,4 +10,3 @@
 </header>
 
 
-</html>

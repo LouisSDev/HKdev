@@ -8,9 +8,12 @@
     <title>Connexion</title>
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>\ressources\css\global.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>\ressources\css\connection.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
 </head>
+
+<?php include_once("header.php") ?>
 <body>
-    <?php include_once("header.php") ?>
+
     <div class="container">
         <form action="<?php echo $GLOBALS['server_root']?>" method="post" >
             <input class="box" type="text" required="" placeholder="Nom d'utilisateur" name="userMail"><br/>
