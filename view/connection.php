@@ -10,6 +10,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>\ressources\css\connection.css">
 </head>
 <body>
+    <?php include_once("header.php") ?>
     <div class="container">
         <form action="<?php echo $GLOBALS['server_root']?>" method="post" >
             <input class="box" type="text" required="" placeholder="Nom d'utilisateur" name="userMail"><br/>
@@ -22,4 +23,5 @@
             </div>
     </div>
 </body>
+
 </html>
