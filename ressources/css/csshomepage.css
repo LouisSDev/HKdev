@@ -2,15 +2,30 @@
     margin-top: 80px;
     height: auto;
     width: 100%;
+
 }
 .arrow{
+
     height: auto;
     width: 4%;
     opacity: 0.2;
+
 }
 
 .entreprise {
     height: 20%;
     margin: 0%;
     max-width: 40%;
+}
+
+.conteneur1{
+    position:absolute;
+    z-index: 0;
+
+}
+
+.conteneur2{
+    position:relative;
+    z-index: 1;
+
 }
