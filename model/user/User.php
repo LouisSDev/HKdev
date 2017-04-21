@@ -74,7 +74,14 @@ class User extends DatabaseEntity
      */
     public function setFirstName($firstName)
     {
-        $this->firstName = $firstName;
+        if(strlen($firstName)<=40){
+            $this->firstName = $firstName;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This firstname is too long ';
+        }
+
         return $this;
     }
 
@@ -92,7 +99,15 @@ class User extends DatabaseEntity
      */
     public function setLastName($lastName)
     {
-        $this->lastName = $lastName;
+
+        if(strlen($lastName)<=40){
+            $this->lastName = $lastName;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This lastName is too long ';
+        }
+
         return $this;
     }
 
