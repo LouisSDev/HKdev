@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Form</title>
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>\ressources\css\global.css">
 </head>
 
 <body>
@@ -11,13 +12,13 @@
 
     <form action="tag-html-balise-form" method="get" enctype="multipart/form-data">
         <p>
-            <input type="text" name="First Name" value="Nom"/><br>
-            <input type="text" name="Last Name" value="Prénom"/><br>
-            <input type="text" name="Adress" value="Adresse"/><br>
-            <input type="text" name="City" value="Ville"/><br>
-            <input type="text" name="Mail" value="Adresse mail"/><br>
-            <input type="file" name="MyFile" /><br />
-            <input class="btn" type="submit" value="Envoyer" />
+            <input class=box type="text" name="First Name" value="Nom"/><br>
+            <input class=box type="text" name="Last Name" value="Prénom"/><br>
+            <input class=box type="text" name="Adress" value="Adresse"/><br>
+            <input class=box type="text" name="City" value="Ville"/><br>
+            <input class=box type="text" name="Mail" value="Adresse mail"/><br>
+            <input class=box type="file" name="MyFile" /><br />
+            <input class=box type="submit" value="Envoyer" />
         </p>
     </form>
     <?php
