@@ -18,7 +18,7 @@
             <input class=box type="text" name="City" placeholder="Ville"/><br>
             <input class=box type="text" name="Mail" placeholder="Adresse mail"/><br>
             <input class=box type="file" name="MyFile" /><br />
-            <input class=box type="submit" value="Envoyer" />
+            <input type="submit" value="Envoyer" />
         </p>
     </form>
     <?php
