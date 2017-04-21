@@ -1,10 +1,10 @@
-photoaccueil {
-    height: 20%;
-    margin: 0%;
-    min-width: 100%;
+.photoaccueil {
+    margin-top: 80px;
+    height: auto;
+    width: 100%;
 }
 
-entreprise {
+.entreprise {
     height: 20%;
     margin: 0%;
     max-width: 40%;
