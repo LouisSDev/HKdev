@@ -66,7 +66,14 @@ class Home extends DatabaseEntity
      */
     public function setName($name)
     {
-        $this->name = $name;
+        if(strlen($name)<=40){
+            $this->name = $name;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This name is too long ';
+        }
+
         return $this;
     }
 
@@ -84,6 +91,7 @@ class Home extends DatabaseEntity
      */
     public function setAddress($address)
     {
+
         if(strlen($address)<=80){
             $this->address = $address;
         }
@@ -110,7 +118,13 @@ class Home extends DatabaseEntity
      */
     public function setUser($user)
     {
-        $this->user = $user;
+        if(is_integer($user)){
+            $this->user = $user;
+        }
+        else{
+
+        }
+
         return $this;
     }
 
@@ -140,6 +154,7 @@ class Home extends DatabaseEntity
      */
     public function getCity()
     {
+
         return $this->city;
     }
 
@@ -149,8 +164,16 @@ class Home extends DatabaseEntity
      */
     public function setCity($city)
     {
-        $this->city = $city;
+        if(strlen($city)<=40){
+            $this->$city = $city;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This city name name is too long ';
+        }
+
         return $this;
+
     }
 
     /**
@@ -167,7 +190,14 @@ class Home extends DatabaseEntity
      */
     public function setCountry($country)
     {
-        $this->country = $country;
+        if(strlen($country)<=40){
+            $this->country = $country;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This name is too long ';
+        }
+
         return $this;
     }
 
