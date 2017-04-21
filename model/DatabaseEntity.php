@@ -35,10 +35,11 @@ abstract class DatabaseEntity
         // Note that if you are in an object whose class extends this one, the parameters will be the parameters
         // of this extended class.
         // For example, in a User object, the parameters will be :  homes, buildings, address, firstName, mail...
-        $parameters = get_object_vars($this);
+        $parameters = $this -> getObjectVars();
 
         // For each of our raw parameters, we get, $name the name of the parameter and $value its value
         foreach($parameters as $name => $value){
+
             // If it's a DatabaseEntity, we shall not create an entity from result because it will create an infinite loop
             // Image creating a home from result, you would then create the building from result, and therefore
             // the building would create the same home from result which will in turn create the same building from results
@@ -96,8 +97,23 @@ abstract class DatabaseEntity
         // homes and buildings in User class for example
         $cascadingParameters = array();
 
+
+        // Now, for each array in the params of this object
+        foreach($cascadingParameters as $name => $value){
+            // For each of the object in this array
+            foreach($value as $object){
+                // We save it as well!
+                if($object -> save($db) == null){
+                    return null;
+                }
+            }
+        }
+
+
         // For each of our raw parameters, we get, $name the name of the parameter and $value its value
         foreach($rawParameters as $name => $value){
+
+
             // If it's not a DatabaseEntity (such as Room object, Building Object, User Object for example)
             if(!($value instanceof DatabaseEntity)){
 
@@ -111,6 +127,8 @@ abstract class DatabaseEntity
                 }
                 // Now, if the var is neither "error", nor "errorMessage" (because we don't save this into the database)
                 else if($name != "error" && $name != "errorMessage"){
+
+
                     // If it's a string value, then $type will be set to PDO::PARAM_STR, else into PDO::PARAM_INT
                     // This will help us binding the param later on
                     if(is_string($value)){
@@ -128,6 +146,7 @@ abstract class DatabaseEntity
                     );
                 }
             }else{
+
                 // Otherwise, if it's an object, we need to link it's id in the database so we already know the type
                 // And the value is not directly $value but $value -> getId() : the id of this entity
                 $parameters[$name] = array(
@@ -139,8 +158,21 @@ abstract class DatabaseEntity
 
         // If the entity parameters are set properly
         if ($this->getValid()) {
+
+
+            if($this -> getClassName() !== 'User'){
+                throw new Exception('ghj');
+            }
+
             // If id == -1 , it means, the object wasn't created yet
             if ($this->id == -1) {
+
+
+
+                if($this -> getClassName() !== 'User'){
+                    throw new Exception('yolasqd');
+                }
+
 
                 // We create the request string which will be and INSERT INTO + database name which is the entity class name in lowercase
                 $request = "INSERT INTO " . strtolower($this -> getClassName()) . " (";
@@ -182,6 +214,7 @@ abstract class DatabaseEntity
                     if($name !==  'id') {
                         // If it's a string type field
                         if ($value['type'] == PDO::PARAM_STR) {
+
                             // We will bind it with the right infos
                             $newEntity->bindParam(':' . $name, $GLOBALS['val'] , PDO::PARAM_STR, strlen($GLOBALS['val']));
                         } else {
@@ -193,7 +226,6 @@ abstract class DatabaseEntity
                     }
                 }
 
-                //throw new Exception($newEntity -> debugDumpParams());
 
 
                 // Finally, we execute the request and close the cursor
@@ -204,6 +236,7 @@ abstract class DatabaseEntity
                 $this->id = $db->lastInsertId();
 
             }else{
+
 
                 // This is the same as above expect the request string is not the same and we also have
                 // To bind the id for the WHERE part of the request
@@ -245,14 +278,7 @@ abstract class DatabaseEntity
 
             }
 
-            // Now, for each array in the params of this object
-            foreach($cascadingParameters as $name => $value){
-                // For each of the object in this array
-                foreach($value as $object){
-                    // We save it as well!
-                    $object -> save($db);
-                }
-            }
+
             // We return this object
             return $this;
 

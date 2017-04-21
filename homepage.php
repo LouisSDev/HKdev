@@ -14,7 +14,8 @@ $home
     -> setCity('Paris')
     -> setAddress('35 rue Goulani')
     -> setCountry('France')
-    -> setName('La Maison d\'Ismael');
+    -> setName('La Maison d\'Ismael')
+    -> setBuilding($home);
 
 
 $user = new User();

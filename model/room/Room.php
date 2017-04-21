@@ -55,7 +55,14 @@ class Room extends DatabaseEntity
      */
     public function setHome(Home $home)
     {
-        $this->home = $home;
+        if($home instanceof Home){
+            $this->home = $home;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> The parameter $home is not a instance of the class Home ';
+        }
+
         return $this;
     }
 
