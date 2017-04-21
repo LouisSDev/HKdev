@@ -9,6 +9,7 @@ if($GLOBALS['repositories']['user'] -> isConnected()){
 
 }
 
+
 $user = new User();
 $saveUser = $user
     ->setAddress("35 rue du Bac")
@@ -18,19 +19,19 @@ $saveUser = $user
     ->setLastName("Steimberg")
     ->setMail("weshalors@hotmail.fr")
     ->setPassword("test", "", "test", true)
+    ->setCity('Paris')
     ->save($db);
 if($saveUser == null){
     echo "<h1> Oups Database error, please enter correct informations</h1>";
     echo $user->getErrorMessage();
 }else{
-    $saveUser = $user
+   /* $saveUser = $user
         ->setMail("lrd@hotmail.fr")
         ->setPassword("test", "test1", "test1", true)
         ->save($db);
     if($saveUser == null){
         echo "<h1> Oups Database error, please enter correct informations</h1>";
         echo $user->getErrorMessage();
-    }
+    }*/
 }
-
 ?>
