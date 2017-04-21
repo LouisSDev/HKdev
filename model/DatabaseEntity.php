@@ -228,13 +228,16 @@ abstract class DatabaseEntity
                     $getterName = 'get' . strtoupper($name[0]) .  substr($name, 1, strlen($name) -1);
                     $val =  $this->$getterName();
 
+
                     $GLOBALS['val'] = $val;
 
+
                     if($value['type'] == PDO::PARAM_STR){
-                        $updateEntity->bindParam(':' . $name, $GLOBALS['val'], PDO::PARAM_STR, strlen($val));
+                        $updateEntity->bindParam(':' . $name, $GLOBALS['val'], PDO::PARAM_STR, strlen($GLOBALS['val']));
                     }else{
-                        $updateEntity->bindParam(':' . $name, $GLOBALS['val'], PDO::PARAM_INT);
+                        $updateEntity->bindParam(':' . $name, $GLOBALS['val'], $value['type']);
                     }
+                    unset($GLOBALS['val']);
                 }
 
                 $updateEntity->execute();

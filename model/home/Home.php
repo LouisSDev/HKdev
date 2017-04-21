@@ -42,12 +42,14 @@ class Home extends DatabaseEntity
     /**
      * @var $homes array
      */
-    private $homes = null;
+    private $homes = array();
 
     /**
      * @var $rooms
      */
     private $rooms = array();
+
+
 
 
     /**
@@ -60,10 +62,12 @@ class Home extends DatabaseEntity
 
     /**
      * @param string $name
+     * @return Home
      */
-    public function setName(string $name)
+    public function setName($name)
     {
         $this->name = $name;
+        return $this;
     }
 
     /**
@@ -75,11 +79,13 @@ class Home extends DatabaseEntity
     }
 
     /**
-     * @param string $adress
+     * @param string $address
+     * @return Home
      */
-    public function setAddress(string $address)
+    public function setAddress($address)
     {
         $this->address = $address;
+        return $this;
     }
 
     /**
@@ -92,10 +98,12 @@ class Home extends DatabaseEntity
 
     /**
      * @param User $user
+     * @return Home
      */
-    public function setUser(string $user)
+    public function setUser($user)
     {
         $this->user = $user;
+        return $this;
     }
 
     /**
@@ -108,10 +116,12 @@ class Home extends DatabaseEntity
 
     /**
      * @param Home $building
+     * @return Home
      */
     public function setBuilding(Home $building)
     {
         $this->building = $building;
+        return $this;
     }
 
 
@@ -129,7 +139,7 @@ class Home extends DatabaseEntity
      * @param string $city
      * @return Home
      */
-    public function setCity(string $city)
+    public function setCity($city)
     {
         $this->city = $city;
         return $this;
@@ -147,7 +157,7 @@ class Home extends DatabaseEntity
      * @param string $country
      * @return Home
      */
-    public function setCountry(string $country)
+    public function setCountry($country)
     {
         $this->country = $country;
         return $this;
