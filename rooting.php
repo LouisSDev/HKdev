@@ -13,9 +13,11 @@ $db = $dbConnector -> getDatabase();
 switch($globalPath){
     case "home" :
         require_once "homepage.php";
+        require_once "view/homepage.php";
         break;
     case "" :
         require_once "homepage.php";
+        require_once "view/homepage.php";
         break;
     case "backoffice" :
         require_once "adminpage.php";
