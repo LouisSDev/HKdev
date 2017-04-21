@@ -6,8 +6,8 @@
 </head>
 <body>
 <?php include_once("header.php");?>
-    <img src="<?php echo $GLOBALS['server_root']?>/ressources/img/photoaccueil.jpg"/>
-    <img src="<?php echo $GLOBALS['server_root']?>/ressources/img/entreprise.jpg"/>
+    <img class="photoaccueil" src="<?php echo $GLOBALS['server_root']?>/ressources/img/photoaccueil.jpg"/>
+    <img class="entreprise" src="<?php echo $GLOBALS['server_root']?>/ressources/img/entreprise.jpg"/>
     <textarea>
         Ces de ces deux constats qu’est né le projet HomeKeeper et c'est la raison pour laquelle nous mettons chaque jour toute notre énergie pour combattre ce fléau.
         HomeKeeper, c’est le meilleur de la domotique jusqu’à chez vous, à bas prix, avec un SAV et une maintenance de qualité, pour moins consommer et mieux respecter notre chère planète Terre.
