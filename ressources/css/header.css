@@ -1,23 +1,12 @@
-html, body{
-    background-color: #F6F6F6;
-    font-family: Verdana, sans-serif;
-    font-size: 16px;
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-/* HEADER */
+ /* HEADER */
 .header{
     position: fixed;
     left: 0;
     right: 0;
+    top: 0;
     height: 80px;
     line-height: 80px;
     background-color: #222222;
-}
-.menu{
-    padding: 0 10px;
-    padding-left: 800px;
 }
 
 
@@ -34,38 +23,4 @@ html, body{
 .menu a:hover{
     color: #62bcda;
     transition: all 0.3s ease 0.2s;
-}
-img{
-    float: left;
-    position: absolute;
-    top: 20px;
-    left: 20px;
-}
-/* CONTAINER */
-.container{
-    height: 950px;
-}
-/* FOOTER */
-.footer{
-    float:left;
-    width:100%;
-    line-height: 60px;
-    bottom:0;
-    height:120px;
-    background-color:#222222;
-}
-.copyright{
-    text-align:center;
-    color:#FFF;
-}
-
-
-/* ADDITIONAL CLASSES */
-.separator{
-    height: 10px;
-    background-color: red;
-}
-.flat{
-    height: 400px;
-    background-color: #62bcda;
 }

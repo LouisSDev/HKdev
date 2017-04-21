@@ -8,7 +8,7 @@ if($GLOBALS['repositories']['user'] -> isConnected()){
 }else{
 
 }
-
+/*
 $home = new Home();
 $home
     -> setCity('Paris')
@@ -42,4 +42,5 @@ if($saveUser == null){
         echo $user->getErrorMessage();
     }
 }
+*/
 ?>
