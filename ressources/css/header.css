@@ -9,7 +9,9 @@
     background-color: #222222;
 }
 
-
+.menu{
+    text-align: center;
+}
 .menu a{
     font-weight: bold;
     text-transform: uppercase;
