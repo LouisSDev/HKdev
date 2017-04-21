@@ -7,8 +7,10 @@
 </head>
 
 <body>
-    <h1>Vous êtes intéressé ?</h1>
-    <h1>Demander un devis !</h1>
+    <div class="textform">
+        <h1>Vous êtes intéressé ?</h1>
+        <h1>Demander un devis !</h1>
+    </div>
     <div>
         <form action="tag-html-balise-form" method="get" enctype="multipart/form-data">
             <p>
@@ -22,6 +24,7 @@
             </p>
         </form>
     </div>
+
 
     <?php
     // Testons si le fichier a bien été envoyé et s'il n'y a pas d'erreur
