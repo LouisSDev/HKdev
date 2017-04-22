@@ -9,7 +9,8 @@
 </head>
 <body>
 <?php include_once("header.php");?>
-    <div id="conteneur1"><img class="photoaccueil" src="<?php echo $GLOBALS['server_root']?>/ressources/img/home.jpg"/></div>
+    <div id="homeimg"></div>
+<img class="photoaccueil" src="<?php echo $GLOBALS['server_root']?>/ressources/img/home.jpg"/>
     <div id="conteneur2"><img class="arrow" src="<?php echo $GLOBALS['server_root']?>/ressources/img/fleche.png"/></div>
     <img class="entreprise" src="<?php echo $GLOBALS['server_root']?>/ressources/img/entreprise.jpg"/>
     <p>

@@ -18,7 +18,8 @@
     max-width: 40%;
 }
 
-.conteneur1{
+.homeimg{
+    background-image: url(home.jpg);
     position:absolute;
     z-index: 0;
 
