@@ -50,7 +50,10 @@ class Effector extends DatabaseEntity{
      */
     public function setEffectorType(EffectorType $effectorType)
     {
-        $this->effectorType = $effectorType;
+        if(is_integer($effectorType)) {
+            $this->effectorType = $effectorType;
+        }
+        else{}
         return $this;
     }
 
@@ -123,7 +126,10 @@ class Effector extends DatabaseEntity{
      */
     public function setState(bool $state)
     {
-        $this->state = $state;
+        if(is_bool($state)){
+            $this->state = $state;
+        }
+        else{}
         return $this;
     }
 
@@ -141,7 +147,10 @@ class Effector extends DatabaseEntity{
      */
     public function setAuto(bool $auto)
     {
-        $this->auto = $auto;
+        if(is_bool($auto)) {
+            $this->auto = $auto;
+        }
+        else{}
         return $this;
     }
 
