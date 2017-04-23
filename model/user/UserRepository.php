@@ -59,6 +59,4 @@ class UserRepository extends Repository
         return $this->connected;
     }
 
-
-
 }
