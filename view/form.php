@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Form</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>\ressources\css\global.css">
-</head>
-
-<body>
     <h1>Vous êtes intéressé ?</h1>
     <h1>Demander un devis !</h1>
     <div>
@@ -43,5 +34,3 @@
         }
     }
     ?>
-</body>
-</html>
