@@ -6,17 +6,24 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/csshomepage.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js">></script>
+    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/smoothScrolling.js"></script>
 </head>
 <body>
 <?php include_once("header.php");?>
-    <div id="conteneur1"><img class="photoaccueil" src="<?php echo $GLOBALS['server_root']?>/ressources/img/home.jpg"/></div>
-    <div id="conteneur2"><img class="arrow" src="<?php echo $GLOBALS['server_root']?>/ressources/img/fleche.png"/></div>
-    <img class="entreprise" src="<?php echo $GLOBALS['server_root']?>/ressources/img/entreprise.jpg"/>
-    <p>
-        Ces de ces deux constats qu’est né le projet HomeKeeper et c'est la raison pour laquelle nous mettons chaque jour toute notre énergie pour combattre ce fléau.
-        HomeKeeper, c’est le meilleur de la domotique jusqu’à chez vous, à bas prix, avec un SAV et une maintenance de qualité, pour moins consommer et mieux respecter notre chère planète Terre.
-        Non seulement vous réduirez votre consommation, mais vous améliorerez la sécurité et le confort de votre chez vous, tout en pouvant accéder aux données statistiques de la consommation de votre maison depuis n’importe quel appareil connecté (ordinateur, smartphone, tablette…).
-        Home Keeper est simple, ergonomique, pratique, économique et écologique, alors qu’attendez-vous?
-    </p>
+    <div class="conteneur1"></div>
+    <div id="conteneur2">
+        <a class="arrow scrolling" href="#presentation">&raquo;</a>
+    </div>
+    <div id="presentation">
+        <img class="entreprise" src="<?php echo $GLOBALS['server_root']?>/ressources/img/entreprise.jpg"/>
+        <p>
+            Ces de ces deux constats qu’est né le projet HomeKeeper et c'est la raison pour laquelle nous mettons chaque jour toute notre énergie pour combattre ce fléau.
+            HomeKeeper, c’est le meilleur de la domotique jusqu’à chez vous, à bas prix, avec un SAV et une maintenance de qualité, pour moins consommer et mieux respecter notre chère planète Terre.
+            Non seulement vous réduirez votre consommation, mais vous améliorerez la sécurité et le confort de votre chez vous, tout en pouvant accéder aux données statistiques de la consommation de votre maison depuis n’importe quel appareil connecté (ordinateur, smartphone, tablette…).
+            Home Keeper est simple, ergonomique, pratique, économique et écologique, alors qu’attendez-vous?
+        </p>
+    </div>
+
 <?php include_once("form.php");?>
 </body>
