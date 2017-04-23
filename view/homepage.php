@@ -24,6 +24,5 @@
             Home Keeper est simple, ergonomique, pratique, économique et écologique, alors qu’attendez-vous?
         </p>
     </div>
-
 <?php include_once("form.php");?>
 </body>

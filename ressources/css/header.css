@@ -13,6 +13,7 @@
 .menu{
     text-align: center;
 }
+
 .menu a{
     font-weight: bold;
     text-transform: uppercase;
@@ -21,7 +22,6 @@
     color: #FFF;
     transition: all 0.1s ease 0.2s;
 }
-
 
 .menu a:hover{
     color: #62bcda;
