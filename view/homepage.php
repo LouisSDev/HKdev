@@ -7,12 +7,18 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js">></script>
+    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/loader.js"></script>
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/smoothScrolling.js"></script>
 </head>
 <body>
-<?php include_once("header.php");?>
-    <div class="conteneur1"></div>
-    <div id="conteneur2">
+<div class="loader">
+    <h1>Please wait...</h1>
+    <img src="<?php echo $GLOBALS['server_root']?>/ressources/img/gears.gif">
+</div>
+<div class="content">
+    <?php include_once("header.php");?>
+    <div class="container1"></div>
+    <div class="container2">
         <a class="arrow scrolling" href="#presentation">&raquo;</a>
     </div>
     <div id="presentation">
@@ -24,5 +30,7 @@
             Home Keeper est simple, ergonomique, pratique, économique et écologique, alors qu’attendez-vous?
         </p>
     </div>
-<?php include_once("form.php");?>
+    <?php include_once("form.php");?>
+</div>
 </body>
+</html>
