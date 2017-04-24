@@ -266,10 +266,6 @@ abstract class DatabaseEntity
                     if($GLOBALS['val'] instanceof  DatabaseEntity){
                         $GLOBALS['val'] = $value['value'];
                     }
-/*
-                    if($GLOBALS['val'] instanceof Home){
-                        throw new Exception($GLOBALS['val'] -> getName() . $name);
-                    } */
 
 
                     if($value['type'] == PDO::PARAM_STR){

@@ -68,6 +68,7 @@ class Room extends DatabaseEntity
 
     /**
      * @param string $name
+     * @return Room
      */
     public function setName($name)
     {

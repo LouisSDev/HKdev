@@ -21,6 +21,7 @@ $saveUser = $user
     ->setCellPhoneNumber("+3366085916")
     ->setCountry("France")
     ->setFirstName("Louis")
+    ->setAddress('35 Rue Goulani')
     ->setLastName("Steimberg")
     ->setMail("clalal@hotmail.fr")
     ->setNewPassword("test", "", "test", true)
