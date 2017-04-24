@@ -150,7 +150,7 @@ class User extends DatabaseEntity
     public function setCellPhoneNumber($cellPhoneNumber)
     {
         if(strlen($cellPhoneNumber)<=20){
-            $this->country = $cellPhoneNumber;
+            $this->cellPhoneNumber = $cellPhoneNumber;
         }
         else{
             $this->error = true;
@@ -175,7 +175,7 @@ class User extends DatabaseEntity
     public function setAddress($address)
     {
         if(strlen($address)<=100){
-            $this->country = $address;
+            $this->address = $address;
         }
         else{
             $this->error = true;
@@ -216,7 +216,7 @@ class User extends DatabaseEntity
     public function setCity($city)
     {
         if(strlen($city)<=40){
-            $this->country = $city;
+            $this->city = $city;
         }
         else{
             $this->error = true;

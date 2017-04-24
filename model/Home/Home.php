@@ -172,7 +172,7 @@ class Home extends DatabaseEntity
     public function setCity($city)
     {
         if(strlen($city)<=40){
-            $this->$city = $city;
+            $this->city = $city;
         }
         else{
             $this->error = true;
@@ -322,7 +322,6 @@ class Home extends DatabaseEntity
                 $this->name != null
                 && $this ->address != null
                 && $this->user != null
-                && $this-> building != null
             ){
                 return true;
             }else{
