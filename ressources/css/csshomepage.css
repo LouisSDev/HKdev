@@ -1,4 +1,6 @@
-
+body{
+    background-color: floralwhite;
+}
 /* Images size */
 .arrow{
     font-size: 40px;
