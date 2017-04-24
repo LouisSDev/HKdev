@@ -7,11 +7,6 @@
     left: 30px;
  }
 
-.arrow:hover{
-    color: gray;
-    transition: all 0.2s;
-}
-
 .entreprise {
     width: 40%;
     height: auto;
