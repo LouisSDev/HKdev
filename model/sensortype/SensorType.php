@@ -36,9 +36,17 @@ class SensorType extends DatabaseEntity
      * @param string $name
      * @return SensorType
      */
-    public function setName(string $name)
+    public function setName($name)
     {
-        $this->name = $name;
+        if(strlen($name)<=40){
+            $this->ref = $name;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .='<br> the reference is too long';
+        }
+
+
         return $this;
     }
 
@@ -54,9 +62,17 @@ class SensorType extends DatabaseEntity
      * @param string $ref
      * @return SensorType
      */
-    public function setRef(string $ref)
+    public function setRef($ref)
     {
-        $this->ref = $ref;
+        if(strlen($ref)<=10){
+            $this->ref = $ref;
+        }
+       else{
+            $this->error = true;
+            $this->errorMessage .='<br> the reference is too long';
+       }
+
+
         return $this;
     }
 
@@ -72,7 +88,7 @@ class SensorType extends DatabaseEntity
      * @param boolean $chart
      * @return SensorType
      */
-    public function setChart(bool $chart)
+    public function setChart($chart)
     {
         $this->chart = $chart;
         return $this;

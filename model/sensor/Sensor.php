@@ -39,7 +39,13 @@ class Sensor extends DatabaseEntity{
      * @return Sensor
      */
     public function setSensorType(SensorType $sensorType){
-        $this->sensorType = $sensorType;
+       if( $sensorType instanceof SensorType){
+           $this->sensorType = $sensorType;
+       }
+        else{
+           $this->error = true;
+           $this->errorMessage .= '<br/> The parameter is not a SensorType ';
+        }
         return $this;
     }
 
@@ -54,8 +60,15 @@ class Sensor extends DatabaseEntity{
      * @param string $name
      * @return Sensor
      */
-    public function setName(string $name){
-        $this->name = $name;
+    public function setName($name){
+        if(strlen($name)<=30){
+            $this->name = $name;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This name is too long ';
+        }
+
         return $this;
     }
 
@@ -73,7 +86,14 @@ class Sensor extends DatabaseEntity{
      */
     public function setRoom(Room $room)
     {
-        $this->room = $room;
+        if($room instanceof Room){
+            $this->room = $room;
+        }
+        else{
+            $this -> error = true;
+            $this -> errorMessage .= '<br/> The parameter is not a Room';
+        }
+
         return $this;
     }
 
@@ -89,7 +109,7 @@ class Sensor extends DatabaseEntity{
     /**
      * @param array $sensorValues
      */
-    public function setSensorValues(array $sensorValues)
+    public function setSensorValues($sensorValues)
     {
         $this->sensorValues = $sensorValues;
     }
@@ -98,7 +118,6 @@ class Sensor extends DatabaseEntity{
         if(!in_array($value , $this->sensorValues)){
             array_push($this->sensorValues,$value);
             $value->setSensor(null);
-
         }
         return $this;
     }

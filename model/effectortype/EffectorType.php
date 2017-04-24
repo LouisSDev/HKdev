@@ -60,13 +60,15 @@ class EffectorType extends DatabaseEntity
      */
     public function setRef($ref)
     {
-        if(is_integer($ref)){
-            $this->ref = $ref;
+        if(strlen($ref) <= 10 ){
+
+            $this->name = $ref;
         }
         else{
             $this -> error = true;
-            $this -> errorMessage .= '<br/> The parameter $ref is not a integer';
+            $this -> errorMessage .= '<br/> The reference is incorrect';
         }
+
         return $this;
     }
 
