@@ -70,7 +70,7 @@ class Effector extends DatabaseEntity{
      * @param string $name
      * @return Effector
      */
-    public function setName(string $name)
+    public function setName($name)
     {
 
         if(strlen($name)<=40){
@@ -123,12 +123,15 @@ class Effector extends DatabaseEntity{
      * @param boolean $state
      * @return Effector
      */
-    public function setState(bool $state)
+    public function setState($state)
     {
         if(is_bool($state)){
             $this->state = $state;
         }
-        else{}
+        else{
+            $this->error = true;
+            $this->errorMessage .='<br> The parameter is incorrect';
+        }
         return $this;
     }
 
@@ -144,12 +147,15 @@ class Effector extends DatabaseEntity{
      * @param boolean $auto
      * @return Effector
      */
-    public function setAuto(bool $auto)
+    public function setAuto($auto)
     {
         if(is_bool($auto)) {
             $this->auto = $auto;
         }
-        else{}
+        else{
+            $this->error = true;
+            $this->errorMessage .='<br> The parameter is incorrect';
+        }
         return $this;
     }
 
@@ -160,9 +166,11 @@ class Effector extends DatabaseEntity{
             if(    $this -> name != null
                 && $this -> room != null
                 && $this -> effectorType != null
-            ){
+            )
+            {
                 return true;
-            }else{
+            }
+            else{
                 return false;
             }
         }

@@ -4,7 +4,7 @@
     <p>
         <input class=box type="text" name="First Name" placeholder="Nom"/><br>
         <input class=box type="text" name="Last Name" placeholder="Prénom"/><br>
-        <input class=box type="text" name="Adress" placeholder="Adresse"/><br>
+        <input class=box type="text" name="Address" placeholder="Adresse"/><br>
         <input class=box type="text" name="City" placeholder="Ville"/><br>
         <input class=box type="text" name="Mail" placeholder="Adresse mail"/><br>
         <input type="file" name="MyFile" /><br />
