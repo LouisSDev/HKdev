@@ -10,6 +10,6 @@
 class SensorTypeRepository extends Repository
 {
 
-    const OBJECT_CLASS_NAME = 'model/sensortype/SensorType';
+    const OBJECT_CLASS_NAME = 'model/Sensortype/SensorType';
 
 }

@@ -9,6 +9,6 @@
 class RoomRepository extends Repository
 {
 
-    const OBJECT_CLASS_NAME = 'model/room/Room';
+    const OBJECT_CLASS_NAME = 'model/Room/Room';
 
 }

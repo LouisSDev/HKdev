@@ -8,7 +8,7 @@
  */
 class SensorRepository extends Repository {
 
-    const OBJECT_CLASS_NAME = 'model/sensor/Sensor' ;
+    const OBJECT_CLASS_NAME = 'model/Sensor/Sensor' ;
 
 
 }
