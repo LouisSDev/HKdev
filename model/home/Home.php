@@ -91,7 +91,6 @@ class Home extends DatabaseEntity
      */
     public function setAddress($address)
     {
-
         if(strlen($address)<=80){
             $this->address = $address;
         }
@@ -114,15 +113,16 @@ class Home extends DatabaseEntity
 
     /**
      * @param User $user
-     * @return Home
+     * @return
      */
     public function setUser($user)
     {
-        if(is_integer($user)){
+        if($user instanceof User){
             $this->user = $user;
         }
         else{
-
+            $this->error = true;
+            $this->errorMessage .='<br> The parameter is not a User';
         }
 
         return $this;
@@ -142,10 +142,13 @@ class Home extends DatabaseEntity
      */
     public function setBuilding(Home $building)
     {
-        if (is_integer($building)){$this->building = $building;
+        if ($building instanceof Home){
+            $this->building = $building;
         }
-        else{
 
+        else{
+            $this->error = true;
+            $this->errorMessage .='<br> The parameter is not a Home';
         }
         return $this;
     }
@@ -173,7 +176,7 @@ class Home extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .= '<br/> This city name name is too long ';
+            $this->errorMessage .= '<br/> This city name is too long ';
         }
 
         return $this;
@@ -194,12 +197,12 @@ class Home extends DatabaseEntity
      */
     public function setCountry($country)
     {
-        if(strlen($country)<=20){
+        if(strlen($country)<=30){
             $this->country = $country;
         }
         else{
             $this->error = true;
-            $this->errorMessage .= '<br/> This name is too long ';
+            $this->errorMessage .= '<br/> This Country name is too long ';
         }
 
         return $this;
@@ -268,14 +271,14 @@ class Home extends DatabaseEntity
     }
 
     /**
-     * @param array $homes
+     * @param array $rooms
      * @return Home
      */
-    public function setRooms($rooms)
-    {
-        $this -> rooms = $rooms;
-        return $this;
-    }
+    public function setRooms($rooms){
+            $this -> rooms = $rooms;
+            return $this;
+        }
+
 
 
 
