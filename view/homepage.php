@@ -22,7 +22,7 @@
         <a class="arrow scrolling" href="#presentation">&raquo;</a>
     </div>
     <div id="presentation">
-        <img class="entreprise" src="<?php echo $GLOBALS['server_root']?>/ressources/img/entreprise.jpg"/>
+        <img class="entreprise" src="<?php echo $GLOBALS['server_root']?>/ressources/img/maison2.jpeg"/>
         <p>
             Ces de ces deux constats qu’est né le projet HomeKeeper et c'est la raison pour laquelle nous mettons chaque jour toute notre énergie pour combattre ce fléau.
             HomeKeeper, c’est le meilleur de la domotique jusqu’à chez vous, à bas prix, avec un SAV et une maintenance de qualité, pour moins consommer et mieux respecter notre chère planète Terre.
