@@ -39,11 +39,11 @@ class SensorType extends DatabaseEntity
     public function setName($name)
     {
         if(strlen($name)<=40){
-            $this->ref = $name;
+            $this->name = $name;
         }
         else{
             $this->error = true;
-            $this->errorMessage .='<br> the reference is too long';
+            $this->errorMessage .='<br> the name is too long';
         }
 
 
@@ -94,6 +94,10 @@ class SensorType extends DatabaseEntity
         return $this;
     }
 
+    /**
+     * @return bool
+     */
+
     public function getValid()
     {
         if($this->error){
@@ -109,9 +113,17 @@ class SensorType extends DatabaseEntity
         }
     }
 
+    /**
+     * @return mixed
+     */
+
     public function getClassName(){
         return self::class;
     }
+
+    /**
+     * @return array.
+     */
 
     public function getObjectVars(){
         return get_object_vars($this);

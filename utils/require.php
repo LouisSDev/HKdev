@@ -12,37 +12,46 @@ require_once  "utils/JsonUtils.php";
 require_once "model/DatabaseEntity.php";
 require_once "model/Repository.php";
 
-// User
-require_once "model/User/User.php";
-require_once "model/User/UserRepository.php";
+    // User
+    require_once "model/User/User.php";
+    require_once "model/User/UserRepository.php";
 
-// Home
-require_once  "model/Home/Home.php";
-require_once "model/Home/HomeRepository.php";
+    // Home
+    require_once  "model/Home/Home.php";
+    require_once "model/Home/HomeRepository.php";
 
-// Room
-require_once  "model/Room/Room.php";
-require_once "model/Room/RoomRepository.php";
+    // Room
+    require_once  "model/Room/Room.php";
+    require_once "model/Room/RoomRepository.php";
 
-// SensorType
-require_once  "model/Sensortype/SensorType.php";
-require_once "model/Sensortype/SensorTypeRepository.php";
+    // SensorType
+    require_once  "model/Sensortype/SensorType.php";
+    require_once "model/Sensortype/SensorTypeRepository.php";
 
-// Effector
-require_once  "model/Effector/Effector.php";
-require_once "model/Effector/EffectorRepository.php";
+    // Effector
+    require_once  "model/Effector/Effector.php";
+    require_once "model/Effector/EffectorRepository.php";
 
-// EffectorType
-require_once  "model/Effectortype/EffectorType.php";
-require_once "model/Effectortype/EffectorTypeRepository.php";
+    // EffectorType
+    require_once  "model/Effectortype/EffectorType.php";
+    require_once "model/Effectortype/EffectorTypeRepository.php";
 
-// Sensor
-require_once  "model/Sensor/Sensor.php";
-require_once "model/Sensor/SensorRepository.php";
+    // Sensor
+    require_once  "model/Sensor/Sensor.php";
+    require_once "model/Sensor/SensorRepository.php";
 
-// SensorValue
-require_once  "model/Sensorvalue/SensorValue.php";
-require_once "model/Sensorvalue/SensorValueRepository.php";
+    // SensorValue
+    require_once  "model/Sensorvalue/SensorValue.php";
+    require_once "model/Sensorvalue/SensorValueRepository.php";
+
+
+
+// Controllers
+require_once "controller/Controller.php";
+
+    // User
+
+
 
 
 

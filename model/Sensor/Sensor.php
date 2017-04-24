@@ -108,11 +108,19 @@ class Sensor extends DatabaseEntity{
 
     /**
      * @param array $sensorValues
+     * @return Sensor
      */
     public function setSensorValues($sensorValues)
     {
         $this->sensorValues = $sensorValues;
+
+        return $this;
     }
+
+    /**
+     * @param SensorValue $value
+     * @return Sensor
+     */
 
     public function addSensorValue(SensorValue $value){
         if(!in_array($value , $this->sensorValues)){
@@ -121,6 +129,11 @@ class Sensor extends DatabaseEntity{
         }
         return $this;
     }
+
+    /**
+     * @param SensorValue $value
+     * @return Sensor
+     */
     public function removeSensorValue(SensorValue $value){
         if(!in_array($value,$this->sensorValues)){
            unset($this->sensorValues[array_search($value,$this->sensorValues)]);
@@ -128,6 +141,10 @@ class Sensor extends DatabaseEntity{
         }
         return $this;
     }
+
+    /**
+     * @return bool
+     */
 
 
     public function getValid(){
@@ -148,9 +165,17 @@ class Sensor extends DatabaseEntity{
         }
     }
 
+    /**
+     * @return mixed
+     */
+
     public function getClassName(){
         return self::class;
     }
+
+    /**
+     * @return array
+     */
 
     public function getObjectVars(){
         return get_object_vars($this);
