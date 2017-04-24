@@ -66,7 +66,14 @@ class Home extends DatabaseEntity
      */
     public function setName($name)
     {
-        $this->name = $name;
+        if(strlen($name)<=40){
+            $this->name = $name;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This name is too long ';
+        }
+
         return $this;
     }
 
@@ -106,11 +113,18 @@ class Home extends DatabaseEntity
 
     /**
      * @param User $user
-     * @return Home
+     * @return
      */
     public function setUser($user)
     {
-        $this->user = $user;
+        if($user instanceof User){
+            $this->user = $user;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .='<br> The parameter is not a User';
+        }
+
         return $this;
     }
 
@@ -128,7 +142,14 @@ class Home extends DatabaseEntity
      */
     public function setBuilding(Home $building)
     {
-        $this->building = $building;
+        if ($building instanceof Home){
+            $this->building = $building;
+        }
+
+        else{
+            $this->error = true;
+            $this->errorMessage .='<br> The parameter is not a Home';
+        }
         return $this;
     }
 
@@ -140,6 +161,7 @@ class Home extends DatabaseEntity
      */
     public function getCity()
     {
+
         return $this->city;
     }
 
@@ -149,8 +171,16 @@ class Home extends DatabaseEntity
      */
     public function setCity($city)
     {
-        $this->city = $city;
+        if(strlen($city)<=40){
+            $this->$city = $city;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This city name is too long ';
+        }
+
         return $this;
+
     }
 
     /**
@@ -167,7 +197,14 @@ class Home extends DatabaseEntity
      */
     public function setCountry($country)
     {
-        $this->country = $country;
+        if(strlen($country)<=30){
+            $this->country = $country;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This Country name is too long ';
+        }
+
         return $this;
     }
 
@@ -234,14 +271,14 @@ class Home extends DatabaseEntity
     }
 
     /**
-     * @param array $homes
+     * @param array $rooms
      * @return Home
      */
-    public function setRooms($rooms)
-    {
-        $this -> rooms = $rooms;
-        return $this;
-    }
+    public function setRooms($rooms){
+            $this -> rooms = $rooms;
+            return $this;
+        }
+
 
 
 

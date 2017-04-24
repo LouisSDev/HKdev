@@ -3,19 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/csshomepage.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/homepage.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/loader.js"></script>
+    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/smoothScrolling.js"></script>
 </head>
 <body>
-<?php include_once("header.php");?>
-    <img class="photoaccueil" src="<?php echo $GLOBALS['server_root']?>/ressources/img/home.jpg"/>
-    <img class="entreprise" src="<?php echo $GLOBALS['server_root']?>/ressources/img/entreprise.jpg"/>
-    <textarea>
-        Ces de ces deux constats qu’est né le projet HomeKeeper et c'est la raison pour laquelle nous mettons chaque jour toute notre énergie pour combattre ce fléau.
-        HomeKeeper, c’est le meilleur de la domotique jusqu’à chez vous, à bas prix, avec un SAV et une maintenance de qualité, pour moins consommer et mieux respecter notre chère planète Terre.
-        Non seulement vous réduirez votre consommation, mais vous améliorerez la sécurité et le confort de votre chez vous, tout en pouvant accéder aux données statistiques de la consommation de votre maison depuis n’importe quel appareil connecté (ordinateur, smartphone, tablette…).
-        Home Keeper est simple, ergonomique, pratique, économique et écologique, alors qu’attendez-vous?
-    </textarea>
-<?php include_once("form.php");?>
+<div class="loader">
+    <h1>Please wait...</h1>
+    <img src="<?php echo $GLOBALS['server_root']?>/ressources/img/gears.gif">
+</div>
+<div class="content">
+    <?php include_once("header.php");?>
+    <div class="container1"></div>
+    <div class="container2">
+        <a class="arrow scrolling" href="#presentation">&raquo;</a>
+    </div>
+    <div id="presentation">
+        <img class="entreprise" src="<?php echo $GLOBALS['server_root']?>/ressources/img/maison2.jpeg"/>
+        <p>
+            Chez Home Keeper nous imaginons un monde connecter et sécuriser permettant d’améliorer notre mode de vie.
+            C’est pour atteindre cet idéal que nous travaillons chaque jour et que nous vous donnons la possibilité de profiter de notre savoir-faire et de nos innovations.
+            Depuis l'an 1000 nous oeuvrons à améliorer votre habitat. Nous avons commencé par inventer la maison, puis la sérure, avant d'inventer les fenetres et nous sommes les précurseurs d'une économie nouvelle.
+            Cette économie est nous l'avons appelée l'économie d'énerge.
+        <p>
+
+        <p>
+            Avec une installation qui correspond à vos attentes et à votre habitat nous vous proposons aussi une maintenance efficace qui œuvre à ce que vous profitiez toujours des nouvelles technologies pour améliorer et sécuriser votre maison.
+            Jamais les logiciel de Home Keeper n'ont été piraté et nos utilisateurs économise chaque jour près de 2 000 Kw d'énergie.
+        <p>
+
+        <p>
+            Home Keeper c’est aussi une quête pour l’environnement. Une mission qui nous tient à cœur pour améliorer nos conditions de vie sur Terre.
+            Choisissez Home Keeper pour Vous, choisissez Home Keeper pour Votre famille, choisissez Home Keeper pour votre Planète.
+            Car ensemble nous pouvons changer le monde !
+
+        </p>
+    </div>
+    <?php include_once("form.php");?>
+</div>
 </body>
+</html>

@@ -2,10 +2,9 @@
 
 <header class="header">
     <nav class="menu">
-        <a href="#">Ma Maison</a>
-        <a href="#">Tableau de Bord</a>
-        <a href="#">Mon Compte</a>
-        <a href="#">Déconnexion</a>
+        <a href="<?php echo $GLOBALS['server_root']?>">Accueil</a>
+        <a href="<?php echo $GLOBALS['server_root']?>/contact">Contact</a>
+        <a href="<?php echo $GLOBALS['server_root']?>/connexion">Connexion</a>
     </nav>
 </header>
 

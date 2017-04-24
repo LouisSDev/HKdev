@@ -50,10 +50,12 @@ class Effector extends DatabaseEntity{
      */
     public function setEffectorType(EffectorType $effectorType)
     {
-        $this->effectorType = $effectorType;
+        if(is_integer($effectorType)) {
+            $this->effectorType = $effectorType;
+        }
+        else{}
         return $this;
     }
-
 
 
     /**
@@ -70,7 +72,15 @@ class Effector extends DatabaseEntity{
      */
     public function setName(string $name)
     {
-        $this->name = $name;
+
+        if(strlen($name)<=40){
+            $this->name = $name;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This name is too long ';
+        }
+
         return $this;
     }
 
@@ -90,7 +100,14 @@ class Effector extends DatabaseEntity{
      */
     public function setRoom(Room $room)
     {
-        $this->room = $room;
+        if($room instanceof Room){
+            $this->room = $room;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> The parameter is not a Room ';
+        }
+
         return $this;
     }
 
@@ -108,7 +125,10 @@ class Effector extends DatabaseEntity{
      */
     public function setState(bool $state)
     {
-        $this->state = $state;
+        if(is_bool($state)){
+            $this->state = $state;
+        }
+        else{}
         return $this;
     }
 
@@ -126,12 +146,12 @@ class Effector extends DatabaseEntity{
      */
     public function setAuto(bool $auto)
     {
-        $this->auto = $auto;
+        if(is_bool($auto)) {
+            $this->auto = $auto;
+        }
+        else{}
         return $this;
     }
-
-
-
 
     public function getValid(){
         if($this->error){

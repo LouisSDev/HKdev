@@ -74,7 +74,14 @@ class User extends DatabaseEntity
      */
     public function setFirstName($firstName)
     {
-        $this->firstName = $firstName;
+        if(strlen($firstName)<=50){
+            $this->firstName = $firstName;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This firstname is too long ';
+        }
+
         return $this;
     }
 
@@ -92,7 +99,15 @@ class User extends DatabaseEntity
      */
     public function setLastName($lastName)
     {
-        $this->lastName = $lastName;
+
+        if(strlen($lastName)<=60){
+            $this->lastName = $lastName;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This lastName is too long ';
+        }
+
         return $this;
     }
 
@@ -134,7 +149,14 @@ class User extends DatabaseEntity
      */
     public function setCellPhoneNumber($cellPhoneNumber)
     {
-        $this->cellPhoneNumber = $cellPhoneNumber;
+        if(strlen($cellPhoneNumber)<=20){
+            $this->country = $cellPhoneNumber;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This cellPhoneNumber is incorrect ';
+        }
+
         return $this;
     }
 
@@ -152,7 +174,14 @@ class User extends DatabaseEntity
      */
     public function setAddress($address)
     {
-        $this->address = $address;
+        if(strlen($address)<=100){
+            $this->country = $address;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This address is too long ';
+        }
+
         return $this;
     }
 
@@ -186,7 +215,14 @@ class User extends DatabaseEntity
      */
     public function setCity($city)
     {
-        $this->city = $city;
+        if(strlen($city)<=40){
+            $this->country = $city;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This City name is too long ';
+        }
+
         return $this;
     }
 
@@ -254,7 +290,14 @@ class User extends DatabaseEntity
      */
     public function setCountry($country)
     {
-        $this->country = $country;
+        if(strlen($country)<=30){
+            $this->country = $country;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This Country name is too long ';
+        }
+
         return $this;
     }
 
@@ -274,7 +317,7 @@ class User extends DatabaseEntity
      */
     public function setHomes($homes)
     {
-        $this -> homes = null;
+        $this -> homes = $homes;
         return $this;
     }
 
