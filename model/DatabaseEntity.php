@@ -17,7 +17,7 @@ abstract class DatabaseEntity
     /**
      * @var $error boolean
      */
-    protected $error;
+    protected $error = false;
 
     /**
      * @var $errorMessage string
@@ -81,6 +81,8 @@ abstract class DatabaseEntity
     public function save($db)
     {
 
+
+
         // First of all, we get all the parameters listed in this object
         // Note that if you are in an object whose class extends this one, the parameters will be the parameters
         // of this extended class.
@@ -98,16 +100,6 @@ abstract class DatabaseEntity
         $cascadingParameters = array();
 
 
-        // Now, for each array in the params of this object
-        foreach($cascadingParameters as $name => $value){
-            // For each of the object in this array
-            foreach($value as $object){
-                // We save it as well!
-                if($object -> save($db) == null){
-                    return null;
-                }
-            }
-        }
 
 
         // For each of our raw parameters, we get, $name the name of the parameter and $value its value
@@ -146,13 +138,22 @@ abstract class DatabaseEntity
                     );
                 }
             }else{
-
-                // Otherwise, if it's an object, we need to link it's id in the database so we already know the type
-                // And the value is not directly $value but $value -> getId() : the id of this entity
-                $parameters[$name] = array(
-                    "value" => $value -> getId(),
-                    "type" => PDO::PARAM_INT,
-                );
+                $addParameter = true;
+                if(($value -> getClassName() ==  $this -> getClassName())  ) {
+                    $IdGetterName = 'getBuilding';
+                    if($value -> $IdGetterName() -> getId() == -1){
+                        $addParameter = false;
+                    }
+                }
+                if($addParameter) {
+                    // Otherwise, if it's an object, we need to link it's id in the database so we already know the type
+                    // And the value is not directly $value but $value -> getId() : the id of this entity
+                    $parameters[$name] = array(
+                        "value" => $value->getId(),
+                        "type" => PDO::PARAM_INT,
+                        "object" => $value
+                    );
+                }
             }
         }
 
@@ -160,18 +161,8 @@ abstract class DatabaseEntity
         if ($this->getValid()) {
 
 
-            if($this -> getClassName() !== 'User'){
-                throw new Exception('ghj');
-            }
-
             // If id == -1 , it means, the object wasn't created yet
             if ($this->id == -1) {
-
-
-
-                if($this -> getClassName() !== 'User'){
-                    throw new Exception('yolasqd');
-                }
 
 
                 // We create the request string which will be and INSERT INTO + database name which is the entity class name in lowercase
@@ -182,11 +173,14 @@ abstract class DatabaseEntity
                 // For each of the sorted out parameters
                 foreach($parameters as $name => $value){
                     // If this is not the id
-                    if($name != 'id') {
+                    if($name != 'id' ) {
+
                         // Then we add 'firstName, ' for example to the SET ( *** params here***) part of the request
                         $request .= $name . ', ';
                         // Then we add ':firstName, ' for example to the VALUES ( *** params here***) part of the request
                         $endRequest .= ":" . $name . ", ";
+
+
                     }
                 }
 
@@ -197,7 +191,6 @@ abstract class DatabaseEntity
                 // We put all together
                 $request .= ')' . $endRequest . ") ";
 
-                //throw new \Exception($request);
 
                 // And sends the request
                 $newEntity = $db -> prepare($request);
@@ -209,6 +202,11 @@ abstract class DatabaseEntity
                     $val =  $this->$getterName();
 
                     $GLOBALS['val'] = $val;
+
+
+                    if($GLOBALS['val'] instanceof  DatabaseEntity){
+                        $GLOBALS['val'] = $value['value'];
+                    }
 
 
                     if($name !==  'id') {
@@ -265,6 +263,15 @@ abstract class DatabaseEntity
                     $GLOBALS['val'] = $val;
 
 
+                    if($GLOBALS['val'] instanceof  DatabaseEntity){
+                        $GLOBALS['val'] = $value['value'];
+                    }
+/*
+                    if($GLOBALS['val'] instanceof Home){
+                        throw new Exception($GLOBALS['val'] -> getName() . $name);
+                    } */
+
+
                     if($value['type'] == PDO::PARAM_STR){
                         $updateEntity->bindParam(':' . $name, $GLOBALS['val'], PDO::PARAM_STR, strlen($GLOBALS['val']));
                     }else{
@@ -277,7 +284,16 @@ abstract class DatabaseEntity
                 $updateEntity->closeCursor();
 
             }
-
+            // Now, for each array in the params of this object
+            foreach($cascadingParameters as $name => $value){
+                // For each of the object in this array
+                foreach($value as $object){
+                    // We save it as well!
+                    if($object -> save($db) == null){
+                        return null;
+                    }
+                }
+            }
 
             // We return this object
             return $this;

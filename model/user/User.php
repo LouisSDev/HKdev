@@ -209,9 +209,12 @@ class User extends DatabaseEntity
     }
 
 
+    public function setPassword($password){
+        $this -> password = $password;
+    }
 
 
-    public function setPassword($password, $passwordNew, $passwordConf, $encrypt)
+    public function setNewPassword($password, $passwordNew, $passwordConf, $encrypt)
     {
         // We first encrypt the passwords with our config salt for security purposes if needed (if $encrypt == true)
         if($encrypt){

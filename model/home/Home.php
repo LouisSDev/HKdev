@@ -278,13 +278,15 @@ class Home extends DatabaseEntity
 
     public function getValid()
     {
+
         if($this->error){
             return false;
         }else{
-            if( $this->name != null
+            if(
+                $this->name != null
                 && $this ->address != null
                 && $this->user != null
-                && $this-> building!= null
+                && $this-> building != null
             ){
                 return true;
             }else{
