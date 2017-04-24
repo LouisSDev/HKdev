@@ -10,21 +10,7 @@
 }
 
 .entreprise {
-    min-height: 60%;
-    margin-left: 3%;
+    height: 20%;
+    margin: 0%;
     max-width: 40%;
-    flex-direction: row;
-}
-
-.textedescription {
-    margin-left: 3%;
-    margin-right: 3%;
-}
-
-.description {
-    display: flex;
-}
-
-.textform {
-    margin-left:37%;
 }
