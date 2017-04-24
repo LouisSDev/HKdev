@@ -1,5 +1,5 @@
 <?php
-require_once "utils/require.php";
+include_once "utils/require.php";
 
 
 $path =   explode( "/", $_SERVER['REQUEST_URI']);
@@ -24,6 +24,9 @@ switch($globalPath){
         break;
     case "connection" :
         require_once "view/connection.php";
+        break;
+    case "test" :
+        require_once "test.php";
         break;
     default :
         require_once "404.php";

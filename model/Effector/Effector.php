@@ -58,7 +58,6 @@ class Effector extends DatabaseEntity{
     }
 
 
-
     /**
      * @return string
      */
@@ -153,9 +152,6 @@ class Effector extends DatabaseEntity{
         else{}
         return $this;
     }
-
-
-
 
     public function getValid(){
         if($this->error){

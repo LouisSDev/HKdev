@@ -60,7 +60,7 @@ class Room extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .= '<br/> The parameter $home is not a instance of the class Home ';
+            $this->errorMessage .= '<br/> The parameter is not a Home ';
         }
 
         return $this;
@@ -68,6 +68,7 @@ class Room extends DatabaseEntity
 
     /**
      * @param string $name
+     * @return Room
      */
     public function setName($name)
     {

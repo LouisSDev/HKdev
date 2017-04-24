@@ -10,6 +10,6 @@
 class EffectorTypeRepository extends Repository
 {
 
-    const OBJECT_CLASS_NAME = 'model/effectortype/EffectorType';
+    const OBJECT_CLASS_NAME = 'model/Effectortype/EffectorType';
 
 }

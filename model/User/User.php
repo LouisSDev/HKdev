@@ -74,7 +74,7 @@ class User extends DatabaseEntity
      */
     public function setFirstName($firstName)
     {
-        if(strlen($firstName)<=40){
+        if(strlen($firstName)<=50){
             $this->firstName = $firstName;
         }
         else{
@@ -100,7 +100,7 @@ class User extends DatabaseEntity
     public function setLastName($lastName)
     {
 
-        if(strlen($lastName)<=40){
+        if(strlen($lastName)<=60){
             $this->lastName = $lastName;
         }
         else{
@@ -149,7 +149,14 @@ class User extends DatabaseEntity
      */
     public function setCellPhoneNumber($cellPhoneNumber)
     {
-        $this->cellPhoneNumber = $cellPhoneNumber;
+        if(strlen($cellPhoneNumber)<=20){
+            $this->cellPhoneNumber = $cellPhoneNumber;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This cellPhoneNumber is incorrect ';
+        }
+
         return $this;
     }
 
@@ -167,7 +174,14 @@ class User extends DatabaseEntity
      */
     public function setAddress($address)
     {
-        $this->address = $address;
+        if(strlen($address)<=100){
+            $this->address = $address;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This address is too long ';
+        }
+
         return $this;
     }
 
@@ -201,7 +215,14 @@ class User extends DatabaseEntity
      */
     public function setCity($city)
     {
-        $this->city = $city;
+        if(strlen($city)<=40){
+            $this->city = $city;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This City name is too long ';
+        }
+
         return $this;
     }
 
@@ -224,9 +245,12 @@ class User extends DatabaseEntity
     }
 
 
+    public function setPassword($password){
+        $this -> password = $password;
+    }
 
 
-    public function setPassword($password, $passwordNew, $passwordConf, $encrypt)
+    public function setNewPassword($password, $passwordNew, $passwordConf, $encrypt)
     {
         // We first encrypt the passwords with our config salt for security purposes if needed (if $encrypt == true)
         if($encrypt){
@@ -266,7 +290,14 @@ class User extends DatabaseEntity
      */
     public function setCountry($country)
     {
-        $this->country = $country;
+        if(strlen($country)<=30){
+            $this->country = $country;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This Country name is too long ';
+        }
+
         return $this;
     }
 
@@ -286,7 +317,7 @@ class User extends DatabaseEntity
      */
     public function setHomes($homes)
     {
-        $this -> homes = null;
+        $this -> homes = $homes;
         return $this;
     }
 

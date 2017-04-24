@@ -8,6 +8,6 @@
  */
 class EffectorRepository extends Repository
 {
-    const OBJECT_CLASS_NAME = 'model/effector/Effector';
+    const OBJECT_CLASS_NAME = 'model/Effector/Effector';
 
 }
