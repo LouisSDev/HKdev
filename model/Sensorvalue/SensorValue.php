@@ -47,10 +47,18 @@ class SensorValue extends DatabaseEntity
 
     /**
      * @param boolean $state
+     * return SensorValue
      */
-    public function setState(boolean $state)
+    public function setState($state)
     {
-        $this->state = $state;
+        if (is_bool($state)){
+            $this->state = $state;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .='<br> the parameter is incorrect';
+        }
+        return $this;
     }
 
 
@@ -66,9 +74,16 @@ class SensorValue extends DatabaseEntity
      * @param float $value
      * @return SensorValue
      */
-    public function setValue(float $value)
+    public function setValue($value)
     {
-        $this->value = $value;
+        if(is_float($value)){
+            $this->value = $value;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .='<br> the parameter is incorrect';
+        }
+
         return $this;
     }
 
@@ -86,7 +101,14 @@ class SensorValue extends DatabaseEntity
      */
     public function setDatetime(DateTime $datetime)
     {
-        $this->datetime = $datetime;
+        if ($datetime instanceof DateTime){
+            $this->datetime = $datetime;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .='<br> the parameter is incorrect';
+        }
+
         return $this;
     }
 
@@ -104,19 +126,30 @@ class SensorValue extends DatabaseEntity
      */
     public function setSensor(Sensor $sensor)
     {
-        $this->sensor = $sensor;
+        if ($sensor instanceof Sensor){
+            $this->sensor = $sensor;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .='<br> the parameter is incorrect';
+        }
+
         return $this;
     }
 
-
+    /**
+     * @return bool
+     */
 
     public function getValid()
     {
         if($this->error){
             return false;
         }else{
-            if($this->room != null
-                &&( $this->state != null || $this ->value != null)
+            if( $this->sensor != null
+                && $this->state != null
+                &&$this ->value != null
+                && $this->datetime !=null
             ){
                 return true;
             }else{
@@ -125,9 +158,17 @@ class SensorValue extends DatabaseEntity
         }
     }
 
+    /**
+     * @return mixed
+     */
+
     public function getClassName(){
         return self::class;
     }
+
+    /**
+     * @return array
+     */
 
     public function getObjectVars(){
         return get_object_vars($this);

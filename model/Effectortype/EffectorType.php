@@ -62,7 +62,7 @@ class EffectorType extends DatabaseEntity
     {
         if(strlen($ref) <= 10 ){
 
-            $this->name = $ref;
+            $this->ref = $ref;
         }
         else{
             $this -> error = true;
@@ -77,9 +77,17 @@ class EffectorType extends DatabaseEntity
      * @param boolean $chart
      * @return EffectorType
      */
-    public function setChart(bool $chart)
+    public function setChart($chart)
     {
-        $this->chart = $chart;
+        if(is_bool($chart)){
+            $this->chart = $chart;
+        }
+        else{
+            $this -> error = true;
+            $this -> errorMessage .= '<br/> The parameter is incorrect';
+
+        }
+
         return $this;
     }
 

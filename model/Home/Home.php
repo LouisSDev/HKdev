@@ -113,7 +113,7 @@ class Home extends DatabaseEntity
 
     /**
      * @param User $user
-     * @return
+     * @return Home
      */
     public function setUser($user)
     {
