@@ -5,7 +5,7 @@ require_once"utils/require.php";
 $dbConnector = new DatabaseConnection();
 $db = $dbConnector -> getDatabase();
 
-
+/*
 $home = new Home();
 $home
     -> setCity('Paris')
@@ -40,7 +40,7 @@ if($saveUser == null){
     $homes = $user  -> getHomes() ;
 
     /** @var Home $hms */
-    foreach($homes as $hms){
+/*    foreach($homes as $hms){
         echo $hms -> getName();
     }
 
@@ -49,3 +49,4 @@ if($saveUser == null){
         echo $user->getErrorMessage();
     }
 }
+*/
