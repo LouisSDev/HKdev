@@ -21,7 +21,7 @@
     <div class="container2">
         <a class="arrow scrolling" href="#presentation">&raquo;</a>
     </div>
-    <div id="presentation">
+    <div id="presentation">d
         <img class="entreprise" src="<?php echo $GLOBALS['server_root']?>/ressources/img/entreprise.jpg"/>
         <p>
             Ces de ces deux constats qu’est né le projet HomeKeeper et c'est la raison pour laquelle nous mettons chaque jour toute notre énergie pour combattre ce fléau.
