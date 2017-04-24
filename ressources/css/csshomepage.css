@@ -1,16 +1,64 @@
-.photoaccueil {
-    margin-top: 80px;
-    height: auto;
-    width: 100%;
-}
+
+/* Images size */
 .arrow{
-    height: auto;
-    width: 4%;
-    opacity: 0.2;
-}
+    font-size: 40px;
+    color: white;
+    text-decoration: none;
+    left: 30px;
+ }
 
 .entreprise {
-    height: 20%;
-    margin: 0%;
-    max-width: 40%;
+    width: 40%;
+    height: auto;
+}
+
+/* Superposing the arrow and the background image */
+.container1{
+    top: 80px;
+    width: auto;
+    min-height: 100vh;
+    position: relative;
+    background-image: url(home.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    z-index: 997;
+}
+
+.container2{
+    text-align: center;
+    position: absolute;
+    z-index: 998;
+    bottom: 20px;
+    left: 50%;
+    border:2px solid white;
+    border-radius: 100%;
+    height: 50px;
+    width: 50px;
+    transform: rotate(90deg);
+    transition: all 0.2s;
+}
+
+/* Creating a row disposition with flex */
+#presentation{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    padding-top: 80px;
+}
+
+p {
+    margin: 0;
+}
+
+/* Displaying a loader */
+.loader{
+    width: 200px;
+    height: 200px;
+    position: fixed;
+    top: 35%;
+    left: 50%;
+}
+
+.content{
+    display: none;
 }
