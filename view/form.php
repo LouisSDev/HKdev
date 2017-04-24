@@ -1,7 +1,6 @@
-<h1>Vous êtes intéressé ?</h1>
-<h1>Demander un devis !</h1>
 <form action="tag-html-balise-form" method="get" enctype="multipart/form-data">
-    <p>
+        <h1>Vous êtes intéressé ?</h1>
+        <h1>Demander un devis !</h1>
         <input class=box type="text" name="First Name" placeholder="Nom"/><br>
         <input class=box type="text" name="Last Name" placeholder="Prénom"/><br>
         <input class=box type="text" name="Address" placeholder="Adresse"/><br>
@@ -9,7 +8,6 @@
         <input class=box type="text" name="Mail" placeholder="Adresse mail"/><br>
         <input type="file" name="MyFile" /><br />
         <input class="btn" type="submit" value="Envoyer" />
-    </p>
 </form>
 
 <?php

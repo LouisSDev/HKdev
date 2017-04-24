@@ -10,8 +10,8 @@ body{
  }
 
 .entreprise {
-    width: 40%;
-    height: auto;
+    width: auto;
+    height: 50vh;
 }
 
 /* Superposing the arrow and the background image */
@@ -43,13 +43,21 @@ body{
 /* Creating a row disposition with flex */
 #presentation{
     position: relative;
+    /*padding-top: 80px;*/
+    height:100vh;
+}
+
+.grid{
+    position: relative;
+    top: calc(25% + 40px);
     display: flex;
     flex-direction: row;
-    padding-top: 80px;
 }
 
 p {
     margin: 0;
+    text-align: justify;
+    padding-right: 5px;
 }
 
 /* Displaying a loader */
