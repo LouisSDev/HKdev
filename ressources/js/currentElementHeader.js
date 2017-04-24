@@ -1,5 +1,6 @@
 var menu = $("a");
-console.log()
+menu.attr('class', 'current_element');
+console.log(menu.length);
 
 
 /*var current = window.location.href;
