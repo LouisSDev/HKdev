@@ -1,15 +1,9 @@
-var menu = $("a");
-console.log()
-
-
-/*var current = window.location.href;
-for(i=1;i<=$("a").length;i++){
-    var menu = $("a:nth-of-type(1)");
+var current = window.location.href;
+for(var i=1;i<=$("a").length;i++){
+    var menu = $("a:nth-of-type("+i+")");
     if(menu.attr("href") === current){
-        menu.attr("class", "current_element");
-    }
-    else if (menu.attr("href") !== current){
-        menu.removeAttr("class");
+        console.log(menu.attr('href'));
+        menu.css('color', '#62bcda');
+        break;
     }
 }
-*/
