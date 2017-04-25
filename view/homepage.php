@@ -40,9 +40,13 @@
                 Car ensemble nous pouvons changer le monde !
             </p>
         </div>
+        <div class="form_pointer">
+            <a class="arrow_black scrolling" href="#form">&raquo;</a>
+        </div>
     </div>
-    <div id=""
-    <?php include_once("form.php");?>
+    <div id="form">
+        <?php include_once("form.php");?>
+    </div>
 </div>
 </body>
 </html>
