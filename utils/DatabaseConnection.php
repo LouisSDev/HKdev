@@ -42,8 +42,16 @@ class DatabaseConnection
 
     private function createRepositories(){
         $GLOBALS['repositories']['user'] = new UserRepository($this->db);
-        $GLOBALS['repositories']['home'] = new HomeRepository($this->db, $GLOBALS['repositories']['user'] -> getUser() );
-        $GLOBALS['repositories']['room'] = new RoomRepository($this->db, $GLOBALS['repositories']['user'] -> getUser() );
+
+        $user = $GLOBALS['repositories']['user'] -> getUser();
+
+        $GLOBALS['repositories']['home'] = new HomeRepository($this->db, $user );
+        $GLOBALS['repositories']['room'] = new RoomRepository($this->db, $user );
+        $GLOBALS['repositories']['effector'] = new EffectorRepository($this->db, $user);
+        $GLOBALS['repositories']['effectorType'] = new EffectorTypeRepository($this->db, $user);
+        $GLOBALS['repositories']['sensor'] = new SensorRepository($this->db, $user);
+        $GLOBALS['repositories']['sensorType'] = new SensorTypeRepository($this->db, $user);
+        $GLOBALS['repositories']['sensorValue'] = new SensorValueRepository($this->db, $user);
     }
 
 

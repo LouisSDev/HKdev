@@ -4,23 +4,42 @@
 abstract class Controller
 {
 
-    private $connected = false;
+    protected $connectionRequired = false;
+
+    protected $connected = false;
+
+    /**
+     * @var User $user
+     */
+    protected  $user = null;
+
+    /**
+     * @var PDO $db
+     */
+    protected $db = null;
 
     /**
      * Controller constructor.
      */
-    public function __construct()
+    public function __construct(PDO $db)
     {
-        if ($this -> getConnectionRequired()){
-            if($GLOBALS['repositories']['user'] -> isConnected()){
-                $this -> connected = true;
-                // The user is not connected -> we must print him an error!
+        $this -> db = $db;
 
-            }
+        /** @var UserRepository $userRepo */
+        $userRepo = $GLOBALS['repositories']['user'];
+
+        if( $userRepo -> isConnected()){
+            $this -> connected = true;
+            $this -> user = $userRepo -> getUser();
         }
+
+        if(!$this -> connected && $this -> connectionRequired){
+            $this -> throwConnectionError();
+        }
+
     }
 
-    private function generateView($filename, $args){
+    protected function generateView($filename, $args){
         foreach($args as $key => $value){
             $GLOBALS['view'][$key] = $value;
         }
@@ -28,12 +47,12 @@ abstract class Controller
         require_once 'view/' . $filename ;
     }
 
-    private function throwConnectionError(){
+
+    protected function throwConnectionError(){
         // To be coded
+        $this -> generateView('homepage.php', [
+            'connected' => false
+        ]);
+        exit();
     }
-
-    public function getConnectionRequired(){
-        return false;
-    }
-
 }
