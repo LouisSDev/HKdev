@@ -62,7 +62,6 @@ body{
 /* Creating a row disposition with flex */
 #presentation{
     position: relative;
-    /*padding-top: 80px;*/
     height:100vh;
 }
 
@@ -79,6 +78,7 @@ p {
     padding-right: 5px;
 }
 
+
 /* Displaying a loader */
 .loader{
     width: 200px;
@@ -92,6 +92,12 @@ p {
     display: none;
 }
 
-form{
-    padding-bottom: 40px;
+#form{
+    /*padding-top: 80px;*/
+    height: 100vh;
+}
+
+.form_content{
+    text-align: center;
+    padding-top: 10%;
 }

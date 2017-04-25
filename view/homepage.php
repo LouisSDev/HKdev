@@ -45,7 +45,11 @@
         </div>
     </div>
     <div id="form">
-        <?php include_once("form.php");?>
+        <div class="form_content">
+            <h1>Vous êtes intéressé ?</h1>
+            <h1>Demander un devis !</h1>
+            <?php include_once("form.php");?>
+        </div>
     </div>
 </div>
 </body>

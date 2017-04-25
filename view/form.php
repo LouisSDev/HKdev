@@ -1,6 +1,4 @@
 <form action="tag-html-balise-form" method="get" enctype="multipart/form-data">
-        <h1>Vous êtes intéressé ?</h1>
-        <h1>Demander un devis !</h1>
         <input class=box type="text" name="First Name" placeholder="Nom"/><br>
         <input class=box type="text" name="Last Name" placeholder="Prénom"/><br>
         <input class=box type="text" name="Address" placeholder="Adresse"/><br>
