@@ -40,9 +40,17 @@
                 Car ensemble nous pouvons changer le monde !
             </p>
         </div>
+        <div class="form_pointer">
+            <a class="arrow_black scrolling" href="#form">&raquo;</a>
+        </div>
     </div>
-    <div id=""
-    <?php include_once("form.php");?>
+    <div id="form">
+        <div class="form_content">
+            <h1>Vous êtes intéressé ?</h1>
+            <h1>Demander un devis !</h1>
+            <?php include_once("form.php");?>
+        </div>
+    </div>
 </div>
 </body>
 </html>
