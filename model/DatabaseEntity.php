@@ -46,6 +46,9 @@ abstract class DatabaseEntity
             // And this is an infinite loop...
             if(!($value instanceof DatabaseEntity)){
 
+                // We create the setter name
+                $setterName = 'set' . strtoupper($name[0]) .  substr($name, 1, strlen($name) -1);
+
                 // If it's an array
                 if(is_array($value)){
 
@@ -53,6 +56,9 @@ abstract class DatabaseEntity
                     $repositoryName = substr($name, 0, strlen($name) - 1);
 
                     // Now we get the repository
+                    if(empty($GLOBALS['repositories'][$repositoryName])){
+                        $GLOBALS['repositories']['user'] ->  createRepositories();
+                    }
                     /** @var Repository  $repository */
                     $repository = $GLOBALS['repositories'][$repositoryName];
 
@@ -60,13 +66,14 @@ abstract class DatabaseEntity
                     // It will in turn call the method getObjectsFromUserId of the given repository if it's from the
                     // User id that we search those objects
                     // We then put all of this in the corresponding array and we're done
-                    $this -> $name = $repository -> getObjectsFromId($this->id, $this -> getClassName() , $repositoryName);
+                    $this -> $setterName( $repository -> getObjectsFromId($this->id, $this -> getClassName() , $repositoryName) );
 
                 }
                 else if($name != "error" && $name != "errorMessage"){
                     // If the param is a simple param and not neither the error or errorMessage param
                     // We put the data array value inside this param and we're done
-                    $this->$name = $data[$name];
+
+                    $this->$setterName($data[$name]);
                 }
             }
         }
@@ -204,6 +211,10 @@ abstract class DatabaseEntity
                     $GLOBALS['val'] = $val;
 
 
+                    if( is_string($GLOBALS['val'])){
+                        $GLOBALS['val'] = htmlspecialchars($GLOBALS['val']);
+                    }
+
                     if($GLOBALS['val'] instanceof  DatabaseEntity){
                         $GLOBALS['val'] = $value['value'];
                     }
@@ -261,6 +272,10 @@ abstract class DatabaseEntity
 
 
                     $GLOBALS['val'] = $val;
+
+                    if( is_string($GLOBALS['val'])){
+                        $GLOBALS['val'] = htmlspecialchars($GLOBALS['val']);
+                    }
 
 
                     if($GLOBALS['val'] instanceof  DatabaseEntity){
@@ -328,7 +343,7 @@ abstract class DatabaseEntity
      * @param int $id
      * @return DatabaseEntity
      */
-    public function setId(int $id)
+    public function setId($id)
     {
         $this->id = $id;
         return $this;
@@ -345,7 +360,7 @@ abstract class DatabaseEntity
     /**
      * @param boolean $error
      */
-    public function setError(bool $error)
+    public function setError($error)
     {
         $this->error = $error;
     }
@@ -361,7 +376,7 @@ abstract class DatabaseEntity
     /**
      * @param string $errorMessage
      */
-    public function setErrorMessage(string $errorMessage)
+    public function setErrorMessage( $errorMessage)
     {
         $this->errorMessage = $errorMessage;
     }

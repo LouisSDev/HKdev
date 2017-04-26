@@ -9,9 +9,23 @@ class UserRepository extends Repository
      */
     protected $connected = false;
 
+    /**
+     * @var $dbConn DatabaseConnection
+     *
+     */
+    protected $dbConn;
+
     const OBJECT_CLASS_NAME = 'model/user/User';
 
+    /**
+     * UserRepository constructor.
+     */
+    public function __construct($db, DatabaseConnection $dbConn)
+    {
+        parent::__construct($db);
 
+        $this -> dbConn = $dbConn;
+    }
 
 
     /**
@@ -57,6 +71,10 @@ class UserRepository extends Repository
     public function isConnected()
     {
         return $this->connected;
+    }
+
+    public function createRepositories(){
+        $this -> dbConn -> createOtherRepositories();
     }
 
 }

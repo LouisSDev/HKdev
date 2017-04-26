@@ -45,7 +45,7 @@ class User extends DatabaseEntity
     private $password;
 
     /**
-     * @var boolean $admin
+     * @var bool $admin
      */
     private $admin = false;
 
@@ -227,7 +227,7 @@ class User extends DatabaseEntity
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getAdmin()
     {
@@ -235,10 +235,10 @@ class User extends DatabaseEntity
     }
 
     /**
-     * @param boolean $admin
+     * @param bool $admin
      * @return User
      */
-    public function setAdmin(bool $admin)
+    public function setAdmin($admin)
     {
         $this->admin = $admin;
         return $this;

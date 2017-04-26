@@ -41,6 +41,11 @@ abstract class Controller
 
     protected function generateView($filename, $args){
         foreach($args as $key => $value){
+
+            if(is_string($value)){
+                $value = htmlspecialchars($value);
+            }
+
             $GLOBALS['view'][$key] = $value;
         }
 
@@ -50,7 +55,7 @@ abstract class Controller
 
     protected function throwConnectionError(){
         // To be coded
-        $this -> generateView('homepage.php', [
+        $this -> generateView('connection.php', [
             'connected' => false
         ]);
         exit();

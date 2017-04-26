@@ -25,15 +25,6 @@ class Repository
         if($user != null){
             $this->user = $user;
         }
-        else{
-            if(!empty($GLOBALS['mail']) && !empty($GLOBALS['password'])) {
-                if($this instanceof UserRepository) {
-                    $this->connect($GLOBALS['mail'], $GLOBALS['password']);
-                }else{
-                    $this->user = $GLOBALS['repositories']['user']->getUser();
-                }
-            }
-        }
 
     }
 
@@ -55,7 +46,7 @@ class Repository
     }
 
     // Example, we could call it with params : (3 , user, Home ) which means we'll search for the homes that belongs to user 3
-    public function getObjectsFromId(integer $id, string $fromObject, string $fromTable ){
+    public function getObjectsFromId($id, $fromObject,$fromTable ){
 
         // The from object name goes to lower case
         $fromTable = strtolower($fromTable);

@@ -29,6 +29,9 @@ class DatabaseConnection
             $this->createRepositories();
         }
         catch (Exception $e){
+
+            // TODO :: the get message line must be uncommented in the prod version!!
+            echo $e -> getMessage();
             require_once "view/connectionError.php";
             exit;
         }
@@ -41,8 +44,16 @@ class DatabaseConnection
     }
 
     private function createRepositories(){
-        $GLOBALS['repositories']['user'] = new UserRepository($this->db);
+        $GLOBALS['repositories']['user'] = new UserRepository($this->db, $this);
+        if(!empty($GLOBALS['mail']) && !empty($GLOBALS['password'])) {
+            $GLOBALS['repositories']['user'] -> connect($GLOBALS['mail'], $GLOBALS['password']);
+        }
+    }
 
+    // Called only if a user is connected
+    public function createOtherRepositories(){
+
+        /** @var User $user */
         $user = $GLOBALS['repositories']['user'] -> getUser();
 
         $GLOBALS['repositories']['home'] = new HomeRepository($this->db, $user );

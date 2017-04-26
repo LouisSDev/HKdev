@@ -13,7 +13,7 @@
 <body>
 <?php include_once("header.php") ?>
     <div class="container">
-        <form action="<?php echo $GLOBALS['server_root']?>" method="post" >
+        <form action="<?php echo $GLOBALS['server_root'] . '/connect'?>" method="post" >
             <input class="box" type="text" required="" placeholder="Nom d'utilisateur" name="userMail"><br/>
             <input class="box" type="password" required="" placeholder="Mot de passe" name="userPassword"><br/>
             <input class="box" type="checkbox">Se souvenir de moi ?<br/>

@@ -5,7 +5,8 @@ require_once "lib/requireLibs.php";
 require_once "utils/randomHash.php";
 require_once "utils/devLogs.php";
 require_once "utils/DatabaseConnection.php";
-require_once  "utils/JsonUtils.php";
+require_once "utils/JsonUtils.php";
+require_once "utils/UserCredentials.php";
 
 
 // Models
@@ -50,7 +51,7 @@ require_once "model/Repository.php";
 require_once "controller/Controller.php";
 
     // User
-
+    require_once "controller/UserController.php";
 
 
 
