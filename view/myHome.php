@@ -8,26 +8,18 @@
     <title>Ma maison</title>
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/myHome.css">
 </head>
 <body>
     <?php include_once("header.php");?>
     <div class="home">
-        <a href=""><img src="<?php echo $GLOBALS['server_root']?>/ressources/img/home_icon.png"></a>
+        <a href=""><img src="<?php echo $GLOBALS['server_root']?>/ressources/img/home.png"></a>
     </div>
     <div class="rooms">
-        <a href=""><img src="<?php echo $GLOBALS['server_root']?>/ressources/img/"></a>
-        <a href=""><img src="<?php echo $GLOBALS['server_root']?>/ressources/img/"></a>
-        <a href=""><img src="<?php echo $GLOBALS['server_root']?>/ressources/img/"></a>
-        <a href=""><img src="<?php echo $GLOBALS['server_root']?>/ressources/img/"></a>
+        <a href=""><img src="<?php echo $GLOBALS['server_root']?>/ressources/img/bed.png"></a>
+        <a href=""><img src="<?php echo $GLOBALS['server_root']?>/ressources/img/kitchen.png"></a>
+        <!--<a href=""><img src="<?php echo $GLOBALS['server_root']?>/ressources/img/"></a>
+        <a href=""><img src="<?php echo $GLOBALS['server_root']?>/ressources/img/"></a>-->
     </div>
 </body>
 </html>
-
-
-<?php
-/**
- * Created by PhpStorm.
- * User: Alexis Falempin
- * Date: 26/04/2017
- * Time: 16:07
- */
