@@ -1,6 +1,9 @@
+function openModal () {
+    $('body').css('opacity', '0.4');
 
-// When the user clicks on <div>, open the popup
-function myFunction() {
-    var popup = document.getElementById("connection");
-    popup.classList.toggle("show");
+    $('#modal').fadeIn(2000);
+}
+
+function closeModal() {
+    $('#modal').fadeOut(2000);
 }

@@ -361,7 +361,7 @@ class User extends DatabaseEntity
     /**
      * @return boolean
      */
-    public function isValidated(): bool
+    public function isValidated()
     {
         return $this->validated;
     }
@@ -370,7 +370,7 @@ class User extends DatabaseEntity
      * @param boolean $validated
      * @return User
      */
-    public function setValidated(bool $validated)
+    public function setValidated($validated)
     {
         $this->validated = $validated;
         return $this;
