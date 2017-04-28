@@ -6,11 +6,14 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/homepage.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/connection.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/loader.js"></script>
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/smoothScrolling.js"></script>
+    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/pop-up.js"></script>
 </head>
 <body>
+<div class="black"></div>
 <div class="loader">
     <h1>Please wait...</h1>
     <img src="<?php echo $GLOBALS['server_root']?>/ressources/img/gears.gif">

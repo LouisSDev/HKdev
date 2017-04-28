@@ -10,6 +10,7 @@ class SecurityController extends Controller
 {
 
     const MAX_FILE_SIZE = 1000000;
+    const AUTHORIZED_EXTENSIONS = array('jpg', 'jpeg', 'png', 'pdf');
 
     public function signUp()
     {
@@ -22,27 +23,44 @@ class SecurityController extends Controller
 
 
         // If the save method is thrown, we'll forward it to the controller
-        if(!$user -> save($this -> db)){
+        if(!$user -> getValid() || $user -> isError()){
             $this -> args ['error'] = $user -> getErrorMessage();
+            $this -> generateView('test.php');
+        }
+
+
+        if (!isset($_FILES['file']) && $_FILES['file']['error'] == 0) {
+            $this -> args ['error'] = 'Vous n\'avez pas selectionné de fichier.';
+            $this -> generateView('test.php');
+        }
+
+        //If the files is not too big
+        if ($_FILES['file']['size'] > self::MAX_FILE_SIZE) {
+            $this -> args['error'] = 'Le fichier selectionné est trop lourd';
+            $this -> generateView('test.php');
+        }
+
+
+        $fileInformation = pathinfo($_FILES['file']['name']);
+        if (in_array($fileInformation['extension'], self::AUTHORIZED_EXTENSIONS)) {
+            $this -> args ['error'] = 'Ce type de fichier n\'est pas accepté veuillez choisir un fichier dans un des formats suivants: ';
+            foreach(self::AUTHORIZED_EXTENSIONS as $authExt){
+                $this -> args['error'] .= $authExt . ' ';
+            }
             $this -> generateView('homepage.php');
         }
 
+        $quoteFilePath = 'uploads/quotes/' . uniqid() ;
 
-        if (isset($_FILES['file']) AND $_FILES['file']['error'] == 0) {
-            // Testons si le fichier n'est pas trop gros
-            if ($_FILES['file']['size'] <= self::MAX_FILE_SIZE) {
+        move_uploaded_file($_FILES['file']['tmp_name'], $quoteFilePath);
 
-                // Testons si l'extension est autorisée
-                $infosfichier = pathinfo($_FILES['file']['name']);
-                $extension_upload = $infosfichier['extension'];
-                $extensions_autorisees = array('jpg', 'jpeg', 'png', 'pdf');
-                if (in_array($extension_upload, $extensions_autorisees)) {
-                    // On peut valider le fichier et le stocker définitivement
-                    move_uploaded_file($_FILES['file']['tmp_name'], 'uploads/' . basename($_FILES['file']['name']));
-                    echo "L'envoi a bien été effectué !";
-                }
-            }
-        }
+        $user -> setQuoteFilePath($quoteFilePath);
+
+        $user -> save($this -> db);
+
+        $this -> generateView('test.php');
+
+
     }
 
 }

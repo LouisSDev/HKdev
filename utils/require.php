@@ -53,6 +53,8 @@ require_once "controller/Controller.php";
     // User
     require_once "controller/UserController.php";
 
+    // Security
+    require_once "controller/SecurityController.php";
 
 
 

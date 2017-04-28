@@ -6,9 +6,7 @@ class UserController extends Controller
     protected $connectionRequired = true;
 
     public function getDashboard(){
-        $this -> generateView('dashboard.php', [
-            'user' => $this -> user
-        ]);
+        $this -> generateView('dashboard.php');
     }
 
 
