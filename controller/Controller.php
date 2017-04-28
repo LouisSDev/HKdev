@@ -33,11 +33,10 @@ abstract class Controller
         if( $userRepo -> isConnected()){
             $this -> connected = true;
             $this -> user = $userRepo -> getUser();
+            $this -> args['user'] = $this -> user;
         }
 
-        $this ->  args = [
-            'connected' => $this -> connected
-        ];
+        $this ->  args['connected'] = $this -> connected;
 
         if(!$this -> connected && $this -> connectionRequired){
             $this -> throwConnectionError();

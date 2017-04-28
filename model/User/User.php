@@ -55,6 +55,11 @@ class User extends DatabaseEntity
     private $validated = false;
 
     /**
+     * @var string $quoteFilePath
+     */
+    private $quoteFilePath;
+
+    /**
      * @var array
      */
     private $homes = array();
@@ -361,7 +366,7 @@ class User extends DatabaseEntity
     /**
      * @return boolean
      */
-    public function isValidated(): bool
+    public function isValidated()
     {
         return $this->validated;
     }
@@ -370,9 +375,27 @@ class User extends DatabaseEntity
      * @param boolean $validated
      * @return User
      */
-    public function setValidated(bool $validated)
+    public function setValidated($validated)
     {
         $this->validated = $validated;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getQuoteFilePath()
+    {
+        return $this->quoteFilePath;
+    }
+
+    /**
+     * @param string $quoteFilePath
+     * @return User
+     */
+    public function setQuoteFilePath($quoteFilePath)
+    {
+        $this->quoteFilePath = $quoteFilePath;
         return $this;
     }
 
