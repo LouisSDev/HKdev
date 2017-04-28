@@ -46,7 +46,7 @@ abstract class Controller
     }
 
     protected function generateView($filename){
-        foreach($args as $key => $value){
+        foreach($this -> args as $key => $value){
 
             if(is_string($value)){
                 $value = htmlspecialchars($value);
