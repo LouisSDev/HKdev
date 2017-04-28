@@ -8,6 +8,8 @@ abstract class Controller
 
     protected $connected = false;
 
+    protected $args = array();
+
     /**
      * @var User $user
      */
@@ -33,14 +35,18 @@ abstract class Controller
             $this -> user = $userRepo -> getUser();
         }
 
+        $this ->  args = [
+            'connected' => $this -> connected
+        ];
+
         if(!$this -> connected && $this -> connectionRequired){
             $this -> throwConnectionError();
         }
 
     }
 
-    protected function generateView($filename, $args){
-        foreach($args as $key => $value){
+    protected function generateView($filename){
+        foreach($this -> args as $key => $value){
 
             if(is_string($value)){
                 $value = htmlspecialchars($value);
@@ -55,9 +61,7 @@ abstract class Controller
 
     protected function throwConnectionError(){
         // To be coded
-        $this -> generateView('connection.php', [
-            'connected' => false
-        ]);
+        $this -> generateView('connection.php');
         exit();
     }
 }

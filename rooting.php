@@ -29,6 +29,10 @@ switch($globalPath){
         $userController = new UserController($db);
         $userController -> getDashboard();
         break;
+    case "signup":
+        $securityController = new SecurityController($db);
+        $securityController -> signUp();
+        break;
     case "test" :
         require_once "test.php";
         break;

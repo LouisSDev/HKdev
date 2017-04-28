@@ -50,6 +50,11 @@ class User extends DatabaseEntity
     private $admin = false;
 
     /**
+     * @var bool $validated
+     */
+    private $validated = false;
+
+    /**
      * @var array
      */
     private $homes = array();
@@ -250,7 +255,7 @@ class User extends DatabaseEntity
     }
 
 
-    public function setNewPassword($password, $passwordNew, $passwordConf, $encrypt)
+    public function setNewPassword($password, $passwordNew, $passwordConf, $encrypt = true)
     {
         // We first encrypt the passwords with our config salt for security purposes if needed (if $encrypt == true)
         if($encrypt){
@@ -353,6 +358,23 @@ class User extends DatabaseEntity
         return $this;
     }
 
+    /**
+     * @return boolean
+     */
+    public function isValidated(): bool
+    {
+        return $this->validated;
+    }
+
+    /**
+     * @param boolean $validated
+     * @return User
+     */
+    public function setValidated(bool $validated)
+    {
+        $this->validated = $validated;
+        return $this;
+    }
 
 
 
