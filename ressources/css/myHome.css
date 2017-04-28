@@ -1,9 +1,22 @@
 .home {
-    background-color: gray;
+    background-color: lightgray;
     border-radius: 100%;
+    height: 100px;
+    width: 100px;
+    top: calc(80px + 25%);
+    position: absolute;
+    left: 50%;
+}
 
+.btn-size{
+    height: 80px;
+    width: 80px;
+    top: 9%;
+    left: 10%;
+    position: relative;
+    text-align: center;
 }
 
 .rooms{
-
+    display: none;
 }

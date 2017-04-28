@@ -13,11 +13,11 @@
 <body>
     <?php include_once("header.php");?>
     <div class="home">
-        <a href=""><img src="<?php echo $GLOBALS['server_root']?>/ressources/img/home.png"></a>
+        <a href=""><img class="btn-size" src="<?php echo $GLOBALS['server_root']?>/ressources/img/home.png"></a>
     </div>
     <div class="rooms">
-        <a href=""><img src="<?php echo $GLOBALS['server_root']?>/ressources/img/bed.png"></a>
-        <a href=""><img src="<?php echo $GLOBALS['server_root']?>/ressources/img/kitchen.png"></a>
+        <a href=""><img class="btn-size" src="<?php echo $GLOBALS['server_root']?>/ressources/img/bed.png"></a>
+        <a href=""><img class="btn-size" src="<?php echo $GLOBALS['server_root']?>/ressources/img/kitchen.png"></a>
         <!--<a href=""><img src="<?php echo $GLOBALS['server_root']?>/ressources/img/"></a>
         <a href=""><img src="<?php echo $GLOBALS['server_root']?>/ressources/img/"></a>-->
     </div>
