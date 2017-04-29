@@ -36,7 +36,12 @@ switch($globalPath){
         $securityController = new SecurityController($db);
         $securityController -> signUp();
         break;
-    case "test" :
+    case "resetPass" :
+        $userController = new UserController($db);
+        $userController->modifyExistingPasswordAction();
+        break;
+
+    case "test":
         require_once "test.php";
         break;
     case "myhome" :
