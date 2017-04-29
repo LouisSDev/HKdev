@@ -366,7 +366,7 @@ class User extends DatabaseEntity
     /**
      * @return boolean
      */
-    public function isValidated()
+    public function getValidated()
     {
         return $this->validated;
     }

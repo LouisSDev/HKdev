@@ -6,8 +6,8 @@
         <input class=box type="text" name="address" placeholder="Adresse"/><br/>
         <input class=box type="text" name="mail" placeholder="Adresse mail"/><br/>
         <input class=box type="text" name="cellPhoneNumber" placeholder="Numéro de téléphone"/><br/>
-        <input class=box type="text" name="password" placeholder="Mot de passe"/><br/>
-        <input class=box type="text" name="passwordRepeat" placeholder="Répétez votre mot de passe"/><br/>
+        <input class=box type="password" name="password" placeholder="Mot de passe"/><br/>
+        <input class=box type="password" name="passwordRepeat" placeholder="Répétez votre mot de passe"/><br/>
         <input type="file" name="file" /><br/>
         <input class="btn" type="submit" value="Envoyer" />
 </form>

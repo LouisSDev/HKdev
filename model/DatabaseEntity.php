@@ -69,7 +69,7 @@ abstract class DatabaseEntity
                     $this -> $setterName( $repository -> getObjectsFromId($this->id, $this -> getClassName() , $repositoryName) );
 
                 }
-                else if($name != "error" && $name != "errorMessage" && !empty($data['name'])){
+                else if($name != "error" && $name != "errorMessage" && !empty($data[$name])){
                     // If the param is a simple param and not neither the error or errorMessage param
                     // We put the data array value inside this param and we're done
 

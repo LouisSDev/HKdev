@@ -55,6 +55,8 @@ abstract class Controller
         }
 
         require_once 'view/' . $filename ;
+
+        exit();
     }
 
 

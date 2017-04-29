@@ -5,6 +5,8 @@ include_once "utils/require.php";
 $path =   explode( "/", $_SERVER['REQUEST_URI']);
 $globalPath = $path[2];
 
+$GLOBALS['root_dir'] = __DIR__;
+
 new UserCredentials();
 
 // Connection to the database
