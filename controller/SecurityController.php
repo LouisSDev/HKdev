@@ -9,7 +9,7 @@
 class SecurityController extends Controller
 {
 
-    const MAX_FILE_SIZE = 1000000;
+    const MAX_FILE_SIZE = 300000;
     const AUTHORIZED_EXTENSIONS = array('jpg', 'jpeg', 'png', 'pdf');
 
     public function signUp()
@@ -43,7 +43,7 @@ class SecurityController extends Controller
 
         //If the files is not too big
         if ($_FILES['file']['size'] > self::MAX_FILE_SIZE) {
-            $this -> args['error'] = 'Le fichier selectionné est trop lourd';
+            $this -> args['error'] = 'Le fichier selectionné est trop lourd, il doit faire moins de 300ko';
             $this -> generateView('homepage.php');
         }
 
