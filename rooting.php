@@ -27,6 +27,9 @@ switch($globalPath){
     case "connection" :
         require_once "view/connection.php";
         break;
+    case "contactpage" :
+        require_once "view/contactpage.php";
+        break;
     case "connect" :
         $userController = new UserController($db);
         $userController -> getDashboard();
@@ -35,7 +38,12 @@ switch($globalPath){
         $securityController = new SecurityController($db);
         $securityController -> signUp();
         break;
-    case "test" :
+    case "resetPass" :
+        $userController = new UserController($db);
+        $userController->modifyExistingPasswordAction();
+        break;
+
+    case "test":
         require_once "test.php";
         break;
     case "myhome" :
