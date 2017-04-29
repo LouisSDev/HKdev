@@ -16,10 +16,10 @@ $db = $dbConnector -> getDatabase();
 
 switch($globalPath){
     case "home" :
-        require_once "view/homepage.php";
+        homepage($db);
         break;
     case "" :
-        require_once "view/homepage.php";
+        homepage($db);
         break;
     case "backoffice" :
         require_once "adminpage.php";
@@ -34,15 +34,10 @@ switch($globalPath){
         $userController = new UserController($db);
         $userController -> getDashboard();
         break;
-    case "signup":
-        $securityController = new SecurityController($db);
-        $securityController -> signUp();
-        break;
     case "resetPass" :
         $userController = new UserController($db);
         $userController->modifyExistingPasswordAction();
         break;
-
     case "test":
         require_once "test.php";
         break;
@@ -51,4 +46,15 @@ switch($globalPath){
         break;
     default :
         require_once "404.php";
+}
+
+
+function homepage($db){
+    if($_SERVER['REQUEST_METHOD'] == "POST"){
+        /** @var SecurityController $securityController */
+        $securityController = new SecurityController($db);
+        $securityController -> signUp();
+    }else{
+        require_once "view/homepage.php";
+    }
 }

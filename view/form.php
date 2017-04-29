@@ -1,4 +1,4 @@
-<form action="<?php echo $GLOBALS['server_root'] ?>/signup" method="post" enctype="multipart/form-data">
+<form action="<?php echo $GLOBALS['server_root'] ?>/home" method="post" enctype="multipart/form-data">
         <input class=box type="text" name="firstName" placeholder="Nom"/><br/>
         <input class=box type="text" name="lastName" placeholder="Prénom"/><br/>
         <input class=box type="text" name="country" placeholder="Pays"/><br/>

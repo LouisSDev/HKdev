@@ -25,6 +25,7 @@
     <div class="container2">
         <a class="arrow scrolling" href="#presentation">&raquo;</a>
     </div>
+
     <div id="presentation">
         <div class="grid">
             <img class="entreprise" src="<?php echo $GLOBALS['server_root']?>/ressources/img/maison2.jpeg"/>
@@ -48,13 +49,38 @@
             <a class="arrow_black scrolling" href="#form">&raquo;</a>
         </div>
     </div>
-    <div id="form">
-        <div class="form_content">
-            <h1>Vous êtes intéressé ?</h1>
-            <h1>Demander un devis !</h1>
-            <?php include_once("form.php");?>
-        </div>
-    </div>
+        <?php
+        if(!empty($GLOBALS['view']['registration'])){
+            ?>
+            <p id="successful-registration">
+                Votre devis a bien été déposé, vous serez bientôt contacté par notre équipe!
+            </p>
+            <?php
+        }
+        else{
+
+            if(!empty($GLOBALS['view']['error'])){
+                ?>
+                <p id="registration-error">
+                    <?php
+                        echo $GLOBALS['view']['error'];
+                    ?>
+                </p>
+                <?php
+            }
+            ?>
+            <div id="form">
+                <div class="form_content">
+                    <h1>Vous êtes intéressé ?</h1>
+                    <h1>Demander un devis !</h1>
+                    <?php include_once("form.php");?>
+                </div>
+            </div>
+        <?php
+        }
+        ?>
+
+
 </div>
 </body>
 </html>
