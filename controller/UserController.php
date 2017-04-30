@@ -2,38 +2,43 @@
 
 class UserController extends Controller
 {
-
     protected $connectionRequired = true;
-
     public function getDashboard()
     {
         $this->generateView('dashboard.php');
     }
-
+    /**
+     *
+     */
     public function modifyExistingPasswordAction()
     {
-        $user = new User();
-        $user->createFromResults($_POST);
-        if (isset($_POST['newpassword']) && $_POST['confirmnewpassword'] && $_POST['OldPassword']) {
-            $newpassword = $_POST['newpassword'];
-            $confirmNewPassword = $_POST['confirmnewpassword'];
-            $oldpassword = sha1($GLOBALS['salt']);
-            if ($oldpassword !== $user->getPassword()) {
-                $this->generateView('oldpassword.php');
-            } elseif ($newpassword !== $confirmNewPassword) {
-                $this->generateView('newPassword.php');
-            } else {
-                $encryptPassword = sha1($GLOBALS['salt']);
-                $user->setPassword($encryptPassword);
-                $user->save($this->db);
-                $this->generateView('passwordChanging_success.php');
-            }
+        $user = $GLOBALS['view']['user'];
 
-        } else {
-            $this->generateView('empty_changePassword_infoError.php');
+
+        if (isset($_POST['newPassword']) && $_POST['confirmNewPassword'] && $_POST['oldPassword']) {
+            $newPassword = $_POST['newPassword'];
+            $confirmNewPassword = $_POST['confirmNewPassword'];
+            $oldPassword = $_POST['oldPassword'];
+            $oldPassword_encrypt =sha1($oldPassword.$GLOBALS['salt']);
+           if($oldPassword_encrypt !==$user->getPassword()){
+
+               $this->args['error'] ="le mot de passe entré n'est pas valide";
+               $this->generateView('editProfile.php');
+           }
+           elseif ($newPassword !==$confirmNewPassword){
+               $this->args['error'] = "Les deux mot de passes doivent etre indetiques";
+               $this->generateView('editProfile.php');
+           }
+           else {
+               $user->setNewPassword($oldPassword, $newPassword, $confirmNewPassword, $encrypt = true);
+               $this->args['succes_Message'] = "Félicitation! Votre profile a bien été édité";
+               $this->generateView('editProfile.php');
+           }
+
         }
-
+        else{
+            $this->args['error'] = "Vous devez obligatoirement remplir les champs";
+            $this->generateView('editProfile.php');
+        }
     }
-
-
 }
