@@ -45,6 +45,7 @@ abstract class Controller
     }
 
     protected function generateView($filename, $pathName = null){
+       //putting agrs array values into $GLOBBALS variable
         foreach($this -> args as $key => $value){
 
             if(is_string($value)){
