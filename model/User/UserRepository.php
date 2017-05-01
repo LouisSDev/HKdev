@@ -58,6 +58,17 @@ class UserRepository extends Repository
         return $this->user;
     }
 
+    public function isMailAlreadyUsed($mail){
+        $find = $this->db->prepare('SELECT * FROM user WHERE mail = :mail  ');
+        $find -> bindParam(':mail', $mail, PDO::PARAM_STR, strlen($mail));
+        $find -> execute();
+
+        if($find -> fetch()){
+            return true;
+        }
+        return false;
+    }
+
     /**
      * @return User
      */

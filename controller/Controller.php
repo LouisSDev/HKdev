@@ -44,7 +44,8 @@ abstract class Controller
 
     }
 
-    protected function generateView($filename){
+    protected function generateView($filename, $pathName = null){
+       //putting agrs array values into $GLOBBALS variable
         foreach($this -> args as $key => $value){
 
             if(is_string($value)){
@@ -54,7 +55,13 @@ abstract class Controller
             $GLOBALS['view'][$key] = $value;
         }
 
+        if($pathName == null){
+            $pathName = $filename;
+        }
+
+        header('location : ' . $GLOBALS['server_root'] . '/' . $pathName);
         require_once 'view/' . $filename ;
+        exit();
     }
 
 
