@@ -30,13 +30,24 @@ switch($globalPath){
     case "contactpage" :
         require_once "view/contactpage.php";
         break;
+    case "editProfile":
+        require_once "View/editProfile.php";
+        break;
     case "connect" :
         $userController = new UserController($db);
         $userController -> getDashboard();
         break;
-    case "resetPass" :
+    case "updatePass" :
         $userController = new UserController($db);
         $userController->modifyExistingPasswordAction();
+        break;
+    case "updateEmail":
+        $userController = new UserController($db);
+        $userController->editEmailAddress();
+        break;
+    case "updateInfos":
+        $userController = new UserController($db);
+        $userController->editInfos();
         break;
     case "test":
         require_once "test.php";
