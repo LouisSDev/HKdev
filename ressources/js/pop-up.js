@@ -7,4 +7,8 @@ $(document).ready(function () {
         $('#modal').fadeOut(500);
         $('.content').css('opacity', '1');
     });
+    $('#modal').css({
+        'top': window.innerHeight/2-110,
+        'left' : window.innerWidth/2-110}
+    )
 });

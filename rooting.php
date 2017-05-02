@@ -31,7 +31,7 @@ switch($globalPath){
         require_once "view/contactpage.php";
         break;
     case "editProfile":
-        require_once "View/editProfile.php";
+        require_once "view/editProfile.php";
         break;
     case "connect" :
         $userController = new UserController($db);

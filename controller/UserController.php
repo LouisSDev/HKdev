@@ -21,7 +21,7 @@ class UserController extends Controller
 
                $user->setNewPassword($_POST['oldPassword'], $_POST['newPassword'], $_POST['confirmNewPassword'], $encrypt = true);
                if($user -> save($this -> db)) {
-                   $this->args['succes_message'] = "Félicitation! Votre profile a bien été édité";
+                   $this->args['succes_message'] = "Félicitations! Votre profil a bien été édité";
                }else{
                    $this->args['error'] = $user -> getErrorMessage();
                }
@@ -51,7 +51,7 @@ class UserController extends Controller
             }
             elseif ($currentEmailAddress !=$user->getEmail()){
 
-                $this->args['error'] = "L'adresse email rentré est érronée";
+                $this->args['error'] = "L'adresse email rentré est erronée";
                 $this->generateView('editProfile.php');
             }
             elseif($newEmailAddress !== $currentEmailAddress){
