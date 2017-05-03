@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once "utils/require.php";
 
 
@@ -7,7 +8,7 @@ $globalPath = $path[2];
 
 $GLOBALS['root_dir'] = __DIR__;
 
-new UserCredentials();
+$GLOBALS['credentials'] = new UserCredentials();
 
 // Connection to the database
 $dbConnector = new DatabaseConnection();
@@ -33,6 +34,10 @@ switch($globalPath){
     case "connect" :
         $userController = new UserController($db);
         $userController -> getDashboard();
+        break;
+    case "dashboard" :
+        $userController = new UserController($db);
+        $userController -> getDashboard(false);
         break;
     case "updatePass" :
         $userController = new UserController($db);
