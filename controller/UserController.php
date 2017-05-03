@@ -4,9 +4,14 @@ class UserController extends Controller
 {
     protected $connectionRequired = true;
 
-    public function getDashboard()
+    public function getDashboard($redirect = true)
     {
-        $this->generateView('dashboard.php');
+        if($redirect) {
+            header('Location: ' . $GLOBALS['server_root'] . '/dashboard');
+            exit();
+        }else{
+            $this->generateView('dashboard.php');
+        }
     }
 
     public function modifyExistingPasswordAction()
