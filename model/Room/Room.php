@@ -60,7 +60,7 @@ class Room extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .= '<br/> The parameter is not a Home ';
+            $this->errorMessage[]=  "The parameter is not a Home";
         }
 
         return $this;
