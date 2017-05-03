@@ -84,7 +84,7 @@ class EffectorType extends DatabaseEntity
         }
         else{
             $this -> error = true;
-            $this -> errorMessage .= '<br/> The parameter is incorrect';
+            $this -> errorMessage[] =  "The parameter is incorrect";
 
         }
 

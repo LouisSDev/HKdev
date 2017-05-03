@@ -10,8 +10,8 @@
 <body>
     <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/updateEmail'?>">
         <h1>Modifier mon adresse mail</h1>
-        <input class="box" type="password" placeholder="Ancien mot de passe" size="30" name="password"><br/>
-        <input class="box" type="email" placeholder="Adresse mail actuelle" size="30" name="currentEmailAddress"><br/>
+        <input class="box" type="email" placeholder="Ancien mot de passe" size="30" name="curentEmail"><br/>
+        <input class="box" type="email" placeholder="Adresse mail actuelle" size="30" name="newEmail"><br/>
         <input class="box" type="email" placeholder="Nouvelle adresse email" size="30" name="confirmNewEmail"><br/>
         <input class="btn" type="submit" value="Modifier mon adresse mail">
     </form>
@@ -24,7 +24,7 @@
         <input class="btn" type="submit" value="Update Password">
     </form>
 
-    <p><?php echo ($GLOBALS['error'])?></p>
+
         <a href="dashboard.php">Dashbord</a>
         <a href="logout.php">Logout</a>
 </body>
