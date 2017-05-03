@@ -45,8 +45,8 @@ class DatabaseConnection
 
     private function createRepositories(){
         $GLOBALS['repositories']['user'] = new UserRepository($this->db, $this);
-        if(!empty($GLOBALS['mail']) && !empty($GLOBALS['password'])) {
-            $GLOBALS['repositories']['user'] -> connect($GLOBALS['mail'], $GLOBALS['password']);
+        if($GLOBALS['credentials'] -> isConnectionTried() ) {
+            $GLOBALS['repositories']['user'] -> connectFromGlobals();
         }
     }
 

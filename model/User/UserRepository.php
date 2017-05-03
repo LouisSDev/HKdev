@@ -34,21 +34,39 @@ class UserRepository extends Repository
      * @param boolean $encrypt
      * @return User
      */
-    public function connect($mail, $password, $encrypt = true){
+    public function connect($mail, $password, $encrypt = false){
         if($encrypt){
             $passwordEncrypted = sha1($password.$GLOBALS['salt']);
         }else{
             $passwordEncrypted = $password;
         }
 
+        return $this -> canonicalConnection($mail, $passwordEncrypted);
+    }
+
+    public function connectFromGlobals()
+    {
+        /** @var UserCredentials $userCredentials */
+        $userCredentials = $GLOBALS['credentials'];
+        if($userCredentials -> isEncrypted()){
+            $passwordEncrypted = $userCredentials -> getPassword() ;
+        }else{
+            $passwordEncrypted = sha1($userCredentials -> getPassword() . $GLOBALS['salt']) ;
+        }
+        $mail =  $userCredentials -> getMail();
+
+        return $this -> canonicalConnection($mail,$passwordEncrypted);
+    }
+
+    function canonicalConnection($mail, $passwordEncrypted){
         $connect = $this->db->prepare('SELECT * FROM user WHERE mail = :mail AND password = :password AND validated = 1');
         $connect -> bindParam(':password', $passwordEncrypted, PDO::PARAM_STR, strlen($passwordEncrypted));
         $connect -> bindParam(':mail', $mail, PDO::PARAM_STR, strlen($mail));
         $connect -> execute();
 
         if($userArray = $connect -> fetch(PDO::FETCH_ASSOC)){
-            $_SESSION['mail'] = $GLOBALS['mail'];
-            $_SESSION['password'] = $GLOBALS['password'];
+            $_SESSION['mail'] = $mail;
+            $_SESSION['password'] = $passwordEncrypted;
             $user = new User();
             $user -> createFromResults($userArray);
             $this->user = $user;
