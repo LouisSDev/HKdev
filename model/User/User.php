@@ -1,5 +1,6 @@
 <?php
 
+
 class User extends DatabaseEntity
 {
 
@@ -189,7 +190,7 @@ class User extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .= '<br/> This address is too long ';
+            $this->errorMessage[]= "This address is too long";
         }
 
         return $this;
@@ -230,7 +231,7 @@ class User extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .= '<br/> This City name is too long ';
+            $this->errorMessage[]=  "This City name is too long";
         }
 
         return $this;
@@ -274,7 +275,7 @@ class User extends DatabaseEntity
                 $this->password = $password;
             }else{
                 $this->error = true;
-                $this->errorMessage .= "<br>The two passwords are not identical.";
+                $this->errorMessage[]= "The two passwords are not identical";
             }
         }else{
             if($password == $this->password){
@@ -282,11 +283,11 @@ class User extends DatabaseEntity
                     $this->password = $passwordNew;
                 }else{
                     $this->error = true;
-                    $this->errorMessage .= "<br>The two passwords are not identical.";
+                    $this->errorMessage[]= "The two passwords are not identical";
                 }
             }else{
                 $this->error = true;
-                $this->errorMessage .= "<br>Your old password is not correctly entered.";
+                $this->errorMessage[]= "Your old password is not correctly entered";
             }
         }
 
@@ -305,7 +306,7 @@ class User extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .= '<br/> This Country name is too long ';
+            $this->errorMessage[]= "This Country name is too long";
         }
 
         return $this;
@@ -417,7 +418,7 @@ class User extends DatabaseEntity
             ){
                 return true;
             }else{
-                $this->errorMessage .= '<br/>Vous n\'avez pas rentré toutes les informations nécessaires.';
+                $this->errorMessage[]= "Vous n'avez pas rentré toutes les informations nécessaires.";
                 return false;
             }
         }

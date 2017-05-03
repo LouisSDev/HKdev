@@ -5,6 +5,15 @@ require_once"utils/require.php";
 $dbConnector = new DatabaseConnection();
 $db = $dbConnector -> getDatabase();
 
+if($GLOBALS['view']['user']->getErrorMessage()){
+    echo ($GLOBALS['error']);
+
+}
+else{
+    echo ($GLOBALS['success_message']);
+}
+
+
 /*
 $home = new Home();
 $home

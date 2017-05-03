@@ -78,7 +78,6 @@ p {
     padding-right: 5px;
 }
 
-
 /* Displaying a loader */
 .loader{
     width: 200px;
@@ -92,12 +91,10 @@ p {
     display: none;
 }
 
-#form{
-    /*padding-top: 80px;*/
-    height: 100vh;
-}
+
 
 .form_content{
     text-align: center;
     padding-top: 5%;
 }
+
