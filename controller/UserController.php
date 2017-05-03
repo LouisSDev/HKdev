@@ -11,8 +11,6 @@ class UserController extends Controller
 
     public function modifyExistingPasswordAction()
     {
-
-
         if (!empty($_POST['newPassword'])
             && !empty($_POST['confirmNewPassword'])
             && !empty($_POST['oldPassword'])) {
@@ -77,10 +75,10 @@ class UserController extends Controller
             $this->generateView('editProfile.php');
         }
 
-        }
+    }
 
-        public function editInfos(){
+    public function editInfo(){
 
-        }
+    }
 
 }
