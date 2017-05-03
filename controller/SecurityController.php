@@ -57,7 +57,7 @@ class SecurityController extends Controller
             $this -> generateView('homepage.php', 'home');
         }
 
-        $quoteFileRelativePath = '/uploads/quotes/' . uniqid() . '.pdf';
+        $quoteFileRelativePath = '/uploads/quotes/' . uniqid() . '.' . $fileInformation['extension'];
         $quoteFilePath = $GLOBALS['root_dir'] .$quoteFileRelativePath;
 
         move_uploaded_file($_FILES['file']['tmp_name'], $quoteFilePath );
