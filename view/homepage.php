@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/connection.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/modal.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/form.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/86ed160d29.js"></script>
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/loader.js"></script>
@@ -21,12 +22,18 @@
     </div>
     <div id="modal">
         <i class="fa fa-times-circle fa-lg close" aria-hidden="true"></i>
-        <form action="<?php echo $GLOBALS['server_root'] . '/connect'?>" method="post" >
-            <input class="box" type="text" required="" placeholder="Nom d'utilisateur" name="userMail"><br/>
-            <input class="box" type="password" required="" placeholder="Mot de passe" name="userPassword"><br/>
-            <input class="box" type="checkbox">Se souvenir de moi ?<br/>
-            <input class="btn" type="submit" name="Envoyer">
-        </form>
+        <div class="form">
+            <form>
+                <fieldset>
+                    <input type="text" name="field1" placeholder="Nom ">
+                    <input type="text" name="field2" placeholder="Prénom">
+                    <input type="email" name="field3" placeholder="Adresse mail">
+                    <input type="text" name="field4" placeholder="Sujet">
+                    <textarea class="message" name="field5" placeholder="Message"></textarea>
+                </fieldset>
+                <input class="button" type="submit" value="Envoyer" />
+            </form>
+        </div>
         <div class="link">
             <a href="<?php echo $GLOBALS['server_root']?>\lol" target="_self">Mot de passe oublié ?</a>
         </div>
@@ -84,7 +91,28 @@
                 <div class="form_content">
                     <h1>Vous êtes intéressé ?</h1>
                     <h1>Demander un devis !</h1>
-                    <?php include_once("form.php");?>
+                    <div class="form">
+                        <form>
+                            <fieldset>
+                                <div class="col1">
+                                    <input type="text" name="firstName" placeholder="Nom ">
+                                    <input type="text" name="lastName" placeholder="Prénom">
+                                    <input type="text" name="country" placeholder="Pays"/>
+                                    <input type="text" name="city" placeholder="Ville"/>
+                                </div>
+                                <div class="col2">
+                                    <input type="text" name="address" placeholder="Adresse"/>
+                                    <input type="text" name="mail" placeholder="Adresse mail"/>
+                                    <input type="text" name="cellPhoneNumber" placeholder="Numéro de téléphone">
+                                    <input type="password" name="password" placeholder="Mot de passe"/>
+                                    <input type="password" name="passwordRepeat" placeholder="Répétez votre mot de passe"/>
+                                </div>
+
+                            </fieldset>
+                            <input type="file" name="file" />
+                            <input class="button" type="submit" value="Envoyer" />
+                        </form>
+                    </div>
                 </div>
             </div>
             <?php

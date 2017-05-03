@@ -1,13 +1,16 @@
-<form action="<?php echo $GLOBALS['server_root'] ?>/home" method="post" enctype="multipart/form-data">
-        <input class=box type="text" name="firstName" placeholder="Nom"/><br/>
-        <input class=box type="text" name="lastName" placeholder="Prénom"/><br/>
-        <input class=box type="text" name="country" placeholder="Pays"/><br/>
-        <input class=box type="text" name="city" placeholder="Ville"/><br/>
-        <input class=box type="text" name="address" placeholder="Adresse"/><br/>
-        <input class=box type="text" name="mail" placeholder="Adresse mail"/><br/>
-        <input class=box type="text" name="cellPhoneNumber" placeholder="Numéro de téléphone"/><br/>
-        <input class=box type="password" name="password" placeholder="Mot de passe"/><br/>
-        <input class=box type="password" name="passwordRepeat" placeholder="Répétez votre mot de passe"/><br/>
-        <input type="file" name="file" /><br/>
-        <input class="btn" type="submit" value="Envoyer" />
+
+<form>
+    <fieldset>
+        <input type="text" name="firstName" placeholder="Nom ">
+        <input type="text" name="lastName" placeholder="Prénom">
+        <input type="text" name="country" placeholder="Pays"/>
+        <input type="text" name="city" placeholder="Ville"/>
+        <input type="text" name="address" placeholder="Adresse"/>
+        <input type="text" name="mail" placeholder="Adresse mail"/>
+        <input type="text" name="cellPhoneNumber" placeholder="Numéro de téléphone">
+        <input type="password" name="password" placeholder="Mot de passe"/>
+        <input type="password" name="passwordRepeat" placeholder="Répétez votre mot de passe"/>
+        <input type="file" name="file" />
+    </fieldset>
+    <input class="button" type="submit" value="Envoyer" />
 </form>
