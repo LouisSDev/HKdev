@@ -25,18 +25,16 @@
         <div class="form">
             <form>
                 <fieldset>
-                    <input type="text" name="field1" placeholder="Nom ">
-                    <input type="text" name="field2" placeholder="Prénom">
-                    <input type="email" name="field3" placeholder="Adresse mail">
-                    <input type="text" name="field4" placeholder="Sujet">
-                    <textarea class="message" name="field5" placeholder="Message"></textarea>
+                    <input type="email" name="mail" placeholder="Adresse mail">
+                    <input type="password" name="password" placeholder="Mot de passe">
                 </fieldset>
                 <input class="button" type="submit" value="Envoyer" />
             </form>
+            <div class="link">
+                <a href="<?php echo $GLOBALS['server_root']?>\lol" target="_self">Mot de passe oublié ?</a>
+            </div>
         </div>
-        <div class="link">
-            <a href="<?php echo $GLOBALS['server_root']?>\lol" target="_self">Mot de passe oublié ?</a>
-        </div>
+
     </div>
     <div class="content">
         <?php include_once("header.php");?>
