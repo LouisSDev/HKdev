@@ -54,7 +54,7 @@ switch($globalPath){
     case "test":
         require_once "test.php";
         break;
-    case "myHome" :
+    case "myhome" :
         require_once "view/myHome.php";
         break;
     default :
