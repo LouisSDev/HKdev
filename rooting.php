@@ -28,34 +28,72 @@ switch($globalPath){
     case "contactpage" :
         require_once "view/contactpage.php";
         break;
-    case "editProfile":
-        require_once "view/editProfile.php";
-        break;
     case "connect" :
         $userController = new UserController($db);
         $userController -> getDashboard();
         break;
-    case "dashboard" :
-        $userController = new UserController($db);
-        $userController -> getDashboard(false);
-        break;
-    case "updatePass" :
-        $userController = new UserController($db);
-        $userController->modifyExistingPasswordAction();
-        break;
-    case "updateEmail":
-        $userController = new UserController($db);
-        $userController->editEmailAddress();
-        break;
-    case "updateInfos":
-        $userController = new UserController($db);
-        $userController->editInfo();
+
+    case "user":
+        if(isset($path[3])) {
+            switch ($path[3]) {
+                case "edit":
+                    require_once "view/editProfile.php";
+                    break;
+                case "editInfo" :
+                    $userController = new UserController($db);
+                    $userController->editInfo();
+                    break;
+                case "home" :
+                    if(isset($path[4]))
+                    {
+                        if(isset($path[5])) {
+
+                            // TODO : home/{homeId}
+                            switch ($path[5])
+                            {
+                                case "rooms" :
+                                    // TODO
+                                    break;
+                                case "general" :
+                                    // TODO
+                                    break;
+
+                            }
+                        }
+                        else{
+                            require_once "view/myHome.php";
+                        }
+                    }
+
+                    else
+                    {
+                        require_once "view/404.php";
+                    }
+
+                    break;
+                case "dashboard" :
+                    $userController = new UserController($db);
+                    $userController -> getDashboard(false);
+                    break;
+                case "editPass" :
+                    $userController = new UserController($db);
+                    $userController->modifyExistingPasswordAction();
+                    break;
+                case "editEmail":
+                    $userController = new UserController($db);
+                    $userController->editEmailAddress();
+                    break;
+                default :
+                    require_once "view/404.php";
+            }
+        }
+
+        else{
+            require_once "view/myHome.php";
+        }
         break;
     case "test":
         require_once "test.php";
-        break;
-    case "myhome" :
-        require_once "view/myHome.php";
         break;
     default :
         require_once "view/404.php";

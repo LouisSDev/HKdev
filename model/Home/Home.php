@@ -339,7 +339,6 @@ class Home extends DatabaseEntity
     }
 
 
-    // TODO:: rooms!!!
     /*
     public function save($db)
     {
@@ -372,7 +371,6 @@ class Home extends DatabaseEntity
         else{
             return null;
         }
-        // TODO: Implement save() method.
     }
 
     public function delete($db)
@@ -382,12 +380,10 @@ class Home extends DatabaseEntity
         $request->execute();
         $request->closeCursor();
         return $this;
-        // TODO: Implement delete() method.
     }
 
     public function createFromResults($data)
     {
-        // TODO: Implement createFromResults() method.
     }
 */
 
