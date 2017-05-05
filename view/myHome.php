@@ -9,17 +9,19 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/myHome.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/86ed160d29.js"></script>
 </head>
 <body>
     <?php include_once("header.php");?>
     <div class="home">
-        <a href=""><img class="btn-size" src="<?php echo $GLOBALS['server_root']?>/ressources/img/home.png"></a>
+        <i class="fa fa-home iconHome" aria-hidden="true" style="cursor:pointer;"></i>
     </div>
     <div class="rooms">
-        <a href=""><img class="btn-size" src="<?php echo $GLOBALS['server_root']?>/ressources/img/bed.png"></a>
-        <a href=""><img class="btn-size" src="<?php echo $GLOBALS['server_root']?>/ressources/img/kitchen.png"></a>
-        <!--<a href=""><img src="<?php echo $GLOBALS['server_root']?>/ressources/img/"></a>
-        <a href=""><img src="<?php echo $GLOBALS['server_root']?>/ressources/img/"></a>-->
+        <i class="fa fa-bed iconBed" aria-hidden="true"></i>
+        <i class="fa fa-cutlery iconKitchen" aria-hidden="true"></i>
+        <i class="fa fa-bath iconBath" aria-hidden="true"></i>
+        <i class="fa fa-television iconSofa" aria-hidden="true"></i>
     </div>
 </body>
 </html>

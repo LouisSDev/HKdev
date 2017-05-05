@@ -44,7 +44,7 @@ class Sensor extends DatabaseEntity{
        }
         else{
            $this->error = true;
-           $this->errorMessage .= '<br/> The parameter is not a SensorType ';
+           $this->errorMessage[]= "The parameter is not a SensorType";
         }
         return $this;
     }
@@ -66,7 +66,7 @@ class Sensor extends DatabaseEntity{
         }
         else{
             $this->error = true;
-            $this->errorMessage .= '<br/> This name is too long ';
+            $this->errorMessage[]=  "This name is too long";
         }
 
         return $this;
@@ -91,7 +91,7 @@ class Sensor extends DatabaseEntity{
         }
         else{
             $this -> error = true;
-            $this -> errorMessage .= '<br/> The parameter is not a Room';
+            $this -> errorMessage[]= "The parameter is not a Room";
         }
 
         return $this;

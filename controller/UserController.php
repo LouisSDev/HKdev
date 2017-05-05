@@ -4,15 +4,18 @@ class UserController extends Controller
 {
     protected $connectionRequired = true;
 
-    public function getDashboard()
+    public function getDashboard($redirect = true)
     {
-        $this->generateView('dashboard.php');
+        if($redirect) {
+            header('Location: ' . $GLOBALS['server_root'] . '/dashboard');
+            exit();
+        }else{
+            $this->generateView('dashboard.php');
+        }
     }
 
     public function modifyExistingPasswordAction()
     {
-
-
         if (!empty($_POST['newPassword'])
             && !empty($_POST['confirmNewPassword'])
             && !empty($_POST['oldPassword'])) {
@@ -24,38 +27,35 @@ class UserController extends Controller
                    $this->args['error'] = $this -> user -> getErrorMessage();
                }
 
-               $this->generateView('editProfile.php');
+               //$this->generateView('editProfile.php');
+                 $this->generateView('test.php');
            }
         else{
             $this->args['error'] = "Vous devez obligatoirement remplir les champs";
-            $this->generateView('editProfile.php');
+           // $this->generateView('editProfile.php');
+            $this->generateView('test.php');
         }
     }
 
     public function editEmailAddress(){
 
-        if (!empty($_POST['password']) && !empty($_POST['currentEmailAddress']) && !empty($_POST['confirmNewEmail'])){
+        if (!empty($_POST['currentEmail']) && !empty($_POST['newEmail']) && !empty($_POST['confirmNewEmail'])){
 
-            $password = $_POST['password'];
-            $passwordEncrypt = sha1($password . $GLOBALS['salt']);
             $currentEmail = $_POST['currentEmail'];
+            $newEmail = $_POST['newEmailAddress'];
             $confirmNewEmail = $_POST['confirmNewEmail'];
-            $newEmail = $_POST['newEmail'];
 
-            if ($passwordEncrypt != $this -> user -> getPassword()){
-
-                $this->args['error'] = "Le mot de passe saisi est incorect";
-                $this->generateView('editProfile.php');
-            }
-            elseif ($currentEmail != $this -> user -> getEmail()){
+            if ($currentEmail !== $this -> user -> getEmail()){
 
                 $this->args['error'] = "L'adresse email rentrée est erronée";
-                $this->generateView('editProfile.php');
+              //  $this->generateView('editProfile.php');
+                $this->generateView('test.php');
             }
             elseif($newEmail !== $confirmNewEmail){
 
                     $this->args['error'] = "Les deux adresses email doivent etre identiques";
-                    $this->generateView('editProfile.php');
+                  //  $this->generateView('editProfile.php');
+                $this->generateView('test.php');
             }
             else{
                 $this -> user -> setMail($newEmail);
@@ -67,20 +67,22 @@ class UserController extends Controller
                     }else {
 
                         $this->args['error'] = $this -> user -> getErrorMessage();
-                        $this->generateView('editProfile.php');
+                       // $this->generateView('editProfile.php');
+                        $this->generateView('test.php');
                     }
             }
 
         }
         else{
             $this->args['error'] = "Veuillez remplir les champs";
-            $this->generateView('editProfile.php');
+           // $this->generateView('editProfile.php');
+            $this->generateView('test.php');
         }
 
-        }
+    }
 
-        public function editInfos(){
+    public function editInfo(){
 
-        }
+    }
 
 }

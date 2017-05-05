@@ -64,12 +64,9 @@ class Repository
     }
 
     /**
-     * @param string $mail
-     * @param string $password
-     * @param boolean $encrypt
      * @return User
      */
-    public function connect($mail, $password, $encrypt = true)
+    public function connectFromGlobals()
     {
 
         return null;

@@ -1,32 +1,61 @@
 <?php
-include_once "utils/require.php";
 
-
-$path =   explode( "/", $_SERVER['REQUEST_URI']);
-$globalPath = $path[2];
-
-$GLOBALS['root_dir'] = __DIR__;
-
-new UserCredentials();
-
+require_once"utils/require.php";
 // Connection to the database
 $dbConnector = new DatabaseConnection();
 $db = $dbConnector -> getDatabase();
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Chart</title>
-</head>
 
-<link rel="stylesheet" href="<?php echo $GLOBALS['server_root']?>/ressources/css/chart.css">
+if($GLOBALS['view']['user']->getErrorMessage()){
+    echo ($GLOBALS['error']);
 
-<body>
-<svg width="960" height="500"></svg>
+}
+else{
+    echo ($GLOBALS['success_message']);
+}
 
-<script src="https://d3js.org/d3.v4.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="<?php echo $GLOBALS['server_root']?>/ressources/js/example/chartExample.js"></script>
-</body>
-</html>
+
+/*
+$home = new Home();
+$home
+    -> setCity('Paris')
+    -> setAddress('35 rue Goulani')
+    -> setCountry('France')
+    -> setName('La Maison d\'Ismael')
+    -> setBuilding($home);
+
+
+$user = new User();
+$saveUser = $user
+    ->setAddress("35 rue du Bac")
+    ->setCellPhoneNumber("+3366085916")
+    ->setCountry("France")
+    ->setFirstName("Louis")
+    ->setAddress('35 Rue Goulani')
+    ->setLastName("Steimberg")
+    ->setMail("clalal@hotmail.fr")
+    ->setNewPassword("test", "", "test", true)
+    ->setCity('Paris')
+    ->addHome($home)
+    ->save($db);
+if($saveUser == null){
+    echo "<h1> Oups Database error, please enter correct informations</h1>";
+    echo $user->getErrorMessage();
+}else{
+    $saveUser = $user
+        ->setMail("lalapopo@hotmail.fr")
+        ->setNewPassword("test", "test1", "test1", true)
+        ->save($db);
+
+    $homes = $user  -> getHomes() ;
+
+    /** @var Home $hms */
+/*    foreach($homes as $hms){
+        echo $hms -> getName();
+    }
+
+    if($saveUser == null){
+        echo "<h1> Oups Database error, please enter correct informations</h1>";
+        echo $user->getErrorMessage();
+    }
+}
+*/

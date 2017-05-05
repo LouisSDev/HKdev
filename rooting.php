@@ -1,4 +1,5 @@
 <?php
+session_start();
 include_once "utils/require.php";
 
 
@@ -7,7 +8,7 @@ $globalPath = $path[2];
 
 $GLOBALS['root_dir'] = __DIR__;
 
-new UserCredentials();
+$GLOBALS['credentials'] = new UserCredentials();
 
 // Connection to the database
 $dbConnector = new DatabaseConnection();
@@ -20,9 +21,6 @@ switch($globalPath){
         break;
     case "" :
         homepage($db);
-        break;
-    case "backoffice" :
-        require_once "adminpage.php";
         break;
     case "connection" :
         require_once "view/connection.php";
@@ -37,6 +35,10 @@ switch($globalPath){
         $userController = new UserController($db);
         $userController -> getDashboard();
         break;
+    case "dashboard" :
+        $userController = new UserController($db);
+        $userController -> getDashboard(false);
+        break;
     case "updatePass" :
         $userController = new UserController($db);
         $userController->modifyExistingPasswordAction();
@@ -47,7 +49,7 @@ switch($globalPath){
         break;
     case "updateInfos":
         $userController = new UserController($db);
-        $userController->editInfos();
+        $userController->editInfo();
         break;
     case "test":
         require_once "test.php";
@@ -56,9 +58,8 @@ switch($globalPath){
         require_once "view/myHome.php";
         break;
     default :
-        require_once "404.php";
+        require_once "view/404.php";
 }
-
 
 function homepage($db){
     if($_SERVER['REQUEST_METHOD'] == "POST"){

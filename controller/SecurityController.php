@@ -21,7 +21,7 @@ class SecurityController extends Controller
 
         // We set the password
         $user -> setPassword(null);
-        $user -> setNewPassword($_POST['password'], '', $_POST['passwordRepeat'], false);
+        $user -> setNewPassword($_POST['password'], '', $_POST['passwordRepeat']);
 
 
         // If the save method is thrown, we'll forward it to the controller

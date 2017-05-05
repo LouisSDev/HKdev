@@ -20,7 +20,7 @@ abstract class DatabaseEntity
     protected $error = false;
 
     /**
-     * @var $errorMessage string
+     * @var $errorMessage array
      */
     protected $errorMessage;
 

@@ -1,25 +1,4 @@
-.container{
-    border-radius: 5%;
-    background-color: lightslategray;
-    height: 300px;
-    width: 25%;
-    text-align: center;
-    margin: auto;
-    margin-top: 13%;
-    padding-top: 1%;
-    padding-bottom: 1%;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-}
-
 .link{
     margin-top: 10%;
 }
 
-.black{
-    display: none; /*--masqué par défaut--*/
-    background: #000;
-    position: fixed; left: 0; top: 0;
-    width: 100%; height: 100%;
-    opacity: 0,5;
-    z-index: 9999 !important;
-}
