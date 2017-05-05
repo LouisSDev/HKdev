@@ -31,7 +31,7 @@
                 <input class="button" type="submit" value="Envoyer" />
             </form>
             <div class="link">
-                <a href="<?php echo $GLOBALS['server_root']?>\lol" target="_self">Mot de passe oublié ?a</a>
+                <a href="<?php echo $GLOBALS['server_root']?>\lol" target="_self">Mot de passe oublié ?</a>
             </div>
         </div>
 
