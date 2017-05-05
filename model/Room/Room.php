@@ -16,6 +16,13 @@ class Room extends DatabaseEntity
     private $name;
 
     /**
+     * @var $type string
+     *
+     * must be one of those : ROOM , LIVING_ROOM , KITCHEN
+     */
+    private $type;
+
+    /**
      * @var $sensors array;
      */
     private $sensors = array();
@@ -40,6 +47,31 @@ class Room extends DatabaseEntity
     {
         return $this->name;
     }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     */
+    public function setType($type)
+    {
+        if(in_array($type, ["ROOM", "KITCHEN", "LIVING_ROOM"])){
+            $this->type = $type;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage .= '<br/> This isn\'t a valid room type.';
+        }
+        $this->type = $type;
+    }
+
+
 
     /**
      * @return array

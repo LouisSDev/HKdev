@@ -51,6 +51,12 @@ switch($globalPath){
                             // TODO : home/{homeId}
                             switch ($path[5])
                             {
+                                case "rooms" :
+                                    // TODO
+                                    break;
+                                case "general" :
+                                    // TODO
+                                    break;
 
                             }
                         }
