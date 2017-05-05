@@ -5,22 +5,24 @@ body{
 
 
 .btn{ /*Button style*/
-    background-color: deepskyblue;
+    background-color: lightgray;
     text-decoration: none;
     text-align: center;
     border: 0;
     font-size: 20px;
     padding: 15px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    /*box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);*/
     display: inline-block;
     cursor: pointer;
     transition-duration: 0.4s;
+    opacity: 0.7;
 }
 
 .btn:hover{
     padding-left: 25px;
     padding-right: 25px;
     transition-duration: 0.4s;
+    opacity: 1;
 }
 
 .box{

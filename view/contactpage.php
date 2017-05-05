@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/contactpage.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/form.css">
+    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/googleMap.js"></script>
 
 </head>
 <body>
@@ -21,6 +22,13 @@
         75006 Paris
     </p>
 </div>
+<div id="googleMap" style="width:100%;height:400px;"></div>
+
+
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
 
 <div class="form">
     <form>

@@ -1,4 +1,3 @@
-
 .address{
     position: absolute;
     top: 130px;
@@ -7,4 +6,8 @@
 }
 .message{
     height: 15%;
+}
+
+.form{
+    top: 500px;
 }
