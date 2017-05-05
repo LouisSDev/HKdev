@@ -24,7 +24,7 @@ $(document).ready(function(e) {
             return y(d.close);
         });
 
-    d3.tsv("view/js/example/data.tsv", function (d) {
+    d3.tsv("http://localhost/HKdev/ressources/js/example/data.tsv", function (d) {
         d.date = parseTime(d.date);
         d.close = +d.close;
         return d;
