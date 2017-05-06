@@ -23,7 +23,7 @@
     <div id="modal">
         <i class="fa fa-times-circle fa-lg close" aria-hidden="true"></i>
         <div class="form">
-            <form>
+            <form method="post" action="<?php echo $GLOBALS['server_root'] . '/connect'?>">
                 <fieldset>
                     <input type="email" name="mail" placeholder="Adresse mail">
                     <input type="password" name="password" placeholder="Mot de passe">
