@@ -390,4 +390,14 @@ abstract class DatabaseEntity
     }
 
 
+    public static function mergeArraysWithoutDuplicata($array1, $array2){
+        foreach ($array2 as $value){
+            if(!in_array($value, $array1)){
+                $array1[] = $value;
+            }
+        }
+
+        return $array1;
+    }
+
 }

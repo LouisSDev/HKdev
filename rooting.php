@@ -57,7 +57,11 @@ switch($globalPath){
                                 case "general" :
                                     // TODO
                                     break;
-
+                                case "administrate" :
+                                    // TODO
+                                    break;
+                                default :
+                                    require_once "view/404.php";
                             }
                         }
                         else{
