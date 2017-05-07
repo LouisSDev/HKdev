@@ -3,8 +3,6 @@
     padding: 10px 20px;
     background: #f4f7f8;
     margin: 10px auto;
-    padding: 20px;
-    background: #f4f7f8;
     border-radius: 8px;
     font-family: Georgia, "Roboto", Times, serif;
 }
@@ -49,7 +47,6 @@
     -webkit-box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
     box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
     margin-bottom: 30px;
-
 }
 .form input[type="text"]:focus,
 .form input[type="date"]:focus,
@@ -59,6 +56,7 @@
 .form input[type="search"]:focus,
 .form input[type="time"]:focus,
 .form input[type="url"]:focus,
+.form input[type="password"]:focus,
 .form textarea:focus,
 .form select:focus{
     background: #d2d9dd;
@@ -78,7 +76,7 @@
     line-height: 30px;
     text-align: center;
     text-shadow: 0 1px 0 rgba(255,255,255,0.2);
-    border-radius: 15px 15px 15px 0px;
+    border-radius: 15px 15px 15px 0;
 }
 
 .form input[type="submit"],
@@ -94,9 +92,8 @@
     text-align: center;
     font-style: normal;
     width: 100%;
-    border: 1px solid #16a085;
-    border-width: 1px 1px 3px;
     margin-bottom: 10px;
+    cursor: pointer;
 }
 .form input[type="submit"]:hover,
 .form input[type="button"]:hover
