@@ -44,22 +44,21 @@
         </div>
         <div id="presentation">
             <div class="grid">
-                <img class="entreprise" src="<?php echo $GLOBALS['server_root']?>/ressources/img/maison2.jpeg"/>
-                <p>
-                    Chez Home Keeper nous imaginons un monde connecter et sécuriser permettant d’améliorer notre mode de vie.
-                    C’est pour atteindre cet idéal que nous travaillons chaque jour et que nous vous donnons la possibilité de profiter de notre savoir-faire et de nos innovations.
-                    Depuis l'an 1000 nous oeuvrons à améliorer votre habitat. Nous avons commencé par inventer la maison, puis la sérure, avant d'inventer les fenetres et nous sommes les précurseurs d'une économie nouvelle.
-                    Cette économie est nous l'avons appelée l'économie d'énerge.
-                </p>
-                <p>
-                    Avec une installation qui correspond à vos attentes et à votre habitat nous vous proposons aussi une maintenance efficace qui œuvre à ce que vous profitiez toujours des nouvelles technologies pour améliorer et sécuriser votre maison.
-                    Jamais les logiciel de Home Keeper n'ont été piraté et nos utilisateurs économise chaque jour près de 2 000 Kw d'énergie.
-                </p>
-                <p>
-                    Home Keeper c’est aussi une quête pour l’environnement. Une mission qui nous tient à cœur pour améliorer nos conditions de vie sur Terre.
-                    Choisissez Home Keeper pour Vous, choisissez Home Keeper pour Votre famille, choisissez Home Keeper pour votre Planète.
-                    Car ensemble nous pouvons changer le monde !
-                </p>
+                <div class="column1">
+                    <p>CONNECTE</p>
+                    <i class="fa fa-wifi fa-5x" aria-hidden="true"></i>
+                    <p class="description">Profitez d'un système entièrement connecté qui vous permettra d'effectuer des économies sur vos factures</p>
+                </div>
+                <div class="column2">
+                    <p>INTELLIGENT</p>
+                    <i class="fa fa-home fa-5x" aria-hidden="true"></i>
+                    <p class="description">Le système que nous proposons est entièrement intelligent et simple d'utilisation pour contrôler les paramètres de votre maison</p>
+                </div>
+                <div class="column3">
+                    <p>SUIVI</p>
+                    <i class="fa fa-line-chart fa-5x" aria-hidden="true"></i>
+                    <p class="description">Grâce à notre système amélioré, vous pouvez visualiser intégralement votre consommation</p>
+                </div>
             </div>
             <div class="form_pointer">
                 <a class="arrow_black scrolling" href="#form">&raquo;</a>

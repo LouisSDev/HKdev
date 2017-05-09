@@ -67,15 +67,30 @@ body{
 
 .grid{
     position: relative;
-    top: calc(25% + 40px);
+    top: calc(30% + 60px);
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    width:80%;
+    left: 10%
 }
 
 p {
     margin: 0;
+}
+
+.column1,
+.column2{
+    padding-right: 100px;
+    text-align: center;
+}
+
+.column3{
+    text-align: center;
+}
+
+.description{
     text-align: justify;
-    padding-right: 5px;
 }
 
 /* Displaying a loader */
