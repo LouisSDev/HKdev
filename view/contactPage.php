@@ -8,6 +8,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/form.css">
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/googleMap.js"></script>
 
+
 </head>
 <body>
 <?php include_once("header.php");?>
@@ -25,10 +26,7 @@
 <div id="googleMap" style="width:100%;height:400px;"></div>
 
 
-<!--
-To use this code on your website, get a free API key from Google.
-Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
--->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfUVXK1gT4aQSnm4RZPoFHjc0MU-8U1vw&callback=myMap"></script>
 
 <div class="form">
     <form>
