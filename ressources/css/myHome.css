@@ -1,6 +1,6 @@
 .home {
     top: 200px;
-    left: 45%;
+    left: calc(50% - 100px);
     position: absolute;
     font-size: 150px;
 
