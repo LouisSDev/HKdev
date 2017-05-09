@@ -26,7 +26,7 @@ switch($globalPath){
         require_once "view/connection.php";
         break;
     case "contactpage" :
-        require_once "view/contactpage.php";
+        require_once "view/contactPage.php";
         break;
     case "connect" :
         $userController = new UserController($db);
