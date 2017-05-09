@@ -1,9 +1,9 @@
 <?php
 session_start();
-include_once "utils/require.php";
+include_once 'utils/require.php';
 
 
-$path =   explode( "/", $_SERVER['REQUEST_URI']);
+$path =   explode( '/', $_SERVER['REQUEST_URI']);
 $globalPath = $path[2];
 
 $GLOBALS['root_dir'] = __DIR__;
@@ -16,34 +16,33 @@ $db = $dbConnector -> getDatabase();
 
 
 switch($globalPath){
-    case "home" :
+    case 'home' :
         homepage($db);
         break;
-    case "" :
+    case '' :
         homepage($db);
         break;
-    case "connection" :
-        require_once "view/connection.php";
+    case 'connection' :
+        require_once __DIR__ . 'view/connection.php';
         break;
-    case "contactpage" :
-        require_once "view/contactpage.php";
+    case 'contact' :
+        require_once __DIR__ . 'view/contactPage.php';
         break;
-    case "connect" :
+    case 'connect' :
         $userController = new UserController($db);
         $userController -> getDashboard();
         break;
-
-    case "user":
+    case 'user':
         if(isset($path[3])) {
             switch ($path[3]) {
-                case "edit":
-                    require_once "view/editProfile.php";
+                case 'edit':
+                    require_once __DIR__ . 'view/editProfile.php';
                     break;
-                case "editInfo" :
+                case 'editInfo' :
                     $userController = new UserController($db);
                     $userController->editInfo();
                     break;
-                case "home" :
+                case 'home' :
                     if(isset($path[4]))
                     {
                         if(isset($path[5])) {
@@ -51,64 +50,72 @@ switch($globalPath){
                             // TODO : home/{homeId}
                             switch ($path[5])
                             {
-                                case "rooms" :
-                                    // TODO
+                                case 'rooms' :
+                                    $homeController = new HomeController($db);
+                                    $homeController->displayRooms($path[4]);
                                     break;
-                                case "general" :
-                                    // TODO
+                                case 'general' :
+                                    $homeController = new HomeController($db);
+                                    $homeController->displayGeneral($path[4]);
                                     break;
-                                case "administrate" :
-                                    // TODO
+                                case 'administrate' :
+                                    $homeController = new HomeController($db);
+                                    $homeController->displayAdministration($path[4]);
                                     break;
                                 default :
-                                    require_once "view/404.php";
+                                    require_once __DIR__ . 'view/404.php';
                             }
                         }
                         else{
-                            require_once "view/myHome.php";
+                            // TODO
+                            // TODO
                         }
                     }
 
                     else
                     {
-                        require_once "view/404.php";
+                        require_once __DIR__ . 'view/404.php';
                     }
 
                     break;
-                case "dashboard" :
+                case 'dashboard' :
                     $userController = new UserController($db);
                     $userController -> getDashboard(false);
                     break;
-                case "editPass" :
+                case 'editPass' :
                     $userController = new UserController($db);
                     $userController->modifyExistingPasswordAction();
                     break;
-                case "editEmail":
+                case 'editEmail':
                     $userController = new UserController($db);
                     $userController->editEmailAddress();
                     break;
                 default :
-                    require_once "view/404.php";
+                    require_once __DIR__ . 'view/404.php';
             }
         }
 
         else{
-            require_once "view/myHome.php";
+            require_once __DIR__ . 'view/myHome.php';
         }
         break;
-    case "test":
-        require_once "test.php";
+    case 'test':
+        require_once __DIR__ . 'test.php';
+        break;
+
+    case '404' :
+        require_once __DIR__ . 'view/404.php';
         break;
     default :
-        require_once "view/404.php";
+        require_once __DIR__ . 'view/404.php';
 }
 
 function homepage($db){
-    if($_SERVER['REQUEST_METHOD'] == "POST"){
+    if($_SERVER['REQUEST_METHOD'] === 'POST'){
         /** @var SecurityController $securityController */
         $securityController = new SecurityController($db);
         $securityController -> signUp();
     }else{
-        require_once "view/homepage.php";
+        require_once __DIR__ . 'view/homepage.php';
     }
 }
