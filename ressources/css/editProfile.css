@@ -1,10 +1,23 @@
-.info{
-    text-align: center;
-}
-
 .mail{
-    text-align: left;
+    display: none
+
+}
+.infoPers{
+    display: none
 }
 .mdp{
-    text-align: right;
+    display: none
+}
+#mailTitle,#email{
+    display: inline
+}
+#mdpTitle,#mdp{
+    display: inline
+}
+body{
+
+    text-align: center
+}
+#infoTitle,#infoPers{
+    display: inline
 }

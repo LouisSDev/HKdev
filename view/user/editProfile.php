@@ -6,35 +6,58 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/connection.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/editProfile.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/86ed160d29.js"></script>
+    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/editProfile.js"></script>
 
 
 </head>
 <body>
-<?php require_once("general/header.php") ?>
+<?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 
-        <form class="info" method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editInfo'?>">
-            <h1>Editer mes infos personnelles</h1>
-            <input class="box" type="password" placeholder="Nom" size="30" name="nom" required=""><br/>
-            <input class="box" type="password" placeholder="Prénom" size="30" name="prénom" required=""><br/>
-            <input class="btn" type="submit" value="Modifier mes informations">
-        </form>
+<h2 id="infoTitle">Editer mes infos personnelles </h2>
+        <i class="fa fa-chevron-down" id="infoPers" aria-hidden="true"></i>
+        <div class="infoPers">
+            <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editInfo'?>">
+                <input class="box" type="password" placeholder="Nom" size="30" name="nom"><br/>
+                <input class="box" type="password" placeholder="Prénom" size="30" name="prénom"><br/>
+                <input class="btn" type="submit" value="Valider">
+            </form>
+        </div>
 
+        <br>
+        <br>
+        <h2 id="mailTitle">Editer mon email</h2>
+        <i class="fa fa-chevron-down" id="email" aria-hidden="true"></i>
+        <div class="mail">
+            <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editEmail'?>">
+                <input class="box" type="email" placeholder=" Mot de passe" size="30" name="curentEmail"><br/>
+                <input class="box" type="email" placeholder="Adresse mail actuelle" size="30" name="newEmail"><br/>
+                <input class="box" type="email" placeholder="Nouvelle adresse email" size="30" name="confirmNewEmail"><br/>
+                <input class="btn" type="submit" value="Valider">
+            </form>
+        </div>
 
-        <form class="mail" method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editEmail'?>">
-            <h1>Modifier mon adresse mail</h1>
-            <input class="box" type="email" placeholder="Nouvelle adresse mail" size="30" name="newEmail" required=""><br/>
-            <input class="box" type="email" placeholder="Confirmer adresse mail" size="30" name="confirmNewEmail" required=""><br/>
-            <input class="btn" type="submit" value="Modifier mon adresse mail">
-        </form>
-
-
-        <form class="mdp" method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editPass'?>">
-            <h1>Modifier mon mot de passe</h1>
-            <input class="box" type="password" placeholder="Ancien mots de passe" size="30" name="oldPassword" required=""><br/>
-            <input class="box" type="password" placeholder="Nouveau mots de passe" size="30" name="newPassword" required=""><br/>
-            <input class="box" type="password" placeholder="Confirmer mots de passe" size="30" name="confirmNewPassword" required=""><br/>
-            <input class="btn" type="submit" value="Modifier mots de passe">
-        </form>
+        <br>
+        <br>
+        <h2 id="mdpTitle">Editer mon mot de passe </h2>
+        <i class="fa fa-chevron-down" id="mdp" aria-hidden="true"></i>
+        <div class="mdp">
+            <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editPass'?>">
+                <input class="box" type="password" placeholder="Ancien mot de passe" size="30" name="oldPassword"><br/>
+                <input class="box" type="password" placeholder="Nouveau mot de passe" size="30" name="newPassword"><br/>
+                <input class="box" type="password" placeholder="Saisir à nouveau le mot de passe" size="30" name="confirmNewPassword"><br/>
+                <input class="btn" type="submit" value="Valider">
+            </form>
 
 
 </body>
