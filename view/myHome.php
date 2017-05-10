@@ -29,8 +29,9 @@
     </div>
 
     <div class="child">
-        <i class="fa fa-bed childBed" aria-hidden="true" style="cursor:pointer;"> Chambre 1</i>
-        <input type="button" value="Ajouter une pièce">
+        <div class="circle">
+            Chambre 1
+        </div>
     </div>
 </body>
 </html>
