@@ -14,7 +14,7 @@ class HomeController extends Controller
     public function displayRooms($id)
     {
         $this -> args['home'] = $this -> getHomeFromId($id);
-        $this -> generateView('myHome.php', 'My Home');
+        $this -> generateView('user/myHome.php', 'My Home');
 
     }
 
@@ -71,7 +71,7 @@ class HomeController extends Controller
             return $home;
         }
 
-        $this -> generateView('404.php', '404');
+        $this -> generateView('static/404.php', '404');
         exit();
 
     }

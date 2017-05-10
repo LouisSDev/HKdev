@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
-    <link rel="stylesheet" type="text/css" href="sphere.css">
+    <link rel="stylesheet" type="text/css" href="../../rooting.php">
 </head>
 <body>
 <?php

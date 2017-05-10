@@ -10,7 +10,7 @@
 
 </head>
 <body>
-<?php require_once("general/header.php")?>
+<?php require_once("general/header.php") ?>
 
         <form class="info" method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editInfo'?>">
             <h1>Editer mes infos personnelles</h1>
