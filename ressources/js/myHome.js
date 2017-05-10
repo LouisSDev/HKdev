@@ -1,5 +1,10 @@
-$('.iconBed').click(function(){
-    $('bed').hide(1000, function(){
+$(document).ready(function () {
+   $('#bed').click(function(){
+       $('.child').animate({
+           height: 'toggle'
+       });
+   });
 
-    });
 });
+
+

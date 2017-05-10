@@ -6,10 +6,10 @@
 </head>
 <body>
     <?php
-    /** @var Home $home */
-    $home = $GLOBALS['home'];
-    $rooms = $home -> getRooms();
-    $sensorsTypes = $GLOBALS['sensors_types'];
+        /** @var Home $home */
+        $home = $GLOBALS['home'];
+        $rooms = $home -> getRooms();
+        $sensorsTypes = $GLOBALS['sensors_types'];
     ?>
 
     <div><form>
