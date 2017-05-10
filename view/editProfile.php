@@ -8,7 +8,7 @@
 
 </head>
 <body>
-    <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/updateEmail'?>">
+    <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editEmail'?>">
         <h1>Modifier mon adresse mail</h1>
         <input class="box" type="email" placeholder="Ancien mot de passe" size="30" name="curentEmail"><br/>
         <input class="box" type="email" placeholder="Adresse mail actuelle" size="30" name="newEmail"><br/>
@@ -16,7 +16,7 @@
         <input class="btn" type="submit" value="Modifier mon adresse mail">
     </form>
 
-    <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/updatePass'?>">
+    <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editPass'?>">
         <h1>Modifier mon mot de passe</h1>
         <input class="box" type="password" placeholder="Ancien mot de passe" size="30" name="oldPassword"><br/>
         <input class="box" type="password" placeholder="Nouveau mot de passe" size="30" name="newPassword"><br/>
@@ -24,6 +24,12 @@
         <input class="btn" type="submit" value="Update Password">
     </form>
 
+    <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editInfo'?>">
+        <h1>Editer mes infos personnelles</h1>
+        <input class="box" type="password" placeholder="Nom" size="30" name="nom"><br/>
+        <input class="box" type="password" placeholder="Prénom" size="30" name="prénom"><br/>
+        <input class="btn" type="submit" value="editInfo">
+    </form>
 
         <a href="dashboard.php">Dashbord</a>
         <a href="logout.php">Logout</a>
