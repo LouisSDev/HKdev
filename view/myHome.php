@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    <?php include_once("header.php");?>
+    <?php include_once("general/header.php");?>
     <div class="home">
         <i class="fa fa-home iconHome" aria-hidden="true" style="cursor:pointer;"></i>
     </div>

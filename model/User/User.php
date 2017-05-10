@@ -70,7 +70,6 @@ class User extends DatabaseEntity
 
 
 
-
     /**
      * @return string
      */
@@ -90,7 +89,7 @@ class User extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .= '<br/> This firstname is too long ';
+            $this->errorMessage []=  "This firstname is too long";
         }
 
         return $this;
@@ -116,7 +115,7 @@ class User extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .= '<br/> This lastName is too long ';
+            $this->errorMessage []= "This lastName is too long";
         }
 
         return $this;
@@ -141,7 +140,7 @@ class User extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .= "<br>The Mail address is incorrect";
+            $this->errorMessage []= "The Mail address is incorrect";
         }
         return $this;
     }
@@ -165,7 +164,7 @@ class User extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .= '<br/> This cellPhoneNumber is incorrect ';
+            $this->errorMessage []=  "This cellPhoneNumber is incorrect";
         }
 
         return $this;
@@ -406,22 +405,22 @@ class User extends DatabaseEntity
     public function getValid(){
         if($this->error){
             return false;
-        }else{
-            if($this->firstName != null
-                && $this->lastName != null
-                && $this ->mail != null
-                && $this->cellPhoneNumber != null
-                && $this-> address != null
-                && $this->country != null
-                && $this->password != null
-                && $this->city != null
-            ){
-                return true;
-            }else{
-                $this->errorMessage[]= "Vous n'avez pas rentré toutes les informations nécessaires.";
-                return false;
-            }
         }
+
+        if($this->firstName != null
+            && $this->lastName != null
+            && $this ->mail != null
+            && $this->cellPhoneNumber != null
+            && $this-> address != null
+            && $this->country != null
+            && $this->password != null
+            && $this->city != null
+        ){
+            return true;
+        }
+
+        $this->errorMessage[]= "Vous n'avez pas rentré toutes les informations nécessaires.";
+        return false;
     }
 
     public function getClassName(){
