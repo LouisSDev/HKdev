@@ -43,7 +43,7 @@ class SensorType extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .='<br> the name is too long';
+            $this->errorMessage []= "the name is too long";
         }
 
 
@@ -69,7 +69,7 @@ class SensorType extends DatabaseEntity
         }
        else{
             $this->error = true;
-            $this->errorMessage .='<br> the reference is too long';
+            $this->errorMessage []="the reference is too long";
        }
 
 

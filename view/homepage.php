@@ -35,7 +35,7 @@
 
     </div>
     <div class="content">
-        <?php include_once("header.php");?>
+        <?php include_once("general/header.php");?>
         <div class="container1"></div>
         <div class="container2">
             <a class="arrow scrolling" href="#presentation">&raquo;</a>
@@ -87,7 +87,7 @@
                     <h1>Vous êtes intéressé ?</h1>
                     <h1>Demander un devis !</h1>
                     <div class="form">
-                        <form>
+                        <form method="post">
                             <div class="rows">
                                 <div class="col1">
                                     <input type="text" name="firstName" placeholder="Nom ">
