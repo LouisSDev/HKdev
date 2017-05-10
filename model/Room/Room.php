@@ -125,7 +125,7 @@ class Room extends DatabaseEntity
     public function addSensor(Sensor $sensor){
         if(! in_array($sensor,$this->sensors)){
             array_push($this->sensors,$sensor);
-            $sensor->setSensorType(null);
+            $sensor->setRoom($this);
         }
         return $this;
     }
@@ -138,7 +138,7 @@ class Room extends DatabaseEntity
     public function removeSensor(Sensor $sensor){
         if(! in_array($sensor,$this->sensors)){
             unset($this->sensors[array_search($sensor,$this->sensors)]);
-            $sensor->setSensorType(null);
+            $sensor->setRoom(null);
         }
         return $this;
     }

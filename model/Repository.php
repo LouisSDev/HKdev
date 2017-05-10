@@ -29,15 +29,28 @@ class Repository
     }
 
 
-    protected function getResultantObjects($objectsQuery){
-        $objects = array();
+    protected function getResultantObjects($objectsQuery, $asArray = true){
+
+        if($asArray) {
+            $objects = array();
+        }else{
+            $objects = null;
+        }
+
+        $fetch = true;
+
         while($objectData = $objectsQuery -> fetch(PDO::FETCH_ASSOC)){
 
             $objectClassName = self::OBJECT_CLASS_NAME;
             $object = new $objectClassName();
             $object -> createFromResults($objectData);
 
-            $objects[] = $object;
+            if($asArray) {
+                $objects[] = $object;
+            }else{
+                $objects = $object;
+                break;
+            }
         }
 
         $objectsQuery -> closeCursor();
@@ -71,6 +84,16 @@ class Repository
 
         return $this -> getResultantObjects($objectsQuery);
 
+    }
+
+    public function findById($id)
+    {
+        $splitObjectsPath =  explode( '/' , self::OBJECT_CLASS_NAME) ;
+        $objectsQuery = $this -> db -> prepare('SELECT * FROM ' . $splitObjectsPath[1] . ' WHERE id = :id');
+        $objectsQuery -> bindParam(':id', $id, PDO::PARAM_INT);
+        $objectsQuery -> execute();
+
+        return $this -> getResultantObjects($objectsQuery, false);
     }
 
     /**
