@@ -433,7 +433,18 @@ class User extends DatabaseEntity
         return get_object_vars($this);
     }
 
+
+    public function getAllSensors(){
+        $sensors = array();
+        foreach ($this -> homes as $home){
+            array_merge($sensors, $home -> getAllSensors());
+        }
+        return $sensors;
+    }
+
 /*
+ *
+ * TODO delete this shit
     public function save($db)
     {
         if ($this->getValid()) {

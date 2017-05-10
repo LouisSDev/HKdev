@@ -43,7 +43,11 @@ abstract class Controller
 
     }
 
-    protected function generateView($filename, $pathName = null){
+    protected function generateView($filename, $pageTitle, $pathName = null){
+
+        $pathToViews = $GLOBALS['root_dir'] . '/view/';
+
+        $this -> args['page_title'] = $pageTitle;
 
        //putting agrs array values into $GLOBBALS variable
         foreach($this -> args as $key => $value){
@@ -55,21 +59,24 @@ abstract class Controller
             $GLOBALS['view'][$key] = $value;
         }
 
-        if($pathName == null){
+        if($pathName === null){
+
+            require_once $pathToViews . "htmlHead.php";
+
             $pathName = $filename;
-        }else{
-            header('Location: ' . $GLOBALS['server_root'] . '/' . $pathName);
-            exit;
+            require_once  $pathToViews . $filename ;
+            exit();
         }
 
-        require_once 'view/' . $filename ;
+        header('Location: ' . $GLOBALS['server_root'] . '/' . $pathName);
         exit();
+
     }
 
 
     protected function throwConnectionError(){
         // To be coded
-        $this -> generateView('connection.php');
+        $this -> generateView('connection.php', 'Connection', 'connection');
         exit();
     }
 }

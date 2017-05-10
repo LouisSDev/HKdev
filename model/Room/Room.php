@@ -8,6 +8,7 @@
  */
 class Room extends DatabaseEntity
 {
+    const TYPE_ARRAY = ["ROOM", "KITCHEN", "LIVING_ROOM"];
 
 
     /**
@@ -61,7 +62,7 @@ class Room extends DatabaseEntity
      */
     public function setType($type)
     {
-        if(in_array($type, ["ROOM", "KITCHEN", "LIVING_ROOM"])){
+        if(in_array($type, self::TYPE_ARRAY)){
             $this->type = $type;
         }
         else{

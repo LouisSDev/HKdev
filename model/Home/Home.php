@@ -338,8 +338,22 @@ class Home extends DatabaseEntity
         return get_object_vars($this);
     }
 
+    public function getAllSensors(){
+        $sensors = array();
+        if($this -> building != $this) {
+            /** @var Room $room */
+            foreach ($this -> rooms as $room){
+                array_merge($sensors, $room -> getSensors());
+            }
+        }else{
+            return null;
+        }
+        return $sensors;
+    }
+
 
     /*
+     TODO delete this shit
     public function save($db)
     {
         if($this->getValid()){

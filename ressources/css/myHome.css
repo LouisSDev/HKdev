@@ -1,6 +1,6 @@
 .home {
-    top: 200px;
-    left: 50%;
+    top: 150px;
+    left: calc(50% - 100px);
     position: absolute;
     font-size: 150px;
 
@@ -11,14 +11,9 @@
     border-radius: 100%;
     padding: 10px;
     color: black;
-    transition: all 0.1s ease 0.2s
+
 }
 
-
-.iconHome :hover{
-    color: #62bcda;
-    transition: all 0.3s ease 0.2s;
-}
 
 .btn-size{
     height: 80px;
@@ -30,7 +25,7 @@
 }
 
 .rooms{
-    top: 400px;
+    top: 350px;
     position: absolute;
     color: black;
     font-size: 70px;
@@ -43,26 +38,35 @@
     background-color: lightgray;
     border-radius: 100%;
     padding: 20px;
-
+    width:70px;
+    height:70px;
+    margin-right: 50px;
 }
 
 .iconKitchen{
     background-color: lightgray;
     border-radius: 100%;
     padding: 20px;
-
+    width:70px;
+    height:70px;
+    margin-right: 50px;
 }
 
 .iconBath{
     background-color: lightgray;
     border-radius: 100%;
     padding: 20px;
-
+    width:70px;
+    height:70px;
+    margin-right: 50px;
 }
 
 .iconSofa{
     background-color: lightgray;
     border-radius: 100%;
     padding: 20px;
-
+    width:70px;
+    height:70px;
+    margin-right: 50px;
 }
+
