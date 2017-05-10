@@ -1,9 +1,10 @@
-.mail{
+.info{
+    text-align: center;
+}
 
+.mail{
+    text-align: left;
 }
 .mdp{
-
-}
-.info{
-
+    text-align: right;
 }

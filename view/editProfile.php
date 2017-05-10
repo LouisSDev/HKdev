@@ -12,6 +12,14 @@
 <body>
 <?php require_once("general/header.php")?>
 
+        <form class="info" method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editInfo'?>">
+            <h1>Editer mes infos personnelles</h1>
+            <input class="box" type="password" placeholder="Nom" size="30" name="nom" required=""><br/>
+            <input class="box" type="password" placeholder="Prénom" size="30" name="prénom" required=""><br/>
+            <input class="btn" type="submit" value="Modifier mes informations">
+        </form>
+
+
         <form class="mail" method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editEmail'?>">
             <h1>Modifier mon adresse mail</h1>
             <input class="box" type="email" placeholder="Nouvelle adresse mail" size="30" name="newEmail" required=""><br/>
@@ -26,15 +34,6 @@
             <input class="box" type="password" placeholder="Nouveau mots de passe" size="30" name="newPassword" required=""><br/>
             <input class="box" type="password" placeholder="Confirmer mots de passe" size="30" name="confirmNewPassword" required=""><br/>
             <input class="btn" type="submit" value="Modifier mots de passe">
-        </form>
-
-
-
-        <form class="info" method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editInfo'?>">
-            <h1>Editer mes infos personnelles</h1>
-            <input class="box" type="password" placeholder="Nom" size="30" name="nom" required=""><br/>
-            <input class="box" type="password" placeholder="Prénom" size="30" name="prénom" required=""><br/>
-            <input class="btn" type="submit" value="Modifier mes informations">
         </form>
 
 
