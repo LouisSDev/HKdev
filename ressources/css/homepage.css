@@ -72,7 +72,7 @@ body{
     flex-direction: row;
     justify-content: space-between;
     width:80%;
-    left: 10%
+    left: 10%;
 }
 
 p {
@@ -106,19 +106,20 @@ p {
     display: none;
 }
 
-
-
+#form{
+    position: relative;
+    bottom: 20px;
+}
 .form_content{
     text-align: center;
-    padding-top: 5%;
 }
 
 .link{
     font-family: Georgia, "Roboto", Times, serif;
     background: rgba(255,255,255,.1);
 }
+
 a{
     text-decoration: none;
     color: #8a97a0;
-
 }

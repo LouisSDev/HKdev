@@ -24,11 +24,9 @@
         <i class="fa fa-times-circle fa-lg close" aria-hidden="true"></i>
         <div class="form">
             <form method="post" action="<?php echo $GLOBALS['server_root'] . '/connect'?>">
-                <fieldset>
                     <input type="email" name="mail" placeholder="Adresse mail">
                     <input type="password" name="password" placeholder="Mot de passe">
-                </fieldset>
-                <input class="button" type="submit" value="Envoyer" />
+                    <input class="button" type="submit" value="Envoyer" />
             </form>
             <div class="link">
                 <a href="<?php echo $GLOBALS['server_root']?>\lol" target="_self">Mot de passe oublié ?</a>
@@ -90,22 +88,21 @@
                     <h1>Demander un devis !</h1>
                     <div class="form">
                         <form>
-                            <fieldset>
+                            <div class="rows">
                                 <div class="col1">
                                     <input type="text" name="firstName" placeholder="Nom ">
                                     <input type="text" name="lastName" placeholder="Prénom">
                                     <input type="text" name="country" placeholder="Pays"/>
                                     <input type="text" name="city" placeholder="Ville"/>
+                                    <input type="text" name="address" placeholder="Adresse"/>
                                 </div>
                                 <div class="col2">
-                                    <input type="text" name="address" placeholder="Adresse"/>
                                     <input type="text" name="mail" placeholder="Adresse mail"/>
                                     <input type="text" name="cellPhoneNumber" placeholder="Numéro de téléphone">
                                     <input type="password" name="password" placeholder="Mot de passe"/>
                                     <input type="password" name="passwordRepeat" placeholder="Répétez votre mot de passe"/>
                                 </div>
-
-                            </fieldset>
+                            </div>
                             <input type="file" name="file" />
                             <input class="button" type="submit" value="Envoyer" />
                         </form>
