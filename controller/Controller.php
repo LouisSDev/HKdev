@@ -68,6 +68,7 @@ abstract class Controller
             exit();
         }
 
+
         header('Location: ' . $GLOBALS['server_root'] . '/' . $pathName);
         exit();
 
@@ -75,7 +76,7 @@ abstract class Controller
 
 
     protected function throwConnectionError(){
-        // To be coded
+        // TODO :  bind a var to stipulate that there was a login error!
         $this -> generateView('connection.php', 'Connection', 'connection');
         exit();
     }

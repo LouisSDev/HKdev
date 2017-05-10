@@ -59,7 +59,7 @@ class UserRepository extends Repository
     }
 
     public function canonicalConnection($mail, $passwordEncrypted){
-        $connect = $this->db->prepare('SELECT * FROM user WHERE mail = :mail AND password = :password AND validated = 1');
+        $connect = $this->db->prepare('SELECT * FROM user WHERE mail = :mail AND password = :password AND validated IS TRUE');
         $connect -> bindParam(':password', $passwordEncrypted, PDO::PARAM_STR, strlen($passwordEncrypted));
         $connect -> bindParam(':mail', $mail, PDO::PARAM_STR, strlen($mail));
         $connect -> execute();
@@ -71,6 +71,9 @@ class UserRepository extends Repository
             $user -> createFromResults($userArray);
             $this->user = $user;
             $this->connected = true;
+        }else{
+            unset($_SESSION['password']);
+            unset($_SESSION['mail']);
         }
 
         return $this->user;
