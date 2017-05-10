@@ -64,6 +64,7 @@ switch($globalPath){
                                     break;
                                 default :
                                     require_once __DIR__ . 'view/404.php';
+
                             }
                         }
                         else{
