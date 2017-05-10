@@ -35,6 +35,12 @@ class HomeController extends Controller
     public function buyNewSensor($id)
     {
         $this -> args['home'] = $this -> getHomeFromId($id);
+
+        /** @var SensorTypeRepository $sensorTypeRepository */
+        $sensorTypeRepository = $GLOBALS['repositories']['sensor_type'];
+        $sensorsTypes =  $sensorTypeRepository -> getAll();
+
+        $this -> args['sensors_types'] = $sensorsTypes ;
         $this -> generateView('sensors.php', 'My Home :  Buy New Sensor');
     }
 

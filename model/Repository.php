@@ -63,6 +63,16 @@ class Repository
         return $this->getResultantObjects($objectsQuery);
     }
 
+    public function getAll()
+    {
+        $splitObjectsPath =  explode( '/' , self::OBJECT_CLASS_NAME) ;
+        $objectsQuery = $this -> db -> prepare('SELECT * FROM ' . $splitObjectsPath[1]);
+        $objectsQuery -> execute();
+
+        return $this -> getResultantObjects($objectsQuery);
+
+    }
+
     /**
      * @return User
      */

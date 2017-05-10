@@ -9,10 +9,23 @@
 class SensorType extends DatabaseEntity
 {
 
+    const TYPE_ARRAY = ["Capteur d'humidité", "Capteur de fumée", "Capteur de température",
+         "Capteur de luminosité", "Capteur de présence"];
     /**
      * @var $name string
      */
     private $name;
+
+    /**
+     * @var $type string
+     */
+    private $type;
+
+
+    /**
+     * @var float $value
+     */
+    private $value;
 
     /**
      * @var $ref string
@@ -93,6 +106,50 @@ class SensorType extends DatabaseEntity
         $this->chart = $chart;
         return $this;
     }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     * @return SensorType
+     */
+    public function setType($type)
+    {
+        if(in_array($type, self::TYPE_ARRAY)){
+            $this->type = $type;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage []= "This isn\'t a valid room type";
+        }
+        $this->type = $type;
+    }
+
+    /**
+     * @return float
+     */
+    public function getValue(): float
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param float $value
+     * @return SensorType
+     */
+    public function setValue(float $value)
+    {
+        $this->value = $value;
+        return $this;
+    }
+
+
 
     /**
      * @return bool
