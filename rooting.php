@@ -23,10 +23,10 @@ switch($globalPath){
         homepage($db);
         break;
     case 'connection' :
-        require_once __DIR__ . 'view/connection.php';
+        require_once __DIR__ . '/view/connection.php';
         break;
     case 'contact' :
-        require_once __DIR__ . 'view/contactPage.php';
+        require_once __DIR__ . '/view/contactPage.php';
         break;
     case 'connect' :
         $userController = new UserController($db);
@@ -36,7 +36,7 @@ switch($globalPath){
         if(isset($path[3])) {
             switch ($path[3]) {
                 case 'edit':
-                    require_once __DIR__ . 'view/editProfile.php';
+                    require_once __DIR__ . '/view/editProfile.php';
                     break;
                 case 'editInfo' :
                     $userController = new UserController($db);
@@ -63,8 +63,7 @@ switch($globalPath){
                                     $homeController->displayAdministration($path[4]);
                                     break;
                                 default :
-                                    require_once __DIR__ . 'view/404.php';
-
+                                    require_once __DIR__ . '/view/404.php';
                             }
                         }
                         else{
@@ -75,7 +74,7 @@ switch($globalPath){
 
                     else
                     {
-                        require_once __DIR__ . 'view/404.php';
+                        require_once __DIR__ . '/view/404.php';
                     }
 
                     break;
@@ -92,32 +91,31 @@ switch($globalPath){
                     $userController->editEmailAddress();
                     break;
                 default :
-                    require_once __DIR__ . 'view/404.php';
+                    require_once __DIR__ . '/view/404.php';
             }
         }
 
         else{
-            require_once __DIR__ . 'view/myHome.php';
+            require_once __DIR__ . '/view/myHome.php';
         }
         break;
     case 'test':
-        require_once __DIR__ . 'test.php';
+        require_once __DIR__ . '/test.php';
         break;
 
     case '404' :
-        require_once __DIR__ . 'view/404.php';
+        require_once __DIR__ . '/view/404.php';
         break;
     default :
-        require_once __DIR__ . 'view/404.php';
+        require_once __DIR__ . '/view/404.php';
 }
 
 function homepage($db){
-
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         /** @var SecurityController $securityController */
         $securityController = new SecurityController($db);
         $securityController -> signUp();
     }else{
-        require_once __DIR__ . 'view/homepage.php';
+        require_once __DIR__ . '/view/homepage.php';
     }
 }

@@ -17,11 +17,15 @@
     <div class="home">
         <i class="fa fa-home iconHome" aria-hidden="true" style="cursor:pointer;"></i>
     </div>
+
     <div class="rooms">
         <i class="fa fa-bed iconBed" aria-hidden="true" style="cursor:pointer;"></i>
         <i class="fa fa-cutlery iconKitchen" aria-hidden="true" style="cursor:pointer;"></i>
         <i class="fa fa-bath iconBath" aria-hidden="true" style="cursor:pointer;"></i>
         <i class="fa fa-television iconSofa" aria-hidden="true" style="cursor:pointer;"></i>
+    </div>
+    <div class="child">
+        <i class="fa fa-bed iconBeds" aria-hidden="true" style="cursor:pointer;"></i>
     </div>
 </body>
 </html>

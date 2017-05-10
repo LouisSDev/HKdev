@@ -6,19 +6,15 @@
     border-radius: 8px;
     font-family: Georgia, "Roboto", Times, serif;
 }
-.form fieldset{
-    border: none;
+.rows{
     display: flex;
     flex-direction: row;
 }
-.form legend {
-    font-size: 1.4em;
-    margin-bottom: 10px;
+
+.col1{
+    padding-right: 20px;
 }
-.form label {
-    display: block;
-    margin-bottom: 8px;
-}
+
 .form input[type="text"],
 .form input[type="date"],
 .form input[type="datetime"],
