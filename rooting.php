@@ -47,7 +47,6 @@ switch($globalPath){
                     {
                         if(isset($path[5])) {
 
-                            // TODO : home/{homeId}
                             switch ($path[5])
                             {
                                 case 'rooms' :
@@ -62,16 +61,18 @@ switch($globalPath){
                                     $homeController = new HomeController($db);
                                     $homeController->displayAdministration($path[4]);
                                     break;
+                                case 'sensors' :
+                                    $homeController = new HomeController($db);
+                                    $homeController -> buyNewSensor($path[4]);
+                                    break;
                                 default :
                                     require_once __DIR__ . '/view/404.php';
                             }
                         }
                         else{
-                            // TODO
-                            // TODO
+                            require_once __DIR__ . '/view/404.php';
                         }
                     }
-
                     else
                     {
                         require_once __DIR__ . '/view/404.php';
@@ -98,6 +99,53 @@ switch($globalPath){
         else{
             require_once __DIR__ . '/view/myHome.php';
         }
+
+        break;
+    case 'api':
+        if(isset($path[3])) {
+            switch($path[3]){
+                case 'edit' :
+                    if(isset($path[4])) {
+                        switch($path[4]){
+                            case 'room' :
+
+                                break;
+                            case 'home' :
+
+                                break;
+                            default :
+                                header('HTTP/1.1 404 Not Found');
+                                exit();
+                        }
+                    }else{
+                        switch($path[4]){
+                            case 'room' :
+
+                                break;
+                            case 'home' :
+
+                                break;
+                            default :
+                                header('HTTP/1.1 404 Not Found');
+                                exit();
+                        }
+                        header('HTTP/1.1 404 Not Found');
+                        exit();
+                    }
+                    break;
+                case 'get' :
+                    if(isset($path[4])) {
+
+                    }else{
+                        header('HTTP/1.1 404 Not Found');
+                        exit();
+                    }
+                    break;
+            }
+        }else{
+            header('HTTP/1.1 404 Not Found');
+            exit();
+        }
         break;
     case 'test':
         require_once __DIR__ . '/test.php';
@@ -115,7 +163,8 @@ function homepage($db){
         /** @var SecurityController $securityController */
         $securityController = new SecurityController($db);
         $securityController -> signUp();
-    }else{
+    }else
+    {
         require_once __DIR__ . '/view/homepage.php';
     }
 }
