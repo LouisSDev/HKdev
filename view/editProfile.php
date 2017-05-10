@@ -8,6 +8,7 @@
 
 </head>
 <body>
+
     <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editEmail'?>">
         <h1>Modifier mon adresse mail</h1>
         <input class="box" type="email" placeholder="Nouvelle adresse mail" size="30" name="newEmail" required=""><br/>
