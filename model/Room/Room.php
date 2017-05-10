@@ -8,7 +8,7 @@
  */
 class Room extends DatabaseEntity
 {
-    const TYPE_ARRAY = ["ROOM", "KITCHEN", "LIVING_ROOM", "BATHROOM"];
+    const TYPE_ARRAY = ["Chambres", "Cuisines", "Pièces à vivre", "Salles d'eau"];
 
 
     /**
