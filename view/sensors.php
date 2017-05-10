@@ -41,21 +41,24 @@
         <input type="number" step="1" value="1" min="0" max="20"><br>
 
         <label>Sélectionnez la pièces ou vous souhaitez ajouter les capteurs :</label><br>
-        <select multiple>
+        <select name="rooms">
             <option selected label="aucune" value="">Aucune</option>
-            <optgroup label="Rez de chaussé">
-                <option value="">Cuisine</option>
-                <option value="">Sallon</option>
-                <option value="">Bureau</option>
-            </optgroup>
-            <optgroup label="1e Etage">
-                <option value="">Chambre enfant 1</option>
-                <option value="">Chambre des parents</option>
-                <option value="">Salle de Bain </option>
-            </optgroup>
-            <optgroup label="2e Etage">
-                <option value="">Salle de Jeu</option>
-            </optgroup>
+            <?php
+                foreach (Room::TYPE_ARRAY as $room){
+
+                    echo '<optgroup label="'. $type .'">';
+
+                    foreach ($rooms as $room){
+                        if ($room -> getType() === $type ) {
+                            echo '<option label="" value="'
+                            . $room -> getId() .'">'
+                            . $room . '</option>';
+                        }
+
+                    }
+                    echo '</optgroup>';
+                }
+            ?>
         </select> <br>
 
         <input class="btn" type="submit" value="Envoyer" />
