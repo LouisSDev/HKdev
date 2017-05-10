@@ -115,7 +115,7 @@ class User extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage []= "This lastName is too long";
+            $this->errorMessage [] = "This lastName is too long";
         }
 
         return $this;

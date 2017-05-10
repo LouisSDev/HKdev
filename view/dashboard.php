@@ -9,7 +9,7 @@
 <?php
 /** @var $user User */
 $user = $GLOBALS['view']['user'] ;
-include_once('view/general/header.php') ?>
+include_once(__DIR__ . '/general/header.php') ?>
 <h1>TABLEAU DE BORD</h1>
 <h3>Bonjour <?php echo $user -> getFirstName()?></h3>
 </body>
