@@ -65,7 +65,8 @@ class HomeController extends Controller
 
                 if($sensorType && $room ){
 
-                    if($sensor && $sensor -> getSensorType() -> getRef() === $sensorType -> getRef())
+                    if($sensor && $sensor -> getSensorType() -> getRef() === $sensorType -> getRef()
+                    && $sensor -> getRoom() == null)
                     {
                         $room -> addSensor($sensor);
                         $this -> args['message'] = 'Le capteur a été ajouté à vos capteurs avec succès';

@@ -8,8 +8,8 @@
 </head>
 <body>
 <?php include_once(__DIR__ . "/general/header.php");
-    if(isset($GLOBALS['view']['connected']) && !$GLOBALS['view']['connected']){
-        echo "<p>Mauvais identifiants!</p>" ;
+    if(!empty($_GET['errorMessage'])){
+        echo '<p>' . $_GET['errorMessage'] . '</p>' ;
     }
 ?>
     <div class="container">

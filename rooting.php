@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'utils/require.php';
+include_once __DIR__ . '/utils/require.php';
 
 
 $path =   explode( '/', $_SERVER['REQUEST_URI']);

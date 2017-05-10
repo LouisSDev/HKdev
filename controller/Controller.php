@@ -3,6 +3,7 @@
 abstract class Controller
 {
 
+    const CONNECTION_ERROR_DEFAULT_MESSAGE = "Mauvais identifiants!";
     protected $connectionRequired = false;
 
     protected $connected = false;
@@ -49,7 +50,7 @@ abstract class Controller
 
         $this -> args['page_title'] = $pageTitle;
 
-       //putting agrs array values into $GLOBBALS variable
+       //putting args array values into $GLOBBALS variable
         foreach($this -> args as $key => $value){
 
             if(is_string($value)){
@@ -68,7 +69,6 @@ abstract class Controller
             exit();
         }
 
-
         header('Location: ' . $GLOBALS['server_root'] . '/' . $pathName);
         exit();
 
@@ -76,8 +76,7 @@ abstract class Controller
 
 
     protected function throwConnectionError(){
-        // TODO :  bind a var to stipulate that there was a login error!
-        $this -> generateView('connection.php', 'Connection', 'connection');
+        $this -> generateView('connection.php', 'Connection', 'connection/?errorMessage=' . self::CONNECTION_ERROR_DEFAULT_MESSAGE);
         exit();
     }
 }

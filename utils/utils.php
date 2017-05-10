@@ -8,3 +8,15 @@ function randomHash($length) {
     }
     return $pass;
 }
+
+
+function getHeader( $headerKey )
+{
+    $headers = getallheaders();
+    print_r($headers);
+    $headerValue = null;
+    if ( array_key_exists($headerKey, $headers) ) {
+        $headerValue = $headers[ $headerKey ];
+    }
+    return $headerValue;
+}

@@ -13,16 +13,22 @@ class UserCredentials
         if(!empty($_POST['userMail']) &&  !empty($_POST['userPassword'])){
             $this -> mail = $_POST['userMail'];
             $this -> password = $_POST['userPassword'];
-        }elseif(isset($_SESSION['mail']) && isset($_SESSION['password'])){
-            $this -> mail = $_SESSION['mail'];
-            $this -> password = $_SESSION['password'];
-            $this -> encrypted = true;
-        }elseif(!empty($_COOKIE['mail']) && !empty($_COOKIE['password'])){
-            $this -> mail = $_COOKIE['mail'];
-            $this -> password = $_COOKIE['password'];
-            $this -> encrypted = true;
-        }else{
-            $this -> connectionTried = false;
+        }
+
+        else {
+            if (isset($_SESSION['mail'], $_SESSION['password'])) {
+                $this->mail = $_SESSION['mail'];
+                $this->password = $_SESSION['password'];
+                $this->encrypted = true;
+            } else {
+                if (!empty($_COOKIE['mail']) && !empty($_COOKIE['password'])) {
+                    $this->mail = $_COOKIE['mail'];
+                    $this->password = $_COOKIE['password'];
+                    $this->encrypted = true;
+                } else {
+                    $this->connectionTried = false;
+                }
+            }
         }
     }
 
