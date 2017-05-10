@@ -111,6 +111,7 @@ switch($globalPath){
 }
 
 function homepage($db){
+
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         /** @var SecurityController $securityController */
         $securityController = new SecurityController($db);
