@@ -40,7 +40,7 @@ class EffectorType extends DatabaseEntity
         }
         else{
             $this -> error = true;
-            $this -> errorMessage .= '<br/> This name is too long';
+            $this -> errorMessage [] = "This name is too long";
         }
 
         return $this;
@@ -66,7 +66,7 @@ class EffectorType extends DatabaseEntity
         }
         else{
             $this -> error = true;
-            $this -> errorMessage .= '<br/> The reference is incorrect';
+            $this -> errorMessage []= "The reference is incorrect";
         }
 
         return $this;

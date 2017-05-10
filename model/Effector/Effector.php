@@ -78,7 +78,7 @@ class Effector extends DatabaseEntity{
         }
         else{
             $this->error = true;
-            $this->errorMessage .= '<br/> This name is too long ';
+            $this->errorMessage []= "This name is too long ";
         }
 
         return $this;
@@ -105,7 +105,7 @@ class Effector extends DatabaseEntity{
         }
         else{
             $this->error = true;
-            $this->errorMessage .= '<br/> The parameter is not a Room ';
+            $this->errorMessage []= "The parameter is not a Room ";
         }
 
         return $this;
@@ -130,7 +130,7 @@ class Effector extends DatabaseEntity{
         }
         else{
             $this->error = true;
-            $this->errorMessage .='<br> The parameter is incorrect';
+            $this->errorMessage []="The parameter is incorrect";
         }
         return $this;
     }

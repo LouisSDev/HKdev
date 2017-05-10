@@ -89,7 +89,7 @@ class User extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .= '<br/> This firstname is too long ';
+            $this->errorMessage []=  "This firstname is too long";
         }
 
         return $this;
@@ -115,7 +115,7 @@ class User extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .= '<br/> This lastName is too long ';
+            $this->errorMessage []= "This lastName is too long";
         }
 
         return $this;
@@ -140,7 +140,7 @@ class User extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .= "<br>The Mail address is incorrect";
+            $this->errorMessage []= "The Mail address is incorrect";
         }
         return $this;
     }
@@ -164,7 +164,7 @@ class User extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .= '<br/> This cellPhoneNumber is incorrect ';
+            $this->errorMessage []=  "This cellPhoneNumber is incorrect";
         }
 
         return $this;

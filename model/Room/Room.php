@@ -67,7 +67,7 @@ class Room extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .= '<br/> This isn\'t a valid room type.';
+            $this->errorMessage []= "This isn\'t a valid room type";
         }
         $this->type = $type;
     }
@@ -110,7 +110,7 @@ class Room extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .= '<br/> This name is too long ';
+            $this->errorMessage []= "This name is too long";
         }
 
         return $this;

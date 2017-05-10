@@ -35,7 +35,7 @@
 
     </div>
     <div class="content">
-        <?php include_once("header.php");?>
+        <?php include_once("general/header.php");?>
         <div class="container1"></div>
         <div class="container2">
             <a class="arrow scrolling" href="#presentation">&raquo;</a>
