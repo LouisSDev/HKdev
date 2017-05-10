@@ -11,7 +11,9 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/myHome.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/86ed160d29.js"></script>
+    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/myHome.js"></script>
 </head>
+
 <body>
     <?php include_once("header.php");?>
     <div class="home">
@@ -19,13 +21,16 @@
     </div>
 
     <div class="rooms">
-        <i class="fa fa-bed iconBed" aria-hidden="true" style="cursor:pointer;"></i>
+
+        <i class="fa fa-bed iconBed" id="bed" aria-hidden="true" style="cursor:pointer;"></i>
         <i class="fa fa-cutlery iconKitchen" aria-hidden="true" style="cursor:pointer;"></i>
         <i class="fa fa-bath iconBath" aria-hidden="true" style="cursor:pointer;"></i>
         <i class="fa fa-television iconSofa" aria-hidden="true" style="cursor:pointer;"></i>
     </div>
+
     <div class="child">
-        <i class="fa fa-bed iconBeds" aria-hidden="true" style="cursor:pointer;"></i>
+        <i class="fa fa-bed childBed" aria-hidden="true" style="cursor:pointer;"> Chambre 1</i>
+        <input type="button" value="Ajouter une pièce">
     </div>
 </body>
 </html>
