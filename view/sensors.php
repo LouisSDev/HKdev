@@ -5,18 +5,21 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/form.css">
 </head>
 <body>
-    <ins>
-        Home Kepper
-            28, rue Notre-Dame des Champs
-            75006 Paris
-    </ins>
+    <?php
+    /** @var Home $home */
+    $home = $GLOBALS['home'];
+    $rooms = $home -> getRooms();
+    $sensorsTypes = $GLOBALS['sensors_types'];
+    ?>
+
     <div><form>
         <p class="text">Ajouter des capteurs </p>
         <label>Sélectionnez votre capteur :</label><br>
         <select>
-            <option label="" value="">Température</option>
-            <option>Humidité</option>
-            <option>Présence</option>
+            <?php
+                //foreach (){//<option label="" value="">Température</option>}
+
+            ?>
         </select><br>
         <label>Quantité</label><br>
         <input type="number" step="1" value="1" min="0" max="20"><br>
