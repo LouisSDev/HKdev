@@ -71,7 +71,7 @@ class Home extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .= '<br/> This name is too long ';
+            $this->errorMessage []="This name is too long";
         }
 
         return $this;
@@ -148,7 +148,7 @@ class Home extends DatabaseEntity
 
         else{
             $this->error = true;
-            $this->errorMessage .= "The parameter is not a Home";
+            $this->errorMessage []="The parameter is not a Home";
         }
         return $this;
     }
@@ -176,7 +176,7 @@ class Home extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .= "This city name is too long";
+            $this->errorMessage []="This city name is too long";
         }
 
         return $this;
