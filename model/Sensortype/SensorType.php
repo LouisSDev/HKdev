@@ -23,9 +23,9 @@ class SensorType extends DatabaseEntity
 
 
     /**
-     * @var float $value
+     * @var float $price
      */
-    private $value;
+    private $price;
 
     /**
      * @var $ref string
@@ -134,20 +134,21 @@ class SensorType extends DatabaseEntity
     /**
      * @return float
      */
-    public function getValue(): float
+    public function getPrice(): float
     {
-        return $this->value;
+        return $this->price;
     }
 
     /**
-     * @param float $value
+     * @param float $price
      * @return SensorType
      */
-    public function setValue(float $value)
+    public function setPrice(float $price)
     {
-        $this->value = $value;
+        $this->price = $price;
         return $this;
     }
+
 
 
 

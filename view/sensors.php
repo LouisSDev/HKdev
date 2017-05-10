@@ -15,9 +15,25 @@
     <div><form>
         <p class="text">Ajouter des capteurs </p>
         <label>Sélectionnez votre capteur :</label><br>
-        <select>
+        <select name="sensorType">
             <?php
-                //foreach (){//<option label="" value="">Température</option>}
+                foreach (SensorType::TYPE_ARRAY as $type){
+
+                    echo '<optgroup label="'. $type . '">';
+
+                    /** @var  $sensorType SensorType*/
+                    foreach ($sensorsTypes as $sensorType) {
+
+                        if ($sensorType->getType() === $type) {
+                           echo '<option label="" value="'
+                            . $sensorType -> getId() . '">'
+                            . $type . ' : ' . $sensorType -> getName()
+                            . ' - ' . $sensorType -> getRef()
+                            . ' : ' . $sensorType -> getPrice() . '€</option>';
+                        }
+                    }
+                    echo '</optgroup>';
+                }
 
             ?>
         </select><br>
