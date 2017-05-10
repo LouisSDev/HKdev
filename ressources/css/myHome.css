@@ -70,3 +70,21 @@
     margin-right: 50px;
 }
 
+.child{
+    top: 500px;
+    position: absolute;
+    color: black;
+    font-size: 70px;
+    width: 100%;
+    text-align: center;
+    display: none;
+}
+
+.childBed{
+    background-color: lightgray;
+    border-radius: 100%;
+    padding: 20px;
+    width:70px;
+    height:70px;
+    margin-right: 50px;
+}
