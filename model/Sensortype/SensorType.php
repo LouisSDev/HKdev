@@ -134,7 +134,7 @@ class SensorType extends DatabaseEntity
     /**
      * @return float
      */
-    public function getPrice(): float
+    public function getPrice()
     {
         return $this->price;
     }
@@ -143,7 +143,7 @@ class SensorType extends DatabaseEntity
      * @param float $price
      * @return SensorType
      */
-    public function setPrice(float $price)
+    public function setPrice($price)
     {
         $this->price = $price;
         return $this;
