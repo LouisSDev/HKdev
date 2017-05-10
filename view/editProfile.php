@@ -19,22 +19,23 @@
             <input class="btn" type="submit" value="Modifier mes informations">
         </form>
 
+        <div class="container1">
+            <form class="mail" method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editEmail'?>">
+                <h1>Modifier mon adresse mail</h1>
+                <input class="box" type="email" placeholder="Nouvelle adresse mail" size="30" name="newEmail" required=""><br/>
+                <input class="box" type="email" placeholder="Confirmer adresse mail" size="30" name="confirmNewEmail" required=""><br/>
+                <input class="btn" type="submit" value="Modifier mon adresse mail">
+            </form>
 
-        <form class="mail" method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editEmail'?>">
-            <h1>Modifier mon adresse mail</h1>
-            <input class="box" type="email" placeholder="Nouvelle adresse mail" size="30" name="newEmail" required=""><br/>
-            <input class="box" type="email" placeholder="Confirmer adresse mail" size="30" name="confirmNewEmail" required=""><br/>
-            <input class="btn" type="submit" value="Modifier mon adresse mail">
-        </form>
 
-
-        <form class="mdp" method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editPass'?>">
-            <h1>Modifier mon mot de passe</h1>
-            <input class="box" type="password" placeholder="Ancien mots de passe" size="30" name="oldPassword" required=""><br/>
-            <input class="box" type="password" placeholder="Nouveau mots de passe" size="30" name="newPassword" required=""><br/>
-            <input class="box" type="password" placeholder="Confirmer mots de passe" size="30" name="confirmNewPassword" required=""><br/>
-            <input class="btn" type="submit" value="Modifier mots de passe">
-        </form>
+            <form class="mdp" method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editPass'?>">
+                <h1>Modifier mon mot de passe</h1>
+                <input class="box" type="password" placeholder="Ancien mots de passe" size="30" name="oldPassword" required=""><br/>
+                <input class="box" type="password" placeholder="Nouveau mots de passe" size="30" name="newPassword" required=""><br/>
+                <input class="box" type="password" placeholder="Confirmer mots de passe" size="30" name="confirmNewPassword" required=""><br/>
+                <input class="btn" type="submit" value="Modifier mots de passe">
+            </form>
+        </div>
 
 
 </body>
