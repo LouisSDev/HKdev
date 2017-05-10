@@ -1,13 +1,34 @@
 .address{
     position: absolute;
-    top: 130px;
-    left: 10%;
+    top: 200px;
+    left: 20%;
     text-align: center;
-}
-.message{
-    height: 15%;
 }
 
 .form{
-    top: 500px;
+    position: absolute;
+    top: 550px;
+    left: calc(50% - 250px);
 }
+
+
+
+#googleMap{
+    left: 55%;
+    top: 110px;
+}
+
+.form textarea{
+    max-width: 500px;
+    position: relative;
+}
+
+.textEnhance{
+    font-size: xx-large;
+    position: absolute;
+    left: calc(50% - 191.5px);
+    top: 480px;
+}
+
+
+
