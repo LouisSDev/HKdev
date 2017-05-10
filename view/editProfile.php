@@ -9,27 +9,33 @@
 </head>
 <body>
 
-    <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editEmail'?>">
-        <h1>Modifier mon adresse mail</h1>
-        <input class="box" type="email" placeholder="Nouvelle adresse mail" size="30" name="newEmail" required=""><br/>
-        <input class="box" type="email" placeholder="Confirmer adresse mail" size="30" name="confirmNewEmail" required=""><br/>
-        <input class="btn" type="submit" value="Modifier mon adresse mail">
-    </form>
+    <div class="mail">
+        <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editEmail'?>">
+            <h1>Modifier mon adresse mail</h1>
+            <input class="box" type="email" placeholder="Nouvelle adresse mail" size="30" name="newEmail" required=""><br/>
+            <input class="box" type="email" placeholder="Confirmer adresse mail" size="30" name="confirmNewEmail" required=""><br/>
+            <input class="btn" type="submit" value="Modifier mon adresse mail">
+        </form>
+    </div>
 
-    <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editPass'?>">
-        <h1>Modifier mon mot de passe</h1>
-        <input class="box" type="password" placeholder="Ancien mots de passe" size="30" name="oldPassword" required=""><br/>
-        <input class="box" type="password" placeholder="Nouveau mots de passe" size="30" name="newPassword" required=""><br/>
-        <input class="box" type="password" placeholder="Confirmer mots de passe" size="30" name="confirmNewPassword" required=""><br/>
-        <input class="btn" type="submit" value="Modifier mots de passe">
-    </form>
+    <div class="mdp">
+        <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editPass'?>">
+            <h1>Modifier mon mot de passe</h1>
+            <input class="box" type="password" placeholder="Ancien mots de passe" size="30" name="oldPassword" required=""><br/>
+            <input class="box" type="password" placeholder="Nouveau mots de passe" size="30" name="newPassword" required=""><br/>
+            <input class="box" type="password" placeholder="Confirmer mots de passe" size="30" name="confirmNewPassword" required=""><br/>
+            <input class="btn" type="submit" value="Modifier mots de passe">
+        </form>
+    </div>
 
-    <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editInfo'?>">
-        <h1>Editer mes infos personnelles</h1>
-        <input class="box" type="password" placeholder="Nom" size="30" name="nom" required=""><br/>
-        <input class="box" type="password" placeholder="Prénom" size="30" name="prénom" required=""><br/>
-        <input class="btn" type="submit" value="Modifier mes informations">
-    </form>
+    <div clas="infos">
+        <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editInfo'?>">
+            <h1>Editer mes infos personnelles</h1>
+            <input class="box" type="password" placeholder="Nom" size="30" name="nom" required=""><br/>
+            <input class="box" type="password" placeholder="Prénom" size="30" name="prénom" required=""><br/>
+            <input class="btn" type="submit" value="Modifier mes informations">
+        </form>
+    </div>
 
         <a href="dashboard.php">Dashbord</a>
         <a href="logout.php">Logout</a>
