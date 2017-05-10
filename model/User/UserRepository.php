@@ -58,7 +58,7 @@ class UserRepository extends Repository
         return $this -> canonicalConnection($mail,$passwordEncrypted);
     }
 
-    function canonicalConnection($mail, $passwordEncrypted){
+    public function canonicalConnection($mail, $passwordEncrypted){
         $connect = $this->db->prepare('SELECT * FROM user WHERE mail = :mail AND password = :password AND validated = 1');
         $connect -> bindParam(':password', $passwordEncrypted, PDO::PARAM_STR, strlen($passwordEncrypted));
         $connect -> bindParam(':mail', $mail, PDO::PARAM_STR, strlen($mail));

@@ -10,14 +10,14 @@ class UserCredentials
     private $connectionTried = true;
 
     public function __construct(){
-        if(!empty($_POST['userMail']) && !empty($_POST['userPassword'])){
+        if(!empty($_POST['userMail']) &&  !empty($_POST['userPassword'])){
             $this -> mail = $_POST['userMail'];
             $this -> password = $_POST['userPassword'];
-        }else if(isset($_SESSION['mail']) && isset($_SESSION['password'])){
+        }elseif(isset($_SESSION['mail']) && isset($_SESSION['password'])){
             $this -> mail = $_SESSION['mail'];
             $this -> password = $_SESSION['password'];
             $this -> encrypted = true;
-        }else if(!empty($_COOKIE['mail']) && !empty($_COOKIE['password'])){
+        }elseif(!empty($_COOKIE['mail']) && !empty($_COOKIE['password'])){
             $this -> mail = $_COOKIE['mail'];
             $this -> password = $_COOKIE['password'];
             $this -> encrypted = true;
