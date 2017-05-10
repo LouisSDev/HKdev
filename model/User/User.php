@@ -70,7 +70,6 @@ class User extends DatabaseEntity
 
 
 
-
     /**
      * @return string
      */
@@ -406,22 +405,22 @@ class User extends DatabaseEntity
     public function getValid(){
         if($this->error){
             return false;
-        }else{
-            if($this->firstName != null
-                && $this->lastName != null
-                && $this ->mail != null
-                && $this->cellPhoneNumber != null
-                && $this-> address != null
-                && $this->country != null
-                && $this->password != null
-                && $this->city != null
-            ){
-                return true;
-            }else{
-                $this->errorMessage[]= "Vous n'avez pas rentré toutes les informations nécessaires.";
-                return false;
-            }
         }
+
+        if($this->firstName != null
+            && $this->lastName != null
+            && $this ->mail != null
+            && $this->cellPhoneNumber != null
+            && $this-> address != null
+            && $this->country != null
+            && $this->password != null
+            && $this->city != null
+        ){
+            return true;
+        }
+
+        $this->errorMessage[]= "Vous n'avez pas rentré toutes les informations nécessaires.";
+        return false;
     }
 
     public function getClassName(){

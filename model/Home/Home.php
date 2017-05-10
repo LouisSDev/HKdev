@@ -51,6 +51,14 @@ class Home extends DatabaseEntity
 
 
 
+    public function isBuilding(){
+        if($this  !== $this -> building
+            && $this -> building !== null )
+        {
+            return false;
+        }
+        return true;
+    }
 
     /**
      * @return string

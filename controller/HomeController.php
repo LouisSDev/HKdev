@@ -27,19 +27,15 @@ class HomeController extends Controller
 
     public function displayAdministration($id)
     {
-        $home = $this -> getHomeFromId($id);
-        $building = $home -> getBuilding();
-
-        // If this home's building is not either null or itself, it means that this home isn't a building!
-        // Therefore, we'll throw a 404 error because this page only exist for buildings and not for home
-        if($home  !== $building
-            && $building !== null ){
-            $this -> generateView('404.php', '404 : Not Found', '404');
-            exit();
-        }
-
-        $this -> args['building'] = $building;
+        $this -> args['building'] = $this -> getHomeFromId($id, true);
         $this -> generateView('administrateBuilding.php', 'Administrate My Building');
+    }
+
+
+    public function buyNewSensor($id)
+    {
+        $this -> args['home'] = $this -> getHomeFromId($id);
+        $this -> generateView('sensors.php', 'My Home :  Buy New Sensor');
     }
 
     /**
@@ -47,7 +43,7 @@ class HomeController extends Controller
      * @return Home
      */
 
-    public function getHomeFromId($id){
+    public function getHomeFromId($id, $onlyAdmin = false){
 
 
         /** @var Home $home */
@@ -56,7 +52,9 @@ class HomeController extends Controller
         /** @var Home $hm */
         foreach ($this -> user -> getHomes() as $hm)
         {
-            if($hm -> getId() === $id){
+            if($hm -> getId() === $id
+                && $hm -> isBuilding() === $onlyAdmin)
+            {
                 $home = $hm;
                 break;
             }
@@ -71,5 +69,6 @@ class HomeController extends Controller
         exit();
 
     }
+
 
 }
