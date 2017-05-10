@@ -8,7 +8,7 @@
  */
 class Room extends DatabaseEntity
 {
-    const TYPE_ARRAY = ["ROOM", "KITCHEN", "LIVING_ROOM"];
+    const TYPE_ARRAY = ["ROOM", "KITCHEN", "LIVING_ROOM", "BATHROOM"];
 
 
     /**
@@ -93,7 +93,7 @@ class Room extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage[]=  "The parameter is not a Home";
+            $this->errorMessage[] =  "The parameter is not a Home";
         }
 
         return $this;

@@ -27,10 +27,15 @@ class HomeController extends Controller
 
     public function displayAdministration($id)
     {
-        $building = $this -> getHomeFromId($id, true);
-
-        $this -> args['building'] = $building;
+        $this -> args['building'] = $this -> getHomeFromId($id, true);
         $this -> generateView('administrateBuilding.php', 'Administrate My Building');
+    }
+
+
+    public function buyNewSensor($id)
+    {
+        $this -> args['home'] = $this -> getHomeFromId($id);
+        $this -> generateView('sensors.php', 'My Home :  Buy New Sensor');
     }
 
     /**
@@ -64,5 +69,6 @@ class HomeController extends Controller
         exit();
 
     }
+
 
 }
