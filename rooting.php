@@ -65,6 +65,10 @@ switch($globalPath){
                                     $homeController = new HomeController($db);
                                     $homeController -> buyNewSensor($path[4]);
                                     break;
+                                case 'deleteSensor' :
+                                    $homeController = new HomeController($db);
+                                    $homeController -> deleteSensor($path[4]);
+                                    break;
                                 default :
                                     require_once __DIR__ . '/view/static/404.php';
                             }
@@ -108,7 +112,8 @@ switch($globalPath){
                     if(isset($path[4])) {
                         switch($path[4]){
                             case 'room' :
-
+                                $roomController = new RoomController($db);
+                                $roomController -> updateSensor();
                                 break;
                             case 'home' :
 
