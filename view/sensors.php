@@ -1,7 +1,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>ajoutCapteur</title>
+    <title>Ajout Capteur</title>
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/form.css">
 </head>
 <body>
