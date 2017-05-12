@@ -10,6 +10,11 @@ abstract class Controller
 
     protected $args = array();
 
+    protected $api = false;
+
+    /** @var ApiResponse $apiResponse */
+    protected $apiResponse = null;
+
     /**
      * @var User $user
      */
@@ -46,36 +51,49 @@ abstract class Controller
 
     protected function generateView($filename, $pageTitle, $pathName = null){
 
-        $pathToViews = $GLOBALS['root_dir'] . '/view/';
+        // If it's a standard controller
+        if(!$this -> api) {
 
-        $this -> args['page_title'] = $pageTitle;
+            $pathToViews = $GLOBALS['root_dir'] . '/view/';
 
-       //putting args array values into $GLOBBALS variable
-        foreach($this -> args as $key => $value){
+            $this->args['page_title'] = $pageTitle;
 
-            if(is_string($value)){
-                $value = htmlspecialchars($value);
+            //putting args array values into $GLOBBALS variable
+            foreach ($this->args as $key => $value) {
+
+                if (is_string($value)) {
+                    $value = htmlspecialchars($value);
+                }
+
+                $GLOBALS['view'][$key] = $value;
             }
 
-            $GLOBALS['view'][$key] = $value;
-        }
+            if ($pathName === null) {
 
-        if($pathName === null){
+                require_once $pathToViews . "htmlHead.php";
 
-            require_once $pathToViews . "htmlHead.php";
+                $pathName = $filename;
+                require_once $pathToViews . $filename;
+                exit();
+            }
 
-            $pathName = $filename;
-            require_once  $pathToViews . $filename ;
+            header('Location: ' . $GLOBALS['server_root'] . '/' . $pathName);
             exit();
         }
 
-        header('Location: ' . $GLOBALS['server_root'] . '/' . $pathName);
-        exit();
+        // Otherwise, if it's an API method:
+
+        ApiHandler::returnResponseFromResponseObject($this -> apiResponse);
     }
 
 
     protected function throwConnectionError(){
         $this -> generateView('connection.php', 'Connection', 'connection/?errorMessage=' . self::CONNECTION_ERROR_DEFAULT_MESSAGE);
         exit();
+    }
+
+    protected function enableApiMode()
+    {
+        $this -> api = true;
     }
 }

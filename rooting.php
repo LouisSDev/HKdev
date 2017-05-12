@@ -127,7 +127,7 @@ switch($globalPath){
                         switch($path[4]){
                             case 'room' :
                                 $roomController = new RoomController($db);
-                                $roomController -> updateSensor();
+                                $roomController -> updateEffectorsInARoom();
                                 break;
                             case 'home' :
 

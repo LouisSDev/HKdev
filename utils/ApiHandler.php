@@ -52,4 +52,14 @@ class ApiHandler
         // And return the response
         self::returnResponse($response, $headers);
     }
+
+    public static function returnResponseFromResponseObject(ApiResponse $apiResponse)
+    {
+        if($apiResponse -> isError()){
+            self::throwError($apiResponse -> getCode(), $apiResponse -> getContent());
+        }
+        else{
+            self::returnValidResponse($apiResponse -> getContent(), $apiResponse -> getCode());
+        }
+    }
 }

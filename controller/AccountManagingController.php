@@ -17,7 +17,7 @@ abstract class AccountManagingController extends Controller
      * @return Home
      */
 
-    protected function getHomeFromId($id, $onlyAdmin = false){
+    protected function findHomeFromId($id, $onlyAdmin = false){
 
 
         /** @var Home $home */
@@ -38,6 +38,8 @@ abstract class AccountManagingController extends Controller
         {
             return $home;
         }
+
+        $this -> apiResponse = new ApiResponse(404, 'L\'habitation spécifiée n\'est pas disponible', true);
 
         $this -> generateView('static/404.php', '404');
         exit();
@@ -64,6 +66,8 @@ abstract class AccountManagingController extends Controller
             return $room;
         }
 
+        $this -> apiResponse = new ApiResponse(404, 'La pièce spécifiée n\'est pas disponible', true);
+
         $this -> generateView('static/404.php', '404');
         exit();
     }
@@ -83,6 +87,8 @@ abstract class AccountManagingController extends Controller
             return $room;
         }
 
+        $this -> apiResponse = new ApiResponse(404, 'La pièce spécifiée n\'est pas disponible', true);
+
         $this -> generateView('static/404.php', '404');
         exit();
 
@@ -93,7 +99,7 @@ abstract class AccountManagingController extends Controller
      * @param Home $home
      * @return Sensor
      */
-    protected function getSensorFromId($id, Home $home)
+    protected function findSensorFromId($id, Home $home)
     {
         $sensor = null;
         /** @var Sensor $sr */
@@ -107,6 +113,8 @@ abstract class AccountManagingController extends Controller
         if($sr){
             return $sr;
         }
+
+        $this -> apiResponse = new ApiResponse(404, 'Le capteur spécifié n\'est pas disponible', true);
 
         $this -> generateView('static/404.php', '404');
         exit();

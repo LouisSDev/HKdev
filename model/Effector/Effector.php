@@ -24,6 +24,11 @@ class Effector extends DatabaseEntity{
     private $room;
 
     /**
+     * @var float $value
+     */
+    private $value = 0;
+
+    /**
      * @var boolean $state
      */
     private $state = false;
@@ -158,6 +163,27 @@ class Effector extends DatabaseEntity{
         }
         return $this;
     }
+
+    /**
+     * @return float
+     *
+     */
+    public function getValue()
+    {
+        return $this->value;
+    }
+
+    /**
+     * @param float $value
+     * @return Effector
+     */
+    public function setValue(float $value)
+    {
+        $this->value = $value;
+        return $this;
+    }
+
+
 
     public function getValid(){
         if($this->error){

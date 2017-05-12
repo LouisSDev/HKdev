@@ -9,15 +9,28 @@
 class EffectorType extends DatabaseEntity
 {
 
+
+    const TYPE_ARRAY = ["Volet", "Lumière", "Chauffage", "Ventilation"];
+
     /**
      * @var $name string
      */
     private $name;
 
     /**
+     * @var $type string
+     */
+    private $type;
+
+    /**
      * @var $ref string
      */
     private $ref;
+
+    /**
+     * @var boolean $chart
+     */
+    private $chart;
 
 
     /**
@@ -53,6 +66,7 @@ class EffectorType extends DatabaseEntity
     {
         return $this->ref;
     }
+
 
     /**
      * @param string $ref
@@ -91,6 +105,42 @@ class EffectorType extends DatabaseEntity
         return $this;
     }
 
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     * @return EffectorType
+     */
+    public function setType($type)
+    {
+        if(in_array($type, self::TYPE_ARRAY)){
+            $this->type = $type;
+        }
+        else{
+            $this->error = true;
+            $this->errorMessage []= "This isn\'t a valid Effector type";
+        }
+        $this->type = $type;
+        return $this;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getChart()
+    {
+        return $this->chart;
+    }
+
+
+
+
     public function getValid()
     {
         if($this->error){
@@ -99,6 +149,7 @@ class EffectorType extends DatabaseEntity
             if(
                    $this->name != null
                 && $this ->ref != null
+                && $this -> type != null
             ){
                 return true;
             }else{

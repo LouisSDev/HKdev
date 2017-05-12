@@ -7,7 +7,7 @@ class HomeController extends AccountManagingController
 
     public function displayRooms($id)
     {
-        $this -> args['home'] = $this -> getHomeFromId($id);
+        $this -> args['home'] = $this -> findHomeFromId($id);
         $this -> generateView('user/myHome.php', 'My Home');
 
     }
@@ -15,20 +15,20 @@ class HomeController extends AccountManagingController
 
     public function displayGeneral($id)
     {
-        $this -> args['home'] = $this -> getHomeFromId($id);
+        $this -> args['home'] = $this -> findHomeFromId($id);
         $this -> generateView('home/general.php', 'My Home :  General View');
     }
 
     public function displayAdministration($id)
     {
-        $this -> args['building'] = $this -> getHomeFromId($id, true);
+        $this -> args['building'] = $this -> findHomeFromId($id, true);
         $this -> generateView('home/administrateBuilding.php', 'Administrate My Building');
     }
 
 
     public function buyNewSensor($id)
     {
-        $home = $this -> getHomeFromId($id);
+        $home = $this -> findHomeFromId($id);
         $this -> args['home'] = $home;
 
             /** @var SensorTypeRepository $sensorTypeRepository */
@@ -90,9 +90,9 @@ class HomeController extends AccountManagingController
 
     public function deleteSensor($id)
     {
-        $home = $this -> getHomeFromId($id);
+        $home = $this -> findHomeFromId($id);
         if(!empty($_POST['sensorId'])) {
-            $sensor = $this->getSensorFromId($_POST['sensorId'], $home);
+            $sensor = $this->findSensorFromId($_POST['sensorId'], $home);
             $sensor->delete($this->db);
         }else{
             $this -> generateView('static/404.php', '404');

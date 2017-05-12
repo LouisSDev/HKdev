@@ -29,6 +29,11 @@ class Room extends DatabaseEntity
     private $sensors = array();
 
     /**
+     * @var $effectors array;
+     */
+    private $effectors = array();
+
+    /**
      * @var $home Home;
      */
     private $home;
@@ -117,6 +122,26 @@ class Room extends DatabaseEntity
     }
 
     /**
+     * @return array
+     */
+    public function getEffectors(): array
+    {
+        return $this->effectors;
+    }
+
+    /**
+     * @param array $effectors
+     * @return Room
+     */
+    public function setEffectors(array $effectors)
+    {
+        $this->effectors = $effectors;
+        return $this;
+    }
+
+
+
+    /**
      * Add sensor
      * @param Sensor $sensor
      * @return $this
@@ -142,6 +167,37 @@ class Room extends DatabaseEntity
         }
         return $this;
     }
+
+
+
+    /**
+     * Add effector
+     * @param Effector $effector
+     * @return $this
+     */
+
+    public function addEffector(Effector $effector){
+        if(! in_array($effector,$this->effectors)){
+            array_push($this->effectors,$effector);
+            $effector->setRoom($this);
+        }
+        return $this;
+    }
+
+    /**
+     * Remove effector
+     * @param Effector $effector
+     * @return $this
+     */
+    public function removeEffector(Effector $effector){
+        if(! in_array($effector,$this->effectors)){
+            unset($this->effectors[array_search($effector,$this->effectors)]);
+            $effector->setRoom(null);
+        }
+        return $this;
+    }
+
+
 
     public function getValid()
     {

@@ -7,6 +7,7 @@ require_once $GLOBALS['root_dir'] . '/utils/DatabaseConnection.php';
 require_once $GLOBALS['root_dir'] . '/utils/JsonUtils.php';
 require_once $GLOBALS['root_dir'] . '/utils/UserCredentials.php';
 require_once $GLOBALS['root_dir'] . '/utils/ApiHandler.php';
+require_once $GLOBALS['root_dir'] . '/utils/ApiResponse.php';
 
 // Models
 require_once $GLOBALS['root_dir'] . '/model/DatabaseEntity.php';

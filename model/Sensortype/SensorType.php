@@ -92,7 +92,7 @@ class SensorType extends DatabaseEntity
     /**
      * @return boolean
      */
-    public function isChart()
+    public function getChart()
     {
         return $this->chart;
     }

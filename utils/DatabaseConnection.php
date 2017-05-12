@@ -32,7 +32,7 @@ class DatabaseConnection
 
             // TODO :: the get message line must be uncommented in the prod version!!
             echo $e -> getMessage();
-            require_once "view/static/connectionError.php";
+            require_once $GLOBALS['root_dir'] . '/view/static/connectionError.php';
             exit;
         }
 
