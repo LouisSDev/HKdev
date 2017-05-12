@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once 'utils/require.php';
+include_once __DIR__ . '/utils/require.php';
 
 
 $path =   explode( '/', $_SERVER['REQUEST_URI']);
@@ -26,7 +26,7 @@ switch($globalPath){
         require_once __DIR__ . '/view/connection.php';
         break;
     case 'contact' :
-        require_once __DIR__ . '/view/contactPage.php';
+        require_once __DIR__ . '/view/static/contactPage.php';
         break;
     case 'connect' :
         $userController = new UserController($db);
@@ -36,7 +36,7 @@ switch($globalPath){
         if(isset($path[3])) {
             switch ($path[3]) {
                 case 'edit':
-                    require_once __DIR__ . '/view/editProfile.php';
+                    require_once __DIR__ . '/view/user/editProfile.php';
                     break;
                 case 'editInfo' :
                     $userController = new UserController($db);
@@ -65,17 +65,21 @@ switch($globalPath){
                                     $homeController = new HomeController($db);
                                     $homeController -> buyNewSensor($path[4]);
                                     break;
+                                case 'deleteSensor' :
+                                    $homeController = new HomeController($db);
+                                    $homeController -> deleteSensor($path[4]);
+                                    break;
                                 default :
-                                    require_once __DIR__ . '/view/404.php';
+                                    require_once __DIR__ . '/view/static/404.php';
                             }
                         }
                         else{
-                            require_once __DIR__ . '/view/404.php';
+                            require_once __DIR__ . '/view/static/404.php';
                         }
                     }
                     else
                     {
-                        require_once __DIR__ . '/view/404.php';
+                        require_once __DIR__ . '/view/static/404.php';
                     }
 
                     break;
@@ -92,12 +96,12 @@ switch($globalPath){
                     $userController->editEmailAddress();
                     break;
                 default :
-                    require_once __DIR__ . '/view/404.php';
+                    require_once __DIR__ . '/view/static/404.php';
             }
         }
 
         else{
-            require_once __DIR__ . '/view/myHome.php';
+            require_once __DIR__ . '/view/user/myHome.php';
         }
 
         break;
@@ -108,7 +112,8 @@ switch($globalPath){
                     if(isset($path[4])) {
                         switch($path[4]){
                             case 'room' :
-
+                                $roomController = new RoomController($db);
+                                $roomController -> updateSensor();
                                 break;
                             case 'home' :
 
@@ -148,14 +153,14 @@ switch($globalPath){
         }
         break;
     case 'test':
-        require_once __DIR__ . '/test.php';
+        require_once __DIR__ . '/view/tests/test.php';
         break;
 
     case '404' :
-        require_once __DIR__ . '/view/404.php';
+        require_once __DIR__ . '/view/static/404.php';
         break;
     default :
-        require_once __DIR__ . '/view/404.php';
+        require_once __DIR__ . '/view/static/404.php';
 }
 
 function homepage($db){
@@ -165,6 +170,6 @@ function homepage($db){
         $securityController -> signUp();
     }else
     {
-        require_once __DIR__ . '/view/homepage.php';
+        require_once __DIR__ . '/view/static/homepage.php';
     }
 }

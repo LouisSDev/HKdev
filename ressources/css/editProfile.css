@@ -1,19 +1,23 @@
-.info{
-    /*position: relative;
-    top: 80px;
-    text-align: center;*/
-}
-.container1{
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 70%;
-    left: 15%;
-}
+.mail{
+    display: none
 
+}
+.infoPers{
+    display: none
+}
+.mdp{
+    display: none
+}
+#mailTitle,#email{
+    display: inline
+}
+#mdpTitle,#mdp{
+    display: inline
+}
+body{
 
-.box,
-.btn{
-    position :center;
+    text-align: center
+}
+#infoTitle,#infoPers{
+    display: inline
 }

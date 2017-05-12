@@ -2,7 +2,7 @@
 
 
 require_once "lib/requireLibs.php";
-require_once "utils/randomHash.php";
+require_once "utils/utils.php";
 require_once "utils/devLogs.php";
 require_once "utils/DatabaseConnection.php";
 require_once "utils/JsonUtils.php";
@@ -49,12 +49,20 @@ require_once "model/Repository.php";
 
 // Controllers
 require_once "controller/Controller.php";
+require_once "controller/AccountManagingController.php";
 
     // User
     require_once "controller/UserController.php";
 
     // Security
     require_once "controller/SecurityController.php";
+
+    // Home
+    require_once "controller/HomeController.php";
+
+    // Room
+    require_once "controller/RoomController.php";
+
 
 
 

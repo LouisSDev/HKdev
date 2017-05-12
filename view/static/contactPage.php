@@ -12,7 +12,7 @@
 
 </head>
 <body>
-    <?php include_once(__DIR__ . "/general/header.php");?>
+    <?php include_once($GLOBALS['root_dir'] . "/view/general/header.php");?>
 <div class="address">
     <p>
         Home Kepper

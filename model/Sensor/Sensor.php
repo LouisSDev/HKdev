@@ -153,7 +153,6 @@ class Sensor extends DatabaseEntity{
         }
         else{
             if ($this->name != null
-                && $this->room != null
                 && $this->sensorType != null
                 && $this->sensorValues !=null
             ){

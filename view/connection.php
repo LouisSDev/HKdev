@@ -7,9 +7,9 @@
     <title>Connexion</title>
 </head>
 <body>
-<?php include_once("general/header.php");
-    if(isset($GLOBALS['view']['connected']) && !$GLOBALS['view']['connected']){
-        echo "<p>Mauvais identifiants!</p>" ;
+<?php include_once(__DIR__ . "/general/header.php");
+    if(!empty($_GET['errorMessage'])){
+        echo '<p>' . $_GET['errorMessage'] . '</p>' ;
     }
 ?>
     <div class="container">

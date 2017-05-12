@@ -6,15 +6,14 @@
  * Date: 09/05/2017
  * Time: 09:14
  */
-class HomeController extends Controller
+class HomeController extends AccountManagingControllers
 {
 
-    protected $connectionRequired = true;
 
     public function displayRooms($id)
     {
         $this -> args['home'] = $this -> getHomeFromId($id);
-        $this -> generateView('myHome.php', 'My Home');
+        $this -> generateView('user/myHome.php', 'My Home');
 
     }
 
@@ -34,47 +33,79 @@ class HomeController extends Controller
 
     public function buyNewSensor($id)
     {
-        $this -> args['home'] = $this -> getHomeFromId($id);
+        $home = $this -> getHomeFromId($id);
+        $this -> args['home'] = $home;
 
-        /** @var SensorTypeRepository $sensorTypeRepository */
+            /** @var SensorTypeRepository $sensorTypeRepository */
         $sensorTypeRepository = $GLOBALS['repositories']['sensor_type'];
-        $sensorsTypes =  $sensorTypeRepository -> getAll();
 
-        $this -> args['sensors_types'] = $sensorsTypes ;
-        $this -> generateView('sensors.php', 'My Home :  Buy New Sensor');
-    }
+        // If the form was submitted
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
-    /**
-     * @param $id
-     * @return Home
-     */
+            // If a sensorType was selected and if it's an integer
+            if(!empty($_POST['sensorType']) && is_int($_POST['sensorType'])
+                && !empty($_POST['sensorId']) && is_int($_POST['sensorId'])
+                && !empty($_POST['room']) && is_int($_POST['room'])
+            ){
+                // We search for this sensor type in the database
+                /** @var SensorType $sensorType */
+                $sensorType = $sensorTypeRepository -> findById($_POST['sensorType']);
 
-    public function getHomeFromId($id, $onlyAdmin = false){
+                // We now search for the sensor
+                /** @var SensorRepository $sensorRepository */
+                $sensorRepository = $GLOBALS['repositories']['sensor'];
 
+                /** @var Sensor $sensor */
+                $sensor =  $sensorRepository -> findById($_POST['sensorId']);
 
-        /** @var Home $home */
-        $home = null;
+                // And we finally search for the room
 
-        /** @var Home $hm */
-        foreach ($this -> user -> getHomes() as $hm)
-        {
-            if($hm -> getId() === $id
-                && $hm -> isBuilding() === $onlyAdmin)
-            {
-                $home = $hm;
-                break;
+                $room = $this -> findRoomFromId($home, $_POST['room']);
+
+                if($sensorType && $room ){
+
+                    if($sensor && $sensor -> getSensorType() -> getRef() === $sensorType -> getRef()
+                    && $sensor -> getRoom() == null)
+                    {
+                        $room -> addSensor($sensor);
+                        $this -> args['message'] = 'Le capteur a été ajouté à vos capteurs avec succès';
+                    }
+                    else {
+                        $this -> args['message'] = 'Le code du capteur entré n\'est pas valide, veuillez réessayer.';
+                    }
+                }
+                // If we don't find it we'll throw an error message
+                else{
+                    $this -> args['message'] = 'Veuillez remplir correctement le formulaire';
+                }
+
+            }else{
+                $this -> args['message'] = 'Veuillez remplir correctement le formulaire';
             }
         }
 
-        if($home)
-        {
-            return $home;
-        }
 
-        $this -> generateView('404.php', '404');
-        exit();
+        $sensorsTypes =  $sensorTypeRepository -> getAll();
 
+        $this -> args['sensors_types'] = $sensorsTypes ;
+        $this -> generateView('sensors.php', 'My Home :  Buy New Sensors');
     }
+
+
+
+    public function deleteSensor($id)
+    {
+        $home = $this -> getHomeFromId($id);
+        if(!empty($_POST['sensorId'])) {
+            $sensor = $this->getSensorFromId($_POST['sensorId'], $home);
+            $sensor->delete($this->db);
+        }else{
+            $this -> generateView('static/404.php', '404');
+            exit();
+        }
+    }
+
+
 
 
 }

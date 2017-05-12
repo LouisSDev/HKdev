@@ -9,7 +9,7 @@ class UserController extends Controller
         if($redirect) {
             $this->generateView('dashboard.php', 'Dashboard', 'user/dashboard');
         }else{
-            $this->generateView('dashboard.php', 'Dashboard');
+            $this->generateView('user/dashboard.php', 'Dashboard');
         }
     }
 
@@ -26,11 +26,11 @@ class UserController extends Controller
                    $this->args['error'] = $this -> user -> getErrorMessage();
                }
 
-               $this->generateView('editProfile.php', 'Edit My Profile');
+               $this->generateView('user/editProfile.php', 'Edit My Profile');
            }
         else{
             $this->args['error'] = "Vous devez obligatoirement remplir les champs";
-            $this->generateView('editProfile.php', 'Edit My Profile');
+            $this->generateView('user/editProfile.php', 'Edit My Profile');
         }
     }
 
@@ -45,13 +45,13 @@ class UserController extends Controller
             if ($currentEmail !== $this -> user -> getEmail()){
 
                 $this->args['error'] = "L'adresse email rentrée est erronée";
-                $this->generateView('editProfile.php', 'Edit My Profile');
+                $this->generateView('user/editProfile.php', 'Edit My Profile');
             }
             elseif($newEmail !== $confirmNewEmail){
 
                     $this->args['error'] = "Les deux adresses email doivent etre identiques";
-                  //  $this->generateView('editProfile.php');
-                $this->generateView('editProfile.php', 'Edit My Profile');
+                  //  $this->generateView('user/editProfile.php');
+                $this->generateView('user/editProfile.php', 'Edit My Profile');
             }
             else{
                 $this -> user -> setMail($newEmail);
@@ -59,18 +59,18 @@ class UserController extends Controller
                     if($this -> user-> save($this->db)) {
 
                         $this->args['success_message'] = 'Félicitation votre email a bien été modifié';
-                        $this->generateView('editProfile.php', 'Edit My Profile');
+                        $this->generateView('user/editProfile.php', 'Edit My Profile');
                     }else {
 
                         $this->args['error'] = $this -> user -> getErrorMessage();
-                        $this->generateView('editProfile.php', 'Edit My Profile');
+                        $this->generateView('user/editProfile.php', 'Edit My Profile');
                     }
             }
 
         }
         else{
             $this->args['error'] = "Veuillez remplir les champs";
-            $this->generateView('editProfile.php', 'Edit My Profile');
+            $this->generateView('user/editProfile.php', 'Edit My Profile');
         }
 
     }
