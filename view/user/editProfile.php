@@ -40,7 +40,7 @@
         <i class="fa fa-chevron-down" id="email" aria-hidden="true"></i>
         <div class="mail">
             <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editEmail'?>">
-                <input class="box" type="email" placeholder=" Mot de passe" size="30" name="curentEmail"><br/>
+                <input class="box" type="password" placeholder=" Mot de passe" size="30" name="password"><br/>
                 <input class="box" type="email" placeholder="Adresse mail actuelle" size="30" name="newEmail"><br/>
                 <input class="box" type="email" placeholder="Nouvelle adresse email" size="30" name="confirmNewEmail"><br/>
                 <input class="btn" type="submit" value="Valider">

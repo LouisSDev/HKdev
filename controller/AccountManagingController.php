@@ -69,16 +69,10 @@ abstract class AccountManagingController extends Controller
     }
 
     protected function findRoomFromIdInUsersRooms($roomId){
-        $rooms = array();
-
-        /** @var Home $hm */
-        foreach($this -> user -> getHomes() as $hm){
-            $rooms = DatabaseEntity::mergeArraysWithoutDuplicata($rooms, $hm -> getRooms());
-        }
 
         $room = null;
         /** @var Room $rm */
-        foreach($rooms as $rm ){
+        foreach($this -> user -> getAllRooms() as $rm ){
             if($rm -> getId() === $roomId){
                 $room = $rm;
                 break;

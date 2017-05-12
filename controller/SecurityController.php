@@ -27,24 +27,24 @@ class SecurityController extends Controller
         // If the save method is thrown, we'll forward it to the controller
         if(!$user -> getValid() || $user -> isError()){
             $this -> args ['error'] = $user -> getErrorMessage();
-            $this -> generateView('static/homepage.php', 'Home',  'home');
+            $this -> generateView('static/homepage.php', 'Home');
         }
 
         if($GLOBALS['repositories']['user'] -> isMailAlreadyUsed($user -> getMail())){
             $this -> args ['error'] = 'Cet adresse e-mail est déjà utilisée pour un autre compte HK!';
-            $this -> generateView('static/homepage.php', 'Home', 'home');
+            $this -> generateView('static/homepage.php', 'Home');
         }
 
 
         if (!isset($_FILES['file'])|| $_FILES['file']['error'] != 0  || empty($_FILES['file']['tmp_name']) ) { //
             $this -> args ['error'] = 'Vous n\'avez pas selectionné de fichier.';
-            $this -> generateView('static/homepage.php', 'Home', 'home');
+            $this -> generateView('static/homepage.php', 'Home');
         }
 
         //If the files is not too big
         if ($_FILES['file']['size'] > self::MAX_FILE_SIZE) {
             $this -> args['error'] = 'Le fichier selectionné est trop lourd, il doit faire moins de 300ko';
-            $this -> generateView('static/homepage.php', 'Home', 'home');
+            $this -> generateView('static/homepage.php', 'Home');
         }
 
 
@@ -54,7 +54,7 @@ class SecurityController extends Controller
             foreach(self::AUTHORIZED_EXTENSIONS as $authExt){
                 $this -> args['error'] .= $authExt . ' ';
             }
-            $this -> generateView('static/homepage.php', 'Home', 'home');
+            $this -> generateView('static/homepage.php', 'Home');
         }
 
         $quoteFileRelativePath = '/uploads/quotes/' . uniqid() . '.' . $fileInformation['extension'];
@@ -62,13 +62,12 @@ class SecurityController extends Controller
 
         move_uploaded_file($_FILES['file']['tmp_name'], $quoteFilePath );
 
-
         $user -> setQuoteFilePath($quoteFilePath);
 
         $user -> save($this -> db);
 
         $this -> args['registration'] = true;
-        $this -> generateView('static/homepage.php', 'Home', 'home');
+        $this -> generateView('static/homepage.php', 'Home');
 
     }
 
