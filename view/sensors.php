@@ -1,10 +1,10 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>ajoutCapteur</title>
+    <title>Ajout Capteur</title>
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/form.css">
 </head>
-<body>
+<div>
     <?php
         /** @var Home $home */
         $home = $GLOBALS['home'];
@@ -63,7 +63,47 @@
 
         <input class="btn" type="submit" value="Envoyer" />
         <p class="text">Nous vous contacterons dans la semaine qui suit cet envoie</p>
-        </form></div>
+        </form>
+    </div>
+
+    <div>
+        <?php $path =   explode( '/', $_SERVER['REQUEST_URI']);
+        $endpointName = $path[sizeof($path) - 1];
+        $url = str_replace($endpointName, 'deleteSensor',$_SERVER['REQUEST_URI']);
+        ?>
+        <p class="text">Supprimer des capteurs</p>
+        <label>Sélectionnez votre capteur :</label><br>
+        <form>
+        <select name="sensorType">
+            <?php
+            foreach (SensorType::TYPE_ARRAY as $type){
+
+                echo '<optgroup label="'. $type . '">';
+
+                /** @var  $sensor Sensor*/
+                foreach ($home->getAllSensors() as $sensor) {
+
+                    if ($sensor->getSensorType()->getType() === $type) {
+                        echo '<option label="" value="'
+                            . $sensor -> getId() . '">'
+                            . $type . ' : ' . $sensor ->getRoom()//piece maison type pour un
+                            . ' - ' . $sensor -> getRoom() -> getHome()
+                            . ' : ' . '</option>';
+                    }
+                }
+                echo '</optgroup>';
+            }
+
+
+
+            ?>
+        </select><br>
+        <input class="btn" type="submit" value="Supprimer"/>
+        </form>
+
+    </div>
+</div>
+
 
 
 </body>
