@@ -72,16 +72,19 @@ switch($globalPath){
                                     $homeController -> deleteSensor($path[4]);
                                     break;
                                 default :
-                                    require_once __DIR__ . '/view/static/404.php';
+                                    $staticController = new StaticController();
+                                    $staticController -> notFound();
                             }
                         }
                         else{
-                            require_once __DIR__ . '/view/static/404.php';
+                            $staticController = new StaticController();
+                            $staticController -> notFound();
                         }
                     }
                     else
                     {
-                        require_once __DIR__ . '/view/static/404.php';
+                        $staticController = new StaticController();
+                        $staticController -> notFound();
                     }
 
                     break;
@@ -102,12 +105,14 @@ switch($globalPath){
                     $userController->disconnect();
                     break;
                 default :
-                    require_once __DIR__ . '/view/static/404.php';
+                    $staticController = new StaticController();
+                    $staticController -> notFound();
             }
         }
 
         else{
-            require_once __DIR__ . '/view/user/myHome.php';
+            $userController = new UserController($db);
+            $userController -> getDashboard(false);
         }
 
         break;
@@ -163,10 +168,12 @@ switch($globalPath){
         break;
 
     case '404' :
-        require_once __DIR__ . '/view/static/404.php';
+        $staticController = new StaticController();
+        $staticController -> notFound();
         break;
     default :
-        require_once __DIR__ . '/view/static/404.php';
+        $staticController = new StaticController();
+        $staticController -> notFound();
 }
 
 function homepage($db){

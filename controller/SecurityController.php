@@ -25,7 +25,8 @@ class SecurityController extends Controller
 
         // If the save method is thrown, we'll forward it to the controller
         if(!$user -> getValid() || $user -> isError()){
-            $this -> args ['error'] = $user -> getErrorMessage();
+            $this -> args ['error'] = 'Les informations entrées ne sont pas valides';
+            $this -> args['errorDetails'] = $user -> getErrorMessage();
             $this -> generateView('static/homepage.php', 'Home');
         }
 

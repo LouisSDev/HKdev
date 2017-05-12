@@ -63,7 +63,12 @@
                 ?>
                 <p id="registration-error">
                     <?php
-                    echo $GLOBALS['view']['error'];
+                    echo $GLOBALS['view']['error'] . '<br>';
+                    if(isset($GLOBALS['view']['errorDetails'])){
+                        foreach ($GLOBALS['view']['errorDetails'] as $error){
+                            echo $error . '<br>';
+                        }
+                    }
                     ?>
                 </p>
                 <?php

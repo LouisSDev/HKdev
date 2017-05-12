@@ -1,11 +1,6 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: LOUISSTEIMBERG
- * Date: 09/05/2017
- * Time: 09:14
- */
+
 class HomeController extends AccountManagingController
 {
 
@@ -21,13 +16,13 @@ class HomeController extends AccountManagingController
     public function displayGeneral($id)
     {
         $this -> args['home'] = $this -> getHomeFromId($id);
-        $this -> generateView('homeGeneral.php', 'My Home :  General View');
+        $this -> generateView('home/general.php', 'My Home :  General View');
     }
 
     public function displayAdministration($id)
     {
         $this -> args['building'] = $this -> getHomeFromId($id, true);
-        $this -> generateView('administrateBuilding.php', 'Administrate My Building');
+        $this -> generateView('home/administrateBuilding.php', 'Administrate My Building');
     }
 
 
