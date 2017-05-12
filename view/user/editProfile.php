@@ -22,17 +22,32 @@
 <br>
 <br>
 <br>
-<br>
-<br>
-<br>
-<br>
 
+
+<?php if(isset ($GLOBALS['view']['success_message'])){ ?>
+    <div class="success-message">
+        <?php echo $GLOBALS['view']['success_message'] ?>
+    </div>
+    <?php
+}
+elseif( isset($GLOBALS['view']['error'])) { ?>
+    <div class="error-message">
+        <?php echo $GLOBALS['view']['error'] ?>
+    </div>
+    <?php
+}
+?>
+
+<br>
+<br>
+<br>
+<br>
 <h2 id="infoTitle">Editer mes infos personnelles </h2>
         <i class="fa fa-chevron-down" id="infoPers" aria-hidden="true"></i>
         <div class="infoPers">
-            <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editInfo'?>">
-                <input class="box" type="password" placeholder="Nom" size="30" name="nom"><br/>
-                <input class="box" type="password" placeholder="Prénom" size="30" name="prénom"><br/>
+            <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/edit'?>">
+                <input class="box" type="text" placeholder="Nom" size="30" name="firstName"><br/>
+                <input class="box" type="text" placeholder="Prénom" size="30" name="lastName"><br/>
                 <input class="btn" type="submit" value="Valider">
             </form>
         </div>
@@ -42,7 +57,7 @@
         <h2 id="mailTitle">Editer mon email</h2>
         <i class="fa fa-chevron-down" id="email" aria-hidden="true"></i>
         <div class="mail">
-            <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editEmail'?>">
+            <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/edit'?>">
                 <input class="box" type="password" placeholder=" Mot de passe" size="30" name="password"><br/>
                 <input class="box" type="email" placeholder="Adresse mail actuelle" size="30" name="newEmail"><br/>
                 <input class="box" type="email" placeholder="Nouvelle adresse email" size="30" name="confirmNewEmail"><br/>
@@ -55,7 +70,7 @@
         <h2 id="mdpTitle">Editer mon mot de passe </h2>
         <i class="fa fa-chevron-down" id="mdp" aria-hidden="true"></i>
         <div class="mdp">
-            <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/editPass'?>">
+            <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/edit'?>">
                 <input class="box" type="password" placeholder="Ancien mot de passe" size="30" name="oldPassword"><br/>
                 <input class="box" type="password" placeholder="Nouveau mot de passe" size="30" name="newPassword"><br/>
                 <input class="box" type="password" placeholder="Saisir à nouveau le mot de passe" size="30" name="confirmNewPassword"><br/>

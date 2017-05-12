@@ -13,7 +13,41 @@ class UserController extends Controller
         }
     }
 
-    public function modifyExistingPasswordAction()
+
+    public function profileEditionPage()
+    {
+        switch($_SERVER['REQUEST_METHOD']) {
+            case 'GET' :
+                $this->generateView('user/editProfile.php', 'Editer mon profil');
+                break;
+            case 'POST' :
+
+                if(!empty($_POST['firstName'])
+                    || !empty($_POST['lastName'])) {
+                    $this->editInfo();
+                }
+
+                elseif(!empty($_POST['password'])
+                    || !empty($_POST['newEmail'])
+                    || !empty($_POST['confirmNewEmail'])) {
+                    $this -> editEmailAddress();
+                }
+
+                elseif(!empty($_POST['oldPassword'])
+                    || !empty($_POST['newPassword'])
+                    || !empty($_POST['confirmNewPassword'])){
+                    $this -> editPassword();
+                }
+
+                else {
+                    $this->generateView('user/editProfile.php', 'Editer mon profil');
+                }
+
+                break;
+        }
+    }
+
+    public function editPassword()
     {
         if (!empty($_POST['newPassword'])
             && !empty($_POST['confirmNewPassword'])
@@ -23,7 +57,7 @@ class UserController extends Controller
                if($this -> user -> save($this -> db)) {
                    $this->args['success_message'] = "Félicitations! Votre profil a bien été édité";
                }else{
-                   $this->args['error'] = $this -> user -> getErrorMessage();
+                   $this->args['error'] = $this -> user -> getErrorMessage()[0];
                }
 
                $_SESSION['password'] = $this -> user -> getPassword();
@@ -51,8 +85,8 @@ class UserController extends Controller
             }
             elseif($newEmail !== $confirmNewEmail){
 
-                    $this->args['error'] = "Les deux adresses email doivent etre identiques";
-                  //  $this->generateView('user/editProfile.php');
+                $this->args['error'] = "Les deux adresses email doivent etre identiques";
+
                 $this->generateView('user/editProfile.php', 'Edit My Profile');
             }
             else{
@@ -81,8 +115,21 @@ class UserController extends Controller
     }
 
     public function editInfo(){
+        if(!empty($_POST['firstName'])){
+            $this -> user -> setFirstName($_POST['firstName']);
+        }
 
+        if(!empty($_POST['lastName'])){
+            $this -> user -> setLastName($_POST['lastName']);
+        }
 
+        if($this -> user -> save($this -> db)){
+            $this->args['success_message'] = 'Félicitation vos informations ont bien été modifiés';
+            $this->generateView('user/editProfile.php', 'Edit My Profile');
+        }else{
+            $this->args['error'] = "Les modifications que vous essayez de réaliser ne sont pas valides.";
+            $this->generateView('user/editProfile.php', 'Edit My Profile');
+        }
     }
 
     public function disconnect()

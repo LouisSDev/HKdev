@@ -21,10 +21,6 @@ class StaticController extends Controller
         $this -> generateView('static/contactPage.php', 'Contactez Nous!' );
     }
 
-    public function profileEditionPage()
-    {
-        $this -> generateView('user/editProfile.php', 'Editer mon profil');
-    }
 
     public function homepage()
     {

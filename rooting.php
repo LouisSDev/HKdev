@@ -39,13 +39,9 @@ switch($globalPath){
     case 'user':
         if(isset($path[3])) {
             switch ($path[3]) {
-                case 'edit':
-                    $staticController = new StaticController();
-                    $staticController -> profileEditionPage();
-                    break;
-                case 'editInfo' :
+                case 'edit' :
                     $userController = new UserController($db);
-                    $userController->editInfo();
+                    $userController->profileEditionPage();
                     break;
                 case 'home' :
                     if(isset($path[4]))
@@ -94,14 +90,6 @@ switch($globalPath){
                 case 'dashboard' :
                     $userController = new UserController($db);
                     $userController -> getDashboard(false);
-                    break;
-                case 'editPass' :
-                    $userController = new UserController($db);
-                    $userController->modifyExistingPasswordAction();
-                    break;
-                case 'editEmail' :
-                    $userController = new UserController($db);
-                    $userController->editEmailAddress();
                     break;
                 case 'disconnect' :
                     $userController = new UserController($db);

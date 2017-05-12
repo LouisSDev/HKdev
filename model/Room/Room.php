@@ -124,7 +124,7 @@ class Room extends DatabaseEntity
     /**
      * @return array
      */
-    public function getEffectors(): array
+    public function getEffectors()
     {
         return $this->effectors;
     }

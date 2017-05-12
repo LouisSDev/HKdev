@@ -38,7 +38,7 @@ class ApiResponse
     /**
      * @return boolean
      */
-    public function isError(): bool
+    public function isError()
     {
         return $this->error;
     }
