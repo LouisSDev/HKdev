@@ -36,15 +36,15 @@ class UserController extends Controller
 
     public function editEmailAddress(){
 
-        if (!empty($_POST['currentEmail']) && !empty($_POST['newEmail']) && !empty($_POST['confirmNewEmail'])){
+        if (!empty($_POST['password']) && !empty($_POST['newEmail']) && !empty($_POST['confirmNewEmail'])){
 
-            $currentEmail = $_POST['currentEmail'];
-            $newEmail = $_POST['newEmailAddress'];
+            $password = $_POST['password'];
+            $newEmail = $_POST['newEmail'];
             $confirmNewEmail = $_POST['confirmNewEmail'];
 
-            if ($currentEmail !== $this -> user -> getEmail()){
+            if ($password !== $this -> user -> getPassword()){
 
-                $this->args['error'] = "L'adresse email rentrée est erronée";
+                $this->args['error'] = "Le mot de passe est erroné";
                 $this->generateView('user/editProfile.php', 'Edit My Profile');
             }
             elseif($newEmail !== $confirmNewEmail){
