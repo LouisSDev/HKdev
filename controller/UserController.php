@@ -26,7 +26,7 @@ class UserController extends Controller
                    $this->args['error'] = $this -> user -> getErrorMessage();
                }
 
-               $_SERVER['password'] = $this -> user -> getPassword();
+               $_SESSION['password'] = $this -> user -> getPassword();
 
                $this->generateView('user/editProfile.php', 'Edit My Profile');
            }
@@ -62,7 +62,7 @@ class UserController extends Controller
 
                         $this->args['success_message'] = 'Félicitation votre email a bien été modifié';
 
-                        $_SERVER['mail'] = $this -> user -> getMail();
+                        $_SESSION['mail'] = $this -> user -> getMail();
 
                         $this->generateView('user/editProfile.php', 'Edit My Profile');
                     }else {
