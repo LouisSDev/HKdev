@@ -100,7 +100,27 @@ class HomeController extends AccountManagingController
         }
     }
 
+    public function updateEffectorsInAHome()
+    {
+        $this -> enableApiMode();
 
+
+        if($_SERVER['REQUEST_METHOD'] === 'POST'
+            && !empty($_POST['homeId'])
+            && !empty($_POST['effectorType'])
+            && in_array($_POST['effectorType'], EffectorType::TYPE_ARRAY)
+            && (!empty($_POST['value']) ||  !empty($_POST['state']) || !empty($_POST['auto']))
+        )
+        {
+            $home= $this -> findHomeFromId($_POST['homeId']);
+
+            $effectors = array();
+
+            // For each effectors in the room
+            $this -> updateEffectors($home -> getAllEffectors());
+
+        }
+    }
 
 
 }

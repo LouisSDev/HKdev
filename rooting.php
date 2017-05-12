@@ -130,7 +130,8 @@ switch($globalPath){
                                 $roomController -> updateEffectorsInARoom();
                                 break;
                             case 'home' :
-
+                                $homeController = new HomeController($db);
+                                $homeController -> updateEffectorsInAHome();
                                 break;
                             default :
                                 header('HTTP/1.1 404 Not Found');

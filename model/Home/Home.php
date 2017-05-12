@@ -375,6 +375,20 @@ class Home extends DatabaseEntity
         return $sensors;
     }
 
+    public function getAllEffectors()
+    {
+        $effectors = array();
+        if($this -> building != $this) {
+            /** @var Room $room */
+            foreach ($this -> rooms as $room){
+                array_merge($effectors, $room -> getEffectors());
+            }
+        }else{
+            return null;
+        }
+        return $effectors;
+    }
+
 
     /*
      TODO delete this shit
