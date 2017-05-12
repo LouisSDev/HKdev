@@ -6,10 +6,9 @@
  * Date: 09/05/2017
  * Time: 09:14
  */
-class HomeController extends Controller
+class HomeController extends AccountManagingControllers
 {
 
-    protected $connectionRequired = true;
 
     public function displayRooms($id)
     {
@@ -92,61 +91,21 @@ class HomeController extends Controller
         $this -> generateView('sensors.php', 'My Home :  Buy New Sensors');
     }
 
-    /**
-     * @param $id
-     * @return Home
-     */
-
-    public function getHomeFromId($id, $onlyAdmin = false){
 
 
-        /** @var Home $home */
-        $home = null;
-
-        /** @var Home $hm */
-        foreach ($this -> user -> getHomes() as $hm)
-        {
-            if($hm -> getId() === $id
-                && $hm -> isBuilding() === $onlyAdmin)
-            {
-                $home = $hm;
-                break;
-            }
-        }
-
-        if($home)
-        {
-            return $home;
-        }
-
-        $this -> generateView('static/404.php', '404');
-        exit();
-
-    }
-
-    /**
-     * @param Home $home
-     * @param $room
-     * @return Room
-     */
-    private function findRoomFromId(Home $home, $roomId)
+    public function deleteSensor($id)
     {
-        $room = null;
-        /** @var Room $rm */
-        foreach($home -> getHomes() as $rm ){
-            if($rm -> getId() === $roomId){
-                $room = $rm;
-                break;
-            }
+        $home = $this -> getHomeFromId($id);
+        if(!empty($_POST['sensorId'])) {
+            $sensor = $this->getSensorFromId($_POST['sensorId'], $home);
+            $sensor->delete($this->db);
+        }else{
+            $this -> generateView('static/404.php', '404');
+            exit();
         }
-
-        if($room){
-            return $room;
-        }
-
-        $this -> generateView('static/404.php', '404');
-        exit();
     }
+
+
 
 
 }

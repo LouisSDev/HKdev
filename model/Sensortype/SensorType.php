@@ -25,7 +25,7 @@ class SensorType extends DatabaseEntity
     /**
      * @var float $price
      */
-    private $price;
+    private $price = 0;
 
     /**
      * @var $ref string
@@ -163,6 +163,8 @@ class SensorType extends DatabaseEntity
         }else{
             if( $this->name != null
                 && $this ->ref != null
+                && $this -> type != null
+                && $this -> price != 0
             ){
                 return true;
             }else{
