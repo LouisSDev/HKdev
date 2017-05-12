@@ -68,7 +68,7 @@ class SecurityController extends Controller
         $user -> save($this -> db);
 
         $this -> args['registration'] = true;
-        $this -> generateView('static/homepage.php', 'Home', 'home');
+        $this -> generateView('static/homepage.php', 'Home');
 
     }
 
