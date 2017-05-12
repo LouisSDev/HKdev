@@ -14,7 +14,6 @@ class SecurityController extends Controller
 
     public function signUp()
     {
-        global $_FILE;
         // We create the user from an array : POST vars array
         $user = new User();
         $user -> createFromResults($_POST);
@@ -36,19 +35,19 @@ class SecurityController extends Controller
         }
 
 
-        if (!isset($_FILES['file'])|| $_FILES['file']['error'] != 0  || empty($_FILES['file']['tmp_name']) ) { //
+        if (empty($_FILES['quote']) || $_FILES['quote']['error'] != 0  || empty($_FILES['quote']['tmp_name']) ) {
             $this -> args ['error'] = 'Vous n\'avez pas selectionné de fichier.';
             $this -> generateView('static/homepage.php', 'Home');
         }
 
         //If the files is not too big
-        if ($_FILES['file']['size'] > self::MAX_FILE_SIZE) {
+        if ($_FILES['quote']['size'] > self::MAX_FILE_SIZE) {
             $this -> args['error'] = 'Le fichier selectionné est trop lourd, il doit faire moins de 300ko';
             $this -> generateView('static/homepage.php', 'Home');
         }
 
 
-        $fileInformation = pathinfo($_FILES['file']['name']);
+        $fileInformation = pathinfo($_FILES['quote']['name']);
         if (!in_array($fileInformation['extension'], self::AUTHORIZED_EXTENSIONS)) {
             $this -> args ['error'] = 'Ce type de fichier n\'est pas accepté veuillez choisir un fichier dans un des formats suivants: ';
             foreach(self::AUTHORIZED_EXTENSIONS as $authExt){
@@ -60,7 +59,7 @@ class SecurityController extends Controller
         $quoteFileRelativePath = '/uploads/quotes/' . uniqid() . '.' . $fileInformation['extension'];
         $quoteFilePath = $GLOBALS['root_dir'] .$quoteFileRelativePath;
 
-        move_uploaded_file($_FILES['file']['tmp_name'], $quoteFilePath );
+        move_uploaded_file($_FILES['quote']['tmp_name'], $quoteFilePath );
 
         $user -> setQuoteFilePath($quoteFilePath);
 

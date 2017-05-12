@@ -87,7 +87,7 @@
                     <h1>Vous êtes intéressé ?</h1>
                     <h1>Demander un devis !</h1>
                     <div class="form">
-                        <form method="post">
+                        <form method="post" enctype="multipart/form-data">
                             <div class="rows">
                                 <div class="col1">
                                     <input type="text" name="firstName" placeholder="Nom ">
@@ -103,7 +103,7 @@
                                     <input type="password" name="passwordRepeat" placeholder="Répétez votre mot de passe"/>
                                 </div>
                             </div>
-                            <input type="file" name="file" />
+                            <input type="file" name="quote" />
                             <input class="button" type="submit" value="Envoyer" />
                         </form>
                     </div>
