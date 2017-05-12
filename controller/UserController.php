@@ -89,7 +89,7 @@ class UserController extends Controller
     {
         $_SESSION['mail'] = null;
         $_SESSION['password'] = null;
-        $this->generateView('home', 'Home', 'home');
+        $this->generateView('home', 'Home', '');
     }
 
 }
