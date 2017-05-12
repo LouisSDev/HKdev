@@ -441,62 +441,73 @@ class User extends DatabaseEntity
         return $sensors;
     }
 
-/*
- *
- * TODO delete this shit
-    public function save($db)
+    public function getAllRooms()
     {
-        if ($this->getValid()) {
-            if ($this->id == -1) {
-                $newUser = $db->prepare('INSERT INTO 
-                    user(firstName, lastName, mail, cellPhoneNumber, address, country, admin, password, city) 
-					VALUES(:firstName, :lastName, :mail, :cellPhoneNumber, :address, :country, :admin, :password, :city)');
+        $rooms = array();
 
-                $newUser->bindParam(':firstName', $this->firstName, PDO::PARAM_STR, strlen($this->firstName));
-                $newUser->bindParam(':lastName', $this->lastName, PDO::PARAM_STR, strlen($this->lastName));
-                $newUser->bindParam(':mail', $this->mail, PDO::PARAM_STR, strlen($this->mail));
-                $newUser->bindParam(':cellPhoneNumber', $this->cellPhoneNumber, PDO::PARAM_STR, strlen($this->cellPhoneNumber));
-                $newUser->bindParam(':address', $this->address, PDO::PARAM_STR, strlen($this->address));
-                $newUser->bindParam(':country', $this->country, PDO::PARAM_STR, strlen($this->country));
-                $newUser->bindParam(':password', $this->password, PDO::PARAM_STR, strlen($this->password));
-                $newUser->bindParam(':city', $this->city, PDO::PARAM_STR, strlen($this->city));
-                $newUser->bindParam(':admin', $this->admin, PDO::PARAM_INT);
-                $newUser->execute();
-                $newUser->closeCursor();
-                $this->id = $db->lastInsertId();
-            }else{
-                $updatedUser = $db->prepare('UPDATE user
-					SET firstName = :firstName, lastName = :lastName, mail = :mail, cellPhoneNumber = :cellPhoneNumber, 
-					address = :address, country = :country, admin = :admin, password = :password
-					WHERE id = :id');
-
-                $updatedUser->bindParam(':firstName', $this->firstName, PDO::PARAM_STR, strlen($this->firstName));
-                $updatedUser->bindParam(':lastName', $this->lastName, PDO::PARAM_STR, strlen($this->lastName));
-                $updatedUser->bindParam(':mail', $this->mail, PDO::PARAM_STR, strlen($this->mail));
-                $updatedUser->bindParam(':cellPhoneNumber', $this->cellPhoneNumber, PDO::PARAM_STR, strlen($this->cellPhoneNumber));
-                $updatedUser->bindParam(':address', $this->address, PDO::PARAM_STR, strlen($this->address));
-                $updatedUser->bindParam(':country', $this->country, PDO::PARAM_STR, strlen($this->country));
-                $updatedUser->bindParam(':admin', $this->admin, PDO::PARAM_INT);
-                $updatedUser->bindParam(':password', $this->password, PDO::PARAM_STR, strlen($this->password));
-                $updatedUser->bindParam(':id', $this->id, PDO::PARAM_INT);
-                $updatedUser->execute();
-                $updatedUser->closeCursor();
-
-            }
-
-            foreach($this->buildings as $building){
-                $building->save();
-            }
-            foreach($this->homes as $home){
-                $home->save();
-            }
-            return $this;
-
-        }else{
-            return null;
+        /** @var Home $hm */
+        foreach($this ->  homes as $hm){
+            $rooms = DatabaseEntity::mergeArraysWithoutDuplicata($rooms, $hm -> getRooms());
         }
+        return $rooms;
     }
-*/
+
+    /*
+     *
+     * TODO delete this shit
+        public function save($db)
+        {
+            if ($this->getValid()) {
+                if ($this->id == -1) {
+                    $newUser = $db->prepare('INSERT INTO
+                        user(firstName, lastName, mail, cellPhoneNumber, address, country, admin, password, city)
+                        VALUES(:firstName, :lastName, :mail, :cellPhoneNumber, :address, :country, :admin, :password, :city)');
+
+                    $newUser->bindParam(':firstName', $this->firstName, PDO::PARAM_STR, strlen($this->firstName));
+                    $newUser->bindParam(':lastName', $this->lastName, PDO::PARAM_STR, strlen($this->lastName));
+                    $newUser->bindParam(':mail', $this->mail, PDO::PARAM_STR, strlen($this->mail));
+                    $newUser->bindParam(':cellPhoneNumber', $this->cellPhoneNumber, PDO::PARAM_STR, strlen($this->cellPhoneNumber));
+                    $newUser->bindParam(':address', $this->address, PDO::PARAM_STR, strlen($this->address));
+                    $newUser->bindParam(':country', $this->country, PDO::PARAM_STR, strlen($this->country));
+                    $newUser->bindParam(':password', $this->password, PDO::PARAM_STR, strlen($this->password));
+                    $newUser->bindParam(':city', $this->city, PDO::PARAM_STR, strlen($this->city));
+                    $newUser->bindParam(':admin', $this->admin, PDO::PARAM_INT);
+                    $newUser->execute();
+                    $newUser->closeCursor();
+                    $this->id = $db->lastInsertId();
+                }else{
+                    $updatedUser = $db->prepare('UPDATE user
+                        SET firstName = :firstName, lastName = :lastName, mail = :mail, cellPhoneNumber = :cellPhoneNumber,
+                        address = :address, country = :country, admin = :admin, password = :password
+                        WHERE id = :id');
+
+                    $updatedUser->bindParam(':firstName', $this->firstName, PDO::PARAM_STR, strlen($this->firstName));
+                    $updatedUser->bindParam(':lastName', $this->lastName, PDO::PARAM_STR, strlen($this->lastName));
+                    $updatedUser->bindParam(':mail', $this->mail, PDO::PARAM_STR, strlen($this->mail));
+                    $updatedUser->bindParam(':cellPhoneNumber', $this->cellPhoneNumber, PDO::PARAM_STR, strlen($this->cellPhoneNumber));
+                    $updatedUser->bindParam(':address', $this->address, PDO::PARAM_STR, strlen($this->address));
+                    $updatedUser->bindParam(':country', $this->country, PDO::PARAM_STR, strlen($this->country));
+                    $updatedUser->bindParam(':admin', $this->admin, PDO::PARAM_INT);
+                    $updatedUser->bindParam(':password', $this->password, PDO::PARAM_STR, strlen($this->password));
+                    $updatedUser->bindParam(':id', $this->id, PDO::PARAM_INT);
+                    $updatedUser->execute();
+                    $updatedUser->closeCursor();
+
+                }
+
+                foreach($this->buildings as $building){
+                    $building->save();
+                }
+                foreach($this->homes as $home){
+                    $home->save();
+                }
+                return $this;
+
+            }else{
+                return null;
+            }
+        }
+    */
 
     /**
      * @return User

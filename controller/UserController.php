@@ -26,6 +26,8 @@ class UserController extends Controller
                    $this->args['error'] = $this -> user -> getErrorMessage();
                }
 
+               $_SERVER['password'] = $this -> user -> getPassword();
+
                $this->generateView('user/editProfile.php', 'Edit My Profile');
            }
         else{
@@ -36,15 +38,15 @@ class UserController extends Controller
 
     public function editEmailAddress(){
 
-        if (!empty($_POST['currentEmail']) && !empty($_POST['newEmail']) && !empty($_POST['confirmNewEmail'])){
+        if (!empty($_POST['password']) && !empty($_POST['newEmail']) && !empty($_POST['confirmNewEmail'])){
 
-            $currentEmail = $_POST['currentEmail'];
-            $newEmail = $_POST['newEmailAddress'];
+            $password = $_POST['password'];
+            $newEmail = $_POST['newEmail'];
             $confirmNewEmail = $_POST['confirmNewEmail'];
 
-            if ($currentEmail !== $this -> user -> getEmail()){
+            if (sha1($password . $GLOBALS['salt']) !== $this -> user -> getPassword()){
 
-                $this->args['error'] = "L'adresse email rentrée est erronée";
+                $this->args['error'] = "Le mot de passe est erroné";
                 $this->generateView('user/editProfile.php', 'Edit My Profile');
             }
             elseif($newEmail !== $confirmNewEmail){
@@ -59,6 +61,9 @@ class UserController extends Controller
                     if($this -> user-> save($this->db)) {
 
                         $this->args['success_message'] = 'Félicitation votre email a bien été modifié';
+
+                        $_SERVER['mail'] = $this -> user -> getMail();
+
                         $this->generateView('user/editProfile.php', 'Edit My Profile');
                     }else {
 
