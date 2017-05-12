@@ -14,7 +14,7 @@
         else{
      ?>
     <nav class="menu">
-        <a href="<?php echo $GLOBALS['server_root']?>">Accueil</a>
+        <a href="<?php echo $GLOBALS['server_root']?>/">Accueil</a>
         <a href="<?php echo $GLOBALS['server_root'] . '/contact'?>">Contact</a>
         <a id="show" href="#">Connexion</a>
     </nav>
