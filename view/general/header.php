@@ -1,6 +1,6 @@
 <header class="header">
     <?php
-        if(isset($GLOBALS['view']['connected'])){
+        if(isset($GLOBALS['view']['connected']) && $GLOBALS['view']['connected']){
            ?>
             <nav class="menu">
                 <a href="<?php echo $GLOBALS['server_root'] . '/user/home'// TODO : not the right path, please check the rooting.php or ask to the AWESOME Louis (also known as "THE VERY BEST", "King of the universe", "the Motherfucker") for more information. Also add other described  pages in this header ?>">Ma maison</a>

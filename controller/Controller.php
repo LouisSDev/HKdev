@@ -23,7 +23,7 @@ abstract class Controller
     /**
      * Controller constructor.
      */
-    public function __construct(PDO $db)
+    public function __construct(PDO $db = null)
     {
         $this -> db = $db;
 
@@ -71,7 +71,6 @@ abstract class Controller
 
         header('Location: ' . $GLOBALS['server_root'] . '/' . $pathName);
         exit();
-
     }
 
 
