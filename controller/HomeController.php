@@ -6,7 +6,7 @@
  * Date: 09/05/2017
  * Time: 09:14
  */
-class HomeController extends AccountManagingControllers
+class HomeController extends AccountManagingController
 {
 
 

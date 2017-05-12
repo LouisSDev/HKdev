@@ -6,7 +6,7 @@
  * Date: 12/05/2017
  * Time: 10:37
  */
-class RoomController extends AccountManagingControllers
+class RoomController extends AccountManagingController
 {
 
     public function updateSensor()

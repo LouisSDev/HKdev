@@ -7,7 +7,7 @@
  * Time: 09:52
  */
 
-abstract class AccountManagingControllers extends Controller
+abstract class AccountManagingController extends Controller
 {
 
     protected $connectionRequired = true;
