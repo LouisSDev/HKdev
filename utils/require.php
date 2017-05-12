@@ -1,73 +1,73 @@
 <?php
 
 
-require_once "lib/requireLibs.php";
-require_once "utils/utils.php";
-require_once "utils/devLogs.php";
-require_once "utils/DatabaseConnection.php";
-require_once "utils/JsonUtils.php";
-require_once "utils/UserCredentials.php";
+require_once $GLOBALS['root_dir'] . '/lib/requireLibs.php';
+require_once $GLOBALS['root_dir'] . '/utils/utils.php';
+require_once $GLOBALS['root_dir'] . '/utils/devLogs.php';
+require_once $GLOBALS['root_dir'] . '/utils/DatabaseConnection.php';
+require_once $GLOBALS['root_dir'] . '/utils/JsonUtils.php';
+require_once $GLOBALS['root_dir'] . '/utils/UserCredentials.php';
 
 
 // Models
-require_once "model/DatabaseEntity.php";
-require_once "model/Repository.php";
+require_once $GLOBALS['root_dir'] . '/model/DatabaseEntity.php';
+require_once $GLOBALS['root_dir'] . '/model/Repository.php';
 
     // User
-    require_once "model/User/User.php";
-    require_once "model/User/UserRepository.php";
+    require_once $GLOBALS['root_dir'] . '/model/User/User.php';
+    require_once $GLOBALS['root_dir'] . '/model/User/UserRepository.php';
 
     // Home
-    require_once  "model/Home/Home.php";
-    require_once "model/Home/HomeRepository.php";
+    require_once $GLOBALS['root_dir'] . '/model/Home/Home.php';
+    require_once $GLOBALS['root_dir'] . '/model/Home/HomeRepository.php';
 
     // Room
-    require_once  "model/Room/Room.php";
-    require_once "model/Room/RoomRepository.php";
+    require_once $GLOBALS['root_dir'] . '/model/Room/Room.php';
+    require_once $GLOBALS['root_dir'] . '/model/Room/RoomRepository.php';
 
     // SensorType
-    require_once  "model/Sensortype/SensorType.php";
-    require_once "model/Sensortype/SensorTypeRepository.php";
+    require_once $GLOBALS['root_dir'] . '/model/Sensortype/SensorType.php';
+    require_once $GLOBALS['root_dir'] . '/model/Sensortype/SensorTypeRepository.php';
 
     // Effector
-    require_once  "model/Effector/Effector.php";
-    require_once "model/Effector/EffectorRepository.php";
+    require_once $GLOBALS['root_dir'] . '/model/Effector/Effector.php';
+    require_once $GLOBALS['root_dir'] . '/model/Effector/EffectorRepository.php';
 
     // EffectorType
-    require_once  "model/Effectortype/EffectorType.php";
-    require_once "model/Effectortype/EffectorTypeRepository.php";
+    require_once $GLOBALS['root_dir'] . '/model/Effectortype/EffectorType.php';
+    require_once $GLOBALS['root_dir'] . '/model/Effectortype/EffectorTypeRepository.php';
 
     // Sensor
-    require_once  "model/Sensor/Sensor.php";
-    require_once "model/Sensor/SensorRepository.php";
+    require_once $GLOBALS['root_dir'] . '/model/Sensor/Sensor.php';
+    require_once $GLOBALS['root_dir'] . '/model/Sensor/SensorRepository.php';
 
     // SensorValue
-    require_once  "model/Sensorvalue/SensorValue.php";
-    require_once "model/Sensorvalue/SensorValueRepository.php";
+    require_once $GLOBALS['root_dir'] . '/model/Sensorvalue/SensorValue.php';
+    require_once $GLOBALS['root_dir'] . '/model/Sensorvalue/SensorValueRepository.php';
 
 
 
 // Controllers
-require_once "controller/Controller.php";
-require_once "controller/AccountManagingController.php";
+require_once $GLOBALS['root_dir'] . '/controller/Controller.php';
+require_once $GLOBALS['root_dir'] . '/controller/AccountManagingController.php';
 
     // User
-    require_once "controller/UserController.php";
+    require_once $GLOBALS['root_dir'] . '/controller/UserController.php';
 
     // Security
-    require_once "controller/SecurityController.php";
+    require_once $GLOBALS['root_dir'] . '/controller/SecurityController.php';
 
     // Home
-    require_once "controller/HomeController.php";
+    require_once $GLOBALS['root_dir'] . '/controller/HomeController.php';
 
     // Room
-    require_once "controller/RoomController.php";
+    require_once $GLOBALS['root_dir'] . '/controller/RoomController.php';
 
 
 
 
 // Error Logging Facilities
-require_once "LoggerException.php";
-class logException extends LoggerException {}
+require_once __DIR__ . '/LoggerException.php';
+class LogException extends LoggerException {}
 
 

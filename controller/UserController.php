@@ -85,4 +85,11 @@ class UserController extends Controller
 
     }
 
+    public function disconnect()
+    {
+        unset($_SERVER['mail']);
+        unset($_SERVER['password']);
+        $this->generateView('home', 'Home', 'home');
+    }
+
 }

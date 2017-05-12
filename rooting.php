@@ -1,12 +1,14 @@
 <?php
+
 session_start();
+
+$GLOBALS['root_dir'] = __DIR__;
 include_once __DIR__ . '/utils/require.php';
 
 
 $path =   explode( '/', $_SERVER['REQUEST_URI']);
 $globalPath = $path[2];
 
-$GLOBALS['root_dir'] = __DIR__;
 
 $GLOBALS['credentials'] = new UserCredentials();
 
@@ -91,9 +93,13 @@ switch($globalPath){
                     $userController = new UserController($db);
                     $userController->modifyExistingPasswordAction();
                     break;
-                case 'editEmail':
+                case 'editEmail' :
                     $userController = new UserController($db);
                     $userController->editEmailAddress();
+                    break;
+                case 'disconnect' :
+                    $userController = new UserController($db);
+                    $userController->disconnect();
                     break;
                 default :
                     require_once __DIR__ . '/view/static/404.php';
