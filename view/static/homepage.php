@@ -63,7 +63,7 @@
             </div>
         </div>
         <?php
-        if(!empty($GLOBALS['view']['registration'])){
+        if(isset($GLOBALS['view']['registration'])){
             ?>
             <p id="successful-registration">
                 Votre devis a bien été déposé, vous serez bientôt contacté par notre équipe!
@@ -72,7 +72,7 @@
         }
         else{
 
-            if(!empty($GLOBALS['view']['error'])){
+            if(isset($GLOBALS['view']['error'])){
                 ?>
                 <p id="registration-error">
                     <?php
@@ -90,17 +90,17 @@
                         <form method="post">
                             <div class="rows">
                                 <div class="col1">
-                                    <input type="text" name="firstName" placeholder="Nom ">
-                                    <input type="text" name="lastName" placeholder="Prénom">
-                                    <input type="text" name="country" placeholder="Pays"/>
-                                    <input type="text" name="city" placeholder="Ville"/>
-                                    <input type="text" name="address" placeholder="Adresse"/>
+                                    <input type="text" name="firstName" placeholder="Nom" required/>
+                                    <input type="text" name="lastName" placeholder="Prénom" required/>
+                                    <input type="text" name="country" placeholder="Pays" required/>
+                                    <input type="text" name="city" placeholder="Ville" required/>
+                                    <input type="text" name="address" placeholder="Adresse" required/>
                                 </div>
                                 <div class="col2">
-                                    <input type="text" name="mail" placeholder="Adresse mail"/>
-                                    <input type="text" name="cellPhoneNumber" placeholder="Numéro de téléphone">
-                                    <input type="password" name="password" placeholder="Mot de passe"/>
-                                    <input type="password" name="passwordRepeat" placeholder="Répétez votre mot de passe"/>
+                                    <input type="email" name="mail" placeholder="Adresse mail" required/>
+                                    <input type="text" name="cellPhoneNumber" placeholder="Numéro de téléphone" required/>
+                                    <input type="password" name="password" placeholder="Mot de passe" required/>
+                                    <input type="password" name="passwordRepeat" placeholder="Répétez votre mot de passe" required/>
                                 </div>
                             </div>
                             <input type="file" name="file" />
