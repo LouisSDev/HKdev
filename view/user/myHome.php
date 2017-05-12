@@ -12,10 +12,13 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/86ed160d29.js"></script>
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/myHome.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/modal.css">
+    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/pop-up.js"></script>
 </head>
 
 <body>
 <?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>
+<?php include_once ($GLOBALS['root_dir'] . "/view/general/modal.php")?>
     <div class="home">
         <i class="fa fa-home iconHome" aria-hidden="true" style="cursor:pointer;"></i>
     </div>

@@ -5,7 +5,7 @@
     text-align: center;
 }
 
-.form{
+.contactForm{
     position: absolute;
     top: 550px;
     left: calc(50% - 250px);
@@ -18,7 +18,7 @@
     top: 110px;
 }
 
-.form textarea{
+.contactForm textarea{
     max-width: 500px;
     position: relative;
 }
