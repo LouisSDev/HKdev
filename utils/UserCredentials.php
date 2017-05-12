@@ -13,9 +13,7 @@ class UserCredentials
         if(!empty($_POST['userMail']) &&  !empty($_POST['userPassword'])){
             $this -> mail = $_POST['userMail'];
             $this -> password = $_POST['userPassword'];
-
         }
-
         else if (isset($_SESSION['mail'], $_SESSION['password'])) {
             $this->mail = $_SESSION['mail'];
             $this->password = $_SESSION['password'];
