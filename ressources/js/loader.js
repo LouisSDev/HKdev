@@ -1,5 +1,5 @@
 $(function() {
-    $(".loader").fadeOut(3000, function() {
+    $(".loader").fadeOut(1000, function() {
         $(".content").fadeIn(500);
     });
 });
