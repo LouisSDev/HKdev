@@ -2,12 +2,11 @@
 
 
 require_once $GLOBALS['root_dir'] . '/lib/requireLibs.php';
-require_once $GLOBALS['root_dir'] . '/utils/utils.php';
-require_once $GLOBALS['root_dir'] . '/utils/devLogs.php';
+require_once $GLOBALS['root_dir'] . '/utils/Utils.php';
 require_once $GLOBALS['root_dir'] . '/utils/DatabaseConnection.php';
 require_once $GLOBALS['root_dir'] . '/utils/JsonUtils.php';
 require_once $GLOBALS['root_dir'] . '/utils/UserCredentials.php';
-
+require_once $GLOBALS['root_dir'] . '/utils/ApiHandler.php';
 
 // Models
 require_once $GLOBALS['root_dir'] . '/model/DatabaseEntity.php';
@@ -67,8 +66,10 @@ require_once $GLOBALS['root_dir'] . '/controller/AccountManagingController.php';
     require_once $GLOBALS['root_dir'] . '/controller/StaticController.php';
 
 
+
 // Error Logging Facilities
 require_once __DIR__ . '/LoggerException.php';
+// We'll now initiate logging abilities
 class LogException extends LoggerException {}
-
+Utils::initiateLogging();
 

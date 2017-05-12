@@ -23,7 +23,7 @@ abstract class LoggerException extends Exception
 
 
         // We create the log file
-        $logName = date("H_i_s___") . randomHash(10);
+        $logName = date("H_i_s___") . Utils::randomHash(10);
         $log = new Logger( $logName);
         $log->pushHandler(new StreamHandler('bin/logs/Exceptions/'.date("Y-m-d") ."/" . $logName , Logger::WARNING));
 
