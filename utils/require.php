@@ -63,7 +63,8 @@ require_once $GLOBALS['root_dir'] . '/controller/AccountManagingController.php';
     // Room
     require_once $GLOBALS['root_dir'] . '/controller/RoomController.php';
 
-
+    // Static
+    require_once $GLOBALS['root_dir'] . '/controller/StaticController.php';
 
 
 // Error Logging Facilities

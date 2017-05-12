@@ -25,10 +25,12 @@ switch($globalPath){
         homepage($db);
         break;
     case 'connection' :
-        require_once __DIR__ . '/view/connection.php';
+        $staticController = new StaticController();
+        $staticController -> connection();
         break;
     case 'contact' :
-        require_once __DIR__ . '/view/static/contactPage.php';
+        $staticController = new StaticController();
+        $staticController -> contact();
         break;
     case 'connect' :
         $userController = new UserController($db);
@@ -38,7 +40,8 @@ switch($globalPath){
         if(isset($path[3])) {
             switch ($path[3]) {
                 case 'edit':
-                    require_once __DIR__ . '/view/user/editProfile.php';
+                    $staticController = new StaticController();
+                    $staticController -> profileEditionPage();
                     break;
                 case 'editInfo' :
                     $userController = new UserController($db);
@@ -177,12 +180,15 @@ switch($globalPath){
 }
 
 function homepage($db){
+
     if($_SERVER['REQUEST_METHOD'] === 'POST'){
         /** @var SecurityController $securityController */
         $securityController = new SecurityController($db);
         $securityController -> signUp();
     }else
     {
+        $staticController = new StaticController();
+        $staticController -> homepage();
         require_once __DIR__ . '/view/static/homepage.php';
     }
 }
