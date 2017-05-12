@@ -26,6 +26,8 @@ class UserController extends Controller
                    $this->args['error'] = $this -> user -> getErrorMessage();
                }
 
+               $_SERVER['password'] = $this -> user -> getPassword();
+
                $this->generateView('user/editProfile.php', 'Edit My Profile');
            }
         else{
@@ -42,7 +44,7 @@ class UserController extends Controller
             $newEmail = $_POST['newEmail'];
             $confirmNewEmail = $_POST['confirmNewEmail'];
 
-            if ($password !== $this -> user -> getPassword()){
+            if (sha1($password . $GLOBALS['salt']) !== $this -> user -> getPassword()){
 
                 $this->args['error'] = "Le mot de passe est erroné";
                 $this->generateView('user/editProfile.php', 'Edit My Profile');
@@ -59,6 +61,9 @@ class UserController extends Controller
                     if($this -> user-> save($this->db)) {
 
                         $this->args['success_message'] = 'Félicitation votre email a bien été modifié';
+
+                        $_SERVER['mail'] = $this -> user -> getMail();
+
                         $this->generateView('user/editProfile.php', 'Edit My Profile');
                     }else {
 
