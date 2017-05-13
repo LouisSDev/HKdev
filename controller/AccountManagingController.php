@@ -27,7 +27,7 @@ abstract class AccountManagingController extends Controller
         foreach ($this -> user -> getHomes() as $hm)
         {
             if($hm -> getId() === $id
-                && $hm -> isBuilding() === $onlyAdmin)
+                && $hm -> getHasHomes() === $onlyAdmin)
             {
                 $home = $hm;
                 break;

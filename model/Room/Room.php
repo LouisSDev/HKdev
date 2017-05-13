@@ -88,6 +88,18 @@ class Room extends DatabaseEntity
     }
 
     /**
+     * @param array $sensors
+     * @return Room
+     */
+    public function setSensors(array $sensors)
+    {
+        $this->sensors = $sensors;
+        return $this;
+    }
+
+
+
+    /**
      * @param Home $home
      * @return Room;
      */

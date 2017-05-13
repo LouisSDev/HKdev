@@ -8,6 +8,7 @@
  */
 abstract class DatabaseEntity
 {
+    const OBJECTS_NAMES = ['effector', 'effectorType', 'sensor', 'sensorType', 'home', 'building', 'room', 'user', 'sensorValue'];
 
     /**
      * @var integer $id
@@ -37,6 +38,9 @@ abstract class DatabaseEntity
         // For example, in a User object, the parameters will be :  homes, buildings, address, firstName, mail...
         $parameters = $this -> getObjectVars();
 
+        $arraysToBeCreated = [];
+
+
         // For each of our raw parameters, we get, $name the name of the parameter and $value its value
         foreach($parameters as $name => $value){
 
@@ -44,39 +48,63 @@ abstract class DatabaseEntity
             // Image creating a home from result, you would then create the building from result, and therefore
             // the building would create the same home from result which will in turn create the same building from results
             // And this is an infinite loop...
-            if(!($value instanceof DatabaseEntity)){
 
-                // We create the setter name
-                $setterName = 'set' . strtoupper($name[0]) .  substr($name, 1, strlen($name) -1);
+            // We create the setter name
+            $setterName = 'set' . strtoupper($name[0]) .  substr($name, 1, strlen($name) -1);
+
+
+            if(!($value instanceof DatabaseEntity) &&  !in_array($name, self::OBJECTS_NAMES)){
+
 
                 // If it's an array
                 if(is_array($value)){
 
-                    // Then the repository name is the name of the param but without the 's' that's why we remove it here
-                    $repositoryName = substr($name, 0, strlen($name) - 1);
-
-                    // Now we get the repository
-                    if(empty($GLOBALS['repositories'][$repositoryName])){
-                        $GLOBALS['repositories']['user'] ->  createRepositories();
-                    }
-                    /** @var Repository  $repository */
-                    $repository = $GLOBALS['repositories'][$repositoryName];
-
-                    // And call the general Repository method below mentionned
-                    // It will in turn call the method getObjectsFromUserId of the given repository if it's from the
-                    // User id that we search those objects
-                    // We then put all of this in the corresponding array and we're done
-                    $this -> $setterName( $repository -> getObjectsFromId($this->id, $this -> getClassName() , $repositoryName) );
+                    $arraysToBeCreated[$name] = $value;
 
                 }
                 else if($name != "error" && $name != "errorMessage" && !empty($data[$name])){
                     // If the param is a simple param and not neither the error or errorMessage param
                     // We put the data array value inside this param and we're done
 
+
                     $this->$setterName($data[$name]);
                 }
             }
         }
+
+
+        foreach($arraysToBeCreated as $name => $value){
+
+            // We create the setter name
+            $setterName = 'set' . strtoupper($name[0]) .  substr($name, 1, strlen($name) -1);
+
+            // Then the repository name is the name of the param but without the 's' that's why we remove it here
+            $repositoryName = substr($name, 0, strlen($name) - 1);
+
+            // Now we get the repository
+            if(empty($GLOBALS['repositories'][$repositoryName])){
+                $GLOBALS['repositories']['user'] ->  createRepositories();
+            }
+            /** @var Repository  $repository */
+            $repository = $GLOBALS['repositories'][$repositoryName];
+
+            // And call the general Repository method below mentionned
+            // It will in turn call the method getObjectsFromUserId of the given repository if it's from the
+            // User id that we search those objects
+            // We then put all of this in the corresponding array and we're done
+
+            $className = $this -> getClassName();
+
+            if( $className === 'Home' && $repositoryName === 'home'){
+                $className = 'Building';
+            }
+
+
+            $this -> $setterName( $repository -> getObjectsFromId($this, $className, $repositoryName) );
+
+        }
+
+
         return $this;
     }
 
