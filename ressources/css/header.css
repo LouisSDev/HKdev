@@ -46,3 +46,11 @@ li:hover ul.submenu{
     display: block;
     position: relative;
 }
+
+ul.submenu > li{
+    line-height: 50px;
+}
+
+ul.submenu > a{
+    display: none;
+}
