@@ -18,7 +18,14 @@
      ?>
     <nav class="menu">
         <ul>
-            <li><a href="<?php echo $GLOBALS['server_root']?>/">Accueil</a></li>
+            <li><a href="<?php echo $GLOBALS['server_root']?>/">Accueil</a>
+                <ul class="submenu">
+<!-- TODO : This is an example of submenu, need to replace it by reals things XD -->
+                    <li><a href="#">Exemple 1</a></li>
+                    <li><a href="#">Exemple 2</a></li>
+                    <li><a href="#">Exemple 3</a></li>
+                </ul>
+            </li>
             <li><a href="<?php echo $GLOBALS['server_root'] . '/contact'?>">Contact</a></li>
             <li><a id="show" href="#">Connexion</a></li>
         </ul>
