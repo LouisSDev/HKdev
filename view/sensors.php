@@ -84,20 +84,23 @@
         <p class="text">Supprimer des capteurs</p>
         <label>Sélectionnez votre capteur :</label><br>
         <form method="post" action="<?php echo $url?>">
-        <select name="sensorType">
+        <select name="sensorId">
             <?php
             foreach (SensorType::TYPE_ARRAY as $type){
 
+
                 echo '<optgroup label="'. $type . '">';
+
 
                 /** @var  $sensor Sensor*/
                 foreach ($home -> getAllSensors() as $sensor) {
+
 
                     if ($sensor -> getSensorType() -> getType() === $type) {
                         echo '<option label="" value="'
                             . $sensor -> getId() . '">'
                             . $sensor -> getRoom() -> getName()
-                            . ' - ' . $sensor -> getId() . '</option>';
+                            . ' - Capteur n°' . $sensor -> getId() . '</option>';
                     }
                 }
                 echo '</optgroup>';

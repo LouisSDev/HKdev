@@ -396,7 +396,7 @@ class Home extends DatabaseEntity
         if($this -> building != $this) {
             /** @var Room $room */
             foreach ($this -> rooms as $room){
-                array_merge($sensors, $room -> getSensors());
+                $sensors = array_merge($sensors, $room -> getSensors());
             }
         }else{
             return null;

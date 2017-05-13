@@ -12,10 +12,6 @@ class Sensor extends DatabaseEntity{
      * @var SensorType $sensorType;
      */
     private $sensorType ;
-    /**
-     * @var string $name
-     */
-    private $name;
 
     /**
      * @var Room $room;
@@ -49,28 +45,7 @@ class Sensor extends DatabaseEntity{
         return $this;
     }
 
-    /**
-     * @return string
-     */
-    public function getName(){
-        return $this->name;
-    }
 
-    /**
-     * @param string $name
-     * @return Sensor
-     */
-    public function setName($name){
-        if(strlen($name)<=30){
-            $this->name = $name;
-        }
-        else{
-            $this->error = true;
-            $this->errorMessage[]=  "This name is too long";
-        }
-
-        return $this;
-    }
 
     /**
      * @return Room
@@ -152,9 +127,7 @@ class Sensor extends DatabaseEntity{
             return false;
         }
         else{
-            if ($this->name != null
-                && $this->sensorType != null
-            ){
+            if ( $this->sensorType != null){
                 return true;
             }
             else{
