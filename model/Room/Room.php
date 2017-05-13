@@ -236,6 +236,25 @@ class Room extends DatabaseEntity
     }
 
     /**
+     * @param $type string
+     * @return array
+     */
+    public function getSensorsPerType($type){
+
+        $sensors = [];
+
+        /** @var Sensor $sensor*/
+        foreach ($this -> getSensors() as $sensor){
+            if($sensor -> getSensorType() -> getType() === $type){
+                $sensors[] = $sensor;
+            }
+        }
+
+
+        return $sensors;
+    }
+
+    /**
      * @return Room
      *
      *//*

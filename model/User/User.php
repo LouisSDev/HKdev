@@ -441,6 +441,24 @@ class User extends DatabaseEntity
         return $sensors;
     }
 
+
+    /**
+     * @param $type string
+     * @return array
+     */
+    public function getAllSensorsPerType($type){
+
+        $sensors = [];
+
+        /** @var Sensor $sensor*/
+        foreach ($this -> getAllSensors() as $sensor){
+            if($sensor -> getSensorType() -> getType() === $type){
+                $sensors[] = $sensor;
+            }
+        }
+        return $sensors;
+    }
+
     public function getAllRooms()
     {
         $rooms = array();

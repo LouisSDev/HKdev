@@ -67,6 +67,10 @@ require_once $GLOBALS['root_dir'] . '/controller/AccountManagingController.php';
     require_once $GLOBALS['root_dir'] . '/controller/StaticController.php';
 
 
+    // Building
+    require_once $GLOBALS['root_dir'] . '/controller/BuildingController.php';
+
+
 
 // Error Logging Facilities
 require_once __DIR__ . '/LoggerException.php';

@@ -27,7 +27,7 @@ abstract class AccountManagingController extends Controller
         foreach ($this -> user -> getHomes() as $hm)
         {
             if($hm -> getId() === $id
-                && $hm -> getHasHomes() === $onlyAdmin)
+                && $hm -> getHasHomes() == $onlyAdmin )
             {
                 $home = $hm;
                 break;
@@ -161,6 +161,8 @@ abstract class AccountManagingController extends Controller
         }
 
         $this -> user -> save($this -> db);
+
+        ApiHandler::returnValidResponse(null);
     }
 
 }

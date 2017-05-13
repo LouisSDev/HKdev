@@ -418,6 +418,82 @@ class Home extends DatabaseEntity
         return $effectors;
     }
 
+    /**
+     * @param $type string
+     * @return array
+     */
+    public function getRoomsPerType($type){
+        $rooms = [];
+
+        /** @var Room $room */
+        foreach($this -> rooms as $room) {
+            if($room -> getType() == $type){
+                $rooms[] = $room;
+            }
+        }
+
+        return $rooms;
+    }
+
+    /**
+     * @param $type string
+     * @return array
+     */
+    public function getEffectorsPerType($type){
+        return $this -> getEffectorsPerTypeFromList($this -> rooms, $type);
+    }
+
+    /**
+     * @param $roomType string
+     * @param $type string
+     * @return array
+     */
+    public function getEffectorsPerTypeAndPerRoomType($roomType, $type){
+        return $this -> getEffectorsPerTypeFromList($this -> getRoomsPerType($roomType), $type);
+    }
+
+    /**
+     * @param $list array
+     * @param $type string
+     * @return array
+     */
+    private function getEffectorsPerTypeFromList($list, $type){
+        $effectors = [];
+
+        /** @var Room $room */
+        foreach($list as $room) {
+            /** @var Effector $effector */
+            foreach ($room -> getEffectors() as $effector){
+                if($effector -> getEffectorType() ->getType() === $type){
+                    $effectors[] = $effector;
+                }
+            }
+        }
+        return $effectors;
+    }
+
+
+
+    /**
+     * @param $type string
+     * @return array
+     */
+    public function getSensorsPerType($type){
+
+        $sensors = [];
+
+        /** @var Room $room */
+        foreach($this -> rooms as $room) {
+            /** @var Sensor $sensor*/
+            foreach ($room -> getSensors() as $sensor){
+                if($sensor -> getSensorType() -> getType() === $type){
+                    $sensors[] = $sensor;
+                }
+            }
+        }
+        return $sensors;
+    }
+
 
     /*
      TODO delete this shit
