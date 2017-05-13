@@ -32,15 +32,15 @@ class HomeController extends AccountManagingController
         $this -> args['home'] = $home;
 
             /** @var SensorTypeRepository $sensorTypeRepository */
-        $sensorTypeRepository = $GLOBALS['repositories']['sensor_type'];
+        $sensorTypeRepository = $GLOBALS['repositories']['sensorType'];
 
         // If the form was submitted
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
             // If a sensorType was selected and if it's an integer
-            if(!empty($_POST['sensorType']) && is_int($_POST['sensorType'])
-                && !empty($_POST['sensorId']) && is_int($_POST['sensorId'])
-                && !empty($_POST['room']) && is_int($_POST['room'])
+            if(!empty($_POST['sensorType'])
+                && !empty($_POST['sensorId'])
+                && !empty($_POST['room'])
             ){
                 // We search for this sensor type in the database
                 /** @var SensorType $sensorType */
@@ -49,6 +49,7 @@ class HomeController extends AccountManagingController
                 // We now search for the sensor
                 /** @var SensorRepository $sensorRepository */
                 $sensorRepository = $GLOBALS['repositories']['sensor'];
+
 
                 /** @var Sensor $sensor */
                 $sensor =  $sensorRepository -> findById($_POST['sensorId']);
@@ -59,11 +60,15 @@ class HomeController extends AccountManagingController
 
                 if($sensorType && $room ){
 
-                    if($sensor && $sensor -> getSensorType() -> getRef() === $sensorType -> getRef()
-                    && $sensor -> getRoom() == null)
+                    if($sensor && $sensor -> getSensorType() -> getId() === $sensorType -> getId()
+                    && !$sensor -> getRoom())
                     {
-                        $room -> addSensor($sensor);
-                        $this -> args['message'] = 'Le capteur a été ajouté à vos capteurs avec succès';
+                        if($sensor -> setRoom($room) -> save($this -> db)){
+                            $this -> args['message'] = 'Le capteur a été ajouté à vos capteurs avec succès';
+                        }
+                        else{
+                            $this -> args['message'] = 'Oups une erreur est survenue dans la base de données, nous essayons de la régler au plus vite';
+                        }
                     }
                     else {
                         $this -> args['message'] = 'Le code du capteur entré n\'est pas valide, veuillez réessayer.';

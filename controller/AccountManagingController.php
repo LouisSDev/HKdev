@@ -55,7 +55,8 @@ abstract class AccountManagingController extends Controller
     {
         $room = null;
         /** @var Room $rm */
-        foreach($home -> getHomes() as $rm ){
+        foreach($home -> getRooms() as $rm ){
+
             if($rm -> getId() === $roomId){
                 $room = $rm;
                 break;

@@ -16,5 +16,19 @@ class SensorRepository extends Repository {
         return self::OBJECT_CLASS_NAME;
     }
 
+    public function isSensorUnused($id)
+    {
+        $objectsQuery = $this -> db -> prepare('SELECT * FROM ' . $this -> getObjectClassName()
+            . ' WHERE room IS NOT null AND id = :id');
+        $objectsQuery -> bindParam(':id', $id, PDO::PARAM_INT);
+        $objectsQuery -> execute();
+
+        if( $this -> getResultantObjects($objectsQuery, false)){
+            return false;
+        }
+
+        return true;
+    }
+
 }
 

@@ -29,7 +29,9 @@ class Repository
     }
 
 
-    protected function getResultantObjects($objectsQuery, $asArray = true, DatabaseEntity $originEntity = null, $setterName = null){
+    protected function getResultantObjects($objectsQuery, $asArray = true,
+                                           DatabaseEntity $originEntity = null,
+                                           $setterName = null, $cascading = true){
 
         if($asArray) {
             $objects = array();
@@ -45,9 +47,13 @@ class Repository
 
             $objectClassName = $this -> getObjectClassName();
             $object = new $objectClassName();
-            $object -> createFromResults($objectData);
 
-            $object -> $setterName($originEntity);
+            if($setterName) {
+                $object->$setterName($originEntity);
+            }
+
+            $object -> createFromResults($objectData, $cascading);
+
 
             if($asArray) {
                 $objects[] = $object;
@@ -91,21 +97,19 @@ class Repository
 
     public function getAll()
     {
-        $splitObjectsPath =  explode( '/' , self::OBJECT_CLASS_NAME) ;
-        $objectsQuery = $this -> db -> prepare('SELECT * FROM ' . $splitObjectsPath[1]);
+        $objectsQuery = $this -> db -> prepare('SELECT * FROM ' . $this -> getObjectClassName());
         $objectsQuery -> execute();
 
         return $this -> getResultantObjects($objectsQuery);
     }
 
-    public function findById($id)
+    public function findById($id, $cascading = true)
     {
-        $splitObjectsPath =  explode( '/' , self::OBJECT_CLASS_NAME) ;
-        $objectsQuery = $this -> db -> prepare('SELECT * FROM ' . $splitObjectsPath[1] . ' WHERE id = :id');
+        $objectsQuery = $this -> db -> prepare('SELECT * FROM ' . $this -> getObjectClassName() . ' WHERE id = :id');
         $objectsQuery -> bindParam(':id', $id, PDO::PARAM_INT);
         $objectsQuery -> execute();
 
-        return $this -> getResultantObjects($objectsQuery, false);
+        return $this -> getResultantObjects($objectsQuery, false, null, null, $cascading);
     }
 
     /**
