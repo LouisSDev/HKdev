@@ -80,7 +80,7 @@ class HomeController extends AccountManagingController
         $sensorsTypes =  $sensorTypeRepository -> getAll();
 
         $this -> args['sensors_types'] = $sensorsTypes ;
-        $this -> generateView('sensors.php', 'Mes Capteurs');
+        $this -> generateView('home/sensors.php', 'Mes Capteurs');
     }
 
 
@@ -91,7 +91,7 @@ class HomeController extends AccountManagingController
         if(!empty($_POST['sensorId'])) {
             $sensor = $this->findSensorFromId($_POST['sensorId'], $home);
             $sensor->delete($this->db);
-            $this -> generateView('sensors.php', 'Mes Capteurs', 'user/home/' . $home -> getId() . '/sensors');
+            $this -> generateView('home/sensors.php', 'Mes Capteurs', 'user/home/' . $home -> getId() . '/sensors');
         }else{
             $this -> generateView('static/404.php', '404');
             exit();

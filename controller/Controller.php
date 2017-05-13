@@ -70,7 +70,7 @@ abstract class Controller
 
             if ($pathName === null) {
 
-                require_once $pathToViews . "htmlHead.php";
+                require_once $pathToViews . "general/htmlHead.php";
 
                 $pathName = $filename;
                 require_once $pathToViews . $filename;
@@ -88,7 +88,7 @@ abstract class Controller
 
 
     protected function throwConnectionError(){
-        $this -> generateView('connection.php', 'Connection', 'connection/?errorMessage=' . self::CONNECTION_ERROR_DEFAULT_MESSAGE);
+        $this -> generateView('general/connection.php', 'Connection', 'connection/?errorMessage=' . self::CONNECTION_ERROR_DEFAULT_MESSAGE);
         exit();
     }
 
