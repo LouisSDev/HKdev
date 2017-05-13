@@ -33,9 +33,9 @@
                         }
                         echo '</ul></li>';
 
-                        echo '<li><a href="#">' ;
+                        echo '<li><a href="#"> Mes Maisons' ;
 
-                        echo '<ul class="submenu" > Mes Maisons';
+                        echo '<ul class="submenu" >';
 
                         /** @var Home $home */
                         foreach ($homes as $home) {
@@ -45,9 +45,9 @@
                         }
                         echo '</ul></li>';
 
-                        echo '<li><a href="#">' ;
+                        echo '<li><a href="#">Mes Capteurs' ;
 
-                        echo '<ul class="submenu" > Mes Capteurs';
+                        echo '<ul class="submenu" >';
 
                         /** @var Home $home */
                         foreach ($homes as $home) {
