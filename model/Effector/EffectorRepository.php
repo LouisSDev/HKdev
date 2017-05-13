@@ -8,6 +8,11 @@
  */
 class EffectorRepository extends Repository
 {
-    const OBJECT_CLASS_NAME = 'model/Effector/Effector';
+    const OBJECT_CLASS_NAME = 'Effector';
+
+    public function getObjectClassName()
+    {
+        return self::OBJECT_CLASS_NAME;
+    }
 
 }

@@ -29,11 +29,13 @@ class Repository
     }
 
 
-    protected function getResultantObjects($objectsQuery, $asArray = true){
+    protected function getResultantObjects($objectsQuery, $asArray = true, DatabaseEntity $originEntity = null, $setterName = null){
 
         if($asArray) {
             $objects = array();
-        }else{
+        }
+
+        else{
             $objects = null;
         }
 
@@ -41,9 +43,11 @@ class Repository
 
         while($objectData = $objectsQuery -> fetch(PDO::FETCH_ASSOC)){
 
-            $objectClassName = self::OBJECT_CLASS_NAME;
+            $objectClassName = $this -> getObjectClassName();
             $object = new $objectClassName();
             $object -> createFromResults($objectData);
+
+            $object -> $setterName($originEntity);
 
             if($asArray) {
                 $objects[] = $object;
@@ -59,21 +63,30 @@ class Repository
     }
 
     // Example, we could call it with params : (3 , user, Home ) which means we'll search for the homes that belongs to user 3
-    public function getObjectsFromId($id, $fromObject,$fromTable ){
+    public function getObjectsFromId(DatabaseEntity $object, $fromObjectClass,$fromTable){
+
+
+        $fromObject = strtolower($fromObjectClass);
 
         // The from object name goes to lower case
         $fromTable = strtolower($fromTable);
+
+        $id = $object -> getId();
 
         // We prepare the questy
         $objectsQuery = $this->db->prepare('SELECT * FROM '
             . $fromTable . ' WHERE ' . $fromObject . ' = :' . $fromObject ) ;
             // Example :  SELECT * FROM room WHERE home = :home
 
+
+
         // We bind the param and execute the request
         $objectsQuery -> bindParam(':' . $fromObject , $id, PDO::PARAM_INT);
         $objectsQuery -> execute();
 
-        return $this->getResultantObjects($objectsQuery);
+        $setterName = 'set' . $fromObjectClass;
+
+        return $this->getResultantObjects( $objectsQuery, true,  $object, $setterName);
     }
 
     public function getAll()
@@ -83,7 +96,6 @@ class Repository
         $objectsQuery -> execute();
 
         return $this -> getResultantObjects($objectsQuery);
-
     }
 
     public function findById($id)
@@ -103,5 +115,10 @@ class Repository
     {
 
         return null;
+    }
+
+    public function getObjectClassName()
+    {
+        return '';
     }
 }

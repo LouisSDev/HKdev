@@ -15,7 +15,7 @@ class UserRepository extends Repository
      */
     protected $dbConn;
 
-    const OBJECT_CLASS_NAME = 'model/user/User';
+    const OBJECT_CLASS_NAME = 'User';
 
     /**
      * UserRepository constructor.
@@ -107,6 +107,12 @@ class UserRepository extends Repository
 
     public function createRepositories(){
         $this -> dbConn -> createOtherRepositories();
+    }
+
+
+    public function getObjectClassName()
+    {
+        return self::OBJECT_CLASS_NAME;
     }
 
 }

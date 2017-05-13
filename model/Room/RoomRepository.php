@@ -9,6 +9,13 @@
 class RoomRepository extends Repository
 {
 
-    const OBJECT_CLASS_NAME = 'model/Room/Room';
+    const OBJECT_CLASS_NAME = 'Room';
+
+
+    public function getObjectClassName()
+    {
+
+        return self::OBJECT_CLASS_NAME;
+    }
 
 }

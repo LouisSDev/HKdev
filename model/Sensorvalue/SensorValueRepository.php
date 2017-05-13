@@ -8,5 +8,11 @@
  */
 class SensorValueRepository extends Repository
 {
-    const OBJECT_CLASS_NAME = 'model/Sensorvalue/SensorValue' ;
+    const OBJECT_CLASS_NAME = 'SensorValue' ;
+
+
+    public function getObjectClassName()
+    {
+        return self::OBJECT_CLASS_NAME;
+    }
 }

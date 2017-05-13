@@ -49,6 +49,11 @@ class Home extends DatabaseEntity
      */
     private $rooms = array();
 
+    /**
+     * @var bool $hasHomes
+     */
+    private $hasHomes = false;
+
 
 
     public function isBuilding(){
@@ -57,7 +62,27 @@ class Home extends DatabaseEntity
         {
             return false;
         }
+
         return true;
+    }
+
+
+    /**
+     * @return boolean
+     */
+    public function getHasHomes()
+    {
+        return $this->hasHomes;
+    }
+
+    /**
+     * @param boolean $hasHomes
+     * @return Home
+     */
+    public function setHasHomes($hasHomes)
+    {
+        $this->hasHomes = $hasHomes;
+        return $this;
     }
 
     /**
@@ -233,6 +258,10 @@ class Home extends DatabaseEntity
      */
     public function setHomes($homes)
     {
+        /** @var Home $home */
+        foreach ($homes as $home){
+            $home -> setBuilding($this);
+        }
         $this -> homes = $homes;
         return $this;
     }
@@ -283,9 +312,9 @@ class Home extends DatabaseEntity
      * @return Home
      */
     public function setRooms($rooms){
-            $this -> rooms = $rooms;
-            return $this;
-        }
+        $this -> rooms = $rooms;
+        return $this;
+    }
 
 
 
@@ -330,19 +359,19 @@ class Home extends DatabaseEntity
                 $this->name != null
                 && (
                     (
-                        $this -> isBuilding()
+                        $this -> hasHomes
                         && $this -> address != null
                         && $this -> city != null
                         && $this -> country != null
                         && $this->user != null
                 ) ||
                     (
-                        !$this -> isBuilding()
+                        !$this -> hasHomes
                         && $this -> user != null
                     )
                 )
             ){
-                if(!$this -> isBuilding()){
+                if(!$this -> hasHomes){
                     $this -> address = null;
                     $this -> city = null;
                     $this -> country = null;
