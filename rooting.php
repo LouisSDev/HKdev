@@ -50,10 +50,6 @@ switch($globalPath){
 
                             switch ($path[5])
                             {
-                                case 'rooms' :
-                                    $homeController = new HomeController($db);
-                                    $homeController->displayRooms($path[4]);
-                                    break;
                                 case 'general' :
                                     $homeController = new HomeController($db);
                                     $homeController->displayGeneral($path[4]);

@@ -21,17 +21,6 @@
                 <ul>
                     <li><a href="<?php echo $GLOBALS['server_root'] . '/user/dashboard'?>">Tableau de bord</a></li>
                     <?php if(count( $homes )) {
-                    echo '<li><a href="#">Vues Générales' ;
-
-                        echo '<ul class="submenu" >';
-
-                        /** @var Home $home */
-                        foreach ($homes as $home) {
-
-                            echo '<li ><a href = "' . $GLOBALS['server_root'] . '/user/home/'
-                                . $home->getId() . '/general" >' . $home->getName() . '</a ></li >';
-                        }
-                        echo '</ul></li>';
 
                         echo '<li><a href="#"> Mes Maisons' ;
 
@@ -41,7 +30,7 @@
                         foreach ($homes as $home) {
 
                             echo '<li ><a href = "' . $GLOBALS['server_root'] . '/user/home/'
-                                . $home->getId() . '/rooms" >' . $home->getName() . '</a ></li >';
+                                . $home->getId() . '/general" >' . $home->getName() . '</a ></li >';
                         }
                         echo '</ul></li>';
 

@@ -12,13 +12,6 @@ class HomeController extends AccountManagingController
 
     }
 
-
-    public function displayGeneral($id)
-    {
-        $this -> args['home'] = $this -> findHomeFromId($id);
-        $this -> generateView('home/general.php', 'My Home :  General View');
-    }
-
     public function displayAdministration($id)
     {
         $this -> args['building'] = $this -> findHomeFromId($id, true);
