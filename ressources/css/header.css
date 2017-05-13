@@ -18,7 +18,7 @@
     font-weight: bold;
     text-transform: uppercase;
     text-decoration: none;
-    padding: 0 10px;
+    padding: 0 20px;
     color: #FFF;
     transition: all 0.1s ease 0.2s;
 }
@@ -28,9 +28,21 @@
     transition: all 0.3s ease 0.2s;
 }
 
-ul{
+nav > ul{
     list-style-type: none;
     display: flex;
     float: right;
     margin: 0;
+    padding: 0;
+}
+ /* Submenus */
+.submenu{
+    display: none;
+    list-style-type: none;
+    background-color: #222222;
+    padding-left: 0;
+}
+li:hover ul.submenu{
+    display: block;
+    position: relative;
 }
