@@ -1,11 +1,75 @@
 <header class="header">
     <?php
         if(isset($GLOBALS['view']['connected']) && $GLOBALS['view']['connected']){
+            /** @var User $user */
+            $user = $GLOBALS['view']['user'];
+            $allHomes = $user -> getHomes();
+
+            $homes = [];
+            $buildings = [];
+
+            /** @var Home $home */
+            foreach($allHomes as $home){
+                if($home -> getBuilding()){
+                    $homes[] = $home;
+                }else{
+                    $buildings[] = $home;
+                }
+            }
            ?>
             <nav class="menu">
                 <ul>
-                    <li><a href="<?php echo $GLOBALS['server_root'] . '/user/home'?>">Ma maison</a></li>
                     <li><a href="<?php echo $GLOBALS['server_root'] . '/user/dashboard'?>">Tableau de bord</a></li>
+                    <?php if(count( $homes )) {
+                    echo '<li><a href="#">Vues Générales' ;
+
+                        echo '<ul class="submenu" >';
+
+                        /** @var Home $home */
+                        foreach ($homes as $home) {
+
+                            echo '<li ><a href = "' . $GLOBALS['server_root'] . '/user/home/'
+                                . $home->getId() . '/general" >' . $home->getName() . '</a ></li >';
+                        }
+                        echo '</ul></li>';
+
+                        echo '<li><a href="#">' ;
+
+                        echo '<ul class="submenu" > Mes Maisons';
+
+                        /** @var Home $home */
+                        foreach ($homes as $home) {
+
+                            echo '<li ><a href = "' . $GLOBALS['server_root'] . '/user/home/'
+                                . $home->getId() . '/rooms" >' . $home->getName() . '</a ></li >';
+                        }
+                        echo '</ul></li>';
+
+                        echo '<li><a href="#">' ;
+
+                        echo '<ul class="submenu" > Mes Capteurs';
+
+                        /** @var Home $home */
+                        foreach ($homes as $home) {
+
+                            echo '<li ><a href = "' . $GLOBALS['server_root'] . '/user/home/'
+                                . $home->getId() . '/sensors" >' . $home->getName() . '</a ></li >';
+                        }
+                        echo '</ul></li>';
+                    }
+                    if(count( $buildings )) {
+                        echo '<li><a href="#">Administrer mes immeubles';
+
+                        echo '<ul class="submenu" >';
+
+                        /** @var Home $building */
+                        foreach ($buildings as $building) {
+
+                            echo '<li ><a href = "' . $GLOBALS['server_root'] . '/user/home/'
+                                . $building->getId() . '/administrate" >' . $building->getName() . '</a ></li >';
+                        }
+                        echo '</ul></li>';
+                    } ?>
                     <li><a href="<?php echo $GLOBALS['server_root'] . '/user/edit'?>">Mon compte</a></li>
                     <li><a href="<?php echo $GLOBALS['server_root'] . '/contact'?>">Contact</a></li>
                     <li><a href="<?php echo $GLOBALS['server_root'] . '/user/disconnect'?>">Déconnexion</a></li>
@@ -18,14 +82,7 @@
      ?>
     <nav class="menu">
         <ul>
-            <li><a href="<?php echo $GLOBALS['server_root']?>/">Accueil</a>
-                <ul class="submenu">
-<!-- TODO : This is an example of submenu, need to replace it by reals things XD -->
-                    <li><a href="#">Exemple 1</a></li>
-                    <li><a href="#">Exemple 2</a></li>
-                    <li><a href="#">Exemple 3</a></li>
-                </ul>
-            </li>
+            <li><a href="<?php echo $GLOBALS['server_root']?>/">Accueil</a></li>
             <li><a href="<?php echo $GLOBALS['server_root'] . '/contact'?>">Contact</a></li>
             <li><a id="show" href="#">Connexion</a></li>
         </ul>
