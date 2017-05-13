@@ -16,7 +16,7 @@ class HomeController extends AccountManagingController
 
     public function displayGeneral()
     {
-        $this -> generateView('user/myHome.php', 'My Home');
+        $this -> generateView('home/main.php', 'My Home');
     }
 
 

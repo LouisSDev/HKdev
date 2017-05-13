@@ -20,7 +20,7 @@ class BuildingController extends AccountManagingController
 
     public function displayAdministration()
     {
-        $this -> generateView('home/administrateBuilding.php', 'Administrate My Building');
+        $this -> generateView('building/administrateBuilding.php', 'Administrate My Building');
     }
 
 
