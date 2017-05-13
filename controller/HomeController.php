@@ -4,25 +4,25 @@
 class HomeController extends AccountManagingController
 {
 
-
-    public function displayRooms($id)
+    public function __construct(PDO $db, $checkHomeId = true)
     {
-        $this -> args['home'] = $this -> findHomeFromId($id);
+        parent::__construct($db);
+        if($checkHomeId) {
+            $path = explode('/', $_SERVER['REQUEST_URI']);
+            $this->args['home'] = $this->findHomeFromId($path[4]);
+        }
+    }
+
+
+    public function displayGeneral()
+    {
         $this -> generateView('user/myHome.php', 'My Home');
-
-    }
-
-    public function displayAdministration($id)
-    {
-        $this -> args['building'] = $this -> findHomeFromId($id, true);
-        $this -> generateView('home/administrateBuilding.php', 'Administrate My Building');
     }
 
 
-    public function buyNewSensor($id)
+    public function buyNewSensor()
     {
-        $home = $this -> findHomeFromId($id);
-        $this -> args['home'] = $home;
+        $home = $this -> args['home'];
 
             /** @var SensorTypeRepository $sensorTypeRepository */
         $sensorTypeRepository = $GLOBALS['repositories']['sensorType'];
@@ -77,7 +77,6 @@ class HomeController extends AccountManagingController
             }
         }
 
-
         $sensorsTypes =  $sensorTypeRepository -> getAll();
 
         $this -> args['sensors_types'] = $sensorsTypes ;
@@ -86,9 +85,9 @@ class HomeController extends AccountManagingController
 
 
 
-    public function deleteSensor($id)
+    public function deleteSensor()
     {
-        $home = $this -> findHomeFromId($id);
+        $home = $this -> args['home'];
         if(!empty($_POST['sensorId'])) {
             $sensor = $this->findSensorFromId($_POST['sensorId'], $home);
             $sensor->delete($this->db);
@@ -111,7 +110,7 @@ class HomeController extends AccountManagingController
             && (!empty($_POST['value']) ||  !empty($_POST['state']) || !empty($_POST['auto']))
         )
         {
-            $home= $this -> findHomeFromId($_POST['homeId']);
+            $home = $this -> findHomeFromId($_POST['homeId']);
 
             $effectors = array();
 

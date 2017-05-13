@@ -52,19 +52,19 @@ switch($globalPath){
                             {
                                 case 'general' :
                                     $homeController = new HomeController($db);
-                                    $homeController->displayGeneral($path[4]);
+                                    $homeController->displayGeneral();
                                     break;
                                 case 'administrate' :
-                                    $homeController = new HomeController($db);
-                                    $homeController->displayAdministration($path[4]);
+                                    $buildingController = new BuildingController($db);
+                                    $buildingController->displayAdministration();
                                     break;
                                 case 'sensors' :
                                     $homeController = new HomeController($db);
-                                    $homeController -> buyNewSensor($path[4]);
+                                    $homeController -> buyNewSensor();
                                     break;
                                 case 'deleteSensor' :
                                     $homeController = new HomeController($db);
-                                    $homeController -> deleteSensor($path[4]);
+                                    $homeController -> deleteSensor();
                                     break;
                                 default :
                                     $staticController = new StaticController();
@@ -114,7 +114,7 @@ switch($globalPath){
                                 $roomController -> updateEffectorsInARoom();
                                 break;
                             case 'home' :
-                                $homeController = new HomeController($db);
+                                $homeController = new HomeController($db, false);
                                 $homeController -> updateEffectorsInAHome();
                                 break;
                             default :
