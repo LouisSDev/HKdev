@@ -14,8 +14,17 @@ $homes =$user->getHomes();
 
 $building = $GLOBALS['view']['building'];
 
-if(isset($GLOBALS['view']['message'])) {
-    echo '<p>' . $GLOBALS['view']['message'] . '</p>';
+if(isset ($GLOBALS['view']['success_message'])){ ?>
+    <div class="success-message">
+        <?php echo $GLOBALS['view']['success_message'] ?>
+    </div>
+    <?php
+}
+elseif( isset($GLOBALS['view']['error'])) { ?>
+    <div class="error-message">
+        <?php echo $GLOBALS['view']['error'] ?>
+    </div>
+    <?php
 }
 ?>
 <h1> Attribuer de nouveaux identifiants</h1>
