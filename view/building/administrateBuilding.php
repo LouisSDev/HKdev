@@ -39,32 +39,34 @@ elseif( isset($GLOBALS['view']['error'])) { ?>
         <input type="email" name="mail" placeholder="email temporaire">
         <input type="password" name="password" placeholder="mot de passe temporaire">
         <input type="password" name="passwordConf" placeholder="Confirmation du mot de passe temporaire">
-        <select name="homeId">
-            <?php
 
-            if($building -> getHasHomes()){
-                /**
-                 * @var Home $home
-                 */
-                foreach ($building -> getHomes() as $home){
 
-                    if($home->getBuilding() === $building){
+        <?php
+        if($building -> getHasHomes()){
+            echo '<select name="homeId">';
 
-                        echo '<option label="" value="' . $home ->getId() . '">'
-                            . $home -> getName()
-                            . ' - ' . $home -> getUser() -> getLastName()
-                            . ' ' . $home->getUser()->getFirstName()
-                            .'</option>';
+            /**
+             * @var Home $home
+             */
+            foreach ($building -> getHomes() as $home){
 
-                    }
+                if($home->getBuilding() === $building){
+
+                    echo '<option label="" value="' . $home ->getId() . '">'
+                        . $home -> getName()
+                        . ' - ' . $home -> getUser() -> getLastName()
+                        . ' ' . $home->getUser()->getFirstName()
+                        .'</option>';
 
                 }
 
             }
 
-            ?>
+        }
+        echo '</select>';
+        ?>
 
-        </select>
+
         <input class="btn" type="submit" value="Valider">
     </div>
 
