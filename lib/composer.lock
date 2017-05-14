@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "163124239424b28b5b50f0e856690f6c",
+    "content-hash": "840b68a575a2588be340a9f0f6089e0c",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -170,16 +170,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.4.7",
+            "version": "v5.4.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4"
+                "reference": "9a06dc570a0367850280eefd3f1dc2da45aef517"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
-                "reference": "56db4ed32a6d5c9824c3ecc1d2e538f663f47eb4",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/9a06dc570a0367850280eefd3f1dc2da45aef517",
+                "reference": "9a06dc570a0367850280eefd3f1dc2da45aef517",
                 "shasum": ""
             },
             "require": {
@@ -220,51 +220,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2017-04-20T17:32:18+00:00"
-        },
-        {
-            "name": "vdb/uri",
-            "version": "v0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/mvdbos/vdb-uri.git",
-                "reference": "48264d5cd3a61b5166bf62468381cd58405b63ca"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/mvdbos/vdb-uri/zipball/48264d5cd3a61b5166bf62468381cd58405b63ca",
-                "reference": "48264d5cd3a61b5166bf62468381cd58405b63ca",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.2"
-            },
-            "type": "application",
-            "autoload": {
-                "psr-0": {
-                    "VDB\\Uri": "src/",
-                    "VDB\\Uri\\Tests": "tests/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Matthijs van den Bos",
-                    "email": "matthijs@vandenbos.org"
-                }
-            ],
-            "description": "A set of URI classes and a URI parser, based on RFC 3986",
-            "keywords": [
-                "http",
-                "parser",
-                "uri",
-                "url",
-                "validator"
-            ],
-            "time": "2015-12-29T19:19:30+00:00"
+            "time": "2017-05-01T15:54:03+00:00"
         }
     ],
     "packages-dev": [],

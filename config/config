@@ -7,5 +7,5 @@
   },
 
   "password_salt" : "juZE58yuh4",
-  "server_root" : "http://localhost/HK"
+  "server_root":"http://localhost/HKdev"
 }

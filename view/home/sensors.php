@@ -8,7 +8,7 @@
     <?php
         /** @var Home $home */
         $home = $GLOBALS['view']['home'];
-        $rooms = $home -> getRooms();
+        $rooms = $home ->getRooms();
         $sensorsTypes = $GLOBALS['view']['sensors_types'];
 
         if(isset($GLOBALS['view']['message'])) {
