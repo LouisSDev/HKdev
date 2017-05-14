@@ -1,21 +1,11 @@
-/**
- * Created by home on 10/05/2017.
- */
 $(document).ready(function(){
-    $("#email").click(function(){
-        $(".mail").animate({
-            height:"toggle"
+    $("#mdpTitle").click(function(){
+        $(".mdp").slideToggle();
         });
-    });
-    $("#mdp").click(function(){
-        $(".mdp").animate({
-            height:"toggle"
+    $("#infoTitle").click(function(){
+        $(".infoPers").slideToggle();
         });
-    });
-    $("#infoPers").click(function(){
-        $(".infoPers").animate({
-            height:"toggle"
-        });
-    });
-
+    $("#mailTitle").click(function () {
+        $(".mail").slideToggle();
+    })
 });

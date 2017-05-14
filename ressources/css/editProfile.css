@@ -8,16 +8,12 @@
 .mdp{
     display: none
 }
-#mailTitle,#email{
-    display: inline
-}
-#mdpTitle,#mdp{
-    display: inline
-}
+
 body{
 
     text-align: center
 }
-#infoTitle,#infoPers{
-    display: inline
+#infoTitle,#mdpTitle,#mailTitle{
+    display: inline;
+    cursor: pointer;
 }

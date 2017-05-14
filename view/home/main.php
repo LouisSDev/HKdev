@@ -15,26 +15,54 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/modal.css">
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/pop-up.js"></script>
 </head>
-
 <body>
 <?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>
 <?php include_once ($GLOBALS['root_dir'] . "/view/general/modal.php")?>
+
     <div class="home">
         <i class="fa fa-home iconHome" aria-hidden="true" style="cursor:pointer;"></i>
     </div>
 
+<?php
+/** @var Home $home */
+$home = $GLOBALS['view']['home'];
+/** @var Room $room */
+?>
     <div class="rooms">
-
-        <i class="fa fa-bed iconBed" id="bed" aria-hidden="true" style="cursor:pointer;"></i>
-        <i class="fa fa-cutlery iconKitchen" aria-hidden="true" style="cursor:pointer;"></i>
-        <i class="fa fa-bath iconBath" aria-hidden="true" style="cursor:pointer;"></i>
-        <i class="fa fa-television iconSofa" aria-hidden="true" style="cursor:pointer;"></i>
-    </div>
-
-    <div class="child">
-        <div class="circle">
-            Chambre 1
-        </div>
+        <?php
+        if($home ->getRoomsPerType("Chambres")!=null){
+            echo '<i class="fa fa-bed iconBed" id="bed" aria-hidden="true" style="cursor:pointer;"></i>';
+            echo '<div class="bedroom">';
+            foreach ($home ->getRoomsPerType("Chambres") as $room){
+                echo '<div class="circle" style="background-color:#FFBC42"><p class="title">'.$room->getName().'</p></div>';
+            }
+            echo '</div>';
+        }
+        if($home ->getRoomsPerType("Cuisines")!=null){
+            echo '<i class="fa fa-cutlery iconKitchen" aria-hidden="true" style="cursor:pointer;"></i>';
+            echo '<div class="kitchen">';
+            foreach ($home ->getRoomsPerType("Cuisines") as $room){
+                echo '<div class="circle" style="background-color:#FB3640"><p class="title">'.$room->getName().'</p></div>';
+            }
+            echo '</div>';
+        }
+        if($home ->getRoomsPerType("Salles d'eau")!=null){
+            echo '<i class="fa fa-bath iconBath" aria-hidden="true" style="cursor:pointer;"></i>';
+            echo '<div class="bath">';
+            foreach ($home ->getRoomsPerType("Salles d'eau") as $room){
+                echo '<div class="circle" style="background-color:#BFDBF7"><p class="title">'.$room->getName().'</p></div>';
+            }
+            echo '</div>';
+        }
+        if($home ->getRoomsPerType("Pièces à vivre")!=null){
+            echo '<i class="fa fa-television iconSofa" aria-hidden="true" style="cursor:pointer;"></i>';
+            echo '<div class="living">';
+            foreach ($home ->getRoomsPerType("Pièces à vivre") as $room){
+                echo '<div class="circle" style="background-color:#F2F3AE"><p class="title">'.$room->getName().'</p></div>';
+            }
+            echo '</div>';
+        }
+        ?>
     </div>
 </body>
 </html>

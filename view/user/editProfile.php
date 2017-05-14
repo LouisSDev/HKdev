@@ -42,8 +42,7 @@ elseif( isset($GLOBALS['view']['error'])) { ?>
 <br>
 <br>
 <br>
-<h2 id="infoTitle">Editer mes infos personnelles </h2>
-        <i class="fa fa-chevron-down" id="infoPers" aria-hidden="true"></i>
+<h2 id="infoTitle">Editer mes infos personnelles <i class="fa fa-chevron-down" aria-hidden="true"></i></h2>
         <div class="infoPers">
             <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/edit'?>">
                 <input class="box" type="text" placeholder="Nom" size="30" name="firstName"><br/>
@@ -51,11 +50,9 @@ elseif( isset($GLOBALS['view']['error'])) { ?>
                 <input class="btn" type="submit" value="Valider">
             </form>
         </div>
-
         <br>
         <br>
-        <h2 id="mailTitle">Editer mon email</h2>
-        <i class="fa fa-chevron-down" id="email" aria-hidden="true"></i>
+        <h2 id="mailTitle">Editer mon email <i class="fa fa-chevron-down" id="email" aria-hidden="true"></i></h2>
         <div class="mail">
             <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/edit'?>">
                 <input class="box" type="password" placeholder=" Mot de passe" size="30" name="password"><br/>
@@ -64,11 +61,9 @@ elseif( isset($GLOBALS['view']['error'])) { ?>
                 <input class="btn" type="submit" value="Valider">
             </form>
         </div>
-
         <br>
         <br>
-        <h2 id="mdpTitle">Editer mon mot de passe </h2>
-        <i class="fa fa-chevron-down" id="mdp" aria-hidden="true"></i>
+        <h2 id="mdpTitle">Editer mon mot de passe <i class="fa fa-chevron-down" aria-hidden="true"></i></h2>
         <div class="mdp">
             <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/edit'?>">
                 <input class="box" type="password" placeholder="Ancien mot de passe" size="30" name="oldPassword"><br/>
@@ -76,7 +71,6 @@ elseif( isset($GLOBALS['view']['error'])) { ?>
                 <input class="box" type="password" placeholder="Saisir à nouveau le mot de passe" size="30" name="confirmNewPassword"><br/>
                 <input class="btn" type="submit" value="Valider">
             </form>
-
-
+        </div>
 </body>
 </html>
