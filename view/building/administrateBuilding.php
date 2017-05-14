@@ -39,11 +39,9 @@ elseif( isset($GLOBALS['view']['error'])) { ?>
         <input type="email" name="mail" placeholder="email temporaire">
         <input type="password" name="password" placeholder="mot de passe temporaire">
         <input type="password" name="passwordConf" placeholder="Confirmation du mot de passe temporaire">
-
+        <select name="homeId">
 
         <?php
-        if($building -> getHasHomes()){
-            echo '<select name="homeId">';
 
             /**
              * @var Home $home
@@ -61,10 +59,8 @@ elseif( isset($GLOBALS['view']['error'])) { ?>
                 }
 
             }
-
-        }
-        echo '</select>';
         ?>
+        </select>
 
 
         <input class="btn" type="submit" value="Valider">
