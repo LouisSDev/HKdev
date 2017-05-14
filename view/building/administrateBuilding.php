@@ -10,8 +10,6 @@
  * @var User $user
  */
 $user = $GLOBALS['view']['user'];
-$homes =$user->getHomes();
-
 $building = $GLOBALS['view']['building'];
 
 if(isset ($GLOBALS['view']['success_message'])){ ?>
@@ -45,7 +43,7 @@ elseif( isset($GLOBALS['view']['error'])) { ?>
                 /**
                  * @var Home $home
                  */
-                foreach ($homes as $home){
+                foreach ($building->getHomes() as $home){
 
                     if($home->getBuilding() === $building){
 
