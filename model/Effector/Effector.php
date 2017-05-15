@@ -82,6 +82,7 @@ class Effector extends DatabaseEntity{
             $this->name = $name;
         }
         else{
+            Utils::addWarning("This name is too long ");
             $this->error = true;
             $this->errorMessage []= "This name is too long ";
         }
