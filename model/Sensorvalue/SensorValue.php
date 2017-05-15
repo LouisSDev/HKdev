@@ -55,8 +55,9 @@ class SensorValue extends DatabaseEntity
             $this->state = $state;
         }
         else{
+            Utils::addWarning(' the parameter is incorrect');
             $this->error = true;
-            $this->errorMessage .='<br> the parameter is incorrect';
+            $this->errorMessage []=' the parameter is incorrect';
         }
         return $this;
     }
@@ -80,8 +81,9 @@ class SensorValue extends DatabaseEntity
             $this->value = $value;
         }
         else{
+            Utils::addWarning(' the parameter is incorrect');
             $this->error = true;
-            $this->errorMessage .='<br> the parameter is incorrect';
+            $this->errorMessage []=' the parameter is incorrect';
         }
 
         return $this;
@@ -105,8 +107,9 @@ class SensorValue extends DatabaseEntity
             $this->datetime = $datetime;
         }
         else{
+            Utils::addWarning(' the parameter is incorrect');
             $this->error = true;
-            $this->errorMessage .='<br> the parameter is incorrect';
+            $this->errorMessage []=' the parameter is incorrect';
         }
 
         return $this;
