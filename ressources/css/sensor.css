@@ -15,7 +15,6 @@ form{
 
 .principal
 {
-    position: relative;
     margin-top : 90px;
     left:25%;
 }
@@ -26,6 +25,7 @@ form{
     background: #f4f7f8;
     border-radius: 4px;
     width: 50%;
+    left:25%;
 }
 
 input[name="sensorId"],

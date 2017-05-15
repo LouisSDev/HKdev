@@ -4,6 +4,7 @@
     <title>Ajout Capteur</title>
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/sensor.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
     <?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>
 </head>
 <div class="principal">
