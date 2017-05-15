@@ -31,12 +31,12 @@ elseif( isset($GLOBALS['view']['error'])) { ?>
 
 <form method="post" class="newUser">
     <div class="col1">
-        <input type ="password" name="adminPassword" placeholder="votre mot de passe administrateur" >
+        <input type ="password" name="adminPassword" placeholder="Votre mot de passe administrateur" >
         <input type="text" name="firstName" placeholder="Nom du nouveau locataire">
         <input type="text" name="lastName" placeholder="Prénom du nouveau locataire">
     </div>
     <div class="col2">
-        <input type="email" name="mail" placeholder="email temporaire">
+        <input type="email" name="mail" placeholder="Email temporaire">
         <input type="password" name="password" placeholder="mot de passe temporaire">
         <input type="password" name="passwordConf" placeholder="Confirmation du mot de passe temporaire">
         <select name="homeId">
