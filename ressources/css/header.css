@@ -1,4 +1,10 @@
- /* HEADER */
+.logo{
+    width: 22%;
+    height: auto;
+    left: 0;
+    top: 0;
+}
+/* HEADER */
 .header{
     position: fixed;
     left: 0;

@@ -39,6 +39,7 @@ class Sensor extends DatabaseEntity{
            $this->sensorType = $sensorType;
        }
         else{
+           Utils::addWarning("The parameter is not a SensorType");
            $this->error = true;
            $this->errorMessage[]= "The parameter is not a SensorType";
         }
@@ -65,6 +66,7 @@ class Sensor extends DatabaseEntity{
             $this->room = $room;
         }
         else{
+            Utils::addWarning("The parameter is not a Room");
             $this -> error = true;
             $this -> errorMessage[]= "The parameter is not a Room";
         }

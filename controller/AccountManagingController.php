@@ -111,8 +111,8 @@ abstract class AccountManagingController extends Controller
             }
         }
 
-        if($sr){
-            return $sr;
+        if($sensor){
+            return $sensor;
         }
 
         $this -> apiResponse = new ApiResponse(404, 'Le capteur spécifié n\'est pas disponible', true);
@@ -164,5 +164,35 @@ abstract class AccountManagingController extends Controller
 
         ApiHandler::returnValidResponse(null);
     }
+
+    /**
+     * @param Home $building
+     * @param $homeId
+     * @return Home
+     */
+   protected function findHomeInBuildingFromId(Home $building,$homeId){
+
+        $home=null;
+        /**
+         * @var Home $building
+         */
+       if ($building->getHasHomes() == true){
+           /**
+            * @var Home $hme
+            */
+           foreach ($building->getRooms() as $hme){
+               if ($hme->getId()===$homeId){
+                   $home = $hme;
+                   break;
+               }
+
+           }
+
+       }
+
+    return $home;
+
+   }
+
 
 }

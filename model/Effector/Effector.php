@@ -110,6 +110,7 @@ class Effector extends DatabaseEntity{
             $this->room = $room;
         }
         else{
+            Utils::addWarning("The parameter is not a Room ");
             $this->error = true;
             $this->errorMessage []= "The parameter is not a Room ";
         }
@@ -135,6 +136,7 @@ class Effector extends DatabaseEntity{
             $this->state = $state;
         }
         else{
+            Utils::addWarning("The parameter is incorrect");
             $this->error = true;
             $this->errorMessage []="The parameter is incorrect";
         }
@@ -159,6 +161,7 @@ class Effector extends DatabaseEntity{
             $this->auto = $auto;
         }
         else{
+            Utils::addWarning("The parameter is incorrect");
             $this->error = true;
             $this->errorMessage[]= "The parameter is incorrect";
         }
