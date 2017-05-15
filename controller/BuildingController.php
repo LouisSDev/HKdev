@@ -33,12 +33,16 @@ class BuildingController extends AccountManagingController
 
 
                 if ($this -> user -> getPassword() === sha1($_POST['adminPassword'] . $GLOBALS['salt'])) {
+                    if ($_POST['password'] === $_POST['passwordConf']) {
+                        $toBeEditedUser = $this
+                            ->findHomeFromIdInBuilding($this->args['building'], $_POST['homeId'])
+                            ->getUser();
 
-                    $toBeEditedUser = $this
-                        ->findHomeFromIdInBuilding($this->args['building'], $_POST['homeId'])
-                        -> getUser();
-
-                    $this -> setNewUserParams($toBeEditedUser);
+                        $this->setNewUserParams($toBeEditedUser);
+                    }
+                    else{
+                        $this -> args['error_message'] = "Les deux nouveaux mot de passes ne sont pas identiques";
+                    }
                 }
                 else{
                     $this -> args['error_message'] = "Le mot de passe entré n'est pas correct";

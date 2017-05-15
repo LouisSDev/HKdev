@@ -59,23 +59,7 @@
             </p>
             <?php
         }
-        else{
-
-            if(isset($GLOBALS['view']['error'])){
-                ?>
-                <p id="registration-error">
-                    <?php
-                    echo $GLOBALS['view']['error'] . '<br>';
-                    if(isset($GLOBALS['view']['errorDetails'])){
-                        foreach ($GLOBALS['view']['errorDetails'] as $error){
-                            echo $error . '<br>';
-                        }
-                    }
-                    ?>
-                </p>
-                <?php
-            }
-            ?>
+        else{  include_once($GLOBALS['root_dir'] . '/view/general/error.php') ; ?>
             <div id="form">
                 <div class="form_content">
                     <h1>Vous êtes intéressé ?</h1>

@@ -7,11 +7,7 @@
     <title><?php echo $GLOBALS['view']['page_title']?></title>
 </head>
 <body>
-<?php include_once(__DIR__ . "/general/header.php");
-    if(!empty($_GET['errorMessage'])){
-        echo '<p>' . $_GET['errorMessage'] . '</p>' ;
-    }
-?>
+<?php include_once($GLOBALS['root_dir'] . '/view/general/error.php') ?>
     <div class="container">
         <form action="<?php echo $GLOBALS['server_root'] . '/connect'?>" method="post" >
             <input class="box" type="text" required="" placeholder="Nom d'utilisateur" name="userMail"><br/>
