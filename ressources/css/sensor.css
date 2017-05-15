@@ -1,9 +1,23 @@
+h1{
+    text-align: center;
+    font-size: 30px;
+}
+
 .text {
     text-align: center;
+    font-size: 18px;
 }
+
 form{
     position: relative;
     text-align: center;
+}
+
+.principal
+{
+    position: relative;
+    margin-top : 90px;
+    left:25%;
 }
 
 .ajouts,
@@ -12,15 +26,9 @@ form{
     background: #f4f7f8;
     border-radius: 4px;
     width: 50%;
-    left: 25%;
 }
 
-input [name="sensorId"],
-select
-{
-    margin-outside: 50px;
-}
-
+input[name="sensorId"],
 input[type="text"],
 select
 {
@@ -28,7 +36,10 @@ select
     border:none;
     border-radius: 4px;
     font-family: Georgia, "Roboto", Times, serif;
+    font-size: 15px;
     color:#49545e;
+    width: 65%;
+    margin: 1%;
 }
 
 .btn{ /*Button style*/
@@ -36,13 +47,14 @@ select
     text-decoration: none;
     text-align: center;
     border: 0;
-    font-size: 20px;
-    padding: 15px;
+    font-size: 25px;
+    padding: 10px;
     /*box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);*/
     display: inline-block;
     cursor: pointer;
     transition-duration: 0.4s;
     opacity: 0.7;
+    margin: 1%;
 }
 
 .btn:hover{
@@ -50,4 +62,5 @@ select
     padding-right: 25px;
     transition-duration: 0.4s;
     opacity: 1;
+    margin:1%;
 }
