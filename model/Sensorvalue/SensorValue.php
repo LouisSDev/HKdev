@@ -21,7 +21,7 @@ class SensorValue extends DatabaseEntity
     /**
      * @var float $value
      */
-    private $value;
+    private $value = 0;
 
     /**
      * @var Sensor $sensor
@@ -47,7 +47,7 @@ class SensorValue extends DatabaseEntity
 
     /**
      * @param boolean $state
-     * return SensorValue
+     * @return SensorValue
      */
     public function setState($state)
     {
@@ -56,7 +56,7 @@ class SensorValue extends DatabaseEntity
         }
         else{
             $this->error = true;
-            $this->errorMessage .='<br> the parameter is incorrect';
+            $this->errorMessage[] = 'the state is incorrect';
         }
         return $this;
     }
@@ -76,13 +76,7 @@ class SensorValue extends DatabaseEntity
      */
     public function setValue($value)
     {
-        if(is_float($value)){
-            $this->value = $value;
-        }
-        else{
-            $this->error = true;
-            $this->errorMessage .='<br> the parameter is incorrect';
-        }
+        $this->value = $value;
 
         return $this;
     }
@@ -105,8 +99,9 @@ class SensorValue extends DatabaseEntity
             $this->datetime = $datetime;
         }
         else{
+            Utils::addWarning('the datetime is incorrect');
             $this->error = true;
-            $this->errorMessage .='<br> the parameter is incorrect';
+            $this->errorMessage[] = 'the datetime is incorrect';
         }
 
         return $this;
@@ -124,15 +119,15 @@ class SensorValue extends DatabaseEntity
      * @param Sensor $sensor
      * @return SensorValue
      */
-    public function setSensor($sensor)
+    public function setSensor(Sensor $sensor)
     {
         if ($sensor instanceof Sensor){
             $this->sensor = $sensor;
         }
         else{
-            Utils::addWarning('the sensor is incorrect');
-            /*$this->error = true;
-            $this->errorMessage[] =  'the sensor is incorrect';*/
+            Utils::addWarning('the sensor is incorrect : '. $sensor -> getId());
+            $this->error = true;
+            $this->errorMessage[] =  'the sensor is incorrect';
         }
 
         return $this;
@@ -147,7 +142,8 @@ class SensorValue extends DatabaseEntity
         if($this->error){
             return false;
         }else{
-            if( $this->sensor != null
+            if(
+                $this -> sensor != null
                 && ($this->state != null || $this ->value != null)
                 && $this->datetime != null
             ){

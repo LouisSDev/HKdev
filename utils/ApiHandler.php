@@ -7,7 +7,8 @@ class ApiHandler
         'Content-Type' => 'application/json'
     ];
 
-    public static function returnResponse($response, $headers = null){
+    public static function returnResponse($response, $headers = []){
+
 
         // We merge the added headers with default headers that will be sent with the HTTP response
         $headers = array_merge($headers, self::DEFAULT_HEADERS);

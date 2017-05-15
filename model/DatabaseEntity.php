@@ -11,6 +11,7 @@ abstract class DatabaseEntity
     const OBJECTS_NAMES = ['effector', 'effectorType', 'sensor',
         'sensorType', 'home', 'building', 'room', 'user', 'sensorValue'];
     const PARAM_DATETIME = 5;
+    const MYSQL_TIMESTAMP_FORMAT = 'Y-m-d H:i:s';
 
     /**
      * @var integer $id
@@ -75,6 +76,17 @@ abstract class DatabaseEntity
 
                     if(Utils::isDate($data[$name])){
                         $data[$name] = new DateTime($data[$name]);
+                    }
+
+
+
+                    if(is_bool($value)){
+                        if($data[$name] == 2){
+                            $data[$name] = false;
+                        }
+                        else{
+                            $data[$name] = true;
+                        }
                     }
 
                     $this->$setterName($data[$name]);
@@ -211,7 +223,7 @@ abstract class DatabaseEntity
                         $type = PDO::PARAM_STR;
                     }else if($value instanceof DateTime){
                         $type = PDO::PARAM_STR;
-                        $value = $value -> format('Y-m-d H:i:s');
+                        $value = $value -> format(self::MYSQL_TIMESTAMP_FORMAT);
                     }else{
                         $type = PDO::PARAM_INT;
                     }
@@ -290,6 +302,14 @@ abstract class DatabaseEntity
 
                     $GLOBALS['val'] = $val;
 
+                    if($GLOBALS['val']  instanceof DateTime){
+                        $GLOBALS['val']  = $GLOBALS['val']  -> format(self::MYSQL_TIMESTAMP_FORMAT);
+                    }
+
+                    if( is_bool($GLOBALS['val']) && $GLOBALS['val'] == false){
+                        $GLOBALS['val'] = 2;
+                    }
+
 
                     if( is_string($GLOBALS['val'])){
                         $GLOBALS['val'] = htmlspecialchars($GLOBALS['val']);
@@ -356,6 +376,15 @@ abstract class DatabaseEntity
                     if( is_string($GLOBALS['val'])){
                         $GLOBALS['val'] = htmlspecialchars($GLOBALS['val']);
                     }
+
+                    if( is_bool($GLOBALS['val']) && $GLOBALS['val'] == false){
+                        $GLOBALS['val'] = 2;
+                    }
+
+                    if($GLOBALS['val']  instanceof DateTime){
+                        $GLOBALS['val']  = $GLOBALS['val']  -> format(self::MYSQL_TIMESTAMP_FORMAT);
+                    }
+
 
 
                     if($GLOBALS['val'] instanceof  DatabaseEntity){
