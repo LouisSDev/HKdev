@@ -1,5 +1,5 @@
 $(document).ready(function () {
-   $('#bed').click(function(){
+   $('.bedroom').click(function(){
        $('.child').slideToggle();
    });
 
