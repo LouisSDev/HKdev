@@ -35,8 +35,10 @@ class Utils
     }
 
     static public function addHeaders($headers){
-        foreach($headers as $headerName => $headerValue){
-            self::addHeader($headerName, $headerValue);
+        if(is_array($headers) && count($headers) != 0) {
+            foreach ($headers as $headerName => $headerValue) {
+                self::addHeader($headerName, $headerValue);
+            }
         }
     }
 
