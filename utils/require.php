@@ -66,9 +66,11 @@ require_once $GLOBALS['root_dir'] . '/controller/AccountManagingController.php';
     // Static
     require_once $GLOBALS['root_dir'] . '/controller/StaticController.php';
 
-
     // Building
     require_once $GLOBALS['root_dir'] . '/controller/BuildingController.php';
+
+    // Sensor
+    require_once $GLOBALS['root_dir'] . '/controller/SensorController.php';
 
 
 
