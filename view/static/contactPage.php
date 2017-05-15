@@ -12,8 +12,6 @@
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/googleMap.js"></script>
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/pop-up.js"></script>
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/smoothScrolling.js"></script>
-
-
 </head>
 <body>
 <?php include_once ($GLOBALS['root_dir'] . "/view/general/modal.php");?>
