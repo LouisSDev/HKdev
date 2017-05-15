@@ -162,8 +162,8 @@ switch($globalPath){
             exit();
         }
         break;
-    case 'test':
-        require_once __DIR__ . '/view/tests/test.php';
+    case 'lol':
+        require_once __DIR__ . '/view/tests/lol.php';
         break;
 
     case '404' :
