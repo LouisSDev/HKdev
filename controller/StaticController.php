@@ -13,6 +13,10 @@ class StaticController extends Controller
 
     public function connection()
     {
+        if(isset($_GET['errorMessage'])){
+            $this -> args['error_message'] = $_GET['errorMessage'];
+        }
+
         $this -> generateView('general/connection.php', 'Connection' );
     }
 

@@ -30,38 +30,55 @@ class BuildingController extends AccountManagingController
                 && !empty($_POST['passwordConf'])
                 && !empty($_POST['homeId'])
             ) {
-                if ($_SESSION['password'] == sha1($_POST['adminPassword'] . $GLOBALS['salt'])) {
 
-                    if ($this->findHomeInBuildingFromId($this->args['building'], $_POST['homeId'])) {
-                        $homeUser=$this->findHomeInBuildingFromId($this->args['building'],$_POST['homeId']);
-                         $newUser= $homeUser->getUser();
-                         $this->setNewUserParam($newUser,$_POST['firstName'],$_POST['lastName'],$_POST['mail'],$_POST['password']);
+
+                if ($this -> user -> getPassword() === sha1($_POST['adminPassword'] . $GLOBALS['salt'])) {
+                    if ($_POST['password'] === $_POST['passwordConf']) {
+                        $toBeEditedUser = $this
+                            ->findHomeFromIdInBuilding($this->args['building'], $_POST['homeId'])
+                            ->getUser();
+
+                        $this->setNewUserParams($toBeEditedUser);
+                    }
+                    else{
+                        $this -> args['error_message'] = "Les deux nouveaux mot de passes ne sont pas identiques";
+                    }
                 }
-            }
-        }
+                else{
+                    $this -> args['error_message'] = "Le mot de passe entré n'est pas correct";
+                }
 
+
+            }
             else {
-                $this->generateView('static/404.php', '404');
-                exit();
+
+                $this -> args['error_message'] = "Veuillez entrer tous les paramètres requis";
+
             }
 
         }
+
+        $this -> generateView('building/administrate.php', 'Administrer mon Appartement');
     }
 
-    public function setNewUserParam( User $user,$firstName,$lastName,$mail,$password){
-        $user->setFirstName($firstName);
-        $user->setLastName($lastName);
-        $user->setMail($mail);
-        $user->setPassword($password);
-        if ($user->save($this->db)){
+    public function setNewUserParams(User $user){
+
+        $user->setFirstName($_POST['firstName']);
+        $user->setLastName($_POST['lastName']);
+        $user->setMail($_POST['mail']);
+        $user->setPassword($_POST['password']);
+
+
+        if ( $user -> save($this->db) ){
+
             $this->args['success_message'] = 'Félicitation vos informations ont bien été modifiés';
-            $this -> generateView('building/administrateBuilding.php', 'Administrate My Building');
-            exit();
         }
-        else{
-            $this->args['error'] = "Les modifications que vous essayez de réaliser ne sont pas valides.";
-            $this->generateView('user/editProfile.php', 'Edit My Profile');
-        }
+
+
+        $this -> args['error_message'] = "Les modifications que vous essayez de réaliser ne sont pas valides.";
+
+        $this -> args['errors'] = $user -> getErrorMessage();
+
     }
 
 

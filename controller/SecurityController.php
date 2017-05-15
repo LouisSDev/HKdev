@@ -25,34 +25,34 @@ class SecurityController extends Controller
 
         // If the save method is thrown, we'll forward it to the controller
         if(!$user -> getValid() || $user -> isError()){
-            $this -> args ['error'] = 'Les informations entrées ne sont pas valides';
-            $this -> args['errorDetails'] = $user -> getErrorMessage();
+            $this -> args ['error_message'] = 'Les informations entrées ne sont pas valides';
+            $this -> args['errors'] = $user -> getErrorMessage();
             $this -> generateView('static/homepage.php', 'Home');
         }
 
         if($GLOBALS['repositories']['user'] -> isMailAlreadyUsed($user -> getMail())){
-            $this -> args ['error'] = 'Cet adresse e-mail est déjà utilisée pour un autre compte HK!';
+            $this -> args ['error_message'] = 'Cet adresse e-mail est déjà utilisée pour un autre compte HK!';
             $this -> generateView('static/homepage.php', 'Home');
         }
 
 
         if (empty($_FILES['quote']) || $_FILES['quote']['error'] != 0  || empty($_FILES['quote']['tmp_name']) ) {
-            $this -> args ['error'] = 'Vous n\'avez pas selectionné de fichier.';
+            $this -> args ['error_message'] = 'Vous n\'avez pas selectionné de fichier.';
             $this -> generateView('static/homepage.php', 'Home');
         }
 
         //If the files is not too big
         if ($_FILES['quote']['size'] > self::MAX_FILE_SIZE) {
-            $this -> args['error'] = 'Le fichier selectionné est trop lourd, il doit faire moins de 300ko';
+            $this -> args['error_message'] = 'Le fichier selectionné est trop lourd, il doit faire moins de 300ko';
             $this -> generateView('static/homepage.php', 'Home');
         }
 
 
         $fileInformation = pathinfo($_FILES['quote']['name']);
         if (!in_array($fileInformation['extension'], self::AUTHORIZED_EXTENSIONS)) {
-            $this -> args ['error'] = 'Ce type de fichier n\'est pas accepté veuillez choisir un fichier dans un des formats suivants: ';
+            $this -> args ['error_message'] = 'Ce type de fichier n\'est pas accepté veuillez choisir un fichier dans un des formats suivants: ';
             foreach(self::AUTHORIZED_EXTENSIONS as $authExt){
-                $this -> args['error'] .= $authExt . ' ';
+                $this -> args['error_message'] .= $authExt . ' ';
             }
             $this -> generateView('static/homepage.php', 'Home');
         }
