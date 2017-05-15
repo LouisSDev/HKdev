@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo $GLOBALS['view']['title']?></title>
+    <title><?php echo $GLOBALS['view']['page_title']?></title>
 </head>
 
 <link rel="stylesheet" href="<?php echo $GLOBALS['server_root']?>/ressources/css/chart.css">

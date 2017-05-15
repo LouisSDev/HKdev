@@ -1,7 +1,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo $GLOBALS['view']['title']?></title>
+    <title><?php echo $GLOBALS['view']['page_title']?></title>
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/form.css">
 
 </head>
