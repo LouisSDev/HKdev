@@ -34,7 +34,7 @@ $home = $GLOBALS['view']['home'];
             echo '<i class="fa fa-bed iconBed" id="bed" aria-hidden="true" style="cursor:pointer;"></i>';
             echo '<div class="bedroom">';
             foreach ($home ->getRoomsPerType("Chambres") as $room){
-                echo '<div class="circle1" style="background-color:#FFBC42"><p class="title">'.$room->getName().'</p></div>';
+                echo '<div class="circle" style="background-color:#FFBC42"><p class="title">'.$room->getName().'</p></div>';
             }
             echo '</div>';
         }
@@ -42,7 +42,7 @@ $home = $GLOBALS['view']['home'];
             echo '<i class="fa fa-cutlery iconKitchen" aria-hidden="true" style="cursor:pointer;"></i>';
             echo '<div class="kitchen">';
             foreach ($home ->getRoomsPerType("Cuisines") as $room){
-                echo '<div class="circle2" style="background-color:#FB3640"><p class="title">'.$room->getName().'</p></div>';
+                echo '<div class="circle" style="background-color:#FB3640"><p class="title">'.$room->getName().'</p></div>';
             }
             echo '</div>';
         }
@@ -50,7 +50,7 @@ $home = $GLOBALS['view']['home'];
             echo '<i class="fa fa-bath iconBath" aria-hidden="true" style="cursor:pointer;"></i>';
             echo '<div class="bath">';
             foreach ($home ->getRoomsPerType("Salles d'eau") as $room){
-                echo '<div class="circle3" style="background-color:#BFDBF7"><p class="title">'.$room->getName().'</p></div>';
+                echo '<div class="circle" style="background-color:#BFDBF7"><p class="title">'.$room->getName().'</p></div>';
             }
             echo '</div>';
         }
@@ -58,7 +58,7 @@ $home = $GLOBALS['view']['home'];
             echo '<i class="fa fa-television iconSofa" aria-hidden="true" style="cursor:pointer;"></i>';
             echo '<div class="living">';
             foreach ($home ->getRoomsPerType("Pièces à vivre") as $room){
-                echo '<div class="circle4" style="background-color:#F2F3AE"><p class="title">'.$room->getName().'</p></div>';
+                echo '<div class="circle" style="background-color:#F2F3AE"><p class="title">'.$room->getName().'</p></div>';
             }
             echo '</div>';
         }
