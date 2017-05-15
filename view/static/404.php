@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Erreur 404</title>
+    <title><?php echo $GLOBALS['view']['page_title']?></title>
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>\ressources\css\global.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>\ressources\css\error404.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
