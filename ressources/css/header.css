@@ -3,6 +3,7 @@
     height: auto;
     left: 0;
     top: 0;
+    display: none;
 }
 /* HEADER */
 .header{
