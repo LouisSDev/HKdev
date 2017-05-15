@@ -26,6 +26,8 @@ class SensorController extends AccountManagingController
         /** @var Sensor $sns */
         foreach ($sensors as $sns){
 
+            $i = 0;
+
 
 
             if($sns -> getSensorType() -> getChart()) {
@@ -42,6 +44,7 @@ class SensorController extends AccountManagingController
                 $actualDateTimeManipulated = new DateTime(self::BASE_DATETIME);
 
 
+
                 for ($i = 0; $i < self::NUMBER_OF_VALUES_TO_ADD; $i++) {
                     $sensorVal = new SensorValue();
 
@@ -50,6 +53,10 @@ class SensorController extends AccountManagingController
                         -> setDatetime($actualDateTimeManipulated);
 
                     $sns -> addSensorValue($sensorVal);
+
+                    if(!$sensorVal -> save($this -> db)){
+                        Utils::addWarning('Whoops those datas couldn\'t be saved in the database...');
+                    }
 
                     $actualValue += $gap * ( rand(0, 2) - 1);
                     if($actualValue > $maxVal){
@@ -87,6 +94,9 @@ class SensorController extends AccountManagingController
 
                     $sns->addSensorValue($sensorVal);
 
+                    if(!$sensorVal -> save($this -> db)){
+                        Utils::addWarning('Whoops those datas couldn\'t be saved in the database...');
+                    }
 
 
                     $rnd = rand(0,25);
@@ -105,9 +115,7 @@ class SensorController extends AccountManagingController
 
             }
 
-            if(!$sns -> save($this -> db)){
-                Utils::addWarning('Whoops those datas couldn\'t be saved in the database...');
-            }
+
         }
 
         ApiHandler::returnValidResponse(array('message' => 'Values added'));
