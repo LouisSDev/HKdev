@@ -240,7 +240,7 @@ abstract class DatabaseEntity
                 $addParameter = true;
                 if(($value -> getClassName() ==  $this -> getClassName())  ) {
                     $IdGetterName = 'getBuilding';
-                    if($value -> $IdGetterName() -> getId() == -1){
+                    if($this -> $IdGetterName() -> getId() == -1){
                         $addParameter = false;
                     }
                 }
@@ -306,7 +306,7 @@ abstract class DatabaseEntity
                         $GLOBALS['val']  = $GLOBALS['val']  -> format(self::MYSQL_TIMESTAMP_FORMAT);
                     }
 
-                    if( is_bool($GLOBALS['val']) && $GLOBALS['val'] == false){
+                    if( $GLOBALS['val'] === false){
                         $GLOBALS['val'] = 2;
                     }
 
@@ -377,7 +377,7 @@ abstract class DatabaseEntity
                         $GLOBALS['val'] = htmlspecialchars($GLOBALS['val']);
                     }
 
-                    if( is_bool($GLOBALS['val']) && $GLOBALS['val'] == false){
+                    if( is_bool($GLOBALS['val']) && $GLOBALS['val'] === false){
                         $GLOBALS['val'] = 2;
                     }
 
@@ -408,9 +408,11 @@ abstract class DatabaseEntity
             foreach($cascadingParameters as $name => $value){
                 // For each of the object in this array
                 foreach($value as $object){
-                    // We save it as well!
-                    if($object -> save($db) == null){
-                        return null;
+                    if($name !== 'sensorValues') {
+                        // We save it as well!
+                        if ($object->save($db) == null) {
+                            return null;
+                        }
                     }
                 }
             }

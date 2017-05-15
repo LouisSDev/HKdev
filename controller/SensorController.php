@@ -1,11 +1,6 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: LOUISSTEIMBERG
- * Date: 15/05/2017
- * Time: 09:13
- */
+
 class SensorController extends AccountManagingController
 {
 
@@ -16,6 +11,11 @@ class SensorController extends AccountManagingController
 
     public function addRandomValuesToSensors(){
 
+
+        // To avoid bugs due to standard timeout
+        set_time_limit(0);
+
+
         $this -> enableApiMode();
 
         /** @var SensorRepository $sensorRepository */
@@ -24,17 +24,17 @@ class SensorController extends AccountManagingController
         $sensors =  $sensorRepository -> getAll();
 
         /** @var Sensor $sns */
-        foreach ($sensors as $sns){
+        foreach ($sensors as $sns) {
 
             $i = 0;
 
 
 
-            if($sns -> getSensorType() -> getChart()) {
+            if ($sns->getSensorType()->getChart()) {
 
-                $minVal = $sns -> getSensorType() -> getMinVal() ;
+                $minVal = $sns->getSensorType()->getMinVal();
 
-                $maxVal = $sns -> getSensorType() -> getMaxVal();
+                $maxVal = $sns->getSensorType()->getMaxVal();
 
                 $fullGap = $maxVal - $minVal;
 
@@ -44,26 +44,23 @@ class SensorController extends AccountManagingController
                 $actualDateTimeManipulated = new DateTime(self::BASE_DATETIME);
 
 
-
                 for ($i = 0; $i < self::NUMBER_OF_VALUES_TO_ADD; $i++) {
                     $sensorVal = new SensorValue();
 
                     $sensorVal
-                        -> setValue($actualValue)
-                        -> setDatetime($actualDateTimeManipulated);
+                        ->setValue($actualValue)
+                        ->setDatetime($actualDateTimeManipulated);
 
-                    $sns -> addSensorValue($sensorVal);
+                    $sns->addSensorValue($sensorVal);
 
-                    if(!$sensorVal -> save($this -> db)){
+                    if (!$sensorVal->save($this->db)) {
                         Utils::addWarning('Whoops those datas couldn\'t be saved in the database...');
                     }
 
-                    $actualValue += $gap * ( rand(0, 2) - 1);
-                    if($actualValue > $maxVal){
+                    $actualValue += $gap * (rand(0, 2) - 1);
+                    if ($actualValue > $maxVal) {
                         $actualValue = $maxVal;
-                    }
-
-                    else if($actualValue < $minVal){
+                    } else if ($actualValue < $minVal) {
                         $actualValue = $minVal;
                     }
 
@@ -78,8 +75,7 @@ class SensorController extends AccountManagingController
 
             }
 
-
-            else{
+            else {
 
                 $actualValue = false;
                 $actualDateTimeManipulated = new DateTime(self::BASE_DATETIME);
@@ -94,14 +90,15 @@ class SensorController extends AccountManagingController
 
                     $sns->addSensorValue($sensorVal);
 
-                    if(!$sensorVal -> save($this -> db)){
+                    if (!$sensorVal->save($this->db)) {
                         Utils::addWarning('Whoops those datas couldn\'t be saved in the database...');
                     }
 
 
-                    $rnd = rand(0,25);
-                    if($rnd == 0){
+                    $rnd = rand(0, 25);
+                    if ($rnd === 2) {
                         $actualValue = !$actualValue;
+                        Utils::addWarning($rnd . '  value  of the boolean : ' . $actualValue);
                     }
 
                     $actualDateTimeManipulated = date_add
@@ -110,9 +107,6 @@ class SensorController extends AccountManagingController
                         date_interval_create_from_date_string(self::BASE_PERIOD)
                     );
                 }
-
-
-
             }
 
 
