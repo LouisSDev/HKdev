@@ -1,3 +1,5 @@
+
+
 <header class="header">
     <?php
         if(isset($GLOBALS['view']['connected']) && $GLOBALS['view']['connected']){
@@ -19,6 +21,7 @@
            ?>
             <nav class="menu">
                 <ul>
+                    <li><img class="logo" src="<?php echo $GLOBALS['server_root']?>/ressources/img/logo hk blanc.png"></li>
                     <li><a href="<?php echo $GLOBALS['server_root'] . '/user/dashboard'?>">Tableau de bord</a></li>
                     <?php if(count( $homes )) {
 
@@ -71,6 +74,7 @@
      ?>
     <nav class="menu">
         <ul>
+            <li><img class="logo" src="<?php echo $GLOBALS['server_root']?>/ressources/img/logo hk blanc.png"></li>
             <li><a href="<?php echo $GLOBALS['server_root']?>/">Accueil</a></li>
             <li><a href="<?php echo $GLOBALS['server_root'] . '/contact'?>">Contact</a></li>
             <li><a id="show" href="#">Connexion</a></li>

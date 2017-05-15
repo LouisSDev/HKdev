@@ -103,6 +103,7 @@ class Home extends DatabaseEntity
             $this->name = $name;
         }
         else{
+            Utils::addWarning("This name is too long");
             $this->error = true;
             $this->errorMessage []="This name is too long";
         }
@@ -128,6 +129,7 @@ class Home extends DatabaseEntity
             $this->address = $address;
         }
         else{
+            Utils::addWarning("This address is too long");
             $this->error = true;
             $this->errorMessage[]=  "This address is too long ";
         }
@@ -154,6 +156,7 @@ class Home extends DatabaseEntity
             $this->user = $user;
         }
         else{
+            Utils::addWarning("The parameter is not a User");
             $this->error = true;
             $this->errorMessage[]="The parameter is not a User";
         }
@@ -180,6 +183,7 @@ class Home extends DatabaseEntity
         }
 
         else{
+            Utils::addWarning("The parameter is not a Home");
             $this->error = true;
             $this->errorMessage []="The parameter is not a Home";
         }
@@ -208,6 +212,7 @@ class Home extends DatabaseEntity
             $this->city = $city;
         }
         else{
+            Utils::addWarning("This city name is too long");
             $this->error = true;
             $this->errorMessage []="This city name is too long";
         }
@@ -234,6 +239,7 @@ class Home extends DatabaseEntity
             $this->country = $country;
         }
         else{
+            Utils::addWarning("This Country name is too long");
             $this->error = true;
             $this->errorMessage[]=  "This Country name is too long";
         }

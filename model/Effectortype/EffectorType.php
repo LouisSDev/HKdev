@@ -100,6 +100,7 @@ class EffectorType extends DatabaseEntity
             $this->name = $name;
         }
         else{
+            Utils::addWarning("This name is too long");
             $this -> error = true;
             $this -> errorMessage [] = "This name is too long";
         }
@@ -127,6 +128,7 @@ class EffectorType extends DatabaseEntity
             $this->ref = $ref;
         }
         else{
+            Utils::addWarning("The reference is incorrect");
             $this -> error = true;
             $this -> errorMessage []= "The reference is incorrect";
         }
@@ -145,6 +147,7 @@ class EffectorType extends DatabaseEntity
             $this->chart = $chart;
         }
         else{
+            Utils::addWarning("The parameter is incorrect");
             $this -> error = true;
             $this -> errorMessage[] =  "The parameter is incorrect";
 
@@ -171,6 +174,7 @@ class EffectorType extends DatabaseEntity
             $this->type = $type;
         }
         else{
+            Utils::addWarning("This isn\'t a valid Effector type");
             $this->error = true;
             $this->errorMessage []= "This isn\'t a valid Effector type";
         }
