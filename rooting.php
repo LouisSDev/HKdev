@@ -106,6 +106,24 @@ switch($globalPath){
     case 'api':
         if(isset($path[3])) {
             switch($path[3]){
+                case 'sensors':
+                    if(isset($path[4])) {
+                        switch ($path[4]) {
+                            case 'fakeValues':
+                                $sensorController = new SensorController($db);
+                                $sensorController -> addRandomValuesToSensors();
+                                break;
+                            default :
+                                header('HTTP/1.1 404 Not Found');
+                                exit();
+                        }
+                    }
+                    else{
+                        header('HTTP/1.1 404 Not Found');
+                        exit();
+                    }
+                    break;
+
                 case 'edit' :
                     if(isset($path[4])) {
                         switch($path[4]){
@@ -122,21 +140,11 @@ switch($globalPath){
                                 exit();
                         }
                     }else{
-                        switch($path[4]){
-                            case 'room' :
-
-                                break;
-                            case 'home' :
-
-                                break;
-                            default :
-                                header('HTTP/1.1 404 Not Found');
-                                exit();
-                        }
                         header('HTTP/1.1 404 Not Found');
                         exit();
                     }
                     break;
+
                 case 'get' :
                     if(isset($path[4])) {
 
@@ -145,6 +153,9 @@ switch($globalPath){
                         exit();
                     }
                     break;
+                default:
+                    header('HTTP/1.1 404 Not Found');
+                    exit();
             }
         }else{
             header('HTTP/1.1 404 Not Found');

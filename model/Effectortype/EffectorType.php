@@ -32,6 +32,54 @@ class EffectorType extends DatabaseEntity
      */
     private $chart;
 
+    /**
+     * @var float $minVal
+     */
+    private $minVal = 0;
+
+    /**
+     * @var float $maxVal
+     */
+    private $maxVal = 0;
+
+    /**
+     * @return float
+     */
+    public function getMinVal()
+    {
+        return $this->minVal;
+    }
+
+    /**
+     * @param float $minVal
+     * @return EffectorType
+     */
+    public function setMinVal($minVal)
+    {
+        $this->minVal = $minVal;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getMaxVal()
+    {
+        return $this->maxVal;
+    }
+
+    /**
+     * @param float $maxVal
+     * @return EffectorType
+     */
+    public function setMaxVal($maxVal)
+    {
+        $this->maxVal = $maxVal;
+        return $this;
+    }
+
+
+
 
     /**
      * @return string
@@ -151,6 +199,9 @@ class EffectorType extends DatabaseEntity
                 && $this ->ref != null
                 && $this -> type != null
             ){
+                if($this -> chart && ($this -> minVal == null || $this -> maxVal)){
+                    return false;
+                }
                 return true;
             }else{
                 return false;
@@ -165,6 +216,9 @@ class EffectorType extends DatabaseEntity
     public function getObjectVars(){
         return get_object_vars($this);
     }
+
+
+
 
 
 }

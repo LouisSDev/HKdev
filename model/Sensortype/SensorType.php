@@ -46,6 +46,51 @@ class SensorType extends DatabaseEntity
     }
 
     /**
+     * @var float $minVal
+     */
+    private $minVal = 0;
+
+    /**
+     * @var float $maxVal
+     */
+    private $maxVal = 0;
+
+    /**
+     * @return float
+     */
+    public function getMinVal()
+    {
+        return $this->minVal;
+    }
+
+    /**
+     * @param float $minVal
+     * @return SensorType
+     */
+    public function setMinVal($minVal)
+    {
+        $this->minVal = $minVal;
+        return $this;
+    }
+
+    /**
+     * @return float
+     */
+    public function getMaxVal()
+    {
+        return $this->maxVal;
+    }
+
+    /**
+     * @param float $maxVal
+     * @return SensorType
+     */
+    public function setMaxVal($maxVal)
+    {
+        $this->maxVal = $maxVal;
+        return $this;
+    }
+    /**
      * @param string $name
      * @return SensorType
      */
@@ -166,6 +211,9 @@ class SensorType extends DatabaseEntity
                 && $this -> type != null
                 && $this -> price != 0
             ){
+                if($this -> chart && ($this -> minVal == null || $this -> maxVal)){
+                    return false;
+                }
                 return true;
             }else{
                 return false;
