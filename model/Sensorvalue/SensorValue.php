@@ -124,14 +124,15 @@ class SensorValue extends DatabaseEntity
      * @param Sensor $sensor
      * @return SensorValue
      */
-    public function setSensor(Sensor $sensor)
+    public function setSensor($sensor)
     {
         if ($sensor instanceof Sensor){
             $this->sensor = $sensor;
         }
         else{
-            $this->error = true;
-            $this->errorMessage .='<br> the parameter is incorrect';
+            Utils::addWarning('the sensor is incorrect');
+            /*$this->error = true;
+            $this->errorMessage[] =  'the sensor is incorrect';*/
         }
 
         return $this;
@@ -147,9 +148,8 @@ class SensorValue extends DatabaseEntity
             return false;
         }else{
             if( $this->sensor != null
-                && $this->state != null
-                &&$this ->value != null
-                && $this->datetime !=null
+                && ($this->state != null || $this ->value != null)
+                && $this->datetime != null
             ){
                 return true;
             }else{

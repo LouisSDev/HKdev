@@ -10,6 +10,7 @@ abstract class DatabaseEntity
 {
     const OBJECTS_NAMES = ['effector', 'effectorType', 'sensor',
         'sensorType', 'home', 'building', 'room', 'user', 'sensorValue'];
+    const PARAM_DATETIME = 5;
 
     /**
      * @var integer $id
@@ -65,10 +66,16 @@ abstract class DatabaseEntity
                     $arraysToBeCreated[$name] = $value;
 
                 }
+
+
                 else if($name != "error" && $name != "errorMessage" && !empty($data[$name])){
                     // If the param is a simple param and not neither the error or errorMessage param
                     // We put the data array value inside this param and we're done
 
+
+                    if(Utils::isDate($data[$name])){
+                        $data[$name] = new DateTime($data[$name]);
+                    }
 
                     $this->$setterName($data[$name]);
                 }
@@ -202,6 +209,9 @@ abstract class DatabaseEntity
                     // This will help us binding the param later on
                     if(is_string($value)){
                         $type = PDO::PARAM_STR;
+                    }else if($value instanceof DateTime){
+                        $type = PDO::PARAM_STR;
+                        $value = $value -> format('Y-m-d H:i:s');
                     }else{
                         $type = PDO::PARAM_INT;
                     }
