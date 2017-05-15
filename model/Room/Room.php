@@ -71,6 +71,7 @@ class Room extends DatabaseEntity
             $this->type = $type;
         }
         else{
+            Utils::addWarning("This isn\'t a valid room type");
             $this->error = true;
             $this->errorMessage []= "This isn\'t a valid room type";
         }
@@ -109,6 +110,7 @@ class Room extends DatabaseEntity
             $this->home = $home;
         }
         else{
+            Utils::addWarning("The parameter is not a Home");
             $this->error = true;
             $this->errorMessage[] =  "The parameter is not a Home";
         }
@@ -126,6 +128,7 @@ class Room extends DatabaseEntity
             $this->name = $name;
         }
         else{
+            Utils::addWarning("This name is too long");
             $this->error = true;
             $this->errorMessage []= "This name is too long";
         }

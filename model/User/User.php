@@ -88,6 +88,7 @@ class User extends DatabaseEntity
             $this->firstName = $firstName;
         }
         else{
+            Utils::addWarning("This firstname is too long");
             $this->error = true;
             $this->errorMessage []=  "This firstname is too long";
         }
@@ -114,6 +115,7 @@ class User extends DatabaseEntity
             $this->lastName = $lastName;
         }
         else{
+            Utils::addWarning("This lastName is too long");
             $this->error = true;
             $this->errorMessage [] = "This lastName is too long";
         }
@@ -139,6 +141,7 @@ class User extends DatabaseEntity
             $this->mail = $mail;
         }
         else{
+            Utils::addWarning("The Mail address is incorrect");
             $this->error = true;
             $this->errorMessage []= "The Mail address is incorrect";
         }
@@ -163,6 +166,7 @@ class User extends DatabaseEntity
             $this->cellPhoneNumber = $cellPhoneNumber;
         }
         else{
+            Utils::addWarning("This cellPhoneNumber is incorrect");
             $this->error = true;
             $this->errorMessage []=  "This cellPhoneNumber is incorrect";
         }
@@ -188,6 +192,7 @@ class User extends DatabaseEntity
             $this->address = $address;
         }
         else{
+            Utils::addWarning("This address is too long");
             $this->error = true;
             $this->errorMessage[]= "This address is too long";
         }
@@ -229,6 +234,7 @@ class User extends DatabaseEntity
             $this->city = $city;
         }
         else{
+            Utils::addWarning("This City name is too long");
             $this->error = true;
             $this->errorMessage[]=  "This City name is too long";
         }
@@ -273,6 +279,7 @@ class User extends DatabaseEntity
             if($password == $passwordConf){
                 $this->password = $password;
             }else{
+                Utils::addWarning("The two passwords are not identical");
                 $this->error = true;
                 $this->errorMessage[]= "The two passwords are not identical";
             }
@@ -281,10 +288,12 @@ class User extends DatabaseEntity
                 if($passwordNew == $passwordConf){
                     $this->password = $passwordNew;
                 }else{
+                    Utils::addWarning("The two passwords are not identical");
                     $this->error = true;
                     $this->errorMessage[]= "The two passwords are not identical";
                 }
             }else{
+                Utils::addWarning("Your old password is not correctly entered");
                 $this->error = true;
                 $this->errorMessage[]= "Your old password is not correctly entered";
             }
@@ -304,6 +313,7 @@ class User extends DatabaseEntity
             $this->country = $country;
         }
         else{
+            Utils::addWarning("This Country name is too long");
             $this->error = true;
             $this->errorMessage[]= "This Country name is too long";
         }

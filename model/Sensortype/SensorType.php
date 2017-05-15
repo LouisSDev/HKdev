@@ -100,6 +100,7 @@ class SensorType extends DatabaseEntity
             $this->name = $name;
         }
         else{
+            Utils::addWarning("the name is too long");
             $this->error = true;
             $this->errorMessage []= "the name is too long";
         }
@@ -126,6 +127,7 @@ class SensorType extends DatabaseEntity
             $this->ref = $ref;
         }
        else{
+            Utils::addWarning("the reference is too long");
             $this->error = true;
             $this->errorMessage []="the reference is too long";
        }
@@ -170,6 +172,7 @@ class SensorType extends DatabaseEntity
             $this->type = $type;
         }
         else{
+            Utils::addWarning("This isn\'t a valid room type");
             $this->error = true;
             $this->errorMessage []= "This isn\'t a valid room type";
         }
