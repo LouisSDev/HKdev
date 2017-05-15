@@ -58,7 +58,7 @@ abstract class Controller
 
             $this->args['page_title'] = $pageTitle;
 
-            //putting args array values into $GLOBBALS variable
+            //putting args array values into $GLOBALS variable
             foreach ($this->args as $key => $value) {
 
                 if (is_string($value)) {

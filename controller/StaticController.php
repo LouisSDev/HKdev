@@ -13,7 +13,7 @@ class StaticController extends Controller
 
     public function connection()
     {
-        $this -> generateView('connection.php', 'Connection' );
+        $this -> generateView('general/connection.php', 'Connection' );
     }
 
     public function contact()
