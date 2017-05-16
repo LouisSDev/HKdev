@@ -17,7 +17,7 @@ class BackOfficeController extends AdminController
         $effectorTypeRepository = $GLOBALS['repositories']['effectorType'];
 
         /**@var SensorType $sensorsTypes*/
-        $sensorsTypes =  $sensorTypeRepository -> getAll();
+        $sensorsTypes =  $sensorTypeRepository ->getAll();
 
         $this -> args['sensors_types'] = $sensorsTypes ;
 
@@ -35,20 +35,19 @@ class BackOfficeController extends AdminController
                     if($stp->getId()===$_POST['sensorType']){
                         $sensorTypeToBeDeleted = $stp;
                         $sensorTypeToBeDeleted->setSelling(false);
-                        if($sensorsTypes->save($this->db)){
+                        if($stp->save($this->db)){
                             $this->args['success_message']= "Félicitation le capteur sélectionné a bien été supprimé";
                         }
                         else{
                             $this->args['error_message']="La suppression demandée ne peut être éffectué";
-                            $this->args['errors']=$sensorsTypes->getErrorMessage();
+                            $stp->getErrorMessage();
 
 
                         }
 
                     }
                     else{
-
-                        $this->args['errors']=$sensorsTypes->getErrorMessage();
+                        $stp->getErrorMessage();
                     }
                 }
             }
