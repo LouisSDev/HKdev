@@ -222,6 +222,7 @@ class SensorController extends AccountManagingController
                     foreach ($sensorsValuesPerTypes as $type => $sensorsValuesPerSensor) {
 
 
+
                         /** @var SensorTypeRepository $sensorTypeRepository */
                         $sensorTypeRepository = $GLOBALS['repositories']['sensorType'];
 
