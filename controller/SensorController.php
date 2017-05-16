@@ -221,11 +221,16 @@ class SensorController extends AccountManagingController
 
                     foreach ($sensorsValuesPerTypes as $type => $sensorsValuesPerSensor) {
 
+
+
                         /** @var SensorTypeRepository $sensorTypeRepository */
                         $sensorTypeRepository = $GLOBALS['repositories']['sensorType'];
 
                         /** @var SensorType $sensorType */
                         $sensorType = $sensorTypeRepository->getSensorTypePerType($type);
+
+                        $type = str_replace(' ', '_', $type);
+                        $type = str_replace('\'', '_', $type);
 
                         if($sensorType -> getChart()){
                             $sortedSensorsValuesPerTypes[$type] = [
