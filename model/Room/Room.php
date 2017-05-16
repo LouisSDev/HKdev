@@ -221,7 +221,6 @@ class Room extends DatabaseEntity
         }else{
             if( $this->name != null
                 && $this ->home != null
-                && $this->sensors != null
             ){
                 return true;
             }else{

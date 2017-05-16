@@ -38,6 +38,30 @@ class SensorType extends DatabaseEntity
     private $chart = true;
 
     /**
+     * @var boolean $selling
+     */
+    private $selling;
+
+    /**
+     * @return boolean
+     */
+    public function getSelling()
+    {
+        return $this->selling;
+    }
+
+    /**
+     * @param boolean $selling
+     * @return SensorType
+     */
+    public function setSelling($selling)
+    {
+        $this->selling = $selling;
+        return $this;
+    }
+
+
+    /**
      * @return string
      */
     public function getName()

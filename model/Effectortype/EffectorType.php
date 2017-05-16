@@ -27,6 +27,7 @@ class EffectorType extends DatabaseEntity
      */
     private $ref;
 
+
     /**
      * @var boolean $chart
      */
@@ -41,6 +42,31 @@ class EffectorType extends DatabaseEntity
      * @var float $maxVal
      */
     private $maxVal = 0;
+
+    /**
+     * @var boolean $selling
+     */
+    private $selling;
+
+    /**
+     * @return boolean
+     */
+    public function getSelling()
+    {
+        return $this->selling;
+    }
+
+    /**
+     * @param boolean $selling
+     * @return EffectorType
+     */
+    public function setSelling($selling)
+    {
+        $this->selling = $selling;
+        return $this;
+    }
+
+
 
     /**
      * @return float

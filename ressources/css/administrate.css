@@ -1,0 +1,50 @@
+.col1{
+    margin-top: 200px;
+    display: inline-block;
+}
+.col2{
+
+}
+.div{
+    font-size: 18px;
+    line-height: 1.3em;
+    vertical-align: top;
+    margin-bottom: 1em;
+    border-radius: 0.5em;
+    padding: 1em;
+    // This insures everything up to the border;
+    // is included in the width
+    box-sizing: border-box;
+    // The default width of my divs
+    width: 45%;
+}
+input{
+    width: 300px;
+    border-radius: 40px;
+}
+input.placeholder{
+    text-align: center;
+}
+::-webkit-input-placeholder {
+    text-align: center;
+}
+select{
+    text-align: center;
+    width: 300px;
+    margin-top: 100px;
+    margin-bottom: -300px;
+}
+#submit{
+    width: 150px;
+}
+#form{
+    margin-top: 100px;
+}
+body{
+    background: linear-gradient(to top, #009999 0%, #33cccc 100%);
+}
+.error-message{
+    margin-top: 400px;
+    background-color: #FB3640;
+    font-family: "Arial Black";
+}

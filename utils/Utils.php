@@ -56,13 +56,36 @@ class Utils
 
     public static function isDate($value)
     {
-        return preg_match( '#^(((\d{4})(-)(0[13578]|10|12)(-)(0[1-9]|'
-            .'[12][0-9]|3[01]))|(‌​(\d{4})(-)(0[469]|11‌​)(-)(0[1-9]|[12]'
-            .'[0-9‌​]|30))|((\d{4})(-)(0‌​2)(-)(0[1-9]|[12][0-‌​9]|2[0-8]))'
-            .'|(([02468‌​][048]00)(-)(02)(-)(‌​29))|(([13579][26]00‌​)(-)(02)'
-            .'(-)(29))|(([‌​0-9][0-9][0][48])(-)‌​(02)(-)(29))|(([0-9]‌​[0-9]'
-            .'[2468][048])(-)‌​(02)(-)(29))|(([0-9]‌​[0-9][13579][26])(-)‌​'
-            .'(02)(-)(29)))(\s)(([‌​0-1][0-9]|2[0-4]):([‌​0-5][0-9]):([0-5][0-‌​9]))$#', $value);
+        return preg_match("/\d{4}\-\d{2}-\d{2}/", $value);
+    }
+
+
+    /**
+     * Replaces any parameter placeholders in a query with the value of that
+     * parameter. Useful for debugging. Assumes anonymous parameters from
+     * $params are are in the same order as specified in $query
+     *
+     * @param string $query The sql query with parameter placeholders
+     * @param array $params The array of substitution parameters
+     * @return string The interpolated query
+     */
+    public static function interpolateQuery($query, $params) {
+        $keys = array();
+
+        # build a regular expression for each parameter
+        foreach ($params as $key => $value) {
+            if (is_string($key)) {
+                $keys[] = '/:'.$key.'/';
+            } else {
+                $keys[] = '/[?]/';
+            }
+        }
+
+        $query = preg_replace($keys, $params, $query, 1, $count);
+
+        #trigger_error('replaced '.$count.' keys');
+
+        return $query;
     }
 
 }
