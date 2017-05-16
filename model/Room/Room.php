@@ -257,6 +257,22 @@ class Room extends DatabaseEntity
         return $sensors;
     }
 
+    public function getAllEffectorsTypeInRoom(){
+
+        $usedTypes = [];
+        $effectorTypes = null;
+
+        /** @var Effector $effector */
+        foreach ($this -> getEffectors() as $effector){
+            if(!in_array($effector, $usedTypes)){
+                $usedTypes[] = $effector -> getEffectorType() -> getType();
+                $effectorTypes[] = $effector -> getEffectorType();
+            }
+        }
+
+        return $effectorTypes;
+    }
+
     /**
      * @return Room
      *
