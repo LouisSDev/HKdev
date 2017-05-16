@@ -39,12 +39,11 @@ class UserController extends Controller
                     $this -> editPassword();
                 }
 
-                else {
-                    $this->generateView('user/editProfile.php', 'Editer mon profil');
-                }
-
                 break;
         }
+
+
+        $this->generateView('user/editProfile.php', 'Editer mon profil');
     }
 
     public function editPassword()
@@ -66,11 +65,9 @@ class UserController extends Controller
 
                $_SESSION['password'] = $this -> user -> getPassword();
 
-               $this->generateView('user/editProfile.php', 'Edit My Profile');
            }
         else{
             $this->args['error_message'] = 'Vous devez obligatoirement remplir les champs';
-            $this->generateView('user/editProfile.php', 'Edit My Profile');
         }
     }
 
@@ -85,13 +82,11 @@ class UserController extends Controller
             if (sha1($password . $GLOBALS['salt']) !== $this -> user -> getPassword()){
 
                 $this->args['error_message'] = 'Le mot de passe est erroné';
-                $this->generateView('user/editProfile.php', 'Edit My Profile');
             }
             elseif($newEmail !== $confirmNewEmail){
 
                 $this->args['error_message'] = 'Les deux adresses email doivent etre identiques';
 
-                $this->generateView('user/editProfile.php', 'Edit My Profile');
             }
             else{
                 $this -> user -> setMail($newEmail);
@@ -102,18 +97,17 @@ class UserController extends Controller
 
                         $_SESSION['mail'] = $this -> user -> getMail();
 
-                        $this->generateView('user/editProfile.php', 'Edit My Profile');
                     }else {
 
+                        $this -> args['error_message'] = 'Une erreur s\'est produite lors de l\'enregistrement de ces données, veuillez vérifier les informations entrées';
+
                         $this->args['errors'] = $this -> user -> getErrorMessage();
-                        $this->generateView('user/editProfile.php', 'Edit My Profile');
                     }
             }
 
         }
         else{
             $this->args['error_message'] = 'Veuillez remplir les champs';
-            $this->generateView('user/editProfile.php', 'Edit My Profile');
         }
 
     }
@@ -129,10 +123,8 @@ class UserController extends Controller
 
         if($this -> user -> save($this -> db)){
             $this->args['success_message'] = 'Félicitation vos informations ont bien été modifiés';
-            $this->generateView('user/editProfile.php', 'Edit My Profile');
         }else{
-            $this->args['errors'] = "Les modifications que vous essayez de réaliser ne sont pas valides.";
-            $this->generateView('user/editProfile.php', 'Edit My Profile');
+            $this->args['error_message'] = "Les modifications que vous essayez de réaliser ne sont pas valides.";
         }
     }
 

@@ -57,23 +57,23 @@ class HomeController extends AccountManagingController
                     && !$sensor -> getRoom())
                     {
                         if($sensor -> setRoom($room) -> save($this -> db)){
-                            $this -> args['message'] = 'Le capteur a été ajouté à vos capteurs avec succès';
+                            $this -> args['success_message'] = 'Le capteur a été ajouté à vos capteurs avec succès';
                         }
                         else{
-                            $this -> args['message'] = 'Oups une erreur est survenue dans la base de données, nous essayons de la régler au plus vite';
+                            $this -> args['error_message'] = 'Oups une erreur est survenue dans la base de données, nous essayons de la régler au plus vite';
                         }
                     }
                     else {
-                        $this -> args['message'] = 'Le code du capteur entré n\'est pas valide, veuillez réessayer.';
+                        $this -> args['error_message'] = 'Le code du capteur entré n\'est pas valide, veuillez réessayer.';
                     }
                 }
-                // If we don't find it we'll throw an error message
+                // If we don't find it we'll throw an error error_message
                 else{
-                    $this -> args['message'] = 'Veuillez remplir correctement le formulaire';
+                    $this -> args['error_message'] = 'Veuillez remplir correctement le formulaire';
                 }
 
             }else{
-                $this -> args['message'] = 'Veuillez remplir correctement le formulaire';
+                $this -> args['error_message'] = 'Veuillez remplir correctement le formulaire';
             }
         }
 

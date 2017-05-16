@@ -428,8 +428,7 @@ class User extends DatabaseEntity
         ){
             return true;
         }
-
-        $this->errorMessage[]= "Vous n'avez pas rentré toutes les informations nécessaires.";
+        $this->errorMessage[] = "Vous n'avez pas rentré toutes les informations nécessaires.";
         return false;
     }
 

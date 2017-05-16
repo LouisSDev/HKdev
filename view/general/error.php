@@ -3,13 +3,13 @@
     <?php
 
         if(isset ($GLOBALS['view']['success_message'])){ ?>
-            <div class="success-message">
+            <div class="success-message information-message">
                 <?php echo $GLOBALS['view']['success_message'] ?>
             </div>
             <?php
         }
         elseif( isset($GLOBALS['view']['error_message'])) { ?>
-            <div class="error-message">
+            <div class="error-message information-message">
                 <?php
                     echo $GLOBALS['view']['error_message']  ;
                     if( isset($GLOBALS['view']['errors'])) {

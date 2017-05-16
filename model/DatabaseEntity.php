@@ -1,4 +1,5 @@
 <?php
+use BernardoSecades\Json\Json;
 
 /**
  * Created by PhpStorm.
@@ -423,6 +424,9 @@ abstract class DatabaseEntity
             return $this;
 
         }else{
+
+            Utils::addWarning($this -> getClassName() . ' n°: ' . $this -> getId() . ' couldn\'t be saved...' );
+            Utils::addWarning(Json::encode($this -> getErrorMessage()));
             // If it failed, it will return null
             return null;
         }

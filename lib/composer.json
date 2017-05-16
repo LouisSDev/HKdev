@@ -17,8 +17,6 @@
 
   "config" : {
     "vendor-dir" : "vendor"
-  },
-
-  "comment" : "php-excel doc here :  https://github.com/PHPOffice/PHPExcel/wiki"
+  }
 
 }
