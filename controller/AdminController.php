@@ -9,4 +9,8 @@
 abstract class AdminController extends AccountManagingController
 {
 
+    protected $connectionRequired = true;
+    protected $adminPage = true;
+
+
 }

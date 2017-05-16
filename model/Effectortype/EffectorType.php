@@ -10,7 +10,7 @@ class EffectorType extends DatabaseEntity
 {
 
 
-    const TYPE_ARRAY = ["Volet", "Lumière", "Chauffage", "Ventilation"];
+    const TYPE_ARRAY = ["Volet", "Lumière", "Climatisation"];
 
     /**
      * @var $name string

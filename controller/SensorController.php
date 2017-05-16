@@ -117,7 +117,39 @@ class SensorController extends AccountManagingController
 
     public function getSensorValues()
     {
-        if(!empty($_POST['fromDate'])){
+        $this -> enableApiMode();
+
+        if(!empty($_POST['fromDate']) && !empty($_POST['toDate'])
+        && ( !empty($_POST['roomId'])  || !empty($_POST['homeId']))
+        ){
+            $sensorsPerType = [];
+
+            if(!empty($_POST['roomId'])) {
+                $room = $this -> findRoomFromIdInUsersRooms($_POST['roomId']);
+                foreach(SensorType::TYPE_ARRAY as $type){
+                    $sensorsPerType[$type] = $room -> getSensorsPerType($type);
+                }
+            }
+
+            if(!empty($_POST['homeId'])) {
+                $home = $this->findHomeFromId($_POST['homeId']);
+                foreach(SensorType::TYPE_ARRAY as $type){
+                    $sensorsPerType[$type] = $home -> getSensorsPerType($type);
+                }
+            }
+
+            $sensorsValuesPerTypes = [];
+
+            foreach($sensorsPerType as $type => $sensors){
+                /** @var Sensor $sensor */
+                foreach ($sensors as $sensor){
+
+                }
+            }
+
+
+
+
 
         }
     }

@@ -12,6 +12,8 @@ abstract class Controller
 
     protected $api = false;
 
+    protected $adminPage = false;
+
     /** @var ApiResponse $apiResponse */
     protected $apiResponse = null;
 
@@ -35,7 +37,10 @@ abstract class Controller
         /** @var UserRepository $userRepo */
         $userRepo = $GLOBALS['repositories']['user'];
 
-        if( $userRepo -> isConnected()){
+        if( $userRepo -> isConnected()
+            && (!$this -> adminPage
+                || ($this -> adminPage && $userRepo -> getUser() -> getAdmin()))
+        ){
             $this -> connected = true;
             $this -> user = $userRepo -> getUser();
             $this -> args['user'] = $this -> user;
