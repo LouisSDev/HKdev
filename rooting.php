@@ -190,13 +190,15 @@ switch($globalPath){
                     //TODO
                     break;
                 case 'products' :
-                    //TODO
+                    $backOfficeController = new BackOfficeController($db);
+                    $backOfficeController -> manageProducts();
                     break;
                 default :
                     $staticController = new StaticController();
                     $staticController -> notFound();
             }
         }
+        break;
 
 
     case 'lol':
