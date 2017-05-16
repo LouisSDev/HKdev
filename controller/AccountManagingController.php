@@ -46,7 +46,7 @@ abstract class AccountManagingController extends Controller
             return $home;
         }
 
-        $this -> apiResponse = new ApiResponse(404, 'L\'habitation spécifiée n\'est pas disponible', true);
+        $this -> apiResponse = new ApiResponse(404, 'L\'habitation specifiee n\'est pas disponible', true);
 
         $this -> generateView('static/404.php', '404');
         exit();
@@ -80,7 +80,7 @@ abstract class AccountManagingController extends Controller
             return $home;
         }
 
-        $this -> apiResponse = new ApiResponse(404, 'L\'habitation spécifiée n\'est pas disponible', true);
+        $this -> apiResponse = new ApiResponse(404, 'L\'habitation specifiee n\'est pas disponible', true);
 
         $this -> generateView('static/404.php', '404');
         exit();
@@ -108,7 +108,7 @@ abstract class AccountManagingController extends Controller
             return $room;
         }
 
-        $this -> apiResponse = new ApiResponse(404, 'La pièce spécifiée n\'est pas disponible', true);
+        $this -> apiResponse = new ApiResponse(404, 'La pièce specifiee n\'est pas disponible', true);
 
         $this -> generateView('static/404.php', '404');
         exit();
@@ -129,7 +129,7 @@ abstract class AccountManagingController extends Controller
             return $room;
         }
 
-        $this -> apiResponse = new ApiResponse(404, 'La pièce spécifiée n\'est pas disponible', true);
+        $this -> apiResponse = new ApiResponse(404, 'La pièce specifiee n\'est pas disponible', true);
 
         $this -> generateView('static/404.php', '404');
         exit();
@@ -156,7 +156,7 @@ abstract class AccountManagingController extends Controller
             return $sensor;
         }
 
-        $this -> apiResponse = new ApiResponse(404, 'Le capteur spécifié n\'est pas disponible', true);
+        $this -> apiResponse = new ApiResponse(404, 'Le capteur specifiee n\'est pas disponible', true);
 
         $this -> generateView('static/404.php', '404');
         exit();

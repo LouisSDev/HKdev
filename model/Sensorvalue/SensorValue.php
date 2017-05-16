@@ -8,6 +8,7 @@
  */
 class SensorValue extends DatabaseEntity
 {
+    const DEFAULT_STATE_SENSOR_VALUE = -59.99;
     /**
      * @var \DateTime $datetime
      */
@@ -21,7 +22,7 @@ class SensorValue extends DatabaseEntity
     /**
      * @var float $value
      */
-    private $value = 0;
+    private $value = self::DEFAULT_STATE_SENSOR_VALUE;
 
     /**
      * @var Sensor $sensor
@@ -168,6 +169,53 @@ class SensorValue extends DatabaseEntity
 
     public function getObjectVars(){
         return get_object_vars($this);
+    }
+
+    public function getOneToOneCascadingActivated(){
+        return false;
+    }
+
+    public function getDataArray($sortedSensorValues)
+    {
+        if($this -> value == self::DEFAULT_STATE_SENSOR_VALUE){
+            $numberOfFalse = 0;
+            $numberOfTrue = 0;
+            /** @var SensorValue $value */
+            foreach ($sortedSensorValues as $value){
+                if($value -> getState()){
+                    $numberOfTrue ++;
+                }else{
+                    $numberOfFalse ++;
+                }
+            }
+
+            $mediumState = false;
+
+            if($numberOfTrue > $numberOfFalse){
+                $mediumState = true;
+            }
+
+            return [
+                'datetime' => $this -> datetime -> format(self::MYSQL_TIMESTAMP_FORMAT),
+                'state' => $mediumState
+            ];
+        }
+
+        $totalValue = 0;
+        /** @var SensorValue $value */
+        foreach ($sortedSensorValues as $value){
+            $totalValue += $value -> getValue();
+        }
+
+        $mediumValue = $totalValue / count($sortedSensorValues);
+
+
+        return [
+            'datetime' => $this -> datetime -> format(self::MYSQL_TIMESTAMP_FORMAT),
+            'value' => $totalValue
+        ];
+
+
     }
 
 }

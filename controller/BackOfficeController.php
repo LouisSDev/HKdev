@@ -25,6 +25,8 @@ class BackOfficeController extends AdminController
         $this -> args['effectors_types'] = $effectorTypes ;
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+
             // CONTROLLER TESTS
         }
 

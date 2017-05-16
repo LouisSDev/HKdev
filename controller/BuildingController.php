@@ -74,10 +74,12 @@ class BuildingController extends AccountManagingController
             $this->args['success_message'] = 'Félicitation vos informations ont bien été modifiés';
         }
 
+        else {
 
-        $this -> args['error_message'] = "Les modifications que vous essayez de réaliser ne sont pas valides.";
+            $this->args['error_message'] = "Les modifications que vous essayez de réaliser ne sont pas valides.";
 
-        $this -> args['errors'] = $user -> getErrorMessage();
+            $this->args['errors'] = $user->getErrorMessage();
+        }
 
     }
 

@@ -32,7 +32,7 @@
                         /** @var  $sensorType SensorType*/
                         foreach ($sensorsTypes as $sensorType) {
 
-                            if ($sensorType->getType() === $type) {
+                            if ($sensorType->getType() === $type && $sensorType -> getSelling()) {
                                echo '<option label="" value="'
                                 . $sensorType -> getId() . '">'
                                 . $type . ' : ' . $sensorType -> getName()
