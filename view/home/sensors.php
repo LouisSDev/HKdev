@@ -14,9 +14,8 @@
         $rooms = $home ->getRooms();
         $sensorsTypes = $GLOBALS['view']['sensors_types'];
 
-        if(isset($GLOBALS['view']['message'])) {
-             echo '<p>' . $GLOBALS['view']['message'] . '</p>';
-        }
+
+    include_once($GLOBALS['root_dir'] . '/view/general/error.php')
     ?>
 
     <div class="ajouts">

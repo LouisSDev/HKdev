@@ -50,6 +50,7 @@ require_once $GLOBALS['root_dir'] . '/model/Repository.php';
 // Controllers
 require_once $GLOBALS['root_dir'] . '/controller/Controller.php';
 require_once $GLOBALS['root_dir'] . '/controller/AccountManagingController.php';
+require_once $GLOBALS['root_dir'] . '/controller/AdminController.php';
 
     // User
     require_once $GLOBALS['root_dir'] . '/controller/UserController.php';
@@ -71,6 +72,9 @@ require_once $GLOBALS['root_dir'] . '/controller/AccountManagingController.php';
 
     // Sensor
     require_once $GLOBALS['root_dir'] . '/controller/SensorController.php';
+
+    //BackOffice
+    require_once $GLOBALS['root_dir'] . '/controller/BackOfficeController.php';
 
 
 
