@@ -4,22 +4,18 @@ class ApiHandler
 {
 
     const DEFAULT_HEADERS = [
-        'Content-Type' => 'application/json'
+        'Content-type' => 'application/json; charset=utf-8'
     ];
 
     public static function returnResponse($response, $headers = null){
 
 
-        if($headers) {
-            // We merge the added headers with default headers that will be sent with the HTTP response
-            $headers[] =  self::DEFAULT_HEADERS;
-        }
-
         // Now we add those headers thanks to the method we defined in the utils class of this project
         Utils::addHeaders($headers);
+        Utils::addHeaders(self::DEFAULT_HEADERS);
 
         // Now we echo the response in json format
-        echo json_encode($response);
+        echo json_encode($response, JSON_FORCE_OBJECT|JSON_UNESCAPED_UNICODE);
 
         // And stop the PHP execution
         exit;

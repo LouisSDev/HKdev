@@ -174,6 +174,10 @@ class SensorController extends AccountManagingController
 
                             // For each of the SensorValue objects resulting of this research in the db
                             $sensorValuesFetched = $sensorValuesRepository->searchValues($fromDate, $toDate, $sensor);
+
+                            if($sensorValuesFetched) {
+                                $sensorsValuesPerTypes[$type][$i] = [];
+                            }
                             /** @var SensorValue $value */
                             foreach( $sensorValuesFetched as $value)
                             {
@@ -212,21 +216,22 @@ class SensorController extends AccountManagingController
 
                     foreach($sensorsValuesPerTypes as $type => $sensorsValuesPerSensor){
 
-                        for($i = 0; $i <= self::NUMBER_OF_VALUES_IN_A_GRAPH ; $i++){
+                        for($i = 0; $i < self::NUMBER_OF_VALUES_IN_A_GRAPH ; $i++){
 
                             $sortedSensorValues = [];
 
                             foreach($sensorsValuesPerSensor as $sensorValues){
-                                $sortedSensorValues = $sensorValues[$i];
+                                $sortedSensorValues[] = $sensorValues[$i];
                             }
 
                             if(count($sortedSensorValues) > 0){
                                 /** @var SensorValue $baseValue */
                                 $baseValue = $sortedSensorValues[0];
-                                $sortedSensorValues[$type] = $baseValue -> getDataArray($sortedSensorValues);
+                                $sortedSensorsValuesPerTypes[$type][] = $baseValue -> getDataArray($sortedSensorValues);
                             }
                         }
                     }
+
 
                     ApiHandler::returnValidResponse($sortedSensorsValuesPerTypes);
 

@@ -108,7 +108,7 @@ abstract class AccountManagingController extends Controller
             return $room;
         }
 
-        $this -> apiResponse = new ApiResponse(404, 'La pièce specifiee n\'est pas disponible', true);
+        $this -> apiResponse = new ApiResponse(404, 'La piece specifiee n\'est pas disponible', true);
 
         $this -> generateView('static/404.php', '404');
         exit();
@@ -129,7 +129,7 @@ abstract class AccountManagingController extends Controller
             return $room;
         }
 
-        $this -> apiResponse = new ApiResponse(404, 'La pièce specifiee n\'est pas disponible', true);
+        $this -> apiResponse = new ApiResponse(404, 'La piece specifiee n\'est pas disponible', true);
 
         $this -> generateView('static/404.php', '404');
         exit();

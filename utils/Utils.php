@@ -37,6 +37,8 @@ class Utils
     static public function addHeaders($headers){
         if(is_array($headers) && count($headers) != 0) {
             foreach ($headers as $headerName => $headerValue) {
+
+                self::addWarning($headerName . ' : ' . $headerValue);
                 self::addHeader($headerName, $headerValue);
             }
         }
