@@ -28,6 +28,7 @@ class BackOfficeController extends AdminController
             // CONTROLLER TESTS
         }
 
+
         $this -> generateView('backoffice/products.php', 'Gérer les Capteurs et les Effecteurs');
 
     }
