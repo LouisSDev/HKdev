@@ -131,36 +131,38 @@ abstract class DatabaseEntity
             }
         }
 
-        foreach ($entitiesToCheck as $name => $value){
-            if($value == null){
+        if($this -> getOneToOneCascadingActivated()) {
+            foreach ($entitiesToCheck as $name => $value) {
+                if ($value == null) {
 
 
-                // We create the setter name
-                $setterName = 'set' . strtoupper($name[0]) . substr($name, 1, strlen($name) - 1);
+                    // We create the setter name
+                    $setterName = 'set' . strtoupper($name[0]) . substr($name, 1, strlen($name) - 1);
 
-                $repositoryName = $name;
+                    $repositoryName = $name;
 
-                if($name ===  'building'){
-                    $repositoryName = 'home';
-                }
+                    if ($name === 'building') {
+                        $repositoryName = 'home';
+                    }
 
 
-                // Now we get the repository
-                if (empty($GLOBALS['repositories'][$repositoryName])) {
-                    $GLOBALS['repositories']['user']->createRepositories();
-                }
-                /** @var Repository $repository */
-                $repository = $GLOBALS['repositories'][$repositoryName];
+                    // Now we get the repository
+                    if (empty($GLOBALS['repositories'][$repositoryName])) {
+                        $GLOBALS['repositories']['user']->createRepositories();
+                    }
+                    /** @var Repository $repository */
+                    $repository = $GLOBALS['repositories'][$repositoryName];
 
-                // And call the general Repository method below mentionned
-                // It will in turn call the method getObjectsFromUserId of the given repository if it's from the
-                // User id that we search those objects
-                // We then put all of this in the corresponding array and we're done
+                    // And call the general Repository method below mentionned
+                    // It will in turn call the method getObjectsFromUserId of the given repository if it's from the
+                    // User id that we search those objects
+                    // We then put all of this in the corresponding array and we're done
 
-                $object = $repository->findById($data[$name], false);
+                    $object = $repository->findById($data[$name], false);
 
-                if($object) {
-                    $this->$setterName($object);
+                    if ($object) {
+                        $this->$setterName($object);
+                    }
                 }
             }
         }
@@ -500,6 +502,10 @@ abstract class DatabaseEntity
         return get_object_vars($this);
     }
 
+    public function getOneToOneCascadingActivated(){
+        return true;
+    }
+
 
     public static function mergeArraysWithoutDuplicata($array1, $array2){
         foreach ($array2 as $value){
@@ -510,5 +516,7 @@ abstract class DatabaseEntity
 
         return $array1;
     }
+
+
 
 }
