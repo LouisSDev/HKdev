@@ -14,6 +14,7 @@ class ApiHandler
         Utils::addHeaders($headers);
         Utils::addHeaders(self::DEFAULT_HEADERS);
 
+
         // Now we echo the response in json format
         echo json_encode($response, JSON_FORCE_OBJECT|JSON_UNESCAPED_UNICODE);
 
