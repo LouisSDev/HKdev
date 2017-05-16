@@ -147,7 +147,27 @@ switch($globalPath){
 
                 case 'get' :
                     if(isset($path[4])) {
-
+                        switch($path[4]){
+                            case 'sensors':
+                                if(isset($path[5])){
+                                    switch ($path[5]){
+                                        case 'values' :
+                                            $sensorController = new SensorController($db);
+                                            $sensorController -> getSensorValues();
+                                            break;
+                                        default:
+                                            header('HTTP/1.1 404 Not Found');
+                                            exit();
+                                    }
+                                }else{
+                                    header('HTTP/1.1 404 Not Found');
+                                    exit();
+                                }
+                                break;
+                            default:
+                                header('HTTP/1.1 404 Not Found');
+                                exit();
+                        }
                     }else{
                         header('HTTP/1.1 404 Not Found');
                         exit();
@@ -162,6 +182,25 @@ switch($globalPath){
             exit();
         }
         break;
+
+    case 'admin':
+        if(isset($path[3])) {
+            switch ($path[3]) {
+                case 'users' :
+                    //TODO
+                    break;
+                case 'products' :
+                    $backOfficeController = new BackOfficeController($db);
+                    $backOfficeController -> manageProducts();
+                    break;
+                default :
+                    $staticController = new StaticController();
+                    $staticController -> notFound();
+            }
+        }
+        break;
+
+
     case 'lol':
         require_once __DIR__ . '/view/tests/lol.php';
         break;

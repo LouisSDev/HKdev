@@ -24,7 +24,7 @@ class HomeController extends AccountManagingController
     {
         $home = $this -> args['home'];
 
-            /** @var SensorTypeRepository $sensorTypeRepository */
+        /** @var SensorTypeRepository $sensorTypeRepository */
         $sensorTypeRepository = $GLOBALS['repositories']['sensorType'];
 
         // If the form was submitted
