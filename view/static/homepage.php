@@ -9,6 +9,8 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/connection.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/modal.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/form.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/sensor.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/86ed160d29.js"></script>
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/loader.js"></script>
@@ -57,23 +59,7 @@
             </p>
             <?php
         }
-        else{
-
-            if(isset($GLOBALS['view']['error'])){
-                ?>
-                <p id="registration-error">
-                    <?php
-                    echo $GLOBALS['view']['error'] . '<br>';
-                    if(isset($GLOBALS['view']['errorDetails'])){
-                        foreach ($GLOBALS['view']['errorDetails'] as $error){
-                            echo $error . '<br>';
-                        }
-                    }
-                    ?>
-                </p>
-                <?php
-            }
-            ?>
+        else{  include_once($GLOBALS['root_dir'] . '/view/general/error.php') ; ?>
             <div id="form">
                 <div class="form_content">
                     <h1>Vous êtes intéressé ?</h1>

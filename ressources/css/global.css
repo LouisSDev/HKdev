@@ -4,14 +4,12 @@ body{
 }
 
 
-.btn{ /*Button style*/
+.btn{
     background-color: lightgray;
-    text-decoration: none;
     text-align: center;
     border: 0;
     font-size: 20px;
     padding: 15px;
-    /*box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);*/
     display: inline-block;
     cursor: pointer;
     transition-duration: 0.4s;
@@ -23,12 +21,6 @@ body{
     padding-right: 25px;
     transition-duration: 0.4s;
     opacity: 1;
-}
-
-.box{
-    background-color: lightgray;
-    border: 0;
-    padding: 10px;
 }
 
 form{

@@ -14,19 +14,11 @@ $user = $GLOBALS['view']['user'];
 /** @var Home $building */
 $building = $GLOBALS['view']['building'];
 
-if(isset ($GLOBALS['view']['success_message'])){ ?>
-    <div class="success-message">
-        <?php echo $GLOBALS['view']['success_message'] ?>
-    </div>
-    <?php
-}
-elseif( isset($GLOBALS['view']['error'])) { ?>
-    <div class="error-message">
-        <?php echo $GLOBALS['view']['error'] ?>
-    </div>
-    <?php
-}
-?>
+
+
+include_once($GLOBALS['root_dir'] . '/view/general/error.php') ?>
+
+
 <h1> Attribuer de nouveaux identifiants</h1>
 
 <form method="post" class="newUser">

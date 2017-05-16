@@ -143,9 +143,9 @@ class SensorValue extends DatabaseEntity
             return false;
         }else{
             if(
-                $this -> sensor != null
-                && ($this->state != null || $this ->value != null)
-                && $this->datetime != null
+                $this -> sensor !== null
+                && ($this->state !== null || $this ->value !== null)
+                && $this->datetime !== null
             ){
                 return true;
             }else{

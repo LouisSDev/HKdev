@@ -2,9 +2,12 @@
 <head>
     <meta charset="UTF-8">
     <title><?php echo $GLOBALS['view']['page_title']?></title>
-    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/form.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/sensor.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
+    <?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>
 </head>
-<div>
+<div class="principal">
     <?php
         /** @var Home $home */
         $home = $GLOBALS['view']['home'];
@@ -16,10 +19,10 @@
         }
     ?>
 
-    <div>
+    <div class="ajouts">
         <form method="post">
-            <p class="text">Ajouter des capteurs </p>
-            <label>Sélectionnez votre capteur :</label><br>
+            <h1>Ajouter des capteurs </h1>
+            <label class="text"> Sélectionnez votre capteur :</label><br>
             <select name="sensorType">
                 <?php
                     foreach (SensorType::TYPE_ARRAY as $type){
@@ -46,10 +49,10 @@
             <label>Quantité</label><br>
             <input type="number" step="1" value="1" min="0" max="20" name="quantity"/><br>
             -->
-            <label>Numéro de série du capteur</label><br>
-            <input type="number" name="sensorId"/><br>
+            <label class="text">Numéro de série du capteur</label><br>
+            <input type="text" name="sensorId"/><br>
 
-            <label>Sélectionnez la pièces ou vous souhaitez ajouter les capteurs :</label><br>
+            <label class="text">Sélectionnez la pièces ou vous souhaitez ajouter les capteurs :</label><br>
             <select name="room">
                 <option selected label="aucune" value="">Aucune</option>
                 <?php
@@ -76,41 +79,42 @@
         </form>
     </div>
 
-    <div>
+    <div class="suppression">
         <?php $path =   explode( '/', $_SERVER['REQUEST_URI']);
         $endpointName = $path[count($path) - 1];
         $url = str_replace($endpointName, 'deleteSensor',$_SERVER['REQUEST_URI']);
         ?>
-        <p class="text">Supprimer des capteurs</p>
-        <label>Sélectionnez votre capteur :</label><br>
+        <h1>Supprimer des capteurs</h1>
+
         <form method="post" action="<?php echo $url?>">
-        <select name="sensorId">
-            <?php
-            foreach (SensorType::TYPE_ARRAY as $type){
+            <label class="text">Sélectionnez votre capteur :</label><br>
+            <select name="sensorId">
+                <?php
+                foreach (SensorType::TYPE_ARRAY as $type){
 
 
-                echo '<optgroup label="'. $type . '">';
+                    echo '<optgroup label="'. $type . '">';
 
 
-                /** @var  $sensor Sensor*/
-                foreach ($home -> getAllSensors() as $sensor) {
+                    /** @var  $sensor Sensor*/
+                    foreach ($home -> getAllSensors() as $sensor) {
 
 
-                    if ($sensor -> getSensorType() -> getType() === $type) {
-                        echo '<option label="" value="'
-                            . $sensor -> getId() . '">'
-                            . $sensor -> getRoom() -> getName()
-                            . ' - Capteur n°' . $sensor -> getId() . '</option>';
+                        if ($sensor -> getSensorType() -> getType() === $type) {
+                            echo '<option label="" value="'
+                                . $sensor -> getId() . '">'
+                                . $sensor -> getRoom() -> getName()
+                                . ' - Capteur n°' . $sensor -> getId() . '</option>';
+                        }
                     }
+                    echo '</optgroup>';
                 }
-                echo '</optgroup>';
-            }
 
 
 
-            ?>
-        </select><br>
-        <input class="btn" type="submit" value="Supprimer"/>
+                ?>
+            </select><br>
+            <input class="btn" type="submit" value="Supprimer"/>
         </form>
 
     </div>

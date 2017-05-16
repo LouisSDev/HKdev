@@ -7,11 +7,13 @@ class ApiHandler
         'Content-Type' => 'application/json'
     ];
 
-    public static function returnResponse($response, $headers = []){
+    public static function returnResponse($response, $headers = null){
 
 
-        // We merge the added headers with default headers that will be sent with the HTTP response
-        $headers = array_merge($headers, self::DEFAULT_HEADERS);
+        if($headers) {
+            // We merge the added headers with default headers that will be sent with the HTTP response
+            $headers[] =  self::DEFAULT_HEADERS;
+        }
 
         // Now we add those headers thanks to the method we defined in the utils class of this project
         Utils::addHeaders($headers);

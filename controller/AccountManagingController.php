@@ -12,6 +12,47 @@ abstract class AccountManagingController extends Controller
 
     protected $connectionRequired = true;
 
+
+
+
+    /**
+     * @param Home $building
+     * @param $homeId
+     * @return Home
+     */
+    protected function findHomeFromIdInBuilding(Home $building, $homeId){
+
+        $home = null;
+        /**
+         * @var Home $building
+         */
+        if ($building -> getHasHomes() === true){
+            /**
+             * @var Home $hm
+             */
+            foreach ($building -> getHomes() as $hm){
+
+                if ($hm -> getId() === $homeId){
+                    $home = $hm;
+                    break;
+                }
+
+            }
+
+        }
+
+        if($home)
+        {
+            return $home;
+        }
+
+        $this -> apiResponse = new ApiResponse(404, 'L\'habitation spécifiée n\'est pas disponible', true);
+
+        $this -> generateView('static/404.php', '404');
+        exit();
+
+    }
+
     /**
      * @param $id
      * @return Home
@@ -165,34 +206,6 @@ abstract class AccountManagingController extends Controller
         ApiHandler::returnValidResponse(null);
     }
 
-    /**
-     * @param Home $building
-     * @param $homeId
-     * @return Home
-     */
-   protected function findHomeInBuildingFromId(Home $building,$homeId){
-
-        $home=null;
-        /**
-         * @var Home $building
-         */
-       if ($building->getHasHomes() == true){
-           /**
-            * @var Home $hme
-            */
-           foreach ($building->getRooms() as $hme){
-               if ($hme->getId()===$homeId){
-                   $home = $hme;
-                   break;
-               }
-
-           }
-
-       }
-
-    return $home;
-
-   }
 
 
 }

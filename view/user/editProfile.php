@@ -24,19 +24,7 @@
 <br>
 
 
-<?php if(isset ($GLOBALS['view']['success_message'])){ ?>
-    <div class="success-message">
-        <?php echo $GLOBALS['view']['success_message'] ?>
-    </div>
-    <?php
-}
-elseif( isset($GLOBALS['view']['error'])) { ?>
-    <div class="error-message">
-        <?php echo $GLOBALS['view']['error'] ?>
-    </div>
-    <?php
-}
-?>
+<?php include_once($GLOBALS['root_dir'] . '/view/general/error.php') ?>
 
 <br>
 <br>
