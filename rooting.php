@@ -162,6 +162,23 @@ switch($globalPath){
             exit();
         }
         break;
+
+    case 'admin':
+        if(isset($path[3])) {
+            switch ($path[3]) {
+                case 'users' :
+                    //TODO
+                    break;
+                case 'products' :
+                    //TODO
+                    break;
+                default :
+                    $staticController = new StaticController();
+                    $staticController -> notFound();
+            }
+        }
+
+
     case 'lol':
         require_once __DIR__ . '/view/tests/lol.php';
         break;
