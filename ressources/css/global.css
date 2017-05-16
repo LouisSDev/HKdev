@@ -30,3 +30,29 @@ form{
 input{
     margin-top: 2%;
 }
+
+.success-message{
+    margin: 1%;
+    padding: 0.75%;
+    display : block;
+    position: relative;
+    border-radius: 4px;
+    border: none;
+    left: 35%;
+    background-color: rgba(96, 229, 52, 0.70);
+    width: 30.75%;
+    text-align: center;
+}
+
+.error-message{
+    margin: 1%;
+    padding: 0.75%;
+    display : block;
+    position: relative;
+    border-radius: 4px;
+    border: none;
+    left: 30.75%;
+    background-color: rgba(255, 0, 0, 0.73);
+    width: 35%;
+    text-align: center;
+}
