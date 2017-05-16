@@ -147,7 +147,27 @@ switch($globalPath){
 
                 case 'get' :
                     if(isset($path[4])) {
-
+                        switch($path[4]){
+                            case 'sensors':
+                                if(isset($path[5])){
+                                    switch ($path[5]){
+                                        case 'values' :
+                                            $sensorController = new SensorController($db);
+                                            $sensorController -> getSensorValues();
+                                            break;
+                                        default:
+                                            header('HTTP/1.1 404 Not Found');
+                                            exit();
+                                    }
+                                }else{
+                                    header('HTTP/1.1 404 Not Found');
+                                    exit();
+                                }
+                                break;
+                            default:
+                                header('HTTP/1.1 404 Not Found');
+                                exit();
+                        }
                     }else{
                         header('HTTP/1.1 404 Not Found');
                         exit();
