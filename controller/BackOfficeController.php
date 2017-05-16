@@ -28,11 +28,11 @@ class BackOfficeController extends AdminController
         $this -> args['effectors_types'] = $effectorTypes ;
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            if(!empty($_POST['sensoType'])){
+            if(!empty($_POST['sensorType'])){
 
                 /**@var SensorType $stp*/
                 foreach ($sensorsTypes as $stp){
-                    if($stp->getId()==$_POST['sensoType']){
+                    if($stp->getId()===$_POST['sensorType']){
                         $sensorTypeToBeDeleted = $stp;
                         $sensorTypeToBeDeleted->setSelling(false);
                         if($sensorsTypes->save($this->db)){
@@ -47,6 +47,7 @@ class BackOfficeController extends AdminController
 
                     }
                     else{
+
                         $this->args['errors']=$sensorsTypes->getErrorMessage();
                     }
                 }
@@ -56,9 +57,7 @@ class BackOfficeController extends AdminController
 
             }
 
-            // CONTROLLER TESTS
         }
-
 
         $this -> generateView('backoffice/products.php', 'Gérer les Capteurs et les Effecteurs');
 
