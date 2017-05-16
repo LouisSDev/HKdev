@@ -28,5 +28,8 @@
         </SOURCES>
       </library>
     </orderEntry>
+    <orderEntry type="library" name="d3.v4" level="application" />
+    <orderEntry type="library" name="86ed160d29" level="application" />
+    <orderEntry type="library" name="jquery" level="application" />
   </component>
 </module>
