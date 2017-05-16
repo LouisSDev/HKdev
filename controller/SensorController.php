@@ -115,4 +115,11 @@ class SensorController extends AccountManagingController
         ApiHandler::returnValidResponse(array('message' => 'Values added'));
     }
 
+    public function getSensorValues()
+    {
+        if(!empty($_POST['fromDate'])){
+
+        }
+    }
+
 }
