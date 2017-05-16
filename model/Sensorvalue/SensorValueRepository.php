@@ -34,6 +34,7 @@ class SensorValueRepository extends Repository
 
         $getValues -> execute();
 
+
         return $this->getResultantObjects( $getValues);
 
     }

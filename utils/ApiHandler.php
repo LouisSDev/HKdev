@@ -1,5 +1,7 @@
 <?php
 
+use BernardoSecades\Json\Json;
+
 class ApiHandler
 {
 
@@ -16,7 +18,7 @@ class ApiHandler
 
 
         // Now we echo the response in json format
-        echo json_encode($response, JSON_FORCE_OBJECT|JSON_UNESCAPED_UNICODE);
+        echo Json::encode($response);
 
         // And stop the PHP execution
         exit;

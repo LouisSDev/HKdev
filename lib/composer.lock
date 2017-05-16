@@ -4,8 +4,58 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "840b68a575a2588be340a9f0f6089e0c",
+    "content-hash": "ea0af4c73ce2c849d5b2568244c574c9",
     "packages": [
+        {
+            "name": "bernardosecades/php-json",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bernardosecades/php-json.git",
+                "reference": "84c1611e2b9b450853b3375c479cabc0ec911c74"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bernardosecades/php-json/zipball/84c1611e2b9b450853b3375c479cabc0ec911c74",
+                "reference": "84c1611e2b9b450853b3375c479cabc0ec911c74",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-spl": "*",
+                "myclabs/php-enum": "^1.4",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "BernardoSecades\\Json\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bernardo Secades",
+                    "email": "bernardosecades@gmail.com",
+                    "homepage": "https://github.com/bernardosecades",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Encode, decode, handle errors and valid json with php",
+            "keywords": [
+                "decode",
+                "encode",
+                "json",
+                "php"
+            ],
+            "time": "2016-08-23T13:29:32+00:00"
+        },
         {
             "name": "monolog/monolog",
             "version": "1.22.1",
@@ -83,6 +133,50 @@
                 "psr-3"
             ],
             "time": "2017-03-13T07:08:03+00:00"
+        },
+        {
+            "name": "myclabs/php-enum",
+            "version": "1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/myclabs/php-enum.git",
+                "reference": "61f4a24da5be216301447f3278ea6562609d61f5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/myclabs/php-enum/zipball/61f4a24da5be216301447f3278ea6562609d61f5",
+                "reference": "61f4a24da5be216301447f3278ea6562609d61f5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "4.*",
+                "squizlabs/php_codesniffer": "1.*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "MyCLabs\\Enum\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP Enum contributors",
+                    "homepage": "https://github.com/myclabs/php-enum/graphs/contributors"
+                }
+            ],
+            "description": "PHP Enum implementation",
+            "homepage": "http://github.com/myclabs/php-enum",
+            "keywords": [
+                "enum"
+            ],
+            "time": "2017-03-26T10:24:21+00:00"
         },
         {
             "name": "os/php-excel",

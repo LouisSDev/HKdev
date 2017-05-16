@@ -1,5 +1,5 @@
 {
-  "name": "smartdev/prod",
+  "name": "hkdev/prod",
   "license": "proprietary",
   "type": "project",
   "autoload": {
@@ -9,9 +9,10 @@
   },
   "require": {
     "php": ">=5.4",
-    "monolog/monolog" : ">=1.22.1",
-    "os/php-excel" : ">=2.1",
-    "swiftmailer/swiftmailer" : ">=5.4.6"
+    "monolog/monolog" : "1.22.1",
+    "os/php-excel" : "2.1",
+    "swiftmailer/swiftmailer" : "5.4.8",
+    "bernardosecades/php-json" : "1.0.*"
   },
 
   "config" : {

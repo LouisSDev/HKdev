@@ -124,16 +124,16 @@ class SensorController extends AccountManagingController
         /// We check if all the datas were correctly submitted
         if(!empty($_POST['fromDate']) && !empty($_POST['toDate'])
         && ( !empty($_POST['roomId'])  || !empty($_POST['homeId']))
-        ){
+        ) {
             $sensorsPerType = [];
 
             // Then also check if dates are valid
-            if(Utils::isDate($_POST['fromDate']) && Utils::isDate($_POST['toDate'])) {
+            if (Utils::isDate($_POST['fromDate']) && Utils::isDate($_POST['toDate'])) {
 
                 $fromDate = DateTime::createFromFormat('Y-m-d H:i:s', $_POST['fromDate']);
                 $toDate = DateTime::createFromFormat('Y-m-d H:i:s', $_POST['toDate']);
 
-                if($fromDate < $toDate ) {
+                if ($fromDate < $toDate) {
 
 
                     // Now we get all the sensors required either from the room or home id
@@ -157,52 +157,57 @@ class SensorController extends AccountManagingController
 
                     foreach ($sensorsPerType as $type => $sensors) {
 
+
                         // It will be stored by sensor type and then each sensor
                         // will store its values in an array
                         $i = 0;
                         /** @var Sensor $sensor */
                         foreach ($sensors as $sensor) {
+
+
                             /** @var SensorValueRepository $sensorValuesRepository */
                             $sensorValuesRepository = $GLOBALS['repositories']['sensorValue'];
 
                             $lastDateChoosen = null;
-                            $periodBetweenTwoDates = ($toDate -> getTimestamp() - $fromDate -> getTimestamp() )
+                            $periodBetweenTwoDates = ($toDate->getTimestamp() - $fromDate->getTimestamp())
                                 / self::NUMBER_OF_VALUES_IN_A_GRAPH;
 
                             $j = 0;
                             $k = 0;
 
+
                             // For each of the SensorValue objects resulting of this research in the db
                             $sensorValuesFetched = $sensorValuesRepository->searchValues($fromDate, $toDate, $sensor);
 
-                            if($sensorValuesFetched) {
+                            if (count($sensorValuesFetched) > 0) {
+
                                 $sensorsValuesPerTypes[$type][$i] = [];
                             }
                             /** @var SensorValue $value */
-                            foreach( $sensorValuesFetched as $value)
-                            {
+                            foreach ($sensorValuesFetched as $value) {
                                 // We don't select all the dates but only 50 max, therefore we check if
                                 // the date of this value is after the next date to set the date to
                                 // And if all the values necessary are already in the array
-                                if((!$lastDateChoosen || $lastDateChoosen > $value -> getDatetime()
-                                    || ($i == count($sensorValuesFetched) - 1 ) )
+                                if ((!$lastDateChoosen || $lastDateChoosen < $value->getDatetime()
+                                        || ($i == count($sensorValuesFetched) - 1))
                                     && count($sensorsValuesPerTypes[$type][$i]) < self::NUMBER_OF_VALUES_IN_A_GRAPH
-                                ){
+                                ) {
 
                                     $j++;
 
                                     $sensorsValuesPerTypes[$type][$i][] = $value;
 
                                     // If it does, we increment $j and the set new last date choosen
-                                    $lastDateChoosen = $fromDate
-                                        -> setTimestamp
+                                    $lastDateChoosen = new DateTime(date(DatabaseEntity::MYSQL_TIMESTAMP_FORMAT));
+                                    $lastDateChoosen = $lastDateChoosen
+                                        ->setTimestamp
                                         (
-                                            $fromDate -> getTimestamp()
+                                            $fromDate->getTimestamp()
                                             + $periodBetweenTwoDates * $j
                                         );
                                 }
 
-                                $k ++;
+                                $k++;
                             }
 
                             $i++;
@@ -214,36 +219,52 @@ class SensorController extends AccountManagingController
                     // data together and making a "moyenne" of those values
                     $sortedSensorsValuesPerTypes = [];
 
-                    foreach($sensorsValuesPerTypes as $type => $sensorsValuesPerSensor){
+                    foreach ($sensorsValuesPerTypes as $type => $sensorsValuesPerSensor) {
 
-                        for($i = 0; $i < self::NUMBER_OF_VALUES_IN_A_GRAPH ; $i++){
+                        /** @var SensorTypeRepository $sensorTypeRepository */
+                        $sensorTypeRepository = $GLOBALS['repositories']['sensorType'];
+
+                        /** @var SensorType $sensorType */
+                        $sensorType = $sensorTypeRepository->getSensorTypePerType($type);
+
+                        if($sensorType -> getChart()){
+                            $sortedSensorsValuesPerTypes[$type] = [
+                                'mode' => 'chart',
+                                'minVal' => $sensorType -> getMinVal(),
+                                'maxVal' => $sensorType -> getMaxVal()
+                            ];
+                        }else{
+                            $sortedSensorsValuesPerTypes[$type] = [
+                                'mode' => 'state'
+                            ];
+                        }
+
+                        for ($i = 0; $i < self::NUMBER_OF_VALUES_IN_A_GRAPH; $i++) {
 
                             $sortedSensorValues = [];
 
-                            foreach($sensorsValuesPerSensor as $sensorValues){
+                            foreach ($sensorsValuesPerSensor as $sensorValues) {
                                 $sortedSensorValues[] = $sensorValues[$i];
                             }
 
-                            if(count($sortedSensorValues) > 0){
+                            if (count($sortedSensorValues) > 0) {
                                 /** @var SensorValue $baseValue */
                                 $baseValue = $sortedSensorValues[0];
-                                $sortedSensorsValuesPerTypes[$type][] = $baseValue -> getDataArray($sortedSensorValues);
+                                $sortedSensorsValuesPerTypes[$type]['values'][] = $baseValue->getDataArray($sortedSensorValues);
                             }
                         }
                     }
 
-
                     ApiHandler::returnValidResponse($sortedSensorsValuesPerTypes);
 
-
-
-                }else{
+                } else {
                     $errorMessage = 'La date de depart ne peut etre apres la date de fin';
                 }
-            }else{
+            } else {
                 $errorMessage = 'Ces dates ne sont pas dans un format valide';
             }
-        }else{
+        }
+        else{
             $errorMessage = 'Toutes les donnees requises n\'ont pas etes soumises';
         }
 
