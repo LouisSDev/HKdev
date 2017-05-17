@@ -77,8 +77,8 @@ $(document).ready(function(e) {
 
     $searchCharts.click(function(e){
         $searchCharts.html("Affichage en cours... Veuillez patienter");
-        var homeId = $('#homeId').val(),
-            roomId = $('#roomId').val(),
+        var homeId = $('#homeId option:selected' ).attr("value");
+            roomId = $('#roomId option:selected' ).attr("value");
             fromDate = $('#fromDate').val(),
             toDate = $('#toDate').val(),
             id = null,
@@ -87,12 +87,12 @@ $(document).ready(function(e) {
         toDate =  dateFormatterForBackEnd(parseTimeFromFrontEnd(toDate)).replace("+", " ");
 
 
-        if(homeId != "" ){
-            id = homeId;
-            type = "home";
-        }else if( roomId != ""){
+        if(roomId != "" && roomId != -1 ){
             id = roomId;
             type = "room";
+        }else if(homeId != "" && homeId != -1 ){
+            id = homeId;
+            type = "home";
         }
 
         newDiagram(fromDate, toDate, id, type);
@@ -101,13 +101,37 @@ $(document).ready(function(e) {
 
 
     $fromDatePicker = $( "#fromDate" );
-    $fromDateShow = $('.fromDateShow');
-
     $toDatePicker = $( "#toDate" );
-    $toDateShow = $('.toDateShow');
 
     $fromDatePicker.datepicker();
     $toDatePicker.datepicker();
+
+    $roomsSelectors = $('.roomSelector');
+    $roomsDropdown = $("#roomId");
+    $roomsDropdown.hide();
+
+
+    $("#homeId").change(function(){
+        var valueSelected = $('#homeId option:selected' ).attr("value");
+        if(valueSelected == -1){
+            $roomsDropdown.hide();
+        }else{
+            $roomsDropdown.show();
+            $.each($roomsSelectors, function() {
+                $room = $(this);
+                if($room.attr("homeId") == valueSelected){
+                    $room.show();
+                }else{
+                    $room.hide();
+                }
+            });
+            $roomsSelectors.each(
+                function($room){
+
+            });
+        }
+
+    });
 
 });
 
@@ -136,6 +160,9 @@ function newDiagram(fromDate, toDate, id, type){
     $('.chart-title').html("");
     $('.graph').html("");
 
+    $error = $('.error');
+    $error.html("");
+
     $.post('http://localhost/HK/api/get/sensors/values', array ,
         (function(response){
 
@@ -148,9 +175,22 @@ function newDiagram(fromDate, toDate, id, type){
                 }
             });
 
+            if(i == 1){
+                $error.html('<div class="error-message information-message">'
+                    +   'Aucune données pour ces capteurs sur cet interval de'
+                    + ' temps n\'ont été enregistrées dans la base de données.</div>');
+            }
 
             $('#searchCharts').html("Afficher les statistiques!");
-    }) );
+    }) ).fail(function(XMLHttpRequest) {
+
+
+        var jsonObject = JSON.parse(XMLHttpRequest.responseText);
+        $error.html('<div class="error-message information-message">'
+            +   jsonObject.errorMessage + '</div>');
+
+        $('#searchCharts').html("Afficher les statistiques!");
+    });
 
 }
 
