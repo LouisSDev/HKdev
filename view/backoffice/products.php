@@ -16,7 +16,6 @@ $sensorsTypes = $GLOBALS['view']['sensors_types'];
 $effectorsTypes = $GLOBALS['view']['effectors_types'];
 
 
-include_once($GLOBALS['root_dir'] . '/view/general/error.php')
 ?>
 
 <div class="tableauDelete">
@@ -51,12 +50,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php')
 
             <input class="btn" type="submit" value="Envoyer" />
 
-            <?php
-            if (isset($_POST['submit']))
-            {
 
-            }
-            ?>
         </form>
     </div>
 </div>
@@ -64,5 +58,8 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php')
 <div class="tableauAdd">
 
 </div>
+
+<?php  include_once($GLOBALS['root_dir'] . '/view/general/error.php')
+?>
 
 </body>
