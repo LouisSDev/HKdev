@@ -13,29 +13,9 @@
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/chart/chart.js"></script>
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/pop-up.js"></script>
 
-    <style>
 
-        .bar{
-            fill: steelblue;
-        }
-
-        .bar:hover{
-            fill: brown;
-        }
-
-        .axis {
-            font: 10px sans-serif;
-        }
-
-        .axis path,
-        .axis line {
-            fill: none;
-            stroke: #000;
-            shape-rendering: crispEdges;
-        }
-
-    </style>
-
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
 <?php
@@ -44,6 +24,14 @@ $user = $GLOBALS['view']['user'] ;
 include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
 <h1>TABLEAU DE BORD</h1>
     <h3>Bonjour <?php echo $user -> getFirstName()?></h3>
+
+    <form>
+        <p>Date de début: <input type="text" id="fromDate"></p>
+        <p>Date de fin: <input type="text" id="toDate"></p>
+        <input id="roomId" type="text" placeholder="Id de la pièce"/>
+        <input id="homeId" type="text" placeholder="Id de la maison"/>
+    </form>
+    <button id="searchCharts">Afficher les statistiques!</button>
 
     <table>
         <tr>
@@ -61,8 +49,8 @@ include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
         <tr>
             <td>
                 <br>
-                <h3 class="chart-title chart-title4"></h3>
-                <p class="chart-description chart-description4"></p>
+                <h3 class="chart-title chart-title3"></h3>
+                <p class="chart-description chart-description3"></p>
                 <graph3 class = "graph graph-3"></graph3>
             </td>
             <td>
@@ -73,6 +61,5 @@ include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
             </td>
         </tr>
     </table>
-    <div class="test"></div>
 </body>
 </html>

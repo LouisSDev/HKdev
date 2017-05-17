@@ -445,7 +445,7 @@ class User extends DatabaseEntity
     public function getAllSensors(){
         $sensors = array();
         foreach ($this -> homes as $home){
-            $sensors[] = $home -> getAllSensors();
+            $sensors = array_merge($sensors, $home -> getAllSensors());
         }
         return $sensors;
     }
