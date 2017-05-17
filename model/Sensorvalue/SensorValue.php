@@ -212,7 +212,7 @@ class SensorValue extends DatabaseEntity
 
         return [
             'datetime' => $this -> datetime -> format(self::MYSQL_TIMESTAMP_FORMAT),
-            'value' => $totalValue
+            'value' => $mediumValue
         ];
 
 

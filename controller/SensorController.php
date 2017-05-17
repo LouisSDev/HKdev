@@ -8,7 +8,7 @@ class SensorController extends AccountManagingController
     const DEFAULT_GAP_DIVIDER = 50;
     const BASE_DATETIME = '05/01/2017 00:00:00';
     const BASE_PERIOD = '10 minutes';
-    const NUMBER_OF_VALUES_IN_A_GRAPH = 50;
+    const NUMBER_OF_VALUES_IN_A_GRAPH = 30;
 
     public function addRandomValuesToSensors(){
 
@@ -220,7 +220,6 @@ class SensorController extends AccountManagingController
                     $sortedSensorsValuesPerTypes = [];
 
                     foreach ($sensorsValuesPerTypes as $type => $sensorsValuesPerSensor) {
-
 
 
                         /** @var SensorTypeRepository $sensorTypeRepository */

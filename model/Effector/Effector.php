@@ -55,7 +55,7 @@ class Effector extends DatabaseEntity{
      */
     public function setEffectorType(EffectorType $effectorType)
     {
-        if(is_integer($effectorType)) {
+        if(is_int($effectorType)) {
             $this->effectorType = $effectorType;
         }
         else{}
@@ -181,7 +181,7 @@ class Effector extends DatabaseEntity{
      * @param float $value
      * @return Effector
      */
-    public function setValue(float $value)
+    public function setValue($value)
     {
         $this->value = $value;
         return $this;
