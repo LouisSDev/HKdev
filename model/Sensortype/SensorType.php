@@ -47,7 +47,10 @@ class SensorType extends DatabaseEntity
      */
     public function getSelling()
     {
-        return $this->selling;
+        if($this -> selling == 2 || $this -> selling === false){
+            return false;
+        }
+        return true;
     }
 
     /**
@@ -238,11 +241,16 @@ class SensorType extends DatabaseEntity
                 && $this -> type != null
                 && $this -> price != 0
             ){
-                if($this -> chart && ($this -> minVal == null || $this -> maxVal)){
+                if($this -> chart && ($this -> minVal === null || $this -> maxVal === null)){
+                    Utils::addWarning('Toutes les données requises n\'ont pas été entrées');
+                    $this -> errorMessage[] =  'Toutes les données requises n\'ont pas été entrées';
                     return false;
                 }
+
                 return true;
             }else{
+                Utils::addWarning('Toutes les données requises n\'ont pas été entrées');
+                $this -> errorMessage[] =  'Toutes les données requises n\'ont pas été entrées';
                 return false;
             }
         }

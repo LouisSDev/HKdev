@@ -169,14 +169,10 @@ class EffectorType extends DatabaseEntity
      */
     public function setChart($chart)
     {
-        if(is_bool($chart)){
-            $this->chart = $chart;
-        }
-        else{
-            Utils::addWarning("The parameter is incorrect");
-            $this -> error = true;
-            $this -> errorMessage[] =  "The parameter is incorrect";
-
+        if($chart){
+            $this->chart = true;
+        }else{
+            $this -> chart = false;
         }
 
         return $this;

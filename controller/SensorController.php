@@ -99,7 +99,6 @@ class SensorController extends AccountManagingController
                     $rnd = rand(0, 25);
                     if ($rnd === 2) {
                         $actualValue = !$actualValue;
-                        Utils::addWarning($rnd . '  value  of the boolean : ' . $actualValue);
                     }
 
                     $actualDateTimeManipulated = date_add

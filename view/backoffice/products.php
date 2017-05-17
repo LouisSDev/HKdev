@@ -5,16 +5,17 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/products.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
-    <?php include_once ($GLOBALS['root_dir'] . "/view/general/headerAdmin.php");?>
+    <?php include_once ($GLOBALS['root_dir'] . "/view/general/adminHeader.php");?>
 </head>
 
 <body>
-
+<br>
 <?php
 
 $sensorsTypes = $GLOBALS['view']['sensors_types'];
 $effectorsTypes = $GLOBALS['view']['effectors_types'];
 
+include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
 ?>
 
@@ -23,6 +24,7 @@ $effectorsTypes = $GLOBALS['view']['effectors_types'];
         <form method="post">
             <h1>Supprimer un type de capteur </h1>
             <label class="text"> Sélectionnez votre capteur :</label><br>
+            <input type="hidden" name="submittedForm" value="REMOVE_SENSOR_TYPE"/>
             <select name="sensorType">
                 <?php
                 foreach (SensorType::TYPE_ARRAY as $type){
@@ -32,7 +34,7 @@ $effectorsTypes = $GLOBALS['view']['effectors_types'];
                     /** @var  $sensorType SensorType*/
                     foreach ($sensorsTypes as $sensorType) {
 
-                        if ($sensorType->getType() === $type) {
+                        if ($sensorType->getType() === $type && $sensorType -> getSelling()) {
                             echo '<option label="" value="'
                                 . $sensorType -> getId() . '">'
                                 . $type . ' : ' . $sensorType -> getName()
@@ -43,8 +45,6 @@ $effectorsTypes = $GLOBALS['view']['effectors_types'];
                     echo '</optgroup>';
 
                 }
-
-
                 ?>
             </select><br>
 
@@ -59,7 +59,5 @@ $effectorsTypes = $GLOBALS['view']['effectors_types'];
 
 </div>
 
-<?php  include_once($GLOBALS['root_dir'] . '/view/general/error.php')
-?>
 
 </body>
