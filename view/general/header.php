@@ -22,6 +22,9 @@
             <nav class="menu">
                 <ul>
                     <li><img class="logo" src="<?php echo $GLOBALS['server_root']?>/ressources/img/logo hk blanc.png"></li>
+                    <?php if($user -> getAdmin() ) {?>
+                    <li><a href="<?php echo $GLOBALS['server_root'] . '/admin'?>">Back-Office</a></li>
+                    <?php }?>
                     <li><a href="<?php echo $GLOBALS['server_root'] . '/user/dashboard'?>">Tableau de bord</a></li>
                     <?php if(count( $homes )) {
 
@@ -65,7 +68,6 @@
                     <li><a href="<?php echo $GLOBALS['server_root'] . '/user/edit'?>">Mon compte</a></li>
                     <li><a href="<?php echo $GLOBALS['server_root'] . '/contact'?>">Contact</a></li>
                     <li><a href="<?php echo $GLOBALS['server_root'] . '/user/disconnect'?>">Déconnexion</a></li>
-                    <!--TODO : Implement submenu-->
                 </ul>
             </nav>
     <?php

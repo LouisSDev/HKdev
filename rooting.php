@@ -189,18 +189,30 @@ switch($globalPath){
                 case 'users' :
                     //TODO
                     break;
+                case 'quotes' :
+                    //TODO
+                    break;
                 case 'products' :
                     $backOfficeController = new BackOfficeController($db);
                     $backOfficeController -> manageProducts();
+                    break;
+                case 'dashboard' :
+                    $backOfficeController = new BackOfficeController($db);
+                    $backOfficeController -> getAdminDashboard();
                     break;
                 default :
                     $staticController = new StaticController();
                     $staticController -> notFound();
             }
+        }else{
+            $backOfficeController = new BackOfficeController($db);
+            $backOfficeController -> getAdminDashboard();
+            break;
         }
         break;
 
 
+    // TODO To delete!!!
     case 'lol':
         require_once __DIR__ . '/view/tests/lol.php';
         break;
