@@ -263,7 +263,7 @@ class Room extends DatabaseEntity
 
         /** @var Effector $effector */
         foreach ($this -> getEffectors() as $effector){
-            if(!in_array($effector, $usedTypes)){
+            if(!in_array($effector -> getEffectorType() -> getType(), $usedTypes)){
                 $usedTypes[] = $effector -> getEffectorType() -> getType();
                 $effectorTypes[] = $effector -> getEffectorType();
             }

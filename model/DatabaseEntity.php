@@ -154,6 +154,7 @@ abstract class DatabaseEntity
                     /** @var Repository $repository */
                     $repository = $GLOBALS['repositories'][$repositoryName];
 
+
                     // And call the general Repository method below mentionned
                     // It will in turn call the method getObjectsFromUserId of the given repository if it's from the
                     // User id that we search those objects

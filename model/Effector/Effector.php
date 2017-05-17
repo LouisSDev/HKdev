@@ -55,10 +55,7 @@ class Effector extends DatabaseEntity{
      */
     public function setEffectorType(EffectorType $effectorType)
     {
-        if(is_int($effectorType)) {
-            $this->effectorType = $effectorType;
-        }
-        else{}
+        $this->effectorType = $effectorType;
         return $this;
     }
 
