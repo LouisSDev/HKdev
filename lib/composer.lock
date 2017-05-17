@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ea0af4c73ce2c849d5b2568244c574c9",
+    "content-hash": "787eb7f17bd780d5c889571ce850b27e",
     "packages": [
         {
             "name": "bernardosecades/php-json",

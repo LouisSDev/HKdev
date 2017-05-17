@@ -40,7 +40,7 @@ class BackOfficeController extends AdminController
                         }
                         else{
                             $this->args['error_message']="La suppression demandée ne peut être éffectué";
-                            $stp->getErrorMessage();
+                            $this->args['errors']=$stp->getErrorMessage();
 
 
                         }

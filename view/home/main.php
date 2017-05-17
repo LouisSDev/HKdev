@@ -16,8 +16,9 @@
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/pop-up.js"></script>
 </head>
 <body>
-<?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>
+<?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>E
 <?php include_once ($GLOBALS['root_dir'] . "/view/general/modal.php")?>
+<?php include ($GLOBALS['root_dir']."/view/home/displayEffectors.php")?>
 
     <div class="home">
         <i class="fa fa-home iconHome" aria-hidden="true" style="cursor:pointer;"></i>
@@ -35,6 +36,7 @@ $home = $GLOBALS['view']['home'];
             echo '<div class="bedroom">';
             foreach ($home ->getRoomsPerType("Chambres") as $room){
                 echo '<div class="circle" style="background-color:#FFBC42"><p class="title">'.$room->getName().'</p></div>';
+               displayEffectors($room); // PB in the function
             }
             echo '</div>';
         }
@@ -43,6 +45,7 @@ $home = $GLOBALS['view']['home'];
             echo '<div class="kitchen">';
             foreach ($home ->getRoomsPerType("Cuisines") as $room){
                 echo '<div class="circle" style="background-color:#FB3640"><p class="title">'.$room->getName().'</p></div>';
+                displayEffectors($room);
             }
             echo '</div>';
         }
@@ -51,6 +54,7 @@ $home = $GLOBALS['view']['home'];
             echo '<div class="bath">';
             foreach ($home ->getRoomsPerType("Salles d'eau") as $room){
                 echo '<div class="circle" style="background-color:#BFDBF7"><p class="title">'.$room->getName().'</p></div>';
+                displayEffectors($room);
             }
             echo '</div>';
         }
@@ -59,6 +63,7 @@ $home = $GLOBALS['view']['home'];
             echo '<div class="living">';
             foreach ($home ->getRoomsPerType("Pièces à vivre") as $room){
                 echo '<div class="circle" style="background-color:#F2F3AE"><p class="title">'.$room->getName().'</p></div>';
+                displayEffectors($room);
             }
             echo '</div>';
         }
