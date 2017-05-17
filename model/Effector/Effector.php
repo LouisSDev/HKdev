@@ -181,7 +181,7 @@ class Effector extends DatabaseEntity{
      * @param float $value
      * @return Effector
      */
-    public function setValue(float $value)
+    public function setValue($value)
     {
         $this->value = $value;
         return $this;
