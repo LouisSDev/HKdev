@@ -6,15 +6,12 @@ body{
     text-align: center;
     width:55%;
     margin-left: 23%;
+    margin-top: 60px;
 }
 
 .oups{
     height:auto;
     width:100%;
-}
-
-.returnHP{
-    text-align: center;
 }
 
 a{

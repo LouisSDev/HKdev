@@ -17,7 +17,7 @@
 
 </head>
 <body>
-<?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>E
+<?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>
 <?php include ($GLOBALS['root_dir']."/view/home/displayEffectors.php")?>
 
     <div class="home">
