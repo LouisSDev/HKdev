@@ -99,7 +99,6 @@ class SensorController extends AccountManagingController
                     $rnd = rand(0, 25);
                     if ($rnd === 2) {
                         $actualValue = !$actualValue;
-                        Utils::addWarning($rnd . '  value  of the boolean : ' . $actualValue);
                     }
 
                     $actualDateTimeManipulated = date_add
@@ -123,7 +122,6 @@ class SensorController extends AccountManagingController
 
         /// We check if all the datas were correctly submitted
         if(!empty($_POST['fromDate']) && !empty($_POST['toDate'])
-        && ( !empty($_POST['roomId'])  || !empty($_POST['homeId']))
         ) {
             $sensorsPerType = [];
 
@@ -144,11 +142,21 @@ class SensorController extends AccountManagingController
                         }
                     }
 
-                    if (!empty($_POST['homeId'])) {
+                    else if (!empty($_POST['homeId'])) {
                         $home = $this->findHomeFromId($_POST['homeId']);
                         foreach (SensorType::TYPE_ARRAY as $type) {
                             $sensorsPerType[$type] = $home->getSensorsPerType($type);
                         }
+                    }
+
+                    else{
+
+                        foreach (SensorType::TYPE_ARRAY as $type) {
+                            $sensorsPerType[$type] = $this -> user -> getAllSensorsPerType($type);
+                        }
+
+
+
                     }
 
                     // We then search for all SensorValue objects from each sensor concerned

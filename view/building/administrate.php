@@ -12,10 +12,10 @@
 
 </head>
 
-<?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>
-
 
 <?php
+
+ include_once ($GLOBALS['root_dir'] . "/view/general/header.php");
 /**
  * @var User $user
  */
@@ -24,11 +24,15 @@ $user = $GLOBALS['view']['user'];
 /** @var Home $building */
 $building = $GLOBALS['view']['building'];
 
-
-
 ?>
 
 
+<br>
+<br>
+<br>
+
+
+<?php include_once($GLOBALS['root_dir'] . '/view/general/error.php')  ?>
 
 <form class="form" id="form" method="post" >
 
@@ -74,4 +78,3 @@ $building = $GLOBALS['view']['building'];
 
 
 </form>
-<?php include_once($GLOBALS['root_dir'] . '/view/general/error.php')  ?>

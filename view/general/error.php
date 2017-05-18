@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
+
 <div class="error">
     <?php
 

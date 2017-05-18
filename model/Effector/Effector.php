@@ -55,10 +55,7 @@ class Effector extends DatabaseEntity{
      */
     public function setEffectorType(EffectorType $effectorType)
     {
-        if(is_int($effectorType)) {
-            $this->effectorType = $effectorType;
-        }
-        else{}
+        $this->effectorType = $effectorType;
         return $this;
     }
 
@@ -121,7 +118,7 @@ class Effector extends DatabaseEntity{
     /**
      * @return boolean
      */
-    public function isState()
+    public function getState()
     {
         return $this->state;
     }
@@ -132,13 +129,10 @@ class Effector extends DatabaseEntity{
      */
     public function setState($state)
     {
-        if(is_bool($state)){
-            $this->state = $state;
-        }
-        else{
-            Utils::addWarning("The parameter is incorrect");
-            $this->error = true;
-            $this->errorMessage []="The parameter is incorrect";
+        if($state){
+            $this->state = true;
+        }else{
+            $this -> state = false;
         }
         return $this;
     }
@@ -146,7 +140,7 @@ class Effector extends DatabaseEntity{
     /**
      * @return boolean
      */
-    public function isAuto()
+    public function getAuto()
     {
         return $this->auto;
     }
@@ -157,13 +151,10 @@ class Effector extends DatabaseEntity{
      */
     public function setAuto($auto)
     {
-        if(is_bool($auto)) {
-            $this->auto = $auto;
-        }
-        else{
-            Utils::addWarning("The parameter is incorrect");
-            $this->error = true;
-            $this->errorMessage[]= "The parameter is incorrect";
+        if($auto) {
+            $this->auto = true;
+        }else{
+            $this -> auto = false;
         }
         return $this;
     }

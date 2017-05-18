@@ -13,37 +13,73 @@
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/chart/chart.js"></script>
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/pop-up.js"></script>
 
-    <style>
 
-        .bar{
-            fill: steelblue;
-        }
-
-        .bar:hover{
-            fill: brown;
-        }
-
-        .axis {
-            font: 10px sans-serif;
-        }
-
-        .axis path,
-        .axis line {
-            fill: none;
-            stroke: #000;
-            shape-rendering: crispEdges;
-        }
-
-    </style>
-
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
+<br>
+<br>
+<br>
 <?php
 /** @var $user User */
 $user = $GLOBALS['view']['user'] ;
+
+$homes = $user -> getHomes();
+
+$rooms = $user -> getAllRooms();
+
 include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
-<h1>TABLEAU DE BORD</h1>
-    <h3>Bonjour <?php echo $user -> getFirstName()?></h3>
+
+    <br><br><br>
+    <div class="hello">Bonjour <?php echo $user -> getFirstName() ?> vous passez une bonne journée?
+        Nous nous occupons de tout pour vous pendant votre absence! Voici un petit résumé de vos
+        consommations récentes.</div>
+    <div class="error"></div>
+
+    <form>
+        <p>Date de début: <input type="text" id="fromDate"></p>
+        <p>Date de fin: <input type="text" id="toDate"></p>
+        <select id="homeId" class="homes">
+            <option label = "" value = "-1">Statistiques générales de mes maisons</option>
+
+            <?php
+
+            /**
+             * @var Home $home
+             */
+            foreach ($homes as $home){
+
+                if(!$home->getHasHomes()){
+
+                    echo '<option label="" value="' . $home ->getId() . '" >'
+                        . $home -> getName() . ' - ' . $home -> getBuilding() -> getName()
+                        .'</option>';
+                }
+            }
+            ?>
+        </select><br>
+        <select id="roomId">
+            <option label = "" value = "-1">Statistiques générales de mes pièces</option>
+            <?php
+            foreach (Room::TYPE_ARRAY as $type){
+
+                echo '<optgroup label="'. $type .'">';
+
+                /** @var Room $room */
+                foreach ($rooms as $room){
+                    if ($room -> getType() === $type ) {
+                        echo '<option class="roomSelector" homeId="' . $room -> getHome() -> getId()
+                        . '" label="" value="' . $room -> getId() .'">'
+                            . $room -> getName() . '</option>';
+                    }
+                }
+                echo '</optgroup>';
+            }
+            ?>
+        </select>
+    </form>
+    <button id="searchCharts">Afficher les statistiques!</button>
 
     <table>
         <tr>
@@ -61,8 +97,8 @@ include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
         <tr>
             <td>
                 <br>
-                <h3 class="chart-title chart-title4"></h3>
-                <p class="chart-description chart-description4"></p>
+                <h3 class="chart-title chart-title3"></h3>
+                <p class="chart-description chart-description3"></p>
                 <graph3 class = "graph graph-3"></graph3>
             </td>
             <td>
@@ -73,6 +109,5 @@ include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
             </td>
         </tr>
     </table>
-    <div class="test"></div>
 </body>
 </html>
