@@ -163,7 +163,7 @@ function newDiagram(fromDate, toDate, id, type){
     $error = $('.error');
     $error.html("");
 
-    $.post('http://localhost/HK/api/get/sensors/values', array ,
+    $.post($("form").attr("action"), array ,
         (function(response){
 
             data = response.content;
