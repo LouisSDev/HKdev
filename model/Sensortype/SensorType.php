@@ -40,17 +40,19 @@ class SensorType extends DatabaseEntity
     /**
      * @var boolean $selling
      */
-    private $selling;
+    private $selling = true;
 
     /**
      * @return boolean
      */
     public function getSelling()
     {
+        return $this -> selling;
+        /*
         if($this -> selling == 2 || $this -> selling === false){
             return false;
         }
-        return true;
+        return true;*/
     }
 
     /**

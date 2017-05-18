@@ -53,31 +53,35 @@ class BackOfficeController extends AdminController
     private function removeSensor($sensorsTypes)
     {
 
-        /** @var SensorType $sensorType */
-        $sensorType = null;
+        if (!empty($_POST['sensorType'])) {
+            /** @var SensorType $sensorType */
+            $sensorType = null;
 
-        /**@var SensorType $stp*/
-        foreach ($sensorsTypes as $stp){
-            if($stp -> getId() === $_POST['sensorType']){
-                $sensorType = $stp;
+            /**@var SensorType $stp */
+            foreach ($sensorsTypes as $stp) {
+                if ($stp->getId() === $_POST['sensorType']) {
+                    $sensorType = $stp;
+                }
             }
-        }
 
-        if($sensorType){
-            $sensorType = $stp -> setSelling(false);
+            if ($sensorType) {
+                $sensorType->setSelling(false);
 
-            if($stp->save($this->db)){
+                if ($sensorType->save($this->db)) {
 
-                $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été supprimé";
-            }
-            else{
+                    $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été supprimé";
+                } else {
+                    $this->args['error_message'] = "Les données entrées ne sont pas valides";
+                    $this->args['errors'] = $sensorType->getErrorMessage();
+                }
+            } else {
                 $this->args['error_message'] = "Les données entrées ne sont pas valides";
-                $this->args['errors'] = $stp->getErrorMessage();
             }
         }else{
-            $this->args['error_message'] = "Les données entrées ne sont pas valides";
+            $this->args['error_message'] = "Veuillez sélectionner un capteur";
         }
     }
+
 
 
 }
