@@ -36,7 +36,7 @@ $home = $GLOBALS['view']['home'];
             echo '<div class="bedroom">';
             foreach ($home ->getRoomsPerType("Chambres") as $room){
                 echo '<div class="circle" style="background-color:#FFBC42"><p class="title">'.$room->getName().'</p></div>';
-               displayEffectors($room); // PB in the function
+                displayEffectors($room);
             }
             echo '</div>';
         }
