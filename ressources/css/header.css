@@ -24,6 +24,7 @@
 .menu a{
     font-weight: bold;
     text-transform: uppercase;
+    font-size: 14px;
     text-decoration: none;
     padding: 0 20px;
     color: #FFF;
@@ -51,7 +52,7 @@ nav > ul{
 }
 li:hover ul.submenu{
     display: block;
-    position: relative;
+    position: absolute;
 }
 
 /* Line height modified for better design */
