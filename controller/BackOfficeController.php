@@ -23,35 +23,18 @@ class BackOfficeController extends AdminController
         $this -> args['effectors_types'] = $effectorTypes ;
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
-            if(!empty($_POST['sensorType'])){
+            if(!empty($_POST['submittedForm'])){
 
-                /** @var SensorType $sensorType */
-                $sensorType = null;
-
-                /**@var SensorType $stp*/
-                foreach ($sensorsTypes as $stp){
-                    if($stp -> getId() === $_POST['sensorType']){
-                        $sensorType = $stp;
-                    }
-                }
-
-                if($sensorType){
-                    $sensorType = $stp -> setSelling(false);
-
-                    if($stp->save($this->db)){
-
-                        $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été supprimé";
-                    }
-                    else{
-                        $this->args['error_message'] = "Les données entrées ne sont pas valides";
-                        $this->args['errors'] = $stp->getErrorMessage();
-                    }
-                }else{
-                    $this->args['error_message'] = "Les données entrées ne sont pas valides";
+                switch($_POST['submittedForm']){
+                    case 'REMOVE_SENSOR_TYPE':
+                        $this -> removeSensor($sensorsTypes);
+                        break;
+                    default:
+                        $this -> generateView('static/404.php', '404');
                 }
             }
             else{
-                $this -> args['error_message'] = "Veuillez choisir un type de capteur à supprimer";
+                $this -> generateView('static/404.php', '404');
 
             }
 
@@ -64,6 +47,36 @@ class BackOfficeController extends AdminController
     public function getAdminDashboard()
     {
         $this -> generateView('backoffice/dashboard.php', 'Tableau de bord Administrateur');
+    }
+
+
+    private function removeSensor($sensorsTypes)
+    {
+
+        /** @var SensorType $sensorType */
+        $sensorType = null;
+
+        /**@var SensorType $stp*/
+        foreach ($sensorsTypes as $stp){
+            if($stp -> getId() === $_POST['sensorType']){
+                $sensorType = $stp;
+            }
+        }
+
+        if($sensorType){
+            $sensorType = $stp -> setSelling(false);
+
+            if($stp->save($this->db)){
+
+                $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été supprimé";
+            }
+            else{
+                $this->args['error_message'] = "Les données entrées ne sont pas valides";
+                $this->args['errors'] = $stp->getErrorMessage();
+            }
+        }else{
+            $this->args['error_message'] = "Les données entrées ne sont pas valides";
+        }
     }
 
 
