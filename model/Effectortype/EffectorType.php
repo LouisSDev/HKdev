@@ -10,7 +10,7 @@ class EffectorType extends DatabaseEntity
 {
 
 
-    const TYPE_ARRAY = ["Volets", "Luminosité", "Climatisation"];
+    const TYPE_ARRAY = ["Volets", "Lumière", "Climatisation"];
 
     /**
      * @var $name string
@@ -126,7 +126,7 @@ class EffectorType extends DatabaseEntity
             $this->name = $name;
         }
         else{
-            Utils::addWarning("This name is too long");
+            Utils::addWarning($name . ' is too long for a name');
             $this -> error = true;
             $this -> errorMessage [] = "This name is too long";
         }
@@ -196,7 +196,7 @@ class EffectorType extends DatabaseEntity
             $this->type = $type;
         }
         else{
-            Utils::addWarning("This isn\'t a valid Effector type");
+            Utils::addWarning($type . " isn\'t a valid Effector type");
             $this->error = true;
             $this->errorMessage []= "This isn\'t a valid Effector type";
         }
