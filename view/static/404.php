@@ -8,9 +8,11 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 </head>
 <body>
-        <h1 class="page-title">Oups ! Un problème est survenu ! </h1>
+    <div class="notFound">
+        <img class="oups" src="<?php echo $GLOBALS['server_root']?>/ressources/img/404.jpg"/>
+    </div>
     <div class="returnHP">
-         <button class="btn">Retour à l'accueil</button>
+         <button class="btn"><a href="<?php echo $GLOBALS['server_root']?>">Retour à l'accueil</a></button>
     </div>
 </body>
 </html>

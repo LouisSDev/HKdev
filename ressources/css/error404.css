@@ -1,15 +1,23 @@
 body{
-    background-image: url(404.png);
-    background-size: 100%;
-    background-repeat: no-repeat;
+   background-color: #F3E4BB;
 }
 
-.page-title{
+.notFound{
     text-align: center;
-    margin-top: 6%;
+    width:55%;
+    margin-left: 23%;
+}
+
+.oups{
+    height:auto;
+    width:100%;
 }
 
 .returnHP{
     text-align: center;
-    margin-top: 30%;
+}
+
+a{
+    text-decoration: none;
+    color: black;
 }
