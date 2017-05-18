@@ -21,7 +21,7 @@
            ?>
             <nav class="menu">
                 <ul>
-                    <li><img class="logo" src="<?php echo $GLOBALS['server_root']?>/ressources/img/logo hk blanc.png"></li>
+                    <li><img class="logo" src="<?php echo $GLOBALS['server_root']?>/ressources/img/logo hk blanc_redim.png"></li>
                     <?php if($user -> getAdmin() ) {?>
                     <li><a href="<?php echo $GLOBALS['server_root'] . '/admin'?>">Back-Office</a></li>
                     <?php }?>
@@ -76,7 +76,7 @@
      ?>
     <nav class="menu">
         <ul>
-            <li><img class="logo" src="<?php echo $GLOBALS['server_root']?>/ressources/img/logo hk blanc.png"></li>
+            <li><img class="logo" src="<?php echo $GLOBALS['server_root']?>/ressources/img/logo hk blanc_redim.png"></li>
             <li><a href="<?php echo $GLOBALS['server_root']?>/">Accueil</a></li>
             <li><a href="<?php echo $GLOBALS['server_root'] . '/contact'?>">Contact</a></li>
             <li><a id="show" href="#">Connexion</a></li>

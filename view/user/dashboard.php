@@ -37,7 +37,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
         consommations récentes.</div>
     <div class="error"></div>
 
-    <form>
+    <form method="post" action="<?php echo $GLOBALS['server_root']?>/api/get/sensors/values">
         <p>Date de début: <input type="text" id="fromDate"></p>
         <p>Date de fin: <input type="text" id="toDate"></p>
         <select id="homeId" class="homes">
