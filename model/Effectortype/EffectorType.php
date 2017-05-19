@@ -31,7 +31,7 @@ class EffectorType extends DatabaseEntity
     /**
      * @var boolean $chart
      */
-    private $chart;
+    private $chart = true;
 
     /**
      * @var float $minVal
@@ -46,7 +46,7 @@ class EffectorType extends DatabaseEntity
     /**
      * @var boolean $selling
      */
-    private $selling;
+    private $selling = true;
 
     /**
      * @return boolean

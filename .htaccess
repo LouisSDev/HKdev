@@ -7,7 +7,7 @@ RewriteOptions Inherit
 
 
 RewriteCond ${REQUEST_URI} ^.+$
-RewriteCond %{REQUEST_FILENAME} \.(gif|jpe?g|png|js|css|swf|php|ico|txt|pdf|xml|tsv)$ [OR]
+RewriteCond %{REQUEST_FILENAME} \.(gif|jpe?g|png|js|css|pdf)$ [OR]
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d [OR]
 RewriteCond %{REQUEST_FILENAME} -l
