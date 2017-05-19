@@ -6,6 +6,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
     <?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>
+
 </head>
 <div class="principal">
     <?php
@@ -122,4 +123,7 @@
 
 
 </body>
+<footer>
+    <?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
+</footer>
 </html>
