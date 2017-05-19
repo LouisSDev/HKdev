@@ -196,6 +196,10 @@ switch($globalPath){
                     $backOfficeController = new BackOfficeController($db);
                     $backOfficeController -> manageProducts();
                     break;
+                case 'quoteValidation' :
+                    $backOfficeController = new BackOfficeController($db);
+                    $backOfficeController -> quoteValidation();
+                    break;
                 case 'dashboard' :
                     $backOfficeController = new BackOfficeController($db);
                     $backOfficeController -> getAdminDashboard();
