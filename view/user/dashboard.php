@@ -16,6 +16,7 @@
 
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/dashboard.css">
 </head>
 <body>
 <br>
@@ -31,15 +32,21 @@ $rooms = $user -> getAllRooms();
 
 include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
 
-    <br><br><br>
-    <div class="hello">Bonjour <?php echo $user -> getFirstName() ?> vous passez une bonne journée?
-        Nous nous occupons de tout pour vous pendant votre absence! Voici un petit résumé de vos
-        consommations récentes.</div>
+
+<br><br><br>
+    <div class="hello">Bonjour <?php echo $user -> getFirstName() ?>
+        <br>
+        Avez-vous passez une bonne journée?
+        <br>
+        Nous nous occupons de tout pour vous pendant votre absence!
+        <br>
+        Voici un petit résumé de vos consommations récentes.
+    </div>
     <div class="error"></div>
 
-    <form method="post" action="<?php echo $GLOBALS['server_root']?>/api/get/sensors/values">
-        <p>Date de début: <input type="text" id="fromDate"></p>
-        <p>Date de fin: <input type="text" id="toDate"></p>
+    <form class="drop" method="post" action="<?php echo $GLOBALS['server_root']?>/api/get/sensors/values">
+        <label>Date de début: <br><input type="text" id="fromDate"></label></br>
+        <label>Date de fin: <br><input type="text" id="toDate"></label>
         <select id="homeId" class="homes">
             <option label = "" value = "-1">Statistiques générales de mes maisons</option>
 
@@ -78,8 +85,9 @@ include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
             }
             ?>
         </select>
+        <button class="btn" id="searchCharts">Afficher les statistiques!</button>
     </form>
-    <button id="searchCharts">Afficher les statistiques!</button>
+
 
     <table>
         <tr>

@@ -82,6 +82,11 @@ class BackOfficeController extends AdminController
         }
     }
 
+    public function quoteValidation()
+    {
+        $this -> generateView('backoffice/quoteValidation.php', 'Devis à valider!' );
+    }
+
 
 
 }
