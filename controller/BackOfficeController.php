@@ -162,7 +162,6 @@ class BackOfficeController extends AdminController
             $this->args['success_message'] = "Félicitation l'effecteur sélectionné a bien été ajouté";
         } else {
             $this->args['error_message'] = "Les données entrées ne sont pas valides";
-            $this->args['errors'] = $sensorType->getErrorMessage();
         }
 
     }
