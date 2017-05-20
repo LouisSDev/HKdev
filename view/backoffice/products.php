@@ -53,11 +53,38 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
         </form>
     </div>
+
+    <div class="supression">
+        <form method="post">
+            <h1>Supprimer un type d'effecteur</h1>
+            <label class="text">Selectionnez votre effecteur :</label>
+            <input type="hidden" name="submittedForm" value="REMOVE_EFFECTOR_TYPE"/>
+            <select name="effectorType">
+                <?php
+                foreach (EffectorType::TYPE_ARRAY as $type){
+
+                    echo '<optgroup label="'. $type .'">';
+
+                    /** @var  EffectorType $effectorType*/
+                    foreach ($effectorsTypes as $effectorType) {
+
+                        if ($effectorType->getType() === $type && $effectorType -> getSelling()) {
+                            echo '<option label="" value="'
+                                . $effectorType -> getId() . '">'
+                                . $type . ' : ' . $effectorType -> getName()
+                                . ' - ' . $effectorType -> getRef(). '</option>';
+                        }
+                    }
+                    echo '</optgroup>';
+
+                }
+                ?>
+            </select><br>
+
+            <input class="btn" type="submit" value="Envoyer" />
+
+        </form>
+    </div>
 </div>
-
-<div class="tableauAdd">
-
-</div>
-
 
 </body>

@@ -19,8 +19,8 @@ class BackOfficeController extends AdminController
         $sensorsTypes =  $sensorTypeRepository ->getAll();
         $this -> args['sensors_types'] = $sensorsTypes ;
 
-        $effectorTypes =  $effectorTypeRepository -> getAll();
-        $this -> args['effectors_types'] = $effectorTypes ;
+        $effectorsTypes =  $effectorTypeRepository -> getAll();
+        $this -> args['effectors_types'] = $effectorsTypes ;
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             if(!empty($_POST['submittedForm'])){
@@ -28,6 +28,9 @@ class BackOfficeController extends AdminController
                 switch($_POST['submittedForm']){
                     case 'REMOVE_SENSOR_TYPE':
                         $this -> removeSensor($sensorsTypes);
+                        break;
+                    case 'REMOVE_EFFECTOR_TYPE':
+                        $this -> removeEffector($effectorsTypes);
                         break;
                     default:
                         $this -> generateView('static/404.php', '404');
@@ -87,6 +90,36 @@ class BackOfficeController extends AdminController
         $this -> generateView('backoffice/quoteValidation.php', 'Devis à valider!' );
     }
 
+    public function removeEffector($effectorsTypes)
+    {
+        if (!empty($_POST['effectorType'])) {
+            /** @var EffectorType $effectorType */
+            $sensorType = null;
+
+            /**@var EffectorType $etp */
+            foreach ($effectorsTypes as $etp) {
+                if ($etp->getId() === $_POST['effectorType']) {
+                    $effectorType = $etp;
+                }
+            }
+
+            if ($effectorType) {
+                $effectorType->setSelling(false);
+
+                if ($effectorType->save($this->db)) {
+
+                    $this->args['success_message'] = "Félicitation l'effecteur sélectionné a bien été supprimé";
+                } else {
+                    $this->args['error_message'] = "Les données entrées ne sont pas valides";
+                    $this->args['errors'] = $effectorType->getErrorMessage();
+                }
+            } else {
+                $this->args['error_message'] = "Les données entrées ne sont pas valides";
+            }
+        }else{
+            $this->args['error_message'] = "Veuillez sélectionner un effecteur";
+        }
+    }
 
 
 }
