@@ -5,7 +5,7 @@ class DatabaseConnection
     /**
      * @var PDO
      */
-    var $db;
+    private $db;
 
     public function __construct(){
         $config = JsonUtils::decodeJsonFileOrFail('config/config.json');
