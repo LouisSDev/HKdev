@@ -73,9 +73,14 @@ require_once $GLOBALS['root_dir'] . '/controller/AdminController.php';
     // Sensor
     require_once $GLOBALS['root_dir'] . '/controller/SensorController.php';
 
+
+    // MultiEditingControllers
+    require_once $GLOBALS['root_dir'] . '/controller/MultiEditControllers/AdminLoggingsFormController.php';
+    require_once $GLOBALS['root_dir'] . '/controller/MultiEditControllers/DashboardController.php';
+    require_once $GLOBALS['root_dir'] . '/controller/MultiEditControllers/AdminStaticController.php';
+
     //BackOffice
     require_once $GLOBALS['root_dir'] . '/controller/BackOfficeController.php';
-
 
 
 // Error Logging Facilities

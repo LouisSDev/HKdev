@@ -6,7 +6,7 @@
  * Date: 16/05/2017
  * Time: 09:26
  */
-class BackOfficeController extends AdminController
+class BackOfficeController extends AdminStaticController
 {
 
     public function manageProducts(){
