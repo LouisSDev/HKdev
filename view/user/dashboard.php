@@ -6,17 +6,15 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/modal.css">
     <link rel="stylesheet" href="<?php echo $GLOBALS['server_root']?>/ressources/css/chart.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/dashboard.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://use.fontawesome.com/86ed160d29.js"></script>
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/chart/chart.js"></script>
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/pop-up.js"></script>
-
-
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/dashboard.css">
 </head>
 <body>
 <br>
@@ -34,9 +32,9 @@ include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
 
 
 <br><br><br>
-    <div class="hello">Bonjour <?php echo $user -> getFirstName() ?>
+    <div class="hello information-message">Bonjour <?php echo $user -> getFirstName() ?>
         <br>
-        Avez-vous passez une bonne journée?
+        Avez-vous passé une bonne journée?
         <br>
         Nous nous occupons de tout pour vous pendant votre absence!
         <br>
@@ -85,8 +83,9 @@ include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
             }
             ?>
         </select>
-        <button class="btn" id="searchCharts">Afficher les statistiques!</button>
     </form>
+
+    <button class="btn" id="searchCharts">Afficher les statistiques!</button>
 
 
     <table>
