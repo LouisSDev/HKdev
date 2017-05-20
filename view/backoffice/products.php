@@ -59,6 +59,8 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
         <form method="post">
             <h1>Ajouter des capteurs dans le stock </h1>
             <label class="text"> Sélectionnez votre capteur :</label><br>
+            <input type="hidden" name="submittedForm" value="ADD_SENSOR_TYPE"/>
+
             <select name="sensorType">
                 <?php
                 foreach (SensorType::TYPE_ARRAY as $type){
@@ -87,6 +89,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
             <label class="text">Sélectionnez le nombre de capteurs à ajouter :</label><br>
             <input type="number" name="sensorNb">
+
 
             <input class="btn" type="submit" value="Ajouter" />
         </form>
