@@ -96,7 +96,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
                 . '<td>' . $quote -> getLastName() . '</th>'
                 . '<td>' . $quote -> getMail() . '</th>'
                 . '<td>' . $quote -> getCellPhoneNumber() . '</th>'
-                . '<td>' . $quote -> getQuoteFilePath() . '</th>';
+                . '<td><a href="'. $GLOBALS['server_root'] . '/' . $quote -> getQuoteFilePath() . '" target="_blank">Devis</a></th>';
 
             echo '</tr>';
 
