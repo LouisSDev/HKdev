@@ -26,23 +26,29 @@ class Sensor extends DatabaseEntity{
     /**
      * @return SensorType
      */
-    public function getSensorType(){
-        return $this->sensorType;
+    public function getSensorType()
+    {
+        if(!$this -> sensorType -> getName()) {
+            /** @var Repository $repo */
+            $repo = $GLOBALS['repositories']['sensorType'];
+            $this -> sensorType = $repo->findById($this -> sensorType -> getId(), false);
+        }
+        return $this -> sensorType;
     }
 
     /**
-     * @param SensorType $sensorType
      * @return Sensor
      */
-    public function setSensorType(SensorType $sensorType){
-       if( $sensorType instanceof SensorType){
-           $this->sensorType = $sensorType;
-       }
-        else{
-           Utils::addWarning("The parameter is not a SensorType");
-           $this->error = true;
-           $this->errorMessage[]= "The parameter is not a SensorType";
+    public function setSensorType($sensorType)
+    {
+        if ($sensorType instanceof SensorType){
+            $this -> sensorType = $sensorType;
         }
+        else{
+            $this -> sensorType =  new SensorType();
+            $this -> sensorType -> setId($sensorType);
+        }
+
         return $this;
     }
 
@@ -50,36 +56,43 @@ class Sensor extends DatabaseEntity{
 
     /**
      * @return Room
-     *
      */
-    public function getRoom(){
-        return $this->room;
+    public function getRoom()
+    {
+        if(!$this -> room -> getName()) {
+            /** @var Repository $repo */
+            $repo = $GLOBALS['repositories']['room'];
+            $this -> room = $repo->findById($this -> room -> getId(), false);
+        }
+        return $this -> room;
     }
 
     /**
-     * @param Room $room
      * @return Sensor
      */
-    public function setRoom(Room $room)
+    public function setRoom($room)
     {
-        if($room instanceof Room){
-            $this->room = $room;
+        if ($room instanceof Room){
+            $this -> room = $room;
         }
         else{
-            Utils::addWarning("The parameter is not a Room");
-            $this -> error = true;
-            $this -> errorMessage[]= "The parameter is not a Room";
+            $this -> room = new Room();
+            $this -> room -> setId($room);
         }
 
         return $this;
     }
-
 
     /**
      * @return array
      */
     public function getSensorValues()
     {
+        if(!$this -> sensorValues) {
+            /** @var Repository $repo */
+            $repo = $GLOBALS['repositories']['sensorValue'];
+            $this->sensorValues = $repo->getObjectsFromId($this, $this->getClassName(), 'sensorValue');
+        }
         return $this->sensorValues;
     }
 
@@ -111,7 +124,7 @@ class Sensor extends DatabaseEntity{
      * @return Sensor
      */
     public function removeSensorValue(SensorValue $value){
-        if(in_array($value,$this->sensorValues)){
+        if(in_array($value,$this->getSensorValues())){
            unset($this->sensorValues[array_search($value,$this->sensorValues)]);
            $value->setSensor(null);
         }
@@ -128,7 +141,7 @@ class Sensor extends DatabaseEntity{
             return false;
         }
         else{
-            if ( $this->sensorType != null){
+            if ( $this->sensorType !== null){
                 return true;
             }
             else{

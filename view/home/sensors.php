@@ -104,6 +104,7 @@
                             echo '<option label="" value="'
                                 . $sensor -> getId() . '">'
                                 . $sensor -> getRoom() -> getName()
+                                . ' - ' . $sensor -> getSensorType() -> getType()
                                 . ' - Capteur n°' . $sensor -> getId() . '</option>';
                         }
                     }

@@ -4,6 +4,8 @@ abstract class Controller
 {
 
     const CONNECTION_ERROR_DEFAULT_MESSAGE = "Mauvais identifiants!";
+    const TIMESTAMP_ANALYSIS_ACTIVATED = false;
+
     protected $connectionRequired = false;
 
     protected $connected = false;
@@ -56,6 +58,11 @@ abstract class Controller
 
     protected function generateView($filename, $pageTitle, $pathName = null){
 
+
+        if(self::TIMESTAMP_ANALYSIS_ACTIVATED) {
+            Utils::analyzeTimeExecution();
+        }
+
         // If it's a standard controller
         if(!$this -> api) {
 
@@ -96,6 +103,63 @@ abstract class Controller
         $this -> generateView('general/connection.php', 'Connection', 'connection/?errorMessage=' . self::CONNECTION_ERROR_DEFAULT_MESSAGE);
         exit();
     }
+
+    /**
+     * @return UserRepository
+     */
+    protected function getUserRepository(){
+        return $GLOBALS['repositories']['user'];
+    }
+
+    /**
+     * @return EffectorRepository
+     */
+    protected function getEffectorRepository(){
+        return $GLOBALS['repositories']['effector'];
+    }
+
+    /**
+     * @return EffectorTypeRepository
+     */
+    protected function getEffectorTypeRepository(){
+        return $GLOBALS['repositories']['effectorType'];
+    }
+
+    /**
+     * @return SensorRepository
+     */
+    protected function getSensorRepository(){
+        return $GLOBALS['repositories']['sensor'];
+    }
+
+    /**
+     * @return SensorTypeRepository
+     */
+    protected function getSensorTypeRepository(){
+        return $GLOBALS['repositories']['sensorType'];
+    }
+
+    /**
+     * @return SensorValueRepository
+     */
+    protected function getSensorValueRepository(){
+        return $GLOBALS['repositories']['sensorValue'];
+    }
+
+    /**
+     * @return RoomRepository
+     */
+    protected function getRoomRepository(){
+        return $GLOBALS['repositories']['room'];
+    }
+
+    /**
+     * @return HomeRepository
+     */
+    protected function getHomeRepository(){
+        return $GLOBALS['repositories']['home'];
+    }
+
 
     protected function enableApiMode()
     {

@@ -85,6 +85,11 @@ class Room extends DatabaseEntity
      */
     public function getSensors()
     {
+        if(!$this -> sensors) {
+            /** @var Repository $repo */
+            $repo = $GLOBALS['repositories']['sensor'];
+            $this->sensors = $repo->getObjectsFromId($this, $this->getClassName(), 'sensor');
+        }
         return $this->sensors;
     }
 
@@ -92,7 +97,7 @@ class Room extends DatabaseEntity
      * @param array $sensors
      * @return Room
      */
-    public function setSensors(array $sensors)
+    public function setSensors($sensors)
     {
         $this->sensors = $sensors;
         return $this;
@@ -141,6 +146,11 @@ class Room extends DatabaseEntity
      */
     public function getEffectors()
     {
+        if(!$this -> effectors) {
+            /** @var Repository $repo */
+            $repo = $GLOBALS['repositories']['effector'];
+            $this->effectors = $repo->getObjectsFromId($this, $this->getClassName(), 'effector');
+        }
         return $this->effectors;
     }
 
@@ -148,7 +158,7 @@ class Room extends DatabaseEntity
      * @param array $effectors
      * @return Room
      */
-    public function setEffectors(array $effectors)
+    public function setEffectors($effectors)
     {
         $this->effectors = $effectors;
         return $this;
@@ -163,7 +173,7 @@ class Room extends DatabaseEntity
      */
 
     public function addSensor(Sensor $sensor){
-        if(! in_array($sensor,$this->sensors)){
+        if(! in_array($sensor,$this->getSensors())){
             array_push($this->sensors,$sensor);
             $sensor->setRoom($this);
         }
@@ -176,7 +186,7 @@ class Room extends DatabaseEntity
      * @return $this
      */
     public function removeSensor(Sensor $sensor){
-        if(! in_array($sensor,$this->sensors)){
+        if(! in_array($sensor,$this->getSensors())){
             unset($this->sensors[array_search($sensor,$this->sensors)]);
             $sensor->setRoom(null);
         }
@@ -192,7 +202,7 @@ class Room extends DatabaseEntity
      */
 
     public function addEffector(Effector $effector){
-        if(! in_array($effector,$this->effectors)){
+        if(! in_array($effector,$this->getEffectors())){
             array_push($this->effectors,$effector);
             $effector->setRoom($this);
         }
@@ -205,7 +215,7 @@ class Room extends DatabaseEntity
      * @return $this
      */
     public function removeEffector(Effector $effector){
-        if(! in_array($effector,$this->effectors)){
+        if(! in_array($effector,$this->getEffectors())){
             unset($this->effectors[array_search($effector,$this->effectors)]);
             $effector->setRoom(null);
         }

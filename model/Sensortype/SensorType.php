@@ -48,11 +48,6 @@ class SensorType extends DatabaseEntity
     public function getSelling()
     {
         return $this -> selling;
-        /*
-        if($this -> selling == 2 || $this -> selling === false){
-            return false;
-        }
-        return true;*/
     }
 
     /**
@@ -236,10 +231,12 @@ class SensorType extends DatabaseEntity
     public function getValid()
     {
         if($this->error){
+
             return false;
         }else{
-            if( $this->name != null
-                && $this ->ref != null
+            if(
+                $this->name != null
+               && $this ->ref != null
                 && $this -> type != null
                 && $this -> price != 0
             ){
@@ -257,6 +254,7 @@ class SensorType extends DatabaseEntity
             }
         }
     }
+
 
     /**
      * @return mixed
