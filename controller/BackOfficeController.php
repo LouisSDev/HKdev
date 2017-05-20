@@ -107,7 +107,33 @@ class BackOfficeController extends AdminStaticController
                     $this->args['error_message'] = "Les données entrées ne sont pas valides";
                 }
 
-            }else{
+            }
+            else if(!empty($_POST['deletedUserId']))
+            {
+                /** @var User $user */
+                $user = null;
+
+                /** @var $usr User */
+                foreach($quoteTreatedUsers as $usr){
+                    if($usr -> getId() === $_POST['deletedUserId']){
+                        $user = $usr;
+                        break;
+                    }
+                }
+
+                if($user){
+                    if($user -> delete($this -> db)){
+                        $this->args['success_message'] = "Félicitation l'utilisateur a bien été supprimé";
+                    }else{
+                        $this->args['error_message'] = "Il y a eu une erreur lors de la suppression de l'utilisateur dans la base de données, veuillez réessayer.";
+                        $this->args['errors'] = $user -> getErrorMessage();
+                    }
+                }else{
+                    $this->args['error_message'] = "Les données entrées ne sont pas valides";
+                }
+            }
+
+            else{
                 $this->args['error_message'] = "Les données entrées ne sont pas valides";
             }
         }

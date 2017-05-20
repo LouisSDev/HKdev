@@ -67,7 +67,7 @@ class BuildingController extends AccountManagingController
         $user->setFirstName($_POST['firstName']);
         $user->setLastName($_POST['lastName']);
         $user->setMail($_POST['mail']);
-        $user->setPassword($_POST['password']);
+        $user->setPassword(sha1($_POST['password'].$GLOBALS['salt']));
 
 
         if ( $user -> save($this->db) ){

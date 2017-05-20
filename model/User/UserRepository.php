@@ -97,7 +97,7 @@ class UserRepository extends Repository
     {
         $submittedQuoteSearch = $this -> db -> prepare(
             'SELECT * FROM ' . self::OBJECT_CLASS_NAME
-            . ' WHERE quoteTreated is FALSE'
+            . ' WHERE quoteTreated = 2'
         );
 
         $submittedQuoteSearch -> execute();
@@ -109,7 +109,7 @@ class UserRepository extends Repository
     {
         $treatedQuoteSearch = $this->db->prepare(
             'SELECT * FROM ' . self::OBJECT_CLASS_NAME
-            . ' WHERE quoteTreated IS TRUE AND validated IS FALSE'
+            . ' WHERE quoteTreated = 1 AND validated = 2'
         );
 
         $treatedQuoteSearch->execute();
