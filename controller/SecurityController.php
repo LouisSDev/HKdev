@@ -57,12 +57,12 @@ class SecurityController extends Controller
             $this -> generateView('static/homepage.php', 'Home');
         }
 
-        $quoteFileRelativePath = '/uploads/quotes/' . uniqid() . '.' . $fileInformation['extension'];
-        $quoteFilePath = $GLOBALS['root_dir'] .$quoteFileRelativePath;
+        $quoteFileRelativePath = 'uploads/quotes/' . uniqid() . '.' . $fileInformation['extension'];
+        $quoteFilePath = $GLOBALS['root_dir'] . '/'. $quoteFileRelativePath;
 
         move_uploaded_file($_FILES['quote']['tmp_name'], $quoteFilePath );
 
-        $user -> setQuoteFilePath($quoteFilePath);
+        $user -> setQuoteFilePath($quoteFileRelativePath);
 
         $user -> save($this -> db);
 
