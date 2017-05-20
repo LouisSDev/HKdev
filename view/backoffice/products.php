@@ -59,7 +59,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
         <form method="post">
             <h1>Ajouter des capteurs dans le stock </h1>
             <label class="text"> Sélectionnez votre capteur :</label><br>
-            <input type="hidden" name="submittedForm" value="ADD_SENSOR_TYPE"/>
+            <input type="hidden" name="submittedForm" value="ADD_SENSORS"/>
 
             <select name="sensorType">
                 <?php

@@ -27,8 +27,8 @@ class BackOfficeController extends AdminStaticController
                     case 'REMOVE_SENSOR_TYPE':
                         $this -> removeSensor($sensorsTypes);
                         break;
-                    case 'ADD_SENSOR_TYPE':
-                        $this->addSensor($sensorsTypes);
+                    case 'ADD_SENSORS':
+                        $this->addSensors($sensorsTypes);
                         break;
                     case 'REMOVE_EFFECTOR_TYPE':
                         $this -> removeEffector($effectorTypes);
@@ -152,7 +152,7 @@ class BackOfficeController extends AdminStaticController
         $this -> generateView('backoffice/quoteValidation.php', 'Gérer les devis' );
     }
 
-    public function addSensor($sensorsTypes){
+    public function addSensors($sensorsTypes){
 
         if (!empty($_POST['sensorType']) && !empty($_POST['sensorNb'])){
 
