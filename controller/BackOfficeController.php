@@ -154,6 +154,19 @@ class BackOfficeController extends AdminController
         }
     }
 
+    private function addSensorType(){
+        $sensorType = $this -> args['sensorType'];
+
+
+        if($sensorType-> save($this->db)){
+            $this->args['success_message'] = "Félicitation l'effecteur sélectionné a bien été ajouté";
+        } else {
+            $this->args['error_message'] = "Les données entrées ne sont pas valides";
+            $this->args['errors'] = $sensorType->getErrorMessage();
+        }
+
+    }
+
 
 
 
