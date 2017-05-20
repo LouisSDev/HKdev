@@ -6,16 +6,15 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/modal.css">
     <link rel="stylesheet" href="<?php echo $GLOBALS['server_root']?>/ressources/css/chart.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/dashboard.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://use.fontawesome.com/86ed160d29.js"></script>
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/chart/chart.js"></script>
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/pop-up.js"></script>
-
-
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 </head>
 <body>
 <br>
@@ -31,15 +30,21 @@ $rooms = $user -> getAllRooms();
 
 include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
 
-    <br><br><br>
-    <div class="hello">Bonjour <?php echo $user -> getFirstName() ?> vous passez une bonne journée?
-        Nous nous occupons de tout pour vous pendant votre absence! Voici un petit résumé de vos
-        consommations récentes.</div>
+
+<br><br><br>
+    <div class="hello information-message">Bonjour <?php echo $user -> getFirstName() ?>
+        <br>
+        Avez-vous passé une bonne journée?
+        <br>
+        Nous nous occupons de tout pour vous pendant votre absence!
+        <br>
+        Voici un petit résumé de vos consommations récentes.
+    </div>
     <div class="error"></div>
 
-    <form method="post" action="<?php echo $GLOBALS['server_root']?>/api/get/sensors/values">
-        <p>Date de début: <input type="text" id="fromDate"></p>
-        <p>Date de fin: <input type="text" id="toDate"></p>
+    <form class="drop" method="post" action="<?php echo $GLOBALS['server_root']?>/api/get/sensors/values">
+        <label>Date de début: <br><input type="text" id="fromDate"></label></br>
+        <label>Date de fin: <br><input type="text" id="toDate"></label>
         <select id="homeId" class="homes">
             <option label = "" value = "-1">Statistiques générales de mes maisons</option>
 
@@ -79,7 +84,9 @@ include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
             ?>
         </select>
     </form>
-    <button id="searchCharts">Afficher les statistiques!</button>
+
+    <button class="btn" id="searchCharts">Afficher les statistiques!</button>
+
 
     <table>
         <tr>

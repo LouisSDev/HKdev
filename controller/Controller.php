@@ -97,6 +97,63 @@ abstract class Controller
         exit();
     }
 
+    /**
+     * @return UserRepository
+     */
+    protected function getUserRepository(){
+        return $GLOBALS['repositories']['user'];
+    }
+
+    /**
+     * @return EffectorRepository
+     */
+    protected function getEffectorRepository(){
+        return $GLOBALS['repositories']['effector'];
+    }
+
+    /**
+     * @return EffectorTypeRepository
+     */
+    protected function getEffectorTypeRepository(){
+        return $GLOBALS['repositories']['effectorType'];
+    }
+
+    /**
+     * @return SensorRepository
+     */
+    protected function getSensorRepository(){
+        return $GLOBALS['repositories']['sensor'];
+    }
+
+    /**
+     * @return SensorTypeRepository
+     */
+    protected function getSensorTypeRepository(){
+        return $GLOBALS['repositories']['sensorType'];
+    }
+
+    /**
+     * @return SensorValueRepository
+     */
+    protected function getSensorValueRepository(){
+        return $GLOBALS['repositories']['sensorValue'];
+    }
+
+    /**
+     * @return RoomRepository
+     */
+    protected function getRoomRepository(){
+        return $GLOBALS['repositories']['room'];
+    }
+
+    /**
+     * @return HomeRepository
+     */
+    protected function getHomeRepository(){
+        return $GLOBALS['repositories']['home'];
+    }
+
+
     protected function enableApiMode()
     {
         $this -> api = true;

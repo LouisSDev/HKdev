@@ -16,6 +16,8 @@ $user = $GLOBALS['view']['user'];
 
 include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
+
+
 ?>
 <h1>Devis à valider </h1>
 <div class="aValider">
@@ -25,17 +27,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
             echo '<optgroup label="'. $type . '">';
 
-            /** @var  $sensorType SensorType*/
-            foreach ($sensorsTypes as $sensorType) {
 
-                if ($sensorType->getType() === $type && $sensorType -> getSelling()) {
-                    echo '<option label="" value="'
-                        . $sensorType -> getId() . '">'
-                        . $type . ' : ' . $sensorType -> getName()
-                        . ' - ' . $sensorType -> getRef()
-                        . ' : ' . $sensorType -> getPrice() . '€</option>';
-                }
-            }
             echo '</optgroup>';
 
         }

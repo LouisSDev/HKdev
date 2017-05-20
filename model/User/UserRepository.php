@@ -92,6 +92,31 @@ class UserRepository extends Repository
         return false;
     }
 
+
+    public function getUsersWithSubmittedQuote()
+    {
+        $submittedQuoteSearch = $this -> db -> prepare(
+            'SELECT * FROM ' . self::OBJECT_CLASS_NAME
+            . ' WHERE quoteTreated is FALSE'
+        );
+
+        $submittedQuoteSearch -> execute();
+
+        return $this->getResultantObjects( $submittedQuoteSearch);
+    }
+
+    public function getUsersWithTreatedQuote()
+    {
+        $treatedQuoteSearch = $this->db->prepare(
+            'SELECT * FROM ' . self::OBJECT_CLASS_NAME
+            . ' WHERE quoteTreated IS TRUE AND validated IS FALSE'
+        );
+
+        $treatedQuoteSearch->execute();
+
+        return $this->getResultantObjects($treatedQuoteSearch);
+    }
+
     /**
      * @return User
      */
@@ -116,5 +141,6 @@ class UserRepository extends Repository
     {
         return self::OBJECT_CLASS_NAME;
     }
+
 
 }

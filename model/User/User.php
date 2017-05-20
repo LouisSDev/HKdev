@@ -51,6 +51,11 @@ class User extends DatabaseEntity
     private $admin = false;
 
     /**
+     * @var bool $quoteTreated
+     */
+    private $quoteTreated = false;
+
+    /**
      * @var bool $validated
      */
     private $validated = false;
@@ -409,6 +414,23 @@ class User extends DatabaseEntity
         return $this;
     }
 
+    /**
+     * @return boolean
+     */
+    public function getQuoteTreated()
+    {
+        return $this->quoteTreated;
+    }
+
+    /**
+     * @param boolean $quoteTreated
+     * @return User
+     */
+    public function setQuoteTreated($quoteTreated)
+    {
+        $this->quoteTreated = $quoteTreated;
+        return $this;
+    }
 
 
 
@@ -431,6 +453,7 @@ class User extends DatabaseEntity
         $this->errorMessage[] = "Vous n'avez pas rentré toutes les informations nécessaires.";
         return false;
     }
+
 
     public function getClassName(){
         return self::class;

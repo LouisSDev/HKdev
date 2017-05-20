@@ -1,0 +1,54 @@
+.hello{
+    background-color: rgb(217, 237, 247);
+    border-bottom-color: rgb(188, 232, 241);
+    border-left-color: rgb(188, 232, 241);
+    border-right-color: rgb(188, 232, 241);
+    border-top-color: rgb(188, 232, 241);
+    color: rgb(49, 112, 143);
+}
+
+.drop{
+    position: relative;
+    background: #f4f7f8;
+    border-radius: 4px;
+    width: 50%;
+    left:25%;
+}
+
+
+input[type="text"],
+select
+{
+    background-color: #e8eeef;
+    border:none;
+    border-radius: 4px;
+    font-family: Georgia, "Roboto", Times, serif;
+    font-size: 15px;
+    color:#49545e;
+    width: 65%;
+    margin: 1%;
+}
+
+.btn{ /*Button style*/
+    background-color: lightgray;
+    text-decoration: none;
+    text-align: center;
+    border: 0;
+    font-size: 25px;
+    padding: 10px;
+    /*box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);*/
+    display: inline-block;
+    cursor: pointer;
+    transition-duration: 0.4s;
+    opacity: 0.7;
+    margin: 1%;
+
+}
+
+.btn:hover{
+    padding-left: 25px;
+    padding-right: 25px;
+    transition-duration: 0.4s;
+    opacity: 1;
+    margin:1%;
+}
