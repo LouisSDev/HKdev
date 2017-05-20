@@ -234,7 +234,6 @@ class SensorType extends DatabaseEntity
 
             return false;
         }else{
-            Utils::addWarning("Si Je Passe ici c'est que le problème vient d'avant le getValid()");
             if(
                 $this->name != null
                && $this ->ref != null

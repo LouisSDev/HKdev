@@ -13,9 +13,11 @@
 
 include_once ($GLOBALS['root_dir'] . "/view/general/adminHeader.php");
 
-$user = $GLOBALS['view']['user'];
+$admin = $GLOBALS['view']['user'];
 
 include_once($GLOBALS['root_dir'] . '/view/general/error.php');
+
+$quoteTreatedUsers = $GLOBALS['view']['quoteTreatedUsers'];
 
 ?>
 

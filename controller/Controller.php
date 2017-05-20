@@ -4,7 +4,7 @@ abstract class Controller
 {
 
     const CONNECTION_ERROR_DEFAULT_MESSAGE = "Mauvais identifiants!";
-    const TIMESTAMP_ANALYSIS_ACTIVATED = true;
+    const TIMESTAMP_ANALYSIS_ACTIVATED = false;
 
     protected $connectionRequired = false;
 

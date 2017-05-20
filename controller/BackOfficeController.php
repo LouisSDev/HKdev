@@ -122,36 +122,34 @@ class BackOfficeController extends AdminStaticController
     public function addSensor($sensorsTypes){
 
         if (!empty($_POST['sensorType']) && !empty($_POST['sensorNb'])){
+
             /**@var SensorType $sensorType*/
+            $sensorType = null;
 
-                $sensorType = null;
-
-            /**@VAR SensorType $stp*/
-
+            /**@var SensorType $stp*/
             foreach ($sensorsTypes as $stp) {
                 if ($stp->getId() === $_POST['sensorType']) {
                     $sensorType = $stp;
                 }
             }
-            if($sensorType){
-                $sensorType->setSelling(true);
 
-                for($i = 1;$i<$_POST['sensorNb']+1;$i++){
+            if($sensorType){
+
+                for($i = 1 ; $i <= $_POST['sensorNb'] ; $i++){
                     $sensor = new Sensor();
                     if ($sensor->setSensorType($sensorType)->save($this->db) ) {
-                        $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été ajouté";
+                        $this->args['success_message'] = "Félicitation les capteurs ont bien été ajoutés aux stocks informatiques";
                     }
-                    else{
-                        Utils::addWarning(  " not possible");
+                    else {
 
                         $this->args['error_message'] = "Les données entrées ne sont pas valides";
-                        /**$this->args['errors'] = $sensorType->getErrorMessage();*/
+                        $this->args['errors'] = $sensorType->getErrorMessage();
                     }
                 }
 
             }
             else{
-                $this->args['error_message'] = "Les données entrées ne sont pas valides 2";
+                $this->args['error_message'] = "Les données entrées ne sont pas valides";
             }
         }
         else{
