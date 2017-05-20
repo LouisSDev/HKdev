@@ -69,13 +69,44 @@ class BackOfficeController extends AdminController
                 }
 
                 if($user){
-
+                    $user -> setValidated(true);
+                    if($user -> save($this -> db)){
+                        $this->args['success_message'] = "Félicitation l'utilisateur a bien été validé";
+                    }else{
+                        $this->args['error_message'] = "Il y a eu une erreur lors de la sauvegarde dans la base de données, veuillez réessayer.";
+                        $this->args['errors'] = $user -> getErrorMessage();
+                    }
+                }else{
+                    $this->args['error_message'] = "Les données entrées ne sont pas valides";
                 }
             }
-
-            else if(!empty($_POST['treatedUser']))
+            else if(!empty($_POST['treatedUserId']))
             {
+                /** @var User $user */
+                $user = null;
 
+                /** @var $usr User */
+                foreach($quoteSubmittedUsers as $usr){
+                    if($usr -> getId() === $_POST['treatedUserId']){
+                        $user = $usr;
+                        break;
+                    }
+                }
+
+                if($user){
+                    $user -> setQuoteTreated(true);
+                    if($user -> save($this -> db)){
+                        $this->args['success_message'] = "Félicitation la modification a bien été prise en charge";
+                    }else{
+                        $this->args['error_message'] = "Il y a eu une erreur lors de la sauvegarde dans la base de données, veuillez réessayer.";
+                        $this->args['errors'] = $user -> getErrorMessage();
+                    }
+                }else{
+                    $this->args['error_message'] = "Les données entrées ne sont pas valides";
+                }
+
+            }else{
+                $this->args['error_message'] = "Les données entrées ne sont pas valides";
             }
         }
 
