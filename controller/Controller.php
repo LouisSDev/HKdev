@@ -4,6 +4,7 @@ abstract class Controller
 {
 
     const CONNECTION_ERROR_DEFAULT_MESSAGE = "Mauvais identifiants!";
+    const TIMESTAMP_ANALYSIS_ACTIVATED = true;
     protected $connectionRequired = false;
 
     protected $connected = false;
@@ -55,6 +56,11 @@ abstract class Controller
     }
 
     protected function generateView($filename, $pageTitle, $pathName = null){
+
+
+        if(self::TIMESTAMP_ANALYSIS_ACTIVATED) {
+            Utils::analyzeTimeExecution();
+        }
 
         // If it's a standard controller
         if(!$this -> api) {

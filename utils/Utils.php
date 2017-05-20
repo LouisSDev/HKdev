@@ -59,9 +59,22 @@ class Utils
         return preg_match("/\d{4}\-\d{2}-\d{2}/", $value);
     }
 
+    static public function addTimeBreakpoint($key){
+        $GLOBALS['breakpoints_timestamps'][$key] = microtime(true);
+    }
+
     static public function analyzeTimeExecution(){
         self::addWarning('Full Execution Time : ' . (microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"]));
+        self::addWarning('Time to load database : ' .( $GLOBALS['timestamp_after_db_connection'] -$_SERVER["REQUEST_TIME_FLOAT"] ));
         self::addWarning('After Connection Execution Time : ' .( microtime(true) - $GLOBALS['timestamp_after_db_connection']));
+
+        $i = 0;
+        if(isset($GLOBALS['breakpoints_timestamps'] ) && is_array($GLOBALS['breakpoints_timestamps'] ) ) {
+            foreach ($GLOBALS['breakpoints_timestamps'] as $key => $value) {
+                self::addWarning('BreakPoint n°' . $i . ': ' . $key . ' => ' . (microtime(true) - $value));
+                $i++;
+            }
+        }
     }
 
 }
