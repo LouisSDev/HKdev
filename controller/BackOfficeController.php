@@ -114,6 +114,7 @@ class BackOfficeController extends AdminController
         $this -> args['quoteSubmittedUsers'] = $quoteSubmittedUsers;
         $this -> args['quoteTreatedUsers'] = $quoteTreatedUsers;
 
+        Utils::analyzeTimeExecution();
         $this -> generateView('backoffice/quoteValidation.php', 'Gérer les devis' );
     }
 
@@ -151,6 +152,18 @@ class BackOfficeController extends AdminController
         }else{
             $this->args['error_message'] = "Veuillez sélectionner un capteur";
         }
+    }
+
+    private function addSensorType(){
+        $effectorType = $this -> args['effectorType'];
+
+
+        if($effectorType-> save($this->db)){
+            $this->args['success_message'] = "Félicitation l'effecteur sélectionné a bien été ajouté";
+        } else {
+            $this->args['error_message'] = "Les données entrées ne sont pas valides";
+        }
+
     }
 
 

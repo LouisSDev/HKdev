@@ -16,6 +16,8 @@ $GLOBALS['credentials'] = new UserCredentials();
 $dbConnector = new DatabaseConnection();
 $db = $dbConnector -> getDatabase();
 
+$GLOBALS['timestamp_after_db_connection'] = microtime(true);
+
 
 switch($globalPath){
     case 'home' :
@@ -189,14 +191,11 @@ switch($globalPath){
                 case 'users' :
                     //TODO
                     break;
-                case 'quotes' :
-                    //TODO
-                    break;
                 case 'products' :
                     $backOfficeController = new BackOfficeController($db);
                     $backOfficeController -> manageProducts();
                     break;
-                case 'quoteValidation' :
+                case 'quotes' :
                     $backOfficeController = new BackOfficeController($db);
                     $backOfficeController -> quoteValidation();
                     break;
@@ -229,6 +228,8 @@ switch($globalPath){
         $staticController = new StaticController();
         $staticController -> notFound();
 }
+
+
 
 function homepage($db){
 

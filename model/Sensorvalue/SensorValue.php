@@ -108,27 +108,31 @@ class SensorValue extends DatabaseEntity
         return $this;
     }
 
+
     /**
      * @return Sensor
      */
     public function getSensor()
     {
-        return $this->sensor;
+        if(!$this -> sensor -> getRoom()) {
+            /** @var Repository $repo */
+            $repo = $GLOBALS['repositories']['sensor'];
+            $this -> sensor = $repo->findById($this -> sensor -> getId(), false);
+        }
+        return $this -> sensor;
     }
 
     /**
-     * @param Sensor $sensor
      * @return SensorValue
      */
-    public function setSensor(Sensor $sensor)
+    public function setSensor($sensor)
     {
         if ($sensor instanceof Sensor){
-            $this->sensor = $sensor;
+            $this -> sensor = $sensor;
         }
         else{
-            Utils::addWarning('the sensor is incorrect : '. $sensor -> getId());
-            $this->error = true;
-            $this->errorMessage[] =  'the sensor is incorrect';
+            $this -> sensor =  new Sensor();
+            $this -> sensor -> setId($sensor);
         }
 
         return $this;

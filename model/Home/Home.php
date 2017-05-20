@@ -169,24 +169,27 @@ class Home extends DatabaseEntity
      */
     public function getBuilding()
     {
+        if(!$this -> building -> getName()) {
+            /** @var Repository $repo */
+            $repo = $GLOBALS['repositories']['home'];
+            $this->building = $repo->findById($this->building->getId(), false);
+        }
         return $this->building;
     }
 
     /**
-     * @param Home $building
      * @return Home
      */
-    public function setBuilding(Home $building)
+    public function setBuilding($building)
     {
         if ($building instanceof Home){
             $this->building = $building;
         }
-
         else{
-            Utils::addWarning("The parameter is not a Home");
-            $this->error = true;
-            $this->errorMessage []="The parameter is not a Home";
+          $this -> building =  new Home();
+          $this -> building -> setId($building);
         }
+
         return $this;
     }
 
@@ -255,6 +258,12 @@ class Home extends DatabaseEntity
      */
     public function getHomes()
     {
+        if(!$this -> homes) {
+            /** @var Repository $repo */
+            $repo = $GLOBALS['repositories']['home'];
+            $this->homes = $repo->getObjectsFromId($this, 'building' , 'home');
+        }
+
         return $this->homes;
     }
 
@@ -264,9 +273,11 @@ class Home extends DatabaseEntity
      */
     public function setHomes($homes)
     {
-        /** @var Home $home */
-        foreach ($homes as $home){
-            $home -> setBuilding($this);
+        if($homes != null) {
+            /** @var Home $home */
+            foreach ($homes as $home) {
+                $home->setBuilding($this);
+            }
         }
         $this -> homes = $homes;
         return $this;
@@ -282,7 +293,7 @@ class Home extends DatabaseEntity
      */
 
     public function addHome(Home $home){
-        if(!in_array($home, $this->homes)){
+        if(!in_array($home, $this->getHomes())){
             array_push( $this->homes, $home);
             $home->setBuilding($this);
         }
@@ -297,7 +308,7 @@ class Home extends DatabaseEntity
      */
 
     public function removeHome(Home $home){
-        if(!in_array($home, $this->homes)) {
+        if(!in_array($home, $this->getHomes())) {
             unset($this->homes[array_search($home,$this->homes)]);
             $home->setBuilding(null);
         }
@@ -310,6 +321,12 @@ class Home extends DatabaseEntity
      */
     public function getRooms()
     {
+        if(!$this -> rooms) {
+            /** @var Repository $repo */
+            $repo = $GLOBALS['repositories']['room'];
+            $this->rooms = $repo->getObjectsFromId($this, $this->getClassName(), 'room');
+        }
+
         return $this->rooms;
     }
 
@@ -332,7 +349,7 @@ class Home extends DatabaseEntity
      */
 
     public function addRoom(Room $room){
-        if(!in_array($room, $this->rooms)){
+        if(!in_array($room, $this->getRooms())){
             array_push( $this->rooms, $room);
             $room->setHome($this);
         }
@@ -347,7 +364,7 @@ class Home extends DatabaseEntity
      */
 
     public function removeRoom(Room $room){
-        if(!in_array($room, $this->rooms)) {
+        if(!in_array($room, $this->getRooms())) {
             unset($this->rooms[array_search($room, $this->rooms)]);
             $room->setHome(null);
         }
@@ -401,7 +418,7 @@ class Home extends DatabaseEntity
         $sensors = array();
         if($this -> building != $this) {
             /** @var Room $room */
-            foreach ($this -> rooms as $room){
+            foreach ($this -> getRooms() as $room){
                 $sensors = array_merge($sensors, $room -> getSensors());
             }
         }else{
@@ -415,7 +432,7 @@ class Home extends DatabaseEntity
         $effectors = array();
         if($this -> building != $this) {
             /** @var Room $room */
-            foreach ($this -> rooms as $room){
+            foreach ($this -> getHomes() as $room){
                 array_merge($effectors, $room -> getEffectors());
             }
         }else{
@@ -432,7 +449,7 @@ class Home extends DatabaseEntity
         $rooms = [];
 
         /** @var Room $room */
-        foreach($this -> rooms as $room) {
+        foreach($this -> getRooms() as $room) {
             if($room -> getType() == $type){
                 $rooms[] = $room;
             }
@@ -489,7 +506,7 @@ class Home extends DatabaseEntity
         $sensors = [];
 
         /** @var Room $room */
-        foreach($this -> rooms as $room) {
+        foreach($this -> getRooms() as $room) {
             /** @var Sensor $sensor*/
             foreach ($room -> getSensors() as $sensor){
                 if($sensor -> getSensorType() -> getType() === $type){

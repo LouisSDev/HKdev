@@ -333,6 +333,11 @@ class User extends DatabaseEntity
      */
     public function getHomes()
     {
+        if(!$this -> homes) {
+        /** @var Repository $repo */
+        $repo = $GLOBALS['repositories']['home'];
+        $this->homes = $repo->getObjectsFromId($this, $this->getClassName(), 'home');
+        }
         return $this->homes;
     }
 
@@ -356,7 +361,7 @@ class User extends DatabaseEntity
      */
 
     public function addHome(Home $home){
-        if(!in_array($home, $this->homes)){
+        if(!in_array($home, $this->getHomes())){
             array_push( $this->homes, $home);
             $home->setUser($this);
         }
@@ -371,7 +376,7 @@ class User extends DatabaseEntity
      */
 
     public function removeHome(Home $home){
-        if(!in_array($home, $this->homes)) {
+        if(!in_array($home, $this->getHomes())) {
             unset($this->homes[array_search($home,$this->homes)]);
             $home->setUser(null);
         }
@@ -467,7 +472,7 @@ class User extends DatabaseEntity
 
     public function getAllSensors(){
         $sensors = array();
-        foreach ($this -> homes as $home){
+        foreach ($this -> getHomes() as $home){
             $sensors = array_merge($sensors, $home -> getAllSensors());
         }
         return $sensors;
@@ -496,7 +501,7 @@ class User extends DatabaseEntity
         $rooms = array();
 
         /** @var Home $hm */
-        foreach($this ->  homes as $hm){
+        foreach($this ->  getHomes() as $hm){
             $rooms = DatabaseEntity::mergeArraysWithoutDuplicata($rooms, $hm -> getRooms());
         }
         return $rooms;
