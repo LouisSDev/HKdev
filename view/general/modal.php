@@ -1,7 +1,7 @@
 <div id="modal">
     <i class="fa fa-times-circle fa-lg close" aria-hidden="true"></i>
     <div class="form">
-        <form method="post" action="<?php echo $GLOBALS['server_root'] . '/connect'?>">
+        <form method="post" action="<?php echo $GLOBALS['server_root'] . '/user/dashboard'?>">
             <input type="email" name="userMail" placeholder="Adresse mail">
             <input type="password" name="userPassword" placeholder="Mot de passe">
             <input class="button" type="submit" value="Envoyer" />

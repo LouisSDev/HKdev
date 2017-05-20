@@ -7,9 +7,9 @@ class UserController extends Controller
     public function getDashboard($redirect = true)
     {
         if($redirect) {
-            $this->generateView('dashboard.php', 'Dashboard', 'user/dashboard');
+            $this->generateView('dashboard.php', 'Tableau de Bord', 'user/dashboard');
         }else{
-            $this->generateView('user/dashboard.php', 'Dashboard');
+            $this->generateView('user/dashboard.php', 'Tableau de Bord');
         }
     }
 

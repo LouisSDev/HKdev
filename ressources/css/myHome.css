@@ -100,3 +100,46 @@ body{
     font-size: 13px;
 }
 
+.temp{
+    position: relative;
+    left: calc(50% - 100px);
+    display: flex;
+}
+
+.lum{
+    position: relative;
+    display: flex;
+    text-align: center;
+    left: calc(50% - 125px);
+    margin: 5px;
+}
+
+.volets{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    left: calc(50% - 75px);
+    margin: 5px;
+}
+
+.on{
+    position: absolute;
+    top:100px;
+    left:0;
+}
+
+.off{
+    position:absolute;
+    top:100px;
+    left:0;
+}
+
+.info{
+    margin: 0 0 0 10px;
+}
+
+.effectorsContainer{
+    position: relative;
+    top:100px;
+}
