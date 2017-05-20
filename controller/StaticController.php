@@ -31,5 +31,5 @@ class StaticController extends Controller
         $this -> generateView('static/homepage.php', 'Home');
     }
 
-
 }
+

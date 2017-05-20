@@ -119,7 +119,6 @@ class Repository
      */
     public function connectFromGlobals()
     {
-
         return null;
     }
 
