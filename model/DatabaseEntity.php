@@ -11,6 +11,37 @@ abstract class DatabaseEntity
 {
     const OBJECTS_NAMES = ['effector', 'effectorType', 'sensor',
         'sensorType', 'home', 'building', 'room', 'user', 'sensorValue'];
+
+    // This array will define which vars shall not be charged when running the database connection
+    const LAZY_LOADING_PARAMS = [
+        'User' => [
+            'homes'
+        ],
+        'Home' => [
+            'rooms',
+            'homes',
+            'building'
+        ],
+        'Room' => [
+            'sensors',
+            'effectors'
+        ],
+        'Sensor' => [
+            'room',
+            'sensorType',
+            'sensorValues'
+        ],
+        'Effector' => [
+            'room',
+            'effectorType'
+        ],
+        'EffectorType' => [],
+        'SensorType' => [],
+        'SensorValue' => [
+            'sensor'
+        ]
+    ];
+
     const PARAM_DATETIME = 5;
     const MYSQL_TIMESTAMP_FORMAT = 'Y-m-d H:i:s';
 
@@ -105,6 +136,8 @@ abstract class DatabaseEntity
                 // We create the setter name
                 $setterName = 'set' . strtoupper($name[0]) . substr($name, 1, strlen($name) - 1);
 
+
+
                 // Then the repository name is the name of the param but without the 's' that's why we remove it here
                 $repositoryName = substr($name, 0, strlen($name) - 1);
 
@@ -126,8 +159,15 @@ abstract class DatabaseEntity
                     $className = 'Building';
                 }
 
+                // If this param is not a lazy loading params then we'll just charge it directly
+                if(!in_array($name, self::LAZY_LOADING_PARAMS[$this -> getClassName()])) {
 
-                $this->$setterName($repository->getObjectsFromId($this, $className, $repositoryName));
+                    $this->$setterName($repository->getObjectsFromId($this, $className, $repositoryName));
+
+                }else{
+                    // Otherwise, we'll set it to null
+                    $this->$setterName(null);
+                }
 
             }
         }
@@ -154,16 +194,20 @@ abstract class DatabaseEntity
                     /** @var Repository $repository */
                     $repository = $GLOBALS['repositories'][$repositoryName];
 
+                    if(!in_array($name, self::LAZY_LOADING_PARAMS[$this -> getClassName()])) {
+                        // And call the general Repository method below mentionned
+                        // It will in turn call the method getObjectsFromUserId of the given repository if it's from the
+                        // User id that we search those objects
+                        // We then put all of this in the corresponding array and we're done
 
-                    // And call the general Repository method below mentionned
-                    // It will in turn call the method getObjectsFromUserId of the given repository if it's from the
-                    // User id that we search those objects
-                    // We then put all of this in the corresponding array and we're done
+                        $object = $repository->findById($data[$name], false);
 
-                    $object = $repository->findById($data[$name], false);
+                        if ($object) {
+                            $this->$setterName($object);
+                        }
 
-                    if ($object) {
-                        $this->$setterName($object);
+                    }else{
+                        $this -> $setterName($data[$name]);
                     }
                 }
             }
@@ -218,7 +262,8 @@ abstract class DatabaseEntity
 
                 }
                 // Now, if the var is neither "error", nor "errorMessage" (because we don't save this into the database)
-                else if($name != "error" && $name != "errorMessage"){
+                else if($name != "error" && $name != "errorMessage"
+                        && !in_array($name, self::LAZY_LOADING_PARAMS[$this -> getClassName()])){
 
 
                     // If it's a string value, then $type will be set to PDO::PARAM_STR, else into PDO::PARAM_INT

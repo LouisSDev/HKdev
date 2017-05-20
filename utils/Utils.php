@@ -59,33 +59,9 @@ class Utils
         return preg_match("/\d{4}\-\d{2}-\d{2}/", $value);
     }
 
-
-    /**
-     * Replaces any parameter placeholders in a query with the value of that
-     * parameter. Useful for debugging. Assumes anonymous parameters from
-     * $params are are in the same order as specified in $query
-     *
-     * @param string $query The sql query with parameter placeholders
-     * @param array $params The array of substitution parameters
-     * @return string The interpolated query
-     */
-    public static function interpolateQuery($query, $params) {
-        $keys = array();
-
-        # build a regular expression for each parameter
-        foreach ($params as $key => $value) {
-            if (is_string($key)) {
-                $keys[] = '/:'.$key.'/';
-            } else {
-                $keys[] = '/[?]/';
-            }
-        }
-
-        $query = preg_replace($keys, $params, $query, 1, $count);
-
-        #trigger_error('replaced '.$count.' keys');
-
-        return $query;
+    static public function analyzeTimeExecution(){
+        self::addWarning('Full Execution Time : ' . (microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"]));
+        self::addWarning('After Connection Execution Time : ' .( microtime(true) - $GLOBALS['timestamp_after_db_connection']));
     }
 
 }

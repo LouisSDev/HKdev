@@ -114,6 +114,7 @@ class BackOfficeController extends AdminController
         $this -> args['quoteSubmittedUsers'] = $quoteSubmittedUsers;
         $this -> args['quoteTreatedUsers'] = $quoteTreatedUsers;
 
+        Utils::analyzeTimeExecution();
         $this -> generateView('backoffice/quoteValidation.php', 'Gérer les devis' );
     }
 

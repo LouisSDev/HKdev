@@ -46,19 +46,29 @@ class Effector extends DatabaseEntity{
      */
     public function getEffectorType()
     {
-        return $this->effectorType;
+        if(!$this -> effectorType -> getName()) {
+            /** @var Repository $repo */
+            $repo = $GLOBALS['repositories']['effectorType'];
+            $this -> effectorType = $repo->findById($this -> effectorType -> getId(), false);
+        }
+        return $this -> effectorType;
     }
 
     /**
-     * @param EffectorType $effectorType
      * @return Effector
      */
-    public function setEffectorType(EffectorType $effectorType)
+    public function setEffectorType($effectorType)
     {
-        $this->effectorType = $effectorType;
+        if ($effectorType instanceof EffectorType){
+            $this -> effectorType = $effectorType;
+        }
+        else{
+            $this -> effectorType =  new EffectorType();
+            $this -> effectorType -> setId($effectorType);
+        }
+
         return $this;
     }
-
 
     /**
      * @return string
@@ -92,28 +102,30 @@ class Effector extends DatabaseEntity{
      */
     public function getRoom()
     {
-        return $this->room;
+        if(!$this -> room -> getName()) {
+            /** @var Repository $repo */
+            $repo = $GLOBALS['repositories']['room'];
+            $this -> room = $repo->findById($this -> room -> getId(), false);
+        }
+        return $this -> room;
     }
 
     /**
-     *
-     * @param Room $room
      * @return Effector
-     *
      */
-    public function setRoom(Room $room)
+    public function setRoom($room)
     {
-        if($room instanceof Room){
-            $this->room = $room;
+        if ($room instanceof Room){
+            $this -> room = $room;
         }
         else{
-            Utils::addWarning("The parameter is not a Room ");
-            $this->error = true;
-            $this->errorMessage []= "The parameter is not a Room ";
+            $this -> room = new Room();
+            $this -> room -> setId($room);
         }
 
         return $this;
     }
+
 
     /**
      * @return boolean
