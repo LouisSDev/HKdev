@@ -231,12 +231,16 @@ class SensorType extends DatabaseEntity
     public function getValid()
     {
         if($this->error){
+
             return false;
         }else{
-            if( $this->name != null
-                && $this ->ref != null
-                && $this -> type != null
+            Utils::addWarning("Si Je Passe ici c'est que le problème vient d'avant le getValid()");
+            if(
+                $this->name != null
+               /** && $this ->ref != null*/
+                /**&& $this -> type != null*/
                 && $this -> price != 0
+                && $this->selling!=null
             ){
                 if($this -> chart && ($this -> minVal === null || $this -> maxVal === null)){
                     Utils::addWarning('Toutes les données requises n\'ont pas été entrées');
@@ -252,6 +256,7 @@ class SensorType extends DatabaseEntity
             }
         }
     }
+
 
     /**
      * @return mixed

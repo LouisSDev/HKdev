@@ -27,7 +27,9 @@ class BackOfficeController extends AdminStaticController
                     case 'REMOVE_SENSOR_TYPE':
                         $this -> removeSensor($sensorsTypes);
                         break;
-
+                    case 'ADD_SENSOR_TYPE':
+                        $this->addSensor($sensorsTypes);
+                        break;
                     default:
                         $this -> generateView('static/404.php', '404');
                 }
@@ -117,7 +119,47 @@ class BackOfficeController extends AdminStaticController
         $this -> generateView('backoffice/quoteValidation.php', 'Gérer les devis' );
     }
 
+    public function addSensor($sensorsTypes){
 
+        if (!empty($_POST['sensorType']) && !empty($_POST['sensorNb'])){
+            /**@var SensorType $sensorType*/
+
+                $sensorType = null;
+
+            /**@VAR SensorType $stp*/
+
+            foreach ($sensorsTypes as $stp) {
+                if ($stp->getId() === $_POST['sensorType']) {
+                    $sensorType = $stp;
+                }
+            }
+            if($sensorType){
+                $sensorType->setSelling(true);
+
+                for($i = 1;$i<$_POST['sensorNb']+1;$i++){
+                    $sensor = new Sensor();
+                    if ($sensor->setSensorType($sensorType)->save($this->db) ) {
+                        $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été ajouté";
+                    }
+                    else{
+                        Utils::addWarning(  " not possible");
+
+                        $this->args['error_message'] = "Les données entrées ne sont pas valides";
+                        /**$this->args['errors'] = $sensorType->getErrorMessage();*/
+                    }
+                }
+
+            }
+            else{
+                $this->args['error_message'] = "Les données entrées ne sont pas valides 2";
+            }
+        }
+        else{
+            $this->args['error_message'] = "Veuillez sélectionner un capteur";
+
+        }
+
+    }
 
     private function removeSensor($sensorsTypes)
     {
@@ -153,17 +195,6 @@ class BackOfficeController extends AdminStaticController
         }
     }
 
-    private function addSensorType(){
-        $effectorType = $this -> args['effectorType'];
-
-
-        if($effectorType-> save($this->db)){
-            $this->args['success_message'] = "Félicitation l'effecteur sélectionné a bien été ajouté";
-        } else {
-            $this->args['error_message'] = "Les données entrées ne sont pas valides";
-        }
-
-    }
 
 
 

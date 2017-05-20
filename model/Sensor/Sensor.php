@@ -141,7 +141,7 @@ class Sensor extends DatabaseEntity{
             return false;
         }
         else{
-            if ( $this->sensorType != null){
+            if ( $this->sensorType !== null){
                 return true;
             }
             else{
