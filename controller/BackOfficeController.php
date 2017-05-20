@@ -136,7 +136,7 @@ class BackOfficeController extends AdminController
             if($sensorType){
                 $sensorType->setSelling(true);
 
-                for($i = 1;$i<$_POST['sensorNb'];$i++){
+                for($i = 1;$i<$_POST['sensorNb']+1;$i++){
                     $sensor = new Sensor();
                     if ($sensor->setSensorType($sensorType)->save($this->db) ) {
                         $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été ajouté";
