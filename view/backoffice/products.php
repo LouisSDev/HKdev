@@ -95,7 +95,35 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
         </form>
     </div>
 
-    <div class="supression">
+<div class="effectorType">
+    <div class="addEffectorType">
+        <div method="post">
+            <h1>Ajouter des effecteurs dans le stock </h1>
+            <label class="text"> Sélectionnez votre effecteur :</label><br>
+            <input type="hidden" name="submittedForm" value="ADD_EFFECTOR_TYPE"/>
+            <select name="type">
+                <?php
+                foreach (SensorType::TYPE_ARRAY as $type){
+                    echo '<option label="" value="'
+                        . $type .'">'. $type
+                        . '</option>';
+
+                    }
+                    ?>
+
+            </select>
+            <input class="1" type="text" name="name" placeholder="Nom">
+            <input class="2" type="number" name="ref" placeholder="Référence">
+            <input class="3" type="number" name="minVal" placeholder="Température minimale">
+            <input class="4" type="number" name="maxVal" placeholder="Température maximale">
+
+
+
+            <input class="btn" type="submit" value="Envoyer" />
+        </div>
+    </div>
+
+    <div class="removeEffectorType">
         <form method="post">
             <h1>Supprimer un type d'effecteur</h1>
             <label class="text">Selectionnez votre effecteur :</label>
@@ -121,9 +149,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
                 }
                 ?>
             </select><br>
-
             <input class="btn" type="submit" value="Envoyer" />
-
         </form>
     </div>
 </div>

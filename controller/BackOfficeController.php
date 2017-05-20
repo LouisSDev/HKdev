@@ -30,8 +30,15 @@ class BackOfficeController extends AdminStaticController
                     case 'ADD_SENSOR_TYPE':
                         $this->addSensor($sensorsTypes);
                         break;
+                    case 'REMOVE_EFFECTOR_TYPE':
+                        $this -> removeEffector($effectorTypes);
+                        break;
+                    case 'ADD_EFFECTOR_TYPE':
+                        $this -> addEffectorType();
+                        break;
                     default:
                         $this -> generateView('static/404.php', '404');
+
                 }
             }
             else{
