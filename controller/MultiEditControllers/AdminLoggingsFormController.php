@@ -20,4 +20,5 @@ class AdminLoggingsFormController extends DashboardController
             $this->args['error_message'] = "Les données entrées ne sont pas valides";
         }
     }
+
 }
