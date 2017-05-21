@@ -22,7 +22,7 @@ body{
 
 .container{
     position: relative;
-    top:25%;
+    top:calc(50% - 125px);
 }
 
 
