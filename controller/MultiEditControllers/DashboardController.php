@@ -46,6 +46,8 @@ class DashboardController extends AdminController
 
     //modif le nom prix et ref //pareil pour les effecteurs
 
+
+
     private function changeSensors($sensorsTypes)
     {
 
@@ -65,70 +67,45 @@ class DashboardController extends AdminController
             }
 
             if ($sensorType) {
-
-                $okRef = null;
-                $okPrice = null;
-                $okName = null;
-
-                if (!empty($_POST['newSensorRef'])) {
-                    $sensorType->setName($_POST['newSensorName'])
-                    $okName = true;
+                $message = [];
+                if (!empty($_POST['name'])) {
+                    $sensorType -> setName($_POST['name']);
+                    $message[] = 'Le nom du capteur a bien été modifié';
                 }
-                else {
-                    $this->args['error_message'] = "Les données rentrées pour le nom du capteur ne sont pas valides";
+                if (!empty($_POST['ref'])) {
+                    $sensorType -> setRef($_POST['ref']);
+                    $message[] = 'La référence du capteur a bien été modifié';
+                }
+
+                if (!empty($_POST['price'])) {
+                    $sensorType -> setRef($_POST['price']);
+                    $message[] = 'Le prix du capteur a bien été modifié';
+                }
+
+                if($sensorType -> save($this -> db){
+                    $successMessage = [];
+                    $i = 0;
+                    foreach ($message as $mssg) {
+                        $successMessage .= $mssg;
+                        if ($i != sizeof($message) - 1) {
+                            $successMessage .= '<br>';
+                        }
+                        $i++;
+                    }
+                    $this->args['success_message'] = $successMessage;
+                else{
+                    $this->args['error_message'] = "Les données entrée nous pas pu être enregistrées dans les stocks informatiques";
                     $this->args['errors'] = $sensorType->getErrorMessage();
                 }
-
-                if (!empty($_POST['newSensorPrice'])) {
-                    $sensorType->setPrice($_POST['newSensorPrice'])
-                    $okPrice = true;
                 }
-                else {
-                    $this->args['error_message'] = "Les données rentrées pour le prix du capteur ne sont pas valides";
-                    $this->args['errors'] = $sensorType->getErrorMessage();
-                }
-
-                if (!empty($_POST['newSensorName'])) {
-                    $sensorType->setRef($_POST['newSensorRef'])
-                    $okRef = true;
-                }
-                else {
-                    $this->args['error_message'] = "Les données rentrées pour la référence du capteur ne sont pas valides";
-                    $this->args['errors'] = $sensorType->getErrorMessage();
-                }
-
-
-                if($okName){
-                    $sensorType->save($this->db);
-                    $this->args['success_message'] = "Félicitation le nom du capteur à bien été ajoutés aux stocks informatiques";
-                    $okName=false;
-                }
-                else{
-                    $this->args['error_message'] = "Echec d'ajouts du nom aux stocks informatiques ";
-                }
-                if($okPrice){
-                    $sensorType->save($this->db);
-                    $this->args['success_message'] = "Félicitation le prix du capteur à bien été ajoutés aux stocks informatiques";
-                    $okPrice=false;
-                }
-                else{
-                    $this->args['error_message'] = "Echec d'ajouts du prix aux stocks informatiques ";
-                }
-                if($okRef){
-                    $sensorType->save($this->db);
-                    $this->args['success_message'] = "Félicitation la référence du capteur à bien été ajoutés aux stocks informatiques";
-                    $okRef =false;
-                }
-                else{
-                    $this->args['error_message'] = "Echec d'ajouts de la référence aux stocks informatiques ";
-                }
-            } else {
-                $this->args['error_message'] = "Les données entrées ne sont pas valides";
             }
-        } else {
-            $this->args['error_message'] = "Veuillez remplir les champs de modification !";
+            else{
+                $this->args['error_message'] = "Les données entrée ne sont pas valide";
+                $this->args['errors'] = $sensorType->getErrorMessage();
+            }
         }
     }
+
 
 
     private function changeEffector($effectorTypes)
@@ -145,7 +122,7 @@ class DashboardController extends AdminController
 
 
             /**@var SensorType $stp */
-            foreach ($sensorsTypes as $stp) {
+            foreach ($effectorTypes as $stp) {
                 if ($stp->getId() === $_POST['sensorType']) {
                     $sensorType = $stp;
                     break;
