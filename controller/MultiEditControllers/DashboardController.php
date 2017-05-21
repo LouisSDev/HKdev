@@ -43,14 +43,11 @@ class DashboardController extends AdminController
 
  //modif le nom prix et ref //pareil pour les effecteurs
 
-    private function changeNameSensors($sensorsTypes)
+    private function changeSensors($sensorsTypes)
     {
 
         if (!empty($_POST['sensorType'])&& !empty($_POST['newSensorRef'])&& !empty($_POST['newSensorPrice'])&& !empty($_POST['newSensorName'])) {
             /** @var SensorType $sensorType
-             * @var NewSensorRef $newSensorRef
-             * @var NewSensorPrice $newSensorPrice
-             * @var NewSensorName $newSensorName
              */
 
             $sensorType = null;
@@ -68,21 +65,19 @@ class DashboardController extends AdminController
             }
 
             if ($sensorType) {
-                $sensorType -> setName($_POST['newSensorName']);
-                $sensorType -> setPrice($_POST['newSensorPrice']);
-                $sensorType -> setRef($_POST['newSensorRef']);
-                    if ($sensorType -> setName($_POST['newSensorName']) ->save($this->db) &&
-                    $sensorType -> setPrice($_POST['newSensorPrice']) ->save($this->db) &&
-                    $sensorType -> setRef($_POST['newSensorRef'])->save($this->db) )
-                    {
-                        $this->args['success_message'] = "Félicitation le nom du capteur, ça référence et son prix ont bien été ajoutés aux stocks informatiques";
-                    }
-                    else {
-
+                if ($sensorType -> setName($_POST['newSensorName'])){
+                    $this->args['success_message'] = "Félicitation le nom du capteur à bien été ajoutés aux stocks informatiques";
+                }
+                else if($sensorType -> setPrice($_POST['newSensorPrice'])){
+                    $this->args['success_message'] = "Félicitation le nom du capteur, ça référence et son prix ont bien été ajoutés aux stocks informatiques";
+                }
+                else if($sensorType -> setRef($_POST['newSensorRef'])){
+                    $this->args['success_message'] = "Félicitation le nom du capteur, ça référence et son prix ont bien été ajoutés aux stocks informatiques";
+                }
+                else {
                         $this->args['error_message'] = "Les données entrées ne sont pas valides";
                         $this->args['errors'] = $sensorType->getErrorMessage();
                     }
-
             } else {
                 $this->args['error_message'] = "Les données entrées ne sont pas valides";
             }
@@ -90,4 +85,50 @@ class DashboardController extends AdminController
             $this->args['error_message'] = "Veuillez sélectionner un capteur";
         }
     }
+}
+
+private function changeEffector($effectorTypes)
+{
+
+    if (!empty($_POST['effectorType'])&& !empty($_POST['newEffectorRef'])&& !empty($_POST['newSensorName'])) {
+        /** @var SensorType $sensorType
+         */
+
+        $sensorType = null;
+        $newSensorsTypes = null;
+        $newSensorsPrice = null;
+        $newSensorsName = null;
+
+
+        /**@var SensorType $stp */
+        foreach ($sensorsTypes as $stp) {
+            if ($stp->getId() === $_POST['sensorType'] ) {
+                $sensorType = $stp;
+                break;
+            }
+        }
+
+        if ($sensorType) {
+            $sensorType -> setName($_POST['newSensorName']);
+            $sensorType -> setPrice($_POST['newSensorPrice']);
+            $sensorType -> setRef($_POST['newSensorRef']);
+            if ($sensorType -> setName($_POST['newSensorName']) ->save($this->db) &&
+                $sensorType -> setPrice($_POST['newSensorPrice']) ->save($this->db) &&
+                $sensorType -> setRef($_POST['newSensorRef'])->save($this->db) )
+            {
+                $this->args['success_message'] = "Félicitation le nom du capteur, ça référence et son prix ont bien été ajoutés aux stocks informatiques";
+            }
+            else {
+
+                $this->args['error_message'] = "Les données entrées ne sont pas valides";
+                $this->args['errors'] = $sensorType->getErrorMessage();
+            }
+
+        } else {
+            $this->args['error_message'] = "Les données entrées ne sont pas valides";
+        }
+    }else{
+        $this->args['error_message'] = "Veuillez sélectionner un capteur";
+    }
+}
 }
