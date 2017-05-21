@@ -104,6 +104,7 @@ body{
     position: relative;
     left: calc(50% - 100px);
     display: flex;
+    cursor: auto;
 }
 
 .lum{
@@ -112,6 +113,7 @@ body{
     text-align: center;
     left: calc(50% - 125px);
     margin: 5px;
+    cursor: auto;
 }
 
 .volets{
@@ -121,6 +123,7 @@ body{
     text-align: center;
     left: calc(50% - 75px);
     margin: 5px;
+    cursor: auto;
 }
 
 .on{
@@ -142,4 +145,5 @@ body{
 .effectorsContainer{
     position: relative;
     top:100px;
+    display: none;
 }

@@ -34,8 +34,8 @@ $home = $GLOBALS['view']['home'];
             echo '<i class="fa fa-bed iconBed" id="bed" aria-hidden="true" style="cursor:pointer;"></i>';
             echo '<div class="bedroom">';
             foreach ($home ->getRoomsPerType("Chambres") as $room){
-                echo '<div class="circle" style="background-color:#FFBC42"><p class="title">'.$room->getName().'</p>';
-                echo '<div class="effectorsContainer">';
+                echo '<div id="room'.$room->getId().'" class="circle" style="background-color:#FFBC42"><p class="title">'.$room->getName().'</p>';
+                echo '<div class="effectorsContainer room'.$room->getId().'">';
                 displayEffectors($room);
                 echo '</div>';
                 echo '</div>';
@@ -47,8 +47,8 @@ $home = $GLOBALS['view']['home'];
             echo '<i class="fa fa-cutlery iconKitchen" aria-hidden="true" style="cursor:pointer;"></i>';
             echo '<div class="kitchen">';
             foreach ($home ->getRoomsPerType("Cuisines") as $room){
-                echo '<div class="circle" style="background-color:#FB3640"><p class="title">'.$room->getName().'</p>';
-                echo '<div class="effectorsContainer">';
+                echo '<div id="room'.$room->getId().'" class="circle"  style="background-color:#FB3640"><p class="title">'.$room->getName().'</p>';
+                echo '<div class="effectorsContainer room'.$room->getId().'">';
                 displayEffectors($room);
                 echo '</div>';
                 echo '</div>';
@@ -59,8 +59,8 @@ $home = $GLOBALS['view']['home'];
             echo '<i class="fa fa-bath iconBath" aria-hidden="true" style="cursor:pointer;"></i>';
             echo '<div class="bath">';
             foreach ($home ->getRoomsPerType("Salles d'eau") as $room){
-                echo '<div class="circle'.$room ->getId().'" style="background-color:#BFDBF7"><p class="title">'.$room->getName().'</p>';
-                echo '<div class="effectorsContainer">';
+                echo '<div id="room'.$room->getId().'" class="circle" style="background-color:#BFDBF7"><p class="title">'.$room->getName().'</p>';
+                echo '<div class="effectorsContainer room'.$room->getId().'">';
                 displayEffectors($room);
                 echo '</div>';
                 echo '</div>';
@@ -71,8 +71,8 @@ $home = $GLOBALS['view']['home'];
             echo '<i class="fa fa-television iconSofa" aria-hidden="true" style="cursor:pointer;"></i>';
             echo '<div class="living">';
             foreach ($home ->getRoomsPerType("Pièces à vivre") as $room){
-                echo '<div class="circle" style="background-color:#F2F3AE"><p class="title">'.$room->getName().'</p>';
-                echo '<div class="effectorsContainer">';
+                echo '<div id="room'.$room->getId().'" class="circle" style="background-color:#F2F3AE"><p class="title">'.$room->getName().'</p>';
+                echo '<div class="effectorsContainer room'.$room->getId().'">';
                 displayEffectors($room);
                 echo '</div>';
                 echo '</div>';
