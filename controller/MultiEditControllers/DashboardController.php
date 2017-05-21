@@ -43,16 +43,21 @@ class DashboardController extends AdminController
 
  //modif le nom prix et ref //pareil pour les effecteurs
 
-    private function changeNameSensors($sensorsTypes,$newSensorsTypes)
+    private function changeNameSensors($sensorsTypes)
     {
 
-        if (!empty($_POST['sensorType'])&& !empty($_POST['newSensorType'])) {
+        if (!empty($_POST['sensorType'])&& !empty($_POST['newSensorRef'])&& !empty($_POST['newSensorPrice'])&& !empty($_POST['newSensorName'])) {
             /** @var SensorType $sensorType
-                @var NewSensorType $newSensorType
+             * @var NewSensorRef $newSensorRef
+             * @var NewSensorPrice $newSensorPrice
+             * @var NewSensorName $newSensorName
              */
 
             $sensorType = null;
             $newSensorsTypes = null;
+            $newSensorsPrice = null;
+            $newSensorsName = null;
+
 
             /**@var SensorType $stp */
             foreach ($sensorsTypes as $stp) {
