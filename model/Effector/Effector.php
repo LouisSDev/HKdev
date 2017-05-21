@@ -196,10 +196,7 @@ class Effector extends DatabaseEntity{
         if($this->error){
             return false;
         }else{
-            if(    $this -> name != null
-                && $this -> room != null
-                && $this -> effectorType != null
-            )
+            if( $this -> effectorType != null)
             {
                 return true;
             }

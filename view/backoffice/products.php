@@ -21,37 +21,29 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 ?>
 
 <div class="tableauDelete">
-    <div class="suppression">
+
+    <div class="ajouts">
         <form method="post">
-            <h1>Supprimer un type de capteur </h1>
-            <label class="text"> Sélectionnez votre capteur :</label><br>
-            <input type="hidden" name="submittedForm" value="REMOVE_SENSOR_TYPE"/>
-            <select name="sensorType">
+            <h1>Ajouter un nouveau capteur</h1>
+            <label class="text"> Sélectionnez votre type de capteur :</label><br>
+            <input type="hidden" name="submittedForm" value="ADD_SENSOR_TYPE"/>
+            <select name="type">
                 <?php
                 foreach (SensorType::TYPE_ARRAY as $type){
-
-                    echo '<optgroup label="'. $type . '">';
-
-                    /** @var  $sensorType SensorType*/
-                    foreach ($sensorsTypes as $sensorType) {
-
-                        if ($sensorType->getType() === $type && $sensorType -> getSelling()) {
-                            echo '<option label="" value="'
-                                . $sensorType -> getId() . '">'
-                                . $type . ' : ' . $sensorType -> getName()
-                                . ' - ' . $sensorType -> getRef()
-                                . '</option>';
-                        }
-                    }
-                    echo '</optgroup>';
-
+                    echo '<option label="" value="'
+                        . $type .'">'. $type
+                        . '</option>';
                 }
                 ?>
-            </select><br>
+            </select>
+            <input type="text" name="name" placeholder="Nom">
+            <input type="text" name="ref" placeholder="Référence">
+            <input type="number" name="price" placeholder="Prix">
+            <input type="number" name="minVal" placeholder="Valeur minimale">
+            <input type="number" name="maxVal" placeholder="Valeur maximale">
 
-            <input class="btn" type="submit" value="supprimer" />
 
-
+            <input class="btn" type="submit" value="Ajouter" />
         </form>
     </div>
 
@@ -90,6 +82,40 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
             <input class="btn" type="submit" value="Ajouter" />
         </form>
     </div>
+
+    <div class="suppression">
+        <form method="post">
+            <h1>Supprimer un type de capteur </h1>
+            <label class="text"> Sélectionnez votre capteur :</label><br>
+            <input type="hidden" name="submittedForm" value="REMOVE_SENSOR_TYPE"/>
+            <select name="sensorType">
+                <?php
+                foreach (SensorType::TYPE_ARRAY as $type){
+
+                    echo '<optgroup label="'. $type . '">';
+
+                    /** @var  $sensorType SensorType*/
+                    foreach ($sensorsTypes as $sensorType) {
+
+                        if ($sensorType->getType() === $type && $sensorType -> getSelling()) {
+                            echo '<option label="" value="'
+                                . $sensorType -> getId() . '">'
+                                . $type . ' : ' . $sensorType -> getName()
+                                . ' - ' . $sensorType -> getRef()
+                                . '</option>';
+                        }
+                    }
+                    echo '</optgroup>';
+
+                }
+                ?>
+            </select><br>
+
+            <input class="btn" type="submit" value="Supprimer" />
+
+
+        </form>
+    </div>
 </div>
 
 
@@ -118,13 +144,13 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
 
 
-            <input class="btn" type="submit" value="Envoyer" />
+            <input class="btn" type="submit" value="Ajouter" />
         </form>
     </div>
 
 
 
-    <div class="addEffectors">
+    <div class="ajouts">
         <form method="post">
             <h1>Ajouter des effecteurs dans le stock </h1>
             <label class="text"> Sélectionnez votre effecteur :</label><br>
@@ -136,7 +162,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
                     echo '<optgroup label="'. $type . '">';
 
-                    /** @var  $sensorType SensorType*/
+                    /** @var  $effectorType EffectorType*/
                     foreach ($effectorsTypes as $effectorType) {
 
                         if ($effectorType->getType() === $type && $effectorType -> getSelling()) {
@@ -153,7 +179,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
             </select><br>
 
             <label class="text">Sélectionnez le nombre de de volets à ajouter :</label><br>
-            <input type="number" name="effectorNb">
+            <input type="number" name="effectorNb" placeholder="Nombre d'effecteurs à ajouter">
 
 
             <input class="btn" type="submit" value="Ajouter" />
@@ -189,7 +215,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
                 }
                 ?>
             </select><br>
-            <input class="btn" type="submit" value="Envoyer" />
+            <input class="btn" type="submit" value="Supprimer" />
         </form>
     </div>
 </div>
