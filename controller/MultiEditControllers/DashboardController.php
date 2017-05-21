@@ -41,6 +41,44 @@ class DashboardController extends AdminController
         $this -> generateView('backoffice/dashboard.php',"Tableau de bord Administrateur");
     }
 
+ //modif le nom prix et ref //pareil pour les effecteurs
 
+    private function changeNameSensors($sensorsTypes,$newSensorsTypes)
+    {
 
+        if (!empty($_POST['sensorType'])&& !empty($_POST['newSensorType'])) {
+            /** @var SensorType $sensorType
+                @var NewSensorType $newSensorType
+             */
+
+            $sensorType = null;
+            $newSensorsTypes = null;
+
+            /**@var SensorType $stp */
+            foreach ($sensorsTypes as $stp) {
+                if ($stp->getId() === $_POST['sensorType'] ) {
+                    $sensorType = $stp;
+                    break;
+                }
+            }
+
+            if ($sensorType) {
+                for($i = 1 ; $i <= $_POST['sensorNb'] ; $i++){
+                    $sensor = new Sensor();
+                    if ($sensor->setSensorType($sensorType)->save($this->db) ) {
+                        $this->args['success_message'] = "Félicitation les capteurs ont bien été ajoutés aux stocks informatiques";
+                    }
+                    else {
+
+                        $this->args['error_message'] = "Les données entrées ne sont pas valides";
+                        $this->args['errors'] = $sensorType->getErrorMessage();
+                    }
+                }
+            } else {
+                $this->args['error_message'] = "Les données entrées ne sont pas valides";
+            }
+        }else{
+            $this->args['error_message'] = "Veuillez sélectionner un capteur";
+        }
+    }
 }
