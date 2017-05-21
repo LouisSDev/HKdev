@@ -59,7 +59,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
         <form method="post">
             <h1>Ajouter des capteurs dans le stock </h1>
             <label class="text"> Sélectionnez votre capteur :</label><br>
-            <input type="hidden" name="submittedForm" value="ADD_SENSOR_TYPE"/>
+            <input type="hidden" name="submittedForm" value="ADD_SENSORS"/>
 
             <select name="sensorType">
                 <?php
@@ -82,10 +82,6 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
                 }
                 ?>
             </select><br>
-            <!--
-            <label>Quantité</label><br>
-            <input type="number" step="1" value="1" min="0" max="20" name="quantity"/><br>
-            -->
 
             <label class="text">Sélectionnez le nombre de capteurs à ajouter :</label><br>
             <input type="number" name="sensorNb">
@@ -95,7 +91,35 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
         </form>
     </div>
 
-    <div class="supression">
+<div class="effectorType">
+    <div class="addEffectorType">
+        <form method="post">
+            <h1>Ajouter des effecteurs dans le stock </h1>
+            <label class="text"> Sélectionnez votre effecteur :</label><br>
+            <input type="hidden" name="submittedForm" value="ADD_EFFECTOR_TYPE"/>
+            <select name="type">
+                <?php
+                foreach (EffectorType::TYPE_ARRAY as $type){
+                    echo '<option label="" value="'
+                        . $type .'">'. $type
+                        . '</option>';
+
+                    }
+                    ?>
+
+            </select>
+            <input class="1" type="text" name="name" placeholder="Nom">
+            <input class="2" type="text" name="ref" placeholder="Référence">
+            <input class="3" type="number" name="minVal" placeholder="Valeur minimale">
+            <input class="4" type="number" name="maxVal" placeholder="Valeur maximale">
+
+
+
+            <input class="btn" type="submit" value="Envoyer" />
+        </form>
+    </div>
+
+    <div class="removeEffectorType">
         <form method="post">
             <h1>Supprimer un type d'effecteur</h1>
             <label class="text">Selectionnez votre effecteur :</label>
@@ -122,9 +146,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
                 }
                 ?>
             </select><br>
-
             <input class="btn" type="submit" value="Envoyer" />
-
         </form>
     </div>
 </div>
