@@ -30,13 +30,15 @@ class BackOfficeController extends AdminStaticController
                     case 'ADD_SENSORS':
                         $this->addSensors($sensorsTypes);
                         break;
+                    case 'ADD_SENSOR_TYPE':
+                        $this->addSensorType();
+                        break;
                     case 'REMOVE_EFFECTOR_TYPE':
                         $this -> removeEffector($effectorTypes);
                         break;
                     case 'ADD_EFFECTOR_TYPE':
                         $this -> addEffectorType();
                         break;
-                        //moi je créer les champs change_effector type
                     case 'ADD_EFFECTORS':
                         $this ->addEffectors($effectorTypes);
                         break;
@@ -196,7 +198,7 @@ class BackOfficeController extends AdminStaticController
 
     }
 
-    private function removeSensor($sensorsTypes)
+    protected function removeSensor($sensorsTypes)
     {
 
         if (!empty($_POST['sensorType'])) {
@@ -231,7 +233,7 @@ class BackOfficeController extends AdminStaticController
     }
 
 
-    private function removeEffector($effectorsTypes)
+    protected function removeEffector($effectorsTypes)
     {
 
         if (!empty($_POST['effectorType'])) {
