@@ -124,7 +124,5 @@
 
 
 </body>
-<footer>
     <?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
-</footer>
 </html>

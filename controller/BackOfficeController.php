@@ -36,6 +36,7 @@ class BackOfficeController extends AdminStaticController
                     case 'ADD_EFFECTOR_TYPE':
                         $this -> addEffectorType();
                         break;
+                        //moi je créer les champs change_effector type
                     default:
                         $this -> generateView('static/404.php', '404');
 
