@@ -85,7 +85,6 @@ class DashboardController extends AdminController
             $this->args['error_message'] = "Veuillez sélectionner un capteur";
         }
     }
-}
 
 private function changeEffector($effectorTypes)
 {

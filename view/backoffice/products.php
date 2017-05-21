@@ -94,8 +94,8 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 <div class="effectorType">
     <div class="addEffectorType">
         <form method="post">
-            <h1>Ajouter des effecteurs dans le stock </h1>
-            <label class="text"> Sélectionnez votre effecteur :</label><br>
+            <h1>Ajouter un nouvel effecteur</h1>
+            <label class="text"> Sélectionnez votre type d'effecteur :</label><br>
             <input type="hidden" name="submittedForm" value="ADD_EFFECTOR_TYPE"/>
             <select name="type">
                 <?php
