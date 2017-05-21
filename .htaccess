@@ -1,4 +1,4 @@
-#Alternate default index page
+    #Alternate default index page
 DirectoryIndex rooting.php
 
 Options +FollowSymlinks

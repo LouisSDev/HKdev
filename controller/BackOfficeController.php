@@ -36,6 +36,10 @@ class BackOfficeController extends AdminStaticController
                     case 'ADD_EFFECTOR_TYPE':
                         $this -> addEffectorType();
                         break;
+                        //moi je créer les champs change_effector type
+                    case 'ADD_EFFECTORS':
+                        $this ->addEffectors($effectorTypes);
+                        break;
                     default:
                         $this -> generateView('static/404.php', '404');
 
@@ -226,6 +230,40 @@ class BackOfficeController extends AdminStaticController
         }
     }
 
+
+    private function removeEffector($effectorsTypes)
+    {
+
+        if (!empty($_POST['effectorType'])) {
+            /** @var EffectorType $effectorType */
+            $effectorType = null;
+
+            /**@var EffectorType $stp */
+            foreach ($effectorsTypes as $stp) {
+                if ($stp->getId() === $_POST['effectorType']) {
+                    $effectorType = $stp;
+                    break;
+                }
+            }
+
+            if ($effectorType) {
+
+                $effectorType->setSelling(false);
+
+                if ($effectorType->save($this->db)) {
+
+                    $this->args['success_message'] = "Félicitation l'effecteur sélectionné a bien été supprimé";
+                } else {
+                    $this->args['error_message'] = "Les données entrées ne sont pas valides";
+                    $this->args['errors'] = $effectorType->getErrorMessage();
+                }
+            } else {
+                $this->args['error_message'] = "Les données entrées ne sont pas valides";
+            }
+        }else{
+            $this->args['error_message'] = "Veuillez sélectionner un effecteur";
+        }
+    }
 
 
 
