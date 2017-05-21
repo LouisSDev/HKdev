@@ -90,12 +90,15 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
             <input class="btn" type="submit" value="Ajouter" />
         </form>
     </div>
+</div>
+
+
 
 <div class="effectorType">
     <div class="addEffectorType">
         <form method="post">
-            <h1>Ajouter des effecteurs dans le stock </h1>
-            <label class="text"> Sélectionnez votre effecteur :</label><br>
+            <h1>Ajouter un nouvel effecteur</h1>
+            <label class="text"> Sélectionnez votre type d'effecteur :</label><br>
             <input type="hidden" name="submittedForm" value="ADD_EFFECTOR_TYPE"/>
             <select name="type">
                 <?php
@@ -118,6 +121,46 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
             <input class="btn" type="submit" value="Envoyer" />
         </form>
     </div>
+
+
+
+    <div class="addEffectorTypeStock">
+        <form method="post">
+            <h1>Ajouter des effecteurs dans le stock </h1>
+            <label class="text"> Sélectionnez votre effecteur :</label><br>
+            <input type="hidden" name="submittedForm" value="ADD_EFFECTORS"/>
+
+            <select name="effectorType">
+                <?php
+                foreach (EffectorType::TYPE_ARRAY as $type){
+
+                    echo '<optgroup label="'. $type . '">';
+
+                    /** @var  $sensorType SensorType*/
+                    foreach ($effectorsTypes as $effectorType) {
+
+                        if ($effectorType->getType() === $type && $effectorType -> getSelling()) {
+                            echo '<option label="" value="'
+                                . $effectorType -> getId() . '">'
+                                . $type . ' : ' . $effectorType -> getName()
+                                . ' - ' . $effectorType -> getRef()
+                                . '</option>';
+                        }
+                    }
+                    echo '</optgroup>';
+                }
+                ?>
+            </select><br>
+
+            <label class="text">Sélectionnez le nombre de de volets à ajouter :</label><br>
+            <input type="number" name="effectorNb">
+
+
+            <input class="btn" type="submit" value="Ajouter" />
+        </form>
+    </div>
+
+
 
     <div class="removeEffectorType">
         <form method="post">
