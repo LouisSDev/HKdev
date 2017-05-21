@@ -124,13 +124,13 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
 
 
-    <div class="addEffectorTypeStock">
+    <div class="addEffectors">
         <form method="post">
             <h1>Ajouter des effecteurs dans le stock </h1>
             <label class="text"> Sélectionnez votre effecteur :</label><br>
             <input type="hidden" name="submittedForm" value="ADD_EFFECTORS"/>
 
-            <select name="effectorType">
+            <select name="effectorTypeId">
                 <?php
                 foreach (EffectorType::TYPE_ARRAY as $type){
 

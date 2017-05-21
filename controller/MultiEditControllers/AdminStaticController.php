@@ -24,7 +24,7 @@ class AdminStaticController extends AdminLoggingsFormController
 
 
 
-    public function addSensors($effectorsTypes){
+    protected function addEffectors($effectorsTypes){
 
         if (!empty($_POST['effectorType']) && !empty($_POST['effectorNb'])){
 
@@ -33,7 +33,7 @@ class AdminStaticController extends AdminLoggingsFormController
 
             /**@var SensorType $etp*/
             foreach ($effectorsTypes as $etp) {
-                if ($etp->getId() === $_POST['effectorType']) {
+                if ($etp->getId() === $_POST['effectorTypeId']) {
                     $effectorType = $etp;
                 }
             }
@@ -43,7 +43,7 @@ class AdminStaticController extends AdminLoggingsFormController
                 for($i = 1 ; $i <= $_POST['effectorNb'] ; $i++){
                     $effector = new Effector();
                     if ($effector->setEffectorType($effectorType)->save($this->db) ) {
-                        $this->args['success_message'] = "Félicitation les capteurs ont bien été ajoutés aux stocks informatiques";
+                        $this->args['success_message'] = "Félicitation les effecteurs ont bien été ajoutés aux stocks informatiques";
                     }
                     else {
 
@@ -58,7 +58,7 @@ class AdminStaticController extends AdminLoggingsFormController
             }
         }
         else{
-            $this->args['error_message'] = "Veuillez sélectionner un capteur";
+            $this->args['error_message'] = "Veuillez sélectionner un effecteur";
 
         }
 
