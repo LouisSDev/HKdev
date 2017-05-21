@@ -99,6 +99,10 @@ class DashboardController extends AdminController
                 }
                 }
             }
+            else{
+                $this->args['error_message'] = "Les données entrée ne sont pas valide";
+                $this->args['errors'] = $sensorType->getErrorMessage();
+            }
         }
     }
 
