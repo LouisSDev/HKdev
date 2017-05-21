@@ -68,17 +68,21 @@ class DashboardController extends AdminController
             }
 
             if ($sensorType) {
-                for($i = 1 ; $i <= $_POST['sensorNb'] ; $i++){
-                    $sensor = new Sensor();
-                    if ($sensor->setSensorType($sensorType)->save($this->db) ) {
-                        $this->args['success_message'] = "Félicitation les capteurs ont bien été ajoutés aux stocks informatiques";
+                $sensorType -> setName($_POST['newSensorName']);
+                $sensorType -> setPrice($_POST['newSensorPrice']);
+                $sensorType -> setRef($_POST['newSensorRef']);
+                    if ($sensorType -> setName($_POST['newSensorName']) ->save($this->db) &&
+                    $sensorType -> setPrice($_POST['newSensorPrice']) ->save($this->db) &&
+                    $sensorType -> setRef($_POST['newSensorRef'])->save($this->db) )
+                    {
+                        $this->args['success_message'] = "Félicitation le nom du capteur, ça référence et son prix ont bien été ajoutés aux stocks informatiques";
                     }
                     else {
 
                         $this->args['error_message'] = "Les données entrées ne sont pas valides";
                         $this->args['errors'] = $sensorType->getErrorMessage();
                     }
-                }
+
             } else {
                 $this->args['error_message'] = "Les données entrées ne sont pas valides";
             }
