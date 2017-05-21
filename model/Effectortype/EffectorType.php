@@ -221,8 +221,7 @@ class EffectorType extends DatabaseEntity
             return false;
         }else{
             if(
-                   $this->name != null
-                && $this ->ref != null
+                $this ->ref != null
                 && $this -> type != null
             ){
                 if($this -> chart && ($this -> minVal === null || $this -> maxVal === null)){
