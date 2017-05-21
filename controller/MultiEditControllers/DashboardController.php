@@ -9,44 +9,47 @@
 class DashboardController extends AdminController
 {
 
-    public function getEffectorsStocksByType(){
-        $effectorTypeRepository = $this -> getEffectorTypeRepository();
-        $effectorTypes = $effectorTypeRepository -> getAll();
+    public function getEffectorsStocksByType()
+    {
+        $effectorTypeRepository = $this->getEffectorTypeRepository();
+        $effectorTypes = $effectorTypeRepository->getAll();
         $effectorsByType = array();
         /** @var EffectorRepository $effectorRepo */
         /** @var EffectorType $effectorType */
-        foreach ($effectorTypes  as $effectorType){
-            $effectorsByType[$effectorType -> getName()] = $effectorRepo -> getUnusedEffectorsByType($effectorType -> getId());
+        foreach ($effectorTypes as $effectorType) {
+            $effectorsByType[$effectorType->getName()] = $effectorRepo->getUnusedEffectorsByType($effectorType->getId());
         }
         return $effectorsByType;
     }
 
-    public function getSensorsStocksByType(){
-        $sensorTypeRepo = $this -> getSensorRepository();
-        $sensorTypes = $sensorTypeRepo -> getAll();
+    public function getSensorsStocksByType()
+    {
+        $sensorTypeRepo = $this->getSensorRepository();
+        $sensorTypes = $sensorTypeRepo->getAll();
         $sensorsByType = array();
         /** @var SensorRepository $sensorRepo */
         /** @var SensorType $sensorType */
-        foreach ($sensorTypes as $sensorType){
-            $sensorsByType[$sensorType -> getName()] = $sensorTypeRepo -> getSensorsUnusedByType($sensorType -> getId());
+        foreach ($sensorTypes as $sensorType) {
+            $sensorsByType[$sensorType->getName()] = $sensorTypeRepo->getSensorsUnusedByType($sensorType->getId());
         }
         return $sensorsByType;
     }
 
-    public function createStocksArrays(){
+    public function createStocksArrays()
+    {
         $effectorStock = $this->getEffectorsStocksByType();
         $sensorStock = $this->getSensorsStocksByType();
         $this->args['effectorStock'] = json_encode($effectorStock);
         $this->args['sensorStock'] = json_encode($sensorStock);
-        $this -> generateView('backoffice/dashboard.php',"Tableau de bord Administrateur");
+        $this->generateView('backoffice/dashboard.php', "Tableau de bord Administrateur");
     }
 
- //modif le nom prix et ref //pareil pour les effecteurs
+    //modif le nom prix et ref //pareil pour les effecteurs
 
     private function changeSensors($sensorsTypes)
     {
 
-        if (!empty($_POST['sensorType'])&& !empty($_POST['newSensorRef'])&& !empty($_POST['newSensorPrice'])&& !empty($_POST['newSensorName'])) {
+        if (!empty($_POST['sensorType']) && !empty($_POST['newSensorRef']) && !empty($_POST['newSensorPrice']) && !empty($_POST['newSensorName'])) {
             /** @var SensorType $sensorType
              */
 
@@ -58,77 +61,74 @@ class DashboardController extends AdminController
 
             /**@var SensorType $stp */
             foreach ($sensorsTypes as $stp) {
-                if ($stp->getId() === $_POST['sensorType'] ) {
+                if ($stp->getId() === $_POST['sensorType']) {
                     $sensorType = $stp;
                     break;
                 }
             }
 
             if ($sensorType) {
-                if ($sensorType -> setName($_POST['newSensorName'])){
+                if ($sensorType->setName($_POST['newSensorName'])) {
                     $this->args['success_message'] = "Félicitation le nom du capteur à bien été ajoutés aux stocks informatiques";
-                }
-                else if($sensorType -> setPrice($_POST['newSensorPrice'])){
+                } else if ($sensorType->setPrice($_POST['newSensorPrice'])) {
                     $this->args['success_message'] = "Félicitation le nom du capteur, ça référence et son prix ont bien été ajoutés aux stocks informatiques";
-                }
-                else if($sensorType -> setRef($_POST['newSensorRef'])){
+                } else if ($sensorType->setRef($_POST['newSensorRef'])) {
                     $this->args['success_message'] = "Félicitation le nom du capteur, ça référence et son prix ont bien été ajoutés aux stocks informatiques";
+                } else {
+                    $this->args['error_message'] = "Les données entrées ne sont pas valides";
+                    $this->args['errors'] = $sensorType->getErrorMessage();
                 }
-                else {
-                        $this->args['error_message'] = "Les données entrées ne sont pas valides";
-                        $this->args['errors'] = $sensorType->getErrorMessage();
-                    }
             } else {
                 $this->args['error_message'] = "Les données entrées ne sont pas valides";
             }
-        }else{
+        } else {
             $this->args['error_message'] = "Veuillez sélectionner un capteur";
         }
     }
-}
-
-private function changeEffector($effectorTypes)
-{
-
-    if (!empty($_POST['effectorType'])&& !empty($_POST['newEffectorRef'])&& !empty($_POST['newSensorName'])) {
-        /** @var SensorType $sensorType
-         */
-
-        $sensorType = null;
-        $newSensorsTypes = null;
-        $newSensorsPrice = null;
-        $newSensorsName = null;
 
 
-        /**@var SensorType $stp */
-        foreach ($sensorsTypes as $stp) {
-            if ($stp->getId() === $_POST['sensorType'] ) {
-                $sensorType = $stp;
-                break;
+    private function changeEffector($effectorTypes)
+    {
+
+        if (!empty($_POST['effectorType']) && !empty($_POST['newEffectorRef']) && !empty($_POST['newSensorName'])) {
+            /** @var SensorType $sensorType
+             */
+
+            $sensorType = null;
+            $newSensorsTypes = null;
+            $newSensorsPrice = null;
+            $newSensorsName = null;
+
+
+            /**@var SensorType $stp */
+            foreach ($sensorsTypes as $stp) {
+                if ($stp->getId() === $_POST['sensorType']) {
+                    $sensorType = $stp;
+                    break;
+                }
             }
-        }
 
-        if ($sensorType) {
-            $sensorType -> setName($_POST['newSensorName']);
-            $sensorType -> setPrice($_POST['newSensorPrice']);
-            $sensorType -> setRef($_POST['newSensorRef']);
-            if ($sensorType -> setName($_POST['newSensorName']) ->save($this->db) &&
-                $sensorType -> setPrice($_POST['newSensorPrice']) ->save($this->db) &&
-                $sensorType -> setRef($_POST['newSensorRef'])->save($this->db) )
-            {
-                $this->args['success_message'] = "Félicitation le nom du capteur, ça référence et son prix ont bien été ajoutés aux stocks informatiques";
-            }
-            else {
+            if ($sensorType) {
+                $sensorType->setName($_POST['newSensorName']);
+                $sensorType->setPrice($_POST['newSensorPrice']);
+                $sensorType->setRef($_POST['newSensorRef']);
+                if ($sensorType->setName($_POST['newSensorName'])->save($this->db) &&
+                    $sensorType->setPrice($_POST['newSensorPrice'])->save($this->db) &&
+                    $sensorType->setRef($_POST['newSensorRef'])->save($this->db)
+                ) {
+                    $this->args['success_message'] = "Félicitation le nom du capteur, ça référence et son prix ont bien été ajoutés aux stocks informatiques";
+                } else {
 
+                    $this->args['error_message'] = "Les données entrées ne sont pas valides";
+                    $this->args['errors'] = $sensorType->getErrorMessage();
+                }
+
+            } else {
                 $this->args['error_message'] = "Les données entrées ne sont pas valides";
-                $this->args['errors'] = $sensorType->getErrorMessage();
             }
-
         } else {
-            $this->args['error_message'] = "Les données entrées ne sont pas valides";
+            $this->args['error_message'] = "Veuillez sélectionner un capteur";
         }
-    }else{
-        $this->args['error_message'] = "Veuillez sélectionner un capteur";
+
     }
-}
 }
