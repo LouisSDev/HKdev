@@ -137,7 +137,8 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
                             echo '<option label="" value="'
                                 . $effectorType -> getId() . '">'
                                 . $type . ' : ' . $effectorType -> getName()
-                                . ' - ' . $effectorType -> getRef(). '</option>';
+                                . ' - ' . $effectorType -> getRef()
+                                . '</option>';
                         }
                     }
                     echo '</optgroup>';

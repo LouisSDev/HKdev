@@ -17,4 +17,6 @@ class EffectorTypeRepository extends Repository
         return self::OBJECT_CLASS_NAME;
     }
 
+
+
 }
