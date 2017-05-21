@@ -23,7 +23,7 @@ $user = $GLOBALS['view']['user'];
 		<div id='form_wrap'>
 			<form>
 				<p><?php echo $user->getFirstName()?></p>
-				<label for="email">Your Message : </label>
+				<label for="email">Votre message : </label>
 				<textarea  name="message" value="Your Message" id="message" ></textarea>
 				<p>Best,</p>
 				<input type="text" name="lastName" value="" id="lastName" placeholder="Nom" />

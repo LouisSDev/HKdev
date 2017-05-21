@@ -11,6 +11,14 @@
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/googleMap.js"></script>
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/pop-up.js"></script>
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/smoothScrolling.js"></script>
+    <!--[if IE]><script>
+        $(document).ready(function() {
+
+            $("#form_wrap").addClass('hide');
+
+        })
+
+    </script><![endif]-->
 </head>
 <body>
 <?php include_once ($GLOBALS['root_dir'] . "/view/general/modal.php");?>
@@ -50,15 +58,23 @@
         <p class="textForm">
             Des questions ?
         </p>
-        <div class="form contactForm">
-            <form>
-                <input type="text" name="field1" placeholder="Nom ">
-                <input type="text" name="field2" placeholder="Prénom">
-                <input type="email" name="field3" placeholder="Adresse mail">
-                <input type="text" name="field4" placeholder="Sujet">
-                <textarea class="message" name="field5" placeholder="Message"></textarea>
-                <input class="button" type="submit" value="Envoyer" />
-            </form>
+        <?php
+        /** @var User $user */
+        $user = $GLOBALS['view']['user'];
+        ?>
+        <div id="wrap">
+            <div id='form_wrap'>
+                <form>
+                    <p><?php echo $user->getFirstName()?></p>
+                    <label for="email">Votre message : </label>
+                    <textarea  name="message" value="Your Message" id="message" ></textarea>
+                    <p>Best,</p>
+                    <input type="text" name="lastName" value="" id="lastName" placeholder="Nom" />
+                    <input type="text" name="firstName" value="" id="firstName" placeholder="Prénom" />
+                    <input type="text" name="email" value="" id="email" placeholder="Adresse mail"/>
+                    <input type="submit" name ="submit" value="Envoyer" />
+                </form>
+            </div>
         </div>
     </div>
 </div>
