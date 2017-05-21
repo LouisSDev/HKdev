@@ -82,7 +82,7 @@ class DashboardController extends AdminController
                     $message[] = 'Le prix du capteur a bien été modifié';
                 }
 
-                if($sensorType -> save($this -> db){
+                if($sensorType -> save($this -> db)) {
                     $successMessage = [];
                     $i = 0;
                     foreach ($message as $mssg) {
@@ -93,10 +93,9 @@ class DashboardController extends AdminController
                         $i++;
                     }
                     $this->args['success_message'] = $successMessage;
-                else{
+                }else{
                     $this->args['error_message'] = "Les données entrée nous pas pu être enregistrées dans les stocks informatiques";
                     $this->args['errors'] = $sensorType->getErrorMessage();
-                }
                 }
             }
             else{
