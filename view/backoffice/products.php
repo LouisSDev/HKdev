@@ -108,10 +108,10 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
                     ?>
 
             </select>
-            <input class="1" type="text" name="name" placeholder="Nom">
-            <input class="2" type="text" name="ref" placeholder="Référence">
-            <input class="3" type="number" name="minVal" placeholder="Valeur minimale">
-            <input class="4" type="number" name="maxVal" placeholder="Valeur maximale">
+            <input type="text" name="name" placeholder="Nom">
+            <input type="text" name="ref" placeholder="Référence">
+            <input type="number" name="minVal" placeholder="Valeur minimale">
+            <input type="number" name="maxVal" placeholder="Valeur maximale">
 
 
 
