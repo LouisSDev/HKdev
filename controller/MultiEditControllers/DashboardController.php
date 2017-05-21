@@ -83,21 +83,21 @@ class DashboardController extends AdminController
 
                 if($Name){
                     $this->args['success_message'] = "Félicitation le nom du capteur à bien été ajoutés aux stocks informatiques";
-                    $Name=;
+                    $Name=false;
                 }
                 else if($Price){
                     $this->args['success_message'] = "Félicitation le prix du capteur à bien été ajoutés aux stocks informatiques";
-                    $Price=;
+                    $Price=false;
                 }
                 else if($Ref){
                     $this->args['success_message'] = "Félicitation la référence du capteur à bien été ajoutés aux stocks informatiques";
-                    $Ref =;
+                    $Ref =false;
                 }
             } else {
                 $this->args['error_message'] = "Les données entrées ne sont pas valides";
             }
         } else {
-            $this->args['error_message'] = "Veuillez sélectionner un capteur";
+            $this->args['error_message'] = "Veuillez remplir les champs de modification !";
         }
     }
 
