@@ -9,28 +9,33 @@
 }
 
 .top{
-    overflow: auto;
     background: #222222;
-    height: 140px;
+    height: 100px;
 }
 
 .oui{
     margin-top: 25px;
-    margin-bottom: 5px;
+    margin-bottom: 1px;
+}
+.description{
+    position: relative;
+    top: calc(50% - 56px);
+    left: calc(843px - 60%) ;
 }
 
-.non{
-    margin-top: 0%;
-}
-
-h3{
-    margin-left: 3%;
+.nom{
+    margin-left: 17.5%;
     margin-bottom: 0.1%;
+    margin-top: 1%;
     font-size: 17px;
 }
 
-.lieu{
-    margin-left: 5%;
+.lieu,
+.mail,
+.tel{
+    margin-left: 20%;
+    margin-bottom: 0.1%;
+    margin-top: 0.5%;
     font-size: 15px;
 }
 

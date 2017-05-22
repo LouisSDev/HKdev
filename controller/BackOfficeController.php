@@ -285,12 +285,12 @@ class BackOfficeController extends AdminStaticController
                 }
 
                 if($sensorType -> save($this -> db)) {
-                    $successMessage = [];
+                    $successMessage = "";
                     $i = 0;
                     foreach ($message as $mssg) {
                         $successMessage .= $mssg;
                         if ($i != sizeof($message) - 1) {
-                            $successMessage .= '<br>';
+                            $successMessage .= ', ';
                         }
                         $i++;
                     }
