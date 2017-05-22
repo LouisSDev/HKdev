@@ -17,10 +17,12 @@ class UserGestionController  extends AdminController
 
         $homeRepository = $this -> getHomeRepository();
         $roomRepository = $this -> getRoomRepository();
+        $userRepository = $this -> getUserRepository();
 
         $home =  $homeRepository -> getAll();
         $this -> args['home'] = $home ;
-
+        $users = $userRepository ->getAll();
+        $this ->args['users'] = $users;
         $room =  $roomRepository -> getAll();
         $this -> args['room'] = $room ;
 
