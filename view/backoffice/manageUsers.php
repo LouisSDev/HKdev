@@ -29,12 +29,10 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
             <input type="hidden" name="submittedForm" value="SELECT_USER"/>
             <select name="user">
                 <?php
-
-
                 /** @var  $user User*/
                 foreach ($users as $user) {
 
-                    echo '<option label="" value="'
+                    echo '<option label="user" value="'
                         . $user -> getId() . '">'
                         . $user -> getFirstName() . ' '
                         . $user -> getLastName()
@@ -45,7 +43,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
             </select><br>
 
 
-            <input type="text" name="NomHome" placeholder="Nom de la Maison">
+            <input type="text" name="HomeName" placeholder="Nom de la Maison">
             <input type="text" name="Adress" placeholder="Adresse">
             <input type="text" name="Ville" placeholder="Ville">
             <input type="text" name="Pays" placeholder="Pays">
