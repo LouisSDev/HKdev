@@ -1,6 +1,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/footer.css"
       xmlns="http://www.w3.org/1999/html">
-
+<header></header>
+<body></body>
 <footer>
     <div class="footer">
         <div class="top">

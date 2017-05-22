@@ -78,3 +78,4 @@ $building = $GLOBALS['view']['building'];
 
 
 </form>
+<footer><?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?></footer>

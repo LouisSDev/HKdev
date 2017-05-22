@@ -13,7 +13,6 @@
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/smoothScrolling.js"></script>
     <!--[if IE]><script>
         $(document).ready(function() {
-
             $("#form_wrap").addClass('hide');
 
         })
