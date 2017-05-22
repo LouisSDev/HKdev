@@ -47,12 +47,12 @@
                     <p class="description">Grâce à notre système amélioré, vous pouvez visualiser intégralement votre consommation</p>
                 </div>
             </div>
+         <?php   if(!isset($GLOBALS['view']['connected']) || !$GLOBALS['view']['connected']) { ?>
             <div class="form_pointer">
                 <a class="arrow_black scrolling" href="#form">&raquo;</a>
             </div>
         </div>
         <?php
-        if(!isset($GLOBALS['view']['connected']) || !$GLOBALS['view']['connected']) {
             if (isset($GLOBALS['view']['registration'])) {
                 ?>
                 <p id="successful-registration">
@@ -92,6 +92,8 @@
                 </div>
                 <?php
             }
+        }else{
+             echo '</div>';
         }
         ?>
     </div>
