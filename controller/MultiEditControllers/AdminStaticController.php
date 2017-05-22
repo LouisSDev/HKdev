@@ -24,16 +24,17 @@ class AdminStaticController extends AdminLoggingsFormController
 
 
 
-    protected function addEffectors($effectorsTypes){
+    protected function addEffectors($effectorTypes){
 
-        if (!empty($_POST['effectorType']) && !empty($_POST['effectorNb'])){
+        if (!empty($_POST['effectorTypeId']) && !empty($_POST['effectorNb'])){
 
             /**@var EffectorType $effectorType*/
             $effectorType = null;
 
-            /**@var SensorType $etp*/
-            foreach ($effectorsTypes as $etp) {
-                if ($etp->getId() === $_POST['effectorTypeId']) {
+            /**@var EffectorType $etp*/
+            foreach ($effectorTypes as $etp) {
+                Utils::addWarning($etp->getId()  . '   ' . $_POST['effectorTypeId'] );
+                if ($etp->getId() == $_POST['effectorTypeId']) {
                     $effectorType = $etp;
                 }
             }
@@ -46,12 +47,10 @@ class AdminStaticController extends AdminLoggingsFormController
                         $this->args['success_message'] = "Félicitation les effecteurs ont bien été ajoutés aux stocks informatiques";
                     }
                     else {
-
                         $this->args['error_message'] = "Les données entrées ne sont pas valides";
                         $this->args['errors'] = $effectorType->getErrorMessage();
                     }
                 }
-
             }
             else{
                 $this->args['error_message'] = "Les données entrées ne sont pas valides";
