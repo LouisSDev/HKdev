@@ -1,4 +1,5 @@
 <?php
+use BernardoSecades\Json\Json;
 
 /**
  * Created by PhpStorm.
@@ -42,12 +43,12 @@ class BackOfficeController extends AdminStaticController
                     case 'ADD_EFFECTORS':
                         $this ->addEffectors($effectorTypes);
                         break;
-                    /*case 'CHANGE_EFFECTORS_TYPE':
+                    case 'CHANGE_EFFECTORS_TYPE':
                         $this ->changeEffectors($effectorTypes);
                         break;
                     case 'CHANGE_SENSORS_TYPE':
                         $this ->changeSensors($sensorsTypes);
-                        break;*/
+                        break;
                     default:
                         $this -> generateView('static/404.php', '404');
 
@@ -284,12 +285,12 @@ class BackOfficeController extends AdminStaticController
                 }
 
                 if($sensorType -> save($this -> db)) {
-                    $successMessage = [];
+                    $successMessage = "";
                     $i = 0;
                     foreach ($message as $mssg) {
                         $successMessage .= $mssg;
                         if ($i != sizeof($message) - 1) {
-                            $successMessage .= '<br>';
+                            $successMessage .= ', ';
                         }
                         $i++;
                     }
@@ -394,7 +395,95 @@ class BackOfficeController extends AdminStaticController
         }
     }
 
+    public function getEffectorsStocksByType()
+    {
+        $effectorTypeRepository = $this->getEffectorTypeRepository();
+        $effectorTypes = $effectorTypeRepository->getAll();
+        $effectorsByType = array();
+        /** @var EffectorRepository $effectorRepo */
+        /** @var EffectorType $effectorType */
+        foreach ($effectorTypes as $effectorType) {
+            $effectorsByType[$effectorType->getName()] = $effectorRepo->getUnusedEffectorsByType($effectorType->getId());
+        }
+        return $effectorsByType;
+    }
 
+    public function getSensorsStocksByType()
+    {
+        $sensorTypeRepo = $this->getSensorRepository();
+        $sensorTypes = $sensorTypeRepo->getAll();
+        $sensorsByType = array();
+        /** @var SensorRepository $sensorRepo */
+        /** @var SensorType $sensorType */
+        foreach ($sensorTypes as $sensorType) {
+            $sensorsByType[$sensorType->getName()] = $sensorTypeRepo->getSensorsUnusedByType($sensorType->getId());
+        }
+        return $sensorsByType;
+    }
+
+    public function createStocksArrays()
+    {
+        $effectorStock = $this->getEffectorsStocksByType();
+        $sensorStock = $this->getSensorsStocksByType();
+        $this->args['effectorStock'] = Json::encode($effectorStock);
+        $this->args['sensorStock'] = Json::encode($sensorStock);
+        $this->generateView('backoffice/dashboard.php', "Tableau de bord Administrateur");
+    }
+
+    protected function addEffectorType(){
+        $effectorType = new EffectorType();
+        $effectorType ->createFromResults($_POST);
+
+        if($effectorType-> save($this->db)){
+            $this->args['success_message'] = "Félicitation l'effecteur sélectionné a bien été ajouté";
+        } else {
+            $this->args['error_message'] = "Les données entrées ne sont pas valides";
+        }
+
+    }
+
+
+
+
+
+    protected function addEffectors($effectorTypes){
+
+        if (!empty($_POST['effectorTypeId']) && !empty($_POST['effectorNb'])){
+
+            /**@var EffectorType $effectorType*/
+            $effectorType = null;
+
+            /**@var EffectorType $etp*/
+            foreach ($effectorTypes as $etp) {
+                Utils::addWarning($etp->getId()  . '   ' . $_POST['effectorTypeId'] );
+                if ($etp->getId() == $_POST['effectorTypeId']) {
+                    $effectorType = $etp;
+                }
+            }
+
+            if($effectorType){
+
+                for($i = 1 ; $i <= $_POST['effectorNb'] ; $i++){
+                    $effector = new Effector();
+                    if ($effector->setEffectorType($effectorType)->save($this->db) ) {
+                        $this->args['success_message'] = "Félicitation les effecteurs ont bien été ajoutés aux stocks informatiques";
+                    }
+                    else {
+                        $this->args['error_message'] = "Les données entrées ne sont pas valides";
+                        $this->args['errors'] = $effectorType->getErrorMessage();
+                    }
+                }
+            }
+            else{
+                $this->args['error_message'] = "Les données entrées ne sont pas valides";
+            }
+        }
+        else{
+            $this->args['error_message'] = "Veuillez sélectionner un effecteur";
+
+        }
+
+    }
 
 
 
