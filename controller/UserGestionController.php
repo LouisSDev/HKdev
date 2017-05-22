@@ -15,12 +15,8 @@ class UserGestionController  extends AdminController
 
     public function manageHomeUsers(){
 
-        $userRepository = $this -> getUserRepository();
         $homeRepository = $this -> getHomeRepository();
         $roomRepository = $this -> getRoomRepository();
-
-        $users =  $userRepository -> getAll();
-        $this -> args['users'] = $users ;
 
         $home =  $homeRepository -> getAll();
         $this -> args['home'] = $home ;
@@ -66,7 +62,6 @@ class UserGestionController  extends AdminController
         else{
             $this->args['error_message'] = "Les données entrées ne sont pas valides";
         }
-        $this -> generateView('backoffice/manageUsers.php', 'Gérer les Utilisateurs');
 
     }
 

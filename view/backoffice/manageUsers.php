@@ -18,21 +18,24 @@ $userRepo =$this-> getUserRepository();
 $home = $GLOBALS['view']['home'];
 $room = $GLOBALS['view']['room'];
 
-$users =$this-> $userRepo->getAll();
+$users = $userRepo->getAll();
 include_once($GLOBALS['root_dir'] . '/view/general/error.php');
+
 
 ?>
 
     <div class="select">
         <form method="post">
             <label class="text"> Sélectionnez l'utilisateur :</label><br>
-            <input type="hidden" name="submittedForm" value="ADD_HOME"/>
+            <input type="hidden" name="submittedForm" value="SELECT_USER"/>
             <select name="user">
                 <?php
-                /** @var  $user User*/
+
+
+                /** @var  User $user*/
                 foreach ($users as $user) {
 
-                    echo '<option label="user" value="'
+                    echo '<option label="" value="'
                         . $user -> getId() . '">'
                         . $user -> getFirstName() . ' '
                         . $user -> getLastName()
@@ -43,11 +46,10 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
             </select><br>
 
 
-            <input type="text" name="name" placeholder="Nom de la Maison">
-            <input type="text" name="address" placeholder="Adresse">
-            <input type="text" name="city" placeholder="Ville">
-            <input type="text" name="country" placeholder="Pays">
-            <input type="number" name="rooms" >
+            <input type="text" name="NomHome" placeholder="Nom de la Maison">
+            <input type="text" name="Adress" placeholder="Adresse">
+            <input type="text" name="Ville" placeholder="Ville">
+            <input type="text" name="Pays" placeholder="Pays">
 
             <select name="homeType">
                 <option>Maison</option>
