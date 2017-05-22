@@ -237,7 +237,18 @@ class BackOfficeController extends AdminStaticController
             $this->args['error_message'] = "Veuillez sélectionner un capteur";
         }
     }
+    protected function addSensorType()
+    {
 
+        $sensorType = new SensorType();
+        $sensorType ->createFromResults($_POST);
+
+        if($sensorType-> save($this->db)){
+            $this->args['success_message'] = "Félicitation le capteur a bien été ajouté";
+        } else {
+            $this->args['error_message'] = "Les données entrées ne sont pas valides";
+        }
+    }
     public function changeSensors($sensorsTypes)
     {
 
