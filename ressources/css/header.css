@@ -64,3 +64,10 @@ ul.submenu > li{
 ul.submenu > a{
     display: none;
 }
+
+.logo{
+    margin-right: 100px;
+    width: 75px;
+
+}
+
