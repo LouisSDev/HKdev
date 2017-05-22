@@ -59,13 +59,17 @@
             Des questions ?
         </p>
         <?php
-        /** @var User $user */
-        $user = $GLOBALS['view']['user'];
+        $firstName = 'Hello!';
+        if(isset($GLOBALS['view']['connected']) && $GLOBALS['view']['connected']) {
+
+            /** @var User $user */
+            $firstName = $GLOBALS['view']['user'] -> getFirstName();
+        }
         ?>
         <div id="wrap">
             <div id='form_wrap'>
                 <form>
-                    <p><?php echo $user->getFirstName()?></p>
+                    <p><?php echo $firstName; ?></p>
                     <label for="email">Votre message : </label>
                     <textarea  name="message" value="Your Message" id="message" ></textarea>
                     <p>Best,</p>
