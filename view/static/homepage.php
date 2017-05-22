@@ -47,47 +47,53 @@
                     <p class="description">Grâce à notre système amélioré, vous pouvez visualiser intégralement votre consommation</p>
                 </div>
             </div>
+         <?php   if(!isset($GLOBALS['view']['connected']) || !$GLOBALS['view']['connected']) { ?>
             <div class="form_pointer">
                 <a class="arrow_black scrolling" href="#form">&raquo;</a>
             </div>
         </div>
         <?php
-        if(isset($GLOBALS['view']['registration'])){
-            ?>
-            <p id="successful-registration">
-                Votre devis a bien été déposé, vous serez bientôt contacté par notre équipe!
-            </p>
-            <?php
-        }
-        else{  include_once($GLOBALS['root_dir'] . '/view/general/error.php') ; ?>
-            <div id="form">
-                <div class="form_content">
-                    <h1>Vous êtes intéressé ?</h1>
-                    <h1>Demander un devis !</h1>
-                    <div class="form">
-                        <form method="post" enctype="multipart/form-data">
-                            <div class="rows">
-                                <div class="col1">
-                                    <input type="text" name="firstName" placeholder="Nom" required/>
-                                    <input type="text" name="lastName" placeholder="Prénom" required/>
-                                    <input type="text" name="country" placeholder="Pays" required/>
-                                    <input type="text" name="city" placeholder="Ville" required/>
-                                    <input type="text" name="address" placeholder="Adresse" required/>
+            if (isset($GLOBALS['view']['registration'])) {
+                ?>
+                <p id="successful-registration">
+                    Votre devis a bien été déposé, vous serez bientôt contacté par notre équipe!
+                </p>
+                <?php
+            } else {
+                include_once($GLOBALS['root_dir'] . '/view/general/error.php'); ?>
+                <div id="form">
+                    <div class="form_content">
+                        <h1>Vous êtes intéressé ?</h1>
+                        <h1>Demander un devis !</h1>
+                        <div class="form">
+                            <form method="post" enctype="multipart/form-data">
+                                <div class="rows">
+                                    <div class="col1">
+                                        <input type="text" name="firstName" placeholder="Nom" required/>
+                                        <input type="text" name="lastName" placeholder="Prénom" required/>
+                                        <input type="text" name="country" placeholder="Pays" required/>
+                                        <input type="text" name="city" placeholder="Ville" required/>
+                                        <input type="text" name="address" placeholder="Adresse" required/>
+                                    </div>
+                                    <div class="col2">
+                                        <input type="email" name="mail" placeholder="Adresse mail" required/>
+                                        <input type="text" name="cellPhoneNumber" placeholder="Numéro de téléphone"
+                                               required/>
+                                        <input type="password" name="password" placeholder="Mot de passe" required/>
+                                        <input type="password" name="passwordRepeat"
+                                               placeholder="Répétez votre mot de passe" required/>
+                                    </div>
                                 </div>
-                                <div class="col2">
-                                    <input type="email" name="mail" placeholder="Adresse mail" required/>
-                                    <input type="text" name="cellPhoneNumber" placeholder="Numéro de téléphone" required/>
-                                    <input type="password" name="password" placeholder="Mot de passe" required/>
-                                    <input type="password" name="passwordRepeat" placeholder="Répétez votre mot de passe" required/>
-                                </div>
-                            </div>
-                            <input type="file" name="quote" />
-                            <input class="button" type="submit" value="Envoyer" />
-                        </form>
+                                <input type="file" name="quote"/>
+                                <input class="button" type="submit" value="Envoyer"/>
+                            </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <?php
+                <?php
+            }
+        }else{
+             echo '</div>';
         }
         ?>
     </div>

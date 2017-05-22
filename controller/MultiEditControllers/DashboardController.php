@@ -86,7 +86,7 @@ class DashboardController extends AdminController
                     $i = 0;
                     foreach ($message as $mssg) {
                         $successMessage .= $mssg;
-                        if ($i != sizeof($message) - 1) {
+                        if ($i != count($message) - 1) {
                             $successMessage .= '<br>';
                         }
                         $i++;
