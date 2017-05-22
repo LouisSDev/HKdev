@@ -26,7 +26,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
     <div class="select">
         <form method="post">
             <label class="text"> Sélectionnez l'utilisateur :</label><br>
-            <input type="hidden" name="submittedForm" value="SELECT_USER"/>
+            <input type="hidden" name="submittedForm" value="ADD_HOME"/>
             <select name="user">
                 <?php
                 /** @var  $user User*/
@@ -43,10 +43,11 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
             </select><br>
 
 
-            <input type="text" name="HomeName" placeholder="Nom de la Maison">
-            <input type="text" name="Adress" placeholder="Adresse">
-            <input type="text" name="Ville" placeholder="Ville">
-            <input type="text" name="Pays" placeholder="Pays">
+            <input type="text" name="name" placeholder="Nom de la Maison">
+            <input type="text" name="address" placeholder="Adresse">
+            <input type="text" name="city" placeholder="Ville">
+            <input type="text" name="country" placeholder="Pays">
+            <input type="number" name="rooms" >
 
             <select name="homeType">
                 <option>Maison</option>

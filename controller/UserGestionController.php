@@ -28,11 +28,12 @@ class UserGestionController  extends AdminController
         $room =  $roomRepository -> getAll();
         $this -> args['room'] = $room ;
 
-        if($_SERVER['SELECT_USER'] === 'POST'){
+        if($_SERVER['REQUEST_METHOD'] === 'POST'){
             if(!empty($_POST['submittedForm'])){
 
                 switch($_POST['submittedForm']){
                     case 'ADD_HOME':
+
                         $this -> addHome($home);
                         break;
                     case 'DELETE_HOME' :
@@ -50,17 +51,15 @@ class UserGestionController  extends AdminController
 
         }
 
-        $this->manageUsers();
-
-
+        $this -> manageUsers();
 
     }
 
-    public function addHomeController($home)
+    public function addHome($home)
     {
         if(!empty($_POST['user'])){
             if(!empty($_POST['HomeName']) && !empty($_POST['Adress']) && !empty($_POST['Ville']) && !empty($_POST['Pays'])){
-                addHome($home);
+
             }
 
         }
