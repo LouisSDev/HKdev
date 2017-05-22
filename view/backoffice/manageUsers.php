@@ -14,11 +14,11 @@
 
 include_once ($GLOBALS['root_dir'] . "/view/general/adminHeader.php");
 
-$userRepo = $GLOBALS['view']['userRepository'];
+$userRepo =$this-> getUserRepository();
 $home = $GLOBALS['view']['home'];
 $room = $GLOBALS['view']['room'];
 
-$users = $userRepo->getAll();
+$users =$this-> $userRepo->getAll();
 include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
 ?>

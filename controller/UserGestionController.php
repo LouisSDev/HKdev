@@ -46,6 +46,8 @@ class UserGestionController  extends AdminController
 
         }
 
+        $this->manageUsers();
+
 
 
     }

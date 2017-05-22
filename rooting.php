@@ -188,9 +188,9 @@ switch($globalPath){
     case 'admin':
         if(isset($path[3])) {
             switch ($path[3]) {
-                case 'users' :
+                case 'user' :
                     $userGestionController = new UserGestionController($db);
-                    $userGestionController -> manageUsers();
+                    $userGestionController -> manageHomeUsers();
                     break;
                 case 'products' :
                     $backOfficeController = new BackOfficeController($db);
