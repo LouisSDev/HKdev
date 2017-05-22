@@ -106,49 +106,56 @@ class DashboardController extends AdminController
     }
 
 
-
-    private function changeEffector($effectorTypes)
+    private function changeEffectors($effectorTypes)
     {
 
-        if (!empty($_POST['effectorType']) && !empty($_POST['newEffectorRef']) && !empty($_POST['newSensorName'])) {
-            /** @var SensorType $sensorType
+        if (!empty($_POST['effectorType'])) {
+            /** @var EffectorType $effectorType
              */
 
-            $sensorType = null;
-            $newSensorsTypes = null;
-            $newSensorsPrice = null;
-            $newSensorsName = null;
+            $effectorType = null;
 
 
-            /**@var SensorType $stp */
+            /**@var EffectorType $stp */
             foreach ($effectorTypes as $stp) {
-                if ($stp->getId() === $_POST['sensorType']) {
-                    $sensorType = $stp;
+                if ($stp->getId() === $_POST['effectorType']) {
+                    $effectorType = $stp;
                     break;
                 }
             }
 
-            if ($sensorType) {
-                $sensorType->setName($_POST['newSensorName']);
-                $sensorType->setPrice($_POST['newSensorPrice']);
-                $sensorType->setRef($_POST['newSensorRef']);
-                if ($sensorType->setName($_POST['newSensorName'])->save($this->db) &&
-                    $sensorType->setPrice($_POST['newSensorPrice'])->save($this->db) &&
-                    $sensorType->setRef($_POST['newSensorRef'])->save($this->db)
-                ) {
-                    $this->args['success_message'] = "Félicitation le nom du capteur, ça référence et son prix ont bien été ajoutés aux stocks informatiques";
-                } else {
-
-                    $this->args['error_message'] = "Les données entrées ne sont pas valides";
-                    $this->args['errors'] = $sensorType->getErrorMessage();
+            if ($effectorType) {
+                $message = [];
+                if (!empty($_POST['name'])) {
+                    $effectorType -> setName($_POST['name']);
+                    $message[] = "Le nom de l'effecteur a bien été modifié";
                 }
 
-            } else {
-                $this->args['error_message'] = "Les données entrées ne sont pas valides";
-            }
-        } else {
-            $this->args['error_message'] = "Veuillez sélectionner un capteur";
-        }
+                if (!empty($_POST['ref'])) {
+                    $effectorType -> setRef($_POST['ref']);
+                    $message[] = "La référence de l'effecteur a bien été modifié";
+                }
 
+                if($effectorType -> save($this -> db)) {
+                    $successMessage = [];
+                    $i = 0;
+                    foreach ($message as $mssg) {
+                        $successMessage .= $mssg;
+                        if ($i != sizeof($message) - 1) {
+                            $successMessage .= '<br>';
+                        }
+                        $i++;
+                    }
+                    $this->args['success_message'] = $successMessage;
+                }else{
+                    $this->args['error_message'] = "Les données entrée nous pas pu être enregistrées dans les stocks informatiques";
+                    $this->args['errors'] = $effectorType->getErrorMessage();
+                }
+            }
+            else{
+                $this->args['error_message'] = "Les données entrée ne sont pas valide";
+                $this->args['errors'] = $effectorType->getErrorMessage();
+            }
+        }
     }
 }
