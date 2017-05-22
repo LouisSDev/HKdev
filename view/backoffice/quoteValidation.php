@@ -25,26 +25,26 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
     <h1>Consultez les demandes de devis et marquez les ici comme étant en cours de traitement</h1>
     <h2>Devis soumis : </h2>
-    <table>
-        <tr>
-            <th>Prénom</th>
-            <th>Nom</th>
-            <th>Mail</th>
-            <th>Numéro de téléphone</th>
-            <th>Détail de la demande</th>
+    <table class="user-display">
+        <tr class="user-display-column">
+            <th class="user-display-cell title-cell">Prénom</th>
+            <th class="user-display-cell title-cell">Nom</th>
+            <th class="user-display-cell title-cell">Mail</th>
+            <th class="user-display-cell title-cell">Numéro de téléphone</th>
+            <th class="user-display-cell title-cell">Détail de la demande</th>
         </tr>
     <?php
 
 
         /** @var  $quote User*/
         foreach ($quoteSubmittedUsers as $quote) {
-            echo '<tr>';
+            echo '<tr class="user-display-column">';
 
-            echo  '<td>' . $quote -> getFirstName() . '</td>'
-                . '<td>' . $quote -> getLastName() . '</th>'
-                . '<td>' . $quote -> getMail() . '</th>'
-                . '<td>' . $quote -> getCellPhoneNumber() . '</th>'
-                . '<td><a href="'. $GLOBALS['server_root'] . '/' . $quote -> getQuoteFilePath() . '" target="_blank">Devis</a></th>';
+            echo  '<td class="user-display-cell">' . $quote -> getFirstName() . '</td class="user-display-cell">'
+                . '<td class="user-display-cell">' . $quote -> getLastName() . '</th>'
+                . '<td class="user-display-cell">' . $quote -> getMail() . '</th>'
+                . '<td class="user-display-cell">' . $quote -> getCellPhoneNumber() . '</th>'
+                . '<td class="user-display-cell"><a href="'. $GLOBALS['server_root'] . '/' . $quote -> getQuoteFilePath() . '" target="_blank">Devis</a></th>';
 
             echo '</tr>';
         }
@@ -77,34 +77,30 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
     <h1>Consultez les utilisateurs dont la demande a été prise en charge puis supprimez leur compte ou validez le</h1>
     <h2>Devis soumis : </h2>
-    <table>
-        <tr>
-            <th>Prénom</th>
-            <th>Nom</th>
-            <th>Mail</th>
-            <th>Numéro de téléphone</th>
-            <th>Détail de la demande</th>
+    <table class="user-display">
+        <tr class="user-display-column">
+            <th class="user-display-cell title-cell">Prénom</th>
+            <th class="user-display-cell title-cell">Nom</th>
+            <th class="user-display-cell title-cell">Mail</th>
+            <th class="user-display-cell title-cell">Numéro de téléphone</th>
+            <th class="user-display-cell title-cell">Détail de la demande</th>
         </tr>
         <?php
 
 
         /** @var  $quote User*/
         foreach ($quoteTreatedUsers as $quote) {
-            echo '<tr>';
+            echo '<tr class="user-display-column">';
 
-            echo  '<td>' . $quote -> getFirstName() . '</td>'
-                . '<td>' . $quote -> getLastName() . '</th>'
-                . '<td>' . $quote -> getMail() . '</th>'
-                . '<td>' . $quote -> getCellPhoneNumber() . '</th>'
-                . '<td><a href="'. $GLOBALS['server_root'] . '/' . $quote -> getQuoteFilePath() . '" target="_blank">Devis</a></th>';
+            echo  '<td class="user-display-cell">' . $quote -> getFirstName() . '</td class="user-display-cell">'
+                . '<td class="user-display-cell">' . $quote -> getLastName() . '</th>'
+                . '<td class="user-display-cell">' . $quote -> getMail() . '</th>'
+                . '<td class="user-display-cell">' . $quote -> getCellPhoneNumber() . '</th>'
+                . '<td class="user-display-cell"><a href="'. $GLOBALS['server_root'] . '/' . $quote -> getQuoteFilePath() . '" target="_blank">Devis</a></th>';
 
             echo '</tr>';
-
         }
         ?>
-
-    </table>
-
 
 <form method="post">
     <label class="text"> Sélectionnez le devis à valider:</label><br>
