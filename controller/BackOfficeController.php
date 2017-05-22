@@ -43,12 +43,12 @@ class BackOfficeController extends AdminStaticController
                     case 'ADD_EFFECTORS':
                         $this ->addEffectors($effectorTypes);
                         break;
-                    /*case 'CHANGE_EFFECTORS_TYPE':
+                    case 'CHANGE_EFFECTORS_TYPE':
                         $this ->changeEffectors($effectorTypes);
                         break;
                     case 'CHANGE_SENSORS_TYPE':
                         $this ->changeSensors($sensorsTypes);
-                        break;*/
+                        break;
                     default:
                         $this -> generateView('static/404.php', '404');
 
