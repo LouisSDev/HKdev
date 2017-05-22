@@ -189,7 +189,8 @@ switch($globalPath){
         if(isset($path[3])) {
             switch ($path[3]) {
                 case 'users' :
-                    //TODO
+                    $userGestionController = new UserGestionController($db);
+                    $userGestionController -> manageUsers();
                     break;
                 case 'products' :
                     $backOfficeController = new BackOfficeController($db);
@@ -202,6 +203,10 @@ switch($globalPath){
                 case 'dashboard' :
                     $backOfficeController = new BackOfficeController($db);
                     $backOfficeController -> getAdminDashboard();
+                    break;
+                case 'manageUsers' :
+                    $UserGestionController = new UserGestionController($db);
+                    $UserGestionController -> manageUsers();
                     break;
                 default :
                     $staticController = new StaticController();

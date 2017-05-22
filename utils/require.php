@@ -81,6 +81,7 @@ require_once $GLOBALS['root_dir'] . '/controller/AdminController.php';
 
     //BackOffice
     require_once $GLOBALS['root_dir'] . '/controller/BackOfficeController.php';
+    require_once $GLOBALS['root_dir'] . '/controller/UserGestionController.php';
 
 
 // Error Logging Facilities
