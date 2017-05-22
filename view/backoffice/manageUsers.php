@@ -24,9 +24,10 @@ $users = $GLOBALS['view']['users'];
 ?>
 
     <div class="select">
+        <h1>Ajouter une maison à un utilisateur</h1>
         <form method="post">
             <label class="text"> Sélectionnez l'utilisateur :</label><br>
-            <input type="hidden" name="submittedForm" value="SELECT_USER"/>
+            <input type="hidden" name="submittedForm" value="ADD_HOME"/>
             <select name="user">
                 <?php
                 /** @var  User $user*/
@@ -43,10 +44,10 @@ $users = $GLOBALS['view']['users'];
             </select><br>
 
 
-            <input type="text" name="NomHome" placeholder="Nom de la Maison">
-            <input type="text" name="Adress" placeholder="Adresse">
-            <input type="text" name="Ville" placeholder="Ville">
-            <input type="text" name="Pays" placeholder="Pays">
+            <input type="text" name="name" placeholder="Nom de la Maison">
+            <input type="text" name="address" placeholder="Adresse">
+            <input type="text" name="city" placeholder="Ville">
+            <input type="text" name="country" placeholder="Pays">
 
             <select name="homeType">
                 <option value="true">Maison</option>
@@ -66,4 +67,48 @@ $users = $GLOBALS['view']['users'];
         </form>
     </div>
 
+
+<div class="delete">
+    <h1>Supprmier une maison à un utilisateur</h1>
+    <form method="post">
+        <label class="text"> Sélectionnez l'utilisateur :</label><br>
+        <input type="hidden" name="submittedForm" value="DELETE_HOME"/>
+        <select name="user">
+            <?php
+            /** @var  User $user*/
+            foreach ($users as $user) {
+
+                echo '<option label="" value="'
+                    . $user -> getId() . '">'
+                    . $user -> getFirstName() . ' '
+                    . $user -> getLastName()
+                    . '</option>';
+
+            }
+            ?>
+        </select>
+        <br>
+        <br>
+        <label class="text"> Sélectionnez la maison à supprimer :</label><br>
+        <select name="home">
+            <?php
+            /** @var  Home $home*/
+            foreach ($homes as $home) {
+
+                echo '<option label="" value="'
+                    . $home -> getAddress() . ' '
+                    . $home -> getCity(). ' '
+                    . $home -> getCountry()
+                    . '</option>';
+
+            }
+            ?>
+        </select><br>
+
+
+        <input class="btn" type="submit" value="Supprimer" />
+
+
+    </form>
+</div>
 </body>

@@ -31,8 +31,7 @@ class UserGestionController  extends AdminController
 
                 switch($_POST['submittedForm']){
                     case 'ADD_HOME':
-
-                        $this -> addHome($home);
+                        $this -> addHome();
                         break;
                     case 'DELETE_HOME' :
                         $this -> deleteHome($home);
@@ -53,11 +52,23 @@ class UserGestionController  extends AdminController
 
     }
 
-    public function addHome($home)
+    public function addHome()
     {
         if(!empty($_POST['user'])){
-            if(!empty($_POST['HomeName']) && !empty($_POST['Adress']) && !empty($_POST['Ville']) && !empty($_POST['Pays'])){
 
+            if(!empty($_POST['name']) && !empty($_POST['address']) && !empty($_POST['city']) && !empty($_POST['country'])){
+
+                $home = new Home();
+
+
+                if($home-> save($this->db)){
+                    $this->args['success_message'] = "Félicitation la maison a bien été ajouté";
+                } else {
+                    $this->args['error_message'] = "Les données entrées ne sont pas valides !";
+                }
+            }
+            else{
+                $this->args['error_message'] = "Les données entrées ne sont pas valides";
             }
 
         }
@@ -67,7 +78,7 @@ class UserGestionController  extends AdminController
 
     }
 
-    public function deleteHome($home)
+    public function deleteHome()
     {
 
     }
