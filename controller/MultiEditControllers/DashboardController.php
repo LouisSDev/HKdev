@@ -44,11 +44,10 @@ class DashboardController extends AdminController
         $this->generateView('backoffice/dashboard.php', "Tableau de bord Administrateur");
     }
 
-    //modif le nom prix et ref //pareil pour les effecteurs
 
 
 
-    private function changeSensors($sensorsTypes)
+    public function changeSensors($sensorsTypes)
     {
 
         if (!empty($_POST['sensorType'])) {
@@ -106,7 +105,7 @@ class DashboardController extends AdminController
     }
 
 
-    private function changeEffectors($effectorTypes)
+    public function changeEffectors($effectorTypes)
     {
 
         if (!empty($_POST['effectorType'])) {

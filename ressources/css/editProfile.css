@@ -10,8 +10,8 @@ body{
 #infoTitle,#mdpTitle,#mailTitle{
     display: inline;
     cursor: pointer;
-
 }
+
 
 .form{
     width: 45%;
