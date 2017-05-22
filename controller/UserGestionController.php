@@ -12,6 +12,7 @@ class UserGestionController  extends AdminController
     {
         $this -> generateView('backoffice/manageUsers.php', 'Gérer les Utilisateurs');
     }
+
     public function manageHomeUsers(){
 
         $userRepository = $this -> getUserRepository();
@@ -27,12 +28,15 @@ class UserGestionController  extends AdminController
         $room =  $roomRepository -> getAll();
         $this -> args['room'] = $room ;
 
-        if($_SERVER['REQUEST_METHOD'] === 'POST'){
+        if($_SERVER['SELECT_USER'] === 'POST'){
             if(!empty($_POST['submittedForm'])){
 
                 switch($_POST['submittedForm']){
                     case 'ADD_HOME':
                         $this -> addHome($home);
+                        break;
+                    case 'DELETE_HOME' :
+                        $this -> deleteHome($home);
                         break;
                     default:
                         $this -> generateView('static/404.php', '404');
@@ -50,16 +54,23 @@ class UserGestionController  extends AdminController
 
     }
 
-    public function addHome($home)
+    public function addHomeController($home)
     {
         if(!empty($_POST['user'])){
-
+            if(!empty($_POST['HomeName']) && !empty($_POST['Adress']) && !empty($_POST['Ville']) && !empty($_POST['Pays'])){
+                addHome($home);
+            }
 
         }
         else{
             $this->args['error_message'] = "Les données entrées ne sont pas valides";
         }
         $this -> generateView('backoffice/manageUsers.php', 'Gérer les Utilisateurs');
+
+    }
+
+    public function deleteHome($home)
+    {
 
     }
 
