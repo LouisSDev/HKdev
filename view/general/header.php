@@ -21,7 +21,7 @@
            ?>
             <nav class="menu">
                 <ul>
-                    <li><a href="<?php echo $GLOBALS['server_root'] . '/user/dashboard'?>"><img class="logo" src="<?php echo $GLOBALS['server_root']?>/ressources/img/logo hk blanc_redim.png"></a></li>
+                    <li class ="logo"><a href="<?php echo $GLOBALS['server_root']?>"><img class="logo" src="<?php echo $GLOBALS['server_root']?>/ressources/img/logo hk blanc_redim.png"></a></li>
                     <?php if($user -> getAdmin() ) {?>
                     <li><a href="<?php echo $GLOBALS['server_root'] . '/admin'?>">Back-Office</a></li>
                     <?php }?>
