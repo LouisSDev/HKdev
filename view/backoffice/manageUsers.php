@@ -53,10 +53,12 @@ $users = $GLOBALS['view']['users'];
                 <option value="false">Immeuble</option>
             </select>
             <br>
-            <label class="texte">Choisissez le nombre de pièces par type :</label>
-            <input type="number" name="ROOM" placeholder="0" min="0">
-            <input type="number" name="LIVING_ROOM" placeholder="0" min="0">
-            <input type="number" name="KITCHEN" placeholder="0" min="0">
+            <br>
+            <label class="texte">Choisissez le nombre de pièces par type :</label><br>
+            <label>Chambres : <input type="number" name="BED_ROOM" placeholder="0" min="0"></label><br>
+            <label>Salon : <input type="number" name="LIVING_ROOM" placeholder="0" min="0"></label><br>
+            <label>Cuisine : <input type="number" name="KITCHEN" placeholder="0" min="0"></label><br>
+            <label>Pièces en plus : <input type="number" name="ROOM" placeholder="0" min="0"></label><br>
             <br>
             <input class="btn" type="submit" value="Ajouter" />
 
