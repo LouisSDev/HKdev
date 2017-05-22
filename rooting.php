@@ -204,7 +204,6 @@ switch($globalPath){
                     $backOfficeController = new BackOfficeController($db);
                     $backOfficeController -> getAdminDashboard();
                     break;
-                case 'manageUsers' :
                 default :
                     $staticController = new StaticController();
                     $staticController -> notFound();
