@@ -8,8 +8,11 @@
  */
 class UserGestionController  extends AdminController
 {
-
-    public function manageUsers(){
+    public function manageUsers()
+    {
+        $this -> generateView('backoffice/manageUsers.php', 'Gérer les Utilisateurs');
+    }
+    public function manageHomeUsers(){
 
         $userRepository = $this -> getUserRepository();
         $homeRepository = $this -> getHomeRepository();
@@ -43,7 +46,7 @@ class UserGestionController  extends AdminController
 
         }
 
-        $this -> generateView('backoffice/products.php', 'Gérer les Capteurs et les Effecteurs');
+
 
     }
 
