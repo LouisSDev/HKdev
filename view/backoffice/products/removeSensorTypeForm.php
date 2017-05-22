@@ -1,13 +1,13 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: home
- * Date: 20/05/2017
- * Time: 15:39
- */
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+<br>
 
 
-<div class="tableauDelete">
+<dv class="tableauDelete">
     <div class="suppression">
         <form method="post">
             <h1>Supprimer un type de capteur </h1>
@@ -34,10 +34,14 @@
 
                 }
                 ?>
-</select><br>
+            </select><br>
 
-<input class="btn" type="submit" value="supprimer" />
+            <input class="btn" type="submit" value="supprimer" />
 
 
-</form>
-</div>
+        </form>
+    </div>
+
+
+</body>
+</html>

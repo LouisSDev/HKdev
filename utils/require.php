@@ -86,6 +86,8 @@ require_once $GLOBALS['root_dir'] . '/controller/AdminController.php';
 // Error Logging Facilities
 require_once __DIR__ . '/LoggerException.php';
 // We'll now initiate logging abilities
-class LogException extends LoggerException {}
-Utils::initiateLogging();
+class LogException extends LoggerException {
 
+}
+
+Utils::initiateLogging();
