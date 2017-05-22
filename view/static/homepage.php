@@ -52,7 +52,7 @@
             </div>
         </div>
         <?php
-        if(isset($GLOBALS['view']['connected']) && $GLOBALS['view']['connected']) {
+        if(!isset($GLOBALS['view']['connected']) || !$GLOBALS['view']['connected']) {
             if (isset($GLOBALS['view']['registration'])) {
                 ?>
                 <p id="successful-registration">
