@@ -31,7 +31,7 @@ class UserGestionController  extends AdminController
 
                 switch($_POST['submittedForm']){
                     case 'ADD_HOME':
-                        $this -> addHome();
+                        $this -> addHome($users);
                         break;
                     case 'DELETE_HOME' :
                         $this -> deleteHome($home);
@@ -52,23 +52,48 @@ class UserGestionController  extends AdminController
 
     }
 
-    public function addHome()
+    public function addHome($users)
     {
-        if(!empty($_POST['user'])){
+
+
+
+        if(!empty($_POST['selectUser'])){
 
             if(!empty($_POST['name']) && !empty($_POST['address']) && !empty($_POST['city']) && !empty($_POST['country'])){
 
                 $home = new Home();
 
+                if($_POST['homeType'] === 'house'){
+                   /**  @var User $userHome */
+                    $userHome =null;
+                    /** @var User $user */
+                    foreach ($users as $user){
+                        if($user ->getId() === $_POST['selectUser']){
+                            $userHome = $user;
+                        }
+                    }
 
-                if($home-> save($this->db)){
-                    $this->args['success_message'] = "Félicitation la maison a bien été ajouté";
-                } else {
-                    $this->args['error_message'] = "Les données entrées ne sont pas valides !";
+                    $home -> setUser($userHome);
+                    $home -> setName($_POST['name']);
+                    $home -> setAddress($_POST['address']);
+                    $home -> setCity($_POST['city']);
+                    $home -> setCountry($_POST['country']);
+
+                    if($home -> save($this->db)){
+
+                        $this->args['success_message'] = "Félicitation la maison a bien été ajouté";
+                    }else{
+                        $this->args['error_message'] = "Les données entrées ne sont pas valides !";
+                    }
+                }else{
+                    $home -> setHasHomes(true);
                 }
+
+
+
             }
             else{
-                $this->args['error_message'] = "Les données entrées ne sont pas valides";
+                $this->args['error_message'] = "Les données entrées ne sont pas valides .";
             }
 
         }
@@ -80,6 +105,7 @@ class UserGestionController  extends AdminController
 
     public function deleteHome()
     {
+
 
     }
 

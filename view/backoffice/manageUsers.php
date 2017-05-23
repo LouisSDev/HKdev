@@ -28,7 +28,7 @@ $users = $GLOBALS['view']['users'];
         <form method="post">
             <label class="text"> Sélectionnez l'utilisateur :</label><br>
             <input type="hidden" name="submittedForm" value="ADD_HOME"/>
-            <select name="user">
+            <select name="selectUser">
                 <?php
                 /** @var  User $user*/
                 foreach ($users as $user) {
@@ -50,16 +50,10 @@ $users = $GLOBALS['view']['users'];
             <input type="text" name="country" placeholder="Pays">
 
             <select name="homeType">
-                <option value="true">Maison</option>
-                <option value="false">Immeuble</option>
+                <option value="house">Maison</option>
+                <option value="building">Immeuble</option>
             </select>
             <br>
-            <br>
-            <label class="texte">Choisissez le nombre de pièces par type :</label><br>
-            <label>Chambres : <input type="number" name="BED_ROOM" placeholder="0" min="0"></label><br>
-            <label>Salon : <input type="number" name="LIVING_ROOM" placeholder="0" min="0"></label><br>
-            <label>Cuisine : <input type="number" name="KITCHEN" placeholder="0" min="0"></label><br>
-            <label>Pièces en plus : <input type="number" name="ROOM" placeholder="0" min="0"></label><br>
             <br>
             <input class="btn" type="submit" value="Ajouter" />
 
