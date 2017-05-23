@@ -1,8 +1,8 @@
-body{
+body,
+footer{
     font-family: 'Roboto', sans-serif; /*Website font*/
     margin: 0;
 }
-
 
 .btn{
     background-color: lightgray;

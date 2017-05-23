@@ -123,7 +123,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
         <form method="POST">
             <h2>Mofifier les informations d'un capteur</h2>
             <label class="text"> Sélectionnez votre capteur :</label><br>
-            <input type="hidden" name="submittedForm" value="REMOVE_SENSOR_TYPE"/>
+            <input type="hidden" name="submittedForm" value="CHANGE_SENSORS_TYPE"/>
             <select name="sensorType">
                 <?php
                 foreach (SensorType::TYPE_ARRAY as $type){
@@ -178,7 +178,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
             </select>
             <input type="text" name="name" placeholder="Nom">
-            <input type="text" name="ref" placeholder="Référence">
+            <input type="text" name="ref" placeholder="Référence"><br/>
             <input type="number" name="minVal" placeholder="Valeur minimale">
             <input type="number" name="maxVal" placeholder="Valeur maximale"><br/>
 
@@ -263,7 +263,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
             <form method="POST">
                 <h2>Mofifier les informations d'un effecteur</h2>
                 <label class="text"> Sélectionnez votre effecteur :</label><br>
-                <input type="hidden" name="submittedForm" value="REMOVE_EFFECTOR_TYPE"/>
+                <input type="hidden" name="submittedForm" value="CHANGE_EFFECTORS_TYPE"/>
                 <select name="effectorType">
                     <?php
                     foreach (EffectorType::TYPE_ARRAY as $type){
@@ -297,5 +297,5 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
     </div>
 
 </div>
-
+<?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
 </body>

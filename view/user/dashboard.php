@@ -116,5 +116,6 @@ include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
             </td>
         </tr>
     </table>
+<?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
 </body>
 </html>

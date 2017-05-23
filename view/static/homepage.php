@@ -95,6 +95,9 @@
              echo '</div>';
         }
         ?>
+        <?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
     </div>
+
 </body>
+
 </html>

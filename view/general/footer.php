@@ -5,19 +5,16 @@
     <div class="footer">
         <div class="top">
             <div class="test">
-                <h3 class="nom">Home Keeper</h3>
-                <p class="lieu"> 28 rue Notre Dame des Champs
-                    </br>
-                    75006 Paris
-                    </br>
-                    home.keeper@home.keeper.fr
-                    </br>
-                    0103030303
+                <h3 class="nom">Home Keeper :</h3>
+                <p class="lieu"> 28 rue Notre Dame des Champs,
+                    75006 Paris</p>
+                    <p class="email">home.keeper@home.keeper.fr</p>
+
+                    <p class="tel">0103030303</p>
                 </p>
             </div>
             <div class="left">
-                <p class="oui">Home Keeper : </p></br>
-                <p class="non">Une solution pour vous faire
+                <p class="description">Une solution pour vous faire
                     <br>
                     économiser de l'argent et
                     <br>

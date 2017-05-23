@@ -21,5 +21,6 @@
         <img class="oups" src="<?php echo $GLOBALS['server_root']?>/ressources/img/404.jpg"/>
     </div>
 </div>
+<?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
 </body>
 </html>

@@ -1,36 +1,30 @@
-.test,
-.left{
-    position: relative;
-    float : left;
-    width: 50%;
+.top{
+    background: #222222;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
     color: white;
     border:none;
-
 }
 
-.top{
-    overflow: auto;
-    background: #222222;
-    height: 140px;
+.left{
+    position: relative;
+    right: 2.5%;
 }
 
-.oui{
-    margin-top: 25px;
-    margin-bottom: 5px;
-}
-
-.non{
-    margin-top: 0%;
-}
-
-h3{
-    margin-left: 3%;
+.nom{
+    margin-left: 17.5%;
     margin-bottom: 0.1%;
+    margin-top: 1%;
     font-size: 17px;
 }
 
-.lieu{
-    margin-left: 5%;
+.lieu,
+.email,
+.tel{
+    margin-left: 20%;
+    margin-bottom: 0.1%;
+    margin-top: 0.5%;
     font-size: 15px;
 }
 
@@ -45,4 +39,10 @@ h3{
 .copyright{
     margin-top: 1px;
     font-size: 14px;
+}
+ /* gg*/
+footer{
+
+    bottom: 0;
+    width: 100%;
 }
