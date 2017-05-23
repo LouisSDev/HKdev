@@ -145,5 +145,5 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
         <input class="btn" type="submit" value="Supprimer cet utilisateur" />
 
-
+        <?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
 </body>

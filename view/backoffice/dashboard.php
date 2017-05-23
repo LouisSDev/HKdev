@@ -21,7 +21,7 @@
     //nb de capteurs actifs
 
     //nb de capteurs supprimés
-
+    <?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
 </body>
 
 

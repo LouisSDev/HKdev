@@ -122,7 +122,7 @@
 </div>
 
 
-
+<?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
 </body>
-    <?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
+
 </html>
