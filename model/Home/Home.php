@@ -392,16 +392,17 @@ class Home extends DatabaseEntity
                     (
                         !$this -> hasHomes
                         && $this -> user != null
+                        && $this -> address != null
+                        && $this -> city != null
+                        && $this -> country != null
                     )
                 )
-            ){
-                if(!$this -> hasHomes){
-                    $this -> address = null;
-                    $this -> city = null;
-                    $this -> country = null;
-                }
+            )
+            {
+
                 return true;
-            }else{
+            }
+            else{
                 return false;
             }
         }
