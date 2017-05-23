@@ -69,15 +69,16 @@ $users = $GLOBALS['view']['users'];
         <label class="text"> Sélectionnez la maison à supprimer :</label><br>
         <select name="home">
             <?php
-            /** @var  Home $home*/
-            foreach ($homes as $home) {
+
+            /** @var  Hm $hm*/
+            foreach ($home as $hm) {
 
                 echo '<option label="" value="'
-                    . $home -> getId() . '">'
-                    . $home -> getName() . ' '
-                    . $home -> getAddress() . ' '
-                    . $home -> getCity(). ' '
-                    . $home -> getCountry()
+                    . $hm -> getId() . '">'
+                    . $hm -> getName() . ' '
+                    . $hm -> getAddress() . ' '
+                    . $hm -> getCity(). ' '
+                    . $hm -> getCountry()
                     . '</option>';
 
             }

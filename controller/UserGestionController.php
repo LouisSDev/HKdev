@@ -124,9 +124,29 @@ class UserGestionController  extends AdminController
 
     }
 
-    public function deleteHome()
+    public function deleteHome($home)
     {
+        if(!empty($_POST['home']))
+        {
 
+            /** @var HomeUser $homeUser */
+            $homeUser = null;
+
+            /**@var HomeUser $stp */
+            foreach ($home as $stp) {
+                if ($stp->getId() === $_POST['home']) {
+                    $homeUser = $stp;
+                    break;
+                }
+            }
+
+                //if ($homeUser->delete($this->db)) {
+
+                  //  $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été supprimé";
+                //} else {
+                  //  $this->args['error_message'] = "Les données entrées ne sont pas valides";
+                //}
+        }
 
     }
 
