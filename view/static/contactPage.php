@@ -62,7 +62,6 @@
         $firstName = 'Hello!';
         if(isset($GLOBALS['view']['connected']) && $GLOBALS['view']['connected']) {
 
-            /** @var User $user */
             $firstName = $GLOBALS['view']['user'] -> getFirstName();
         }
         ?>

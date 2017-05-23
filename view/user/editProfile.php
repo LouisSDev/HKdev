@@ -24,7 +24,7 @@
 <div class="container">
         <h2 id="infoTitle">Editer mes infos personnelles <i class="fa fa-chevron-down" aria-hidden="true"></i></h2>
         <div class="infoPers">
-            <div class="form">
+            <div class="hk-form">
                 <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/edit'?>">
                     <input class="box" type="text" placeholder="Nom" size="30" name="firstName"><br/>
                     <input class="box" type="text" placeholder="Prénom" size="30" name="lastName"><br/>
@@ -36,7 +36,7 @@
         <br>
         <h2 id="mailTitle">Editer mon email <i class="fa fa-chevron-down" id="email" aria-hidden="true"></i></h2>
         <div class="mail">
-            <div class="form">
+            <div class="hk-form">
                 <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/edit'?>">
                     <input class="box" type="password" placeholder=" Mot de passe" size="30" name="password"><br/>
                     <input class="box" type="email" placeholder="Adresse mail actuelle" size="30" name="newEmail"><br/>
@@ -49,7 +49,7 @@
         <br>
         <h2 id="mdpTitle">Editer mon mot de passe <i class="fa fa-chevron-down" aria-hidden="true"></i></h2>
         <div class="mdp">
-            <div class="form">
+            <div class="hk-form">
                 <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/edit'?>">
                     <input class="box" type="password" placeholder="Ancien mot de passe" size="30" name="oldPassword"><br/>
                     <input class="box" type="password" placeholder="Nouveau mot de passe" size="30" name="newPassword"><br/>

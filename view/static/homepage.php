@@ -9,7 +9,6 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/connection.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/modal.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/form.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/sensor.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/86ed160d29.js"></script>
@@ -65,17 +64,17 @@
                     <div class="form_content">
                         <h1>Vous êtes intéressé ?</h1>
                         <h1>Demander un devis !</h1>
-                        <div class="form">
+                        <div class="hk-form">
                             <form method="post" enctype="multipart/form-data">
-                                <div class="rows">
-                                    <div class="col1">
+                                <div class="hk-rows">
+                                    <div class="hk-col1">
                                         <input type="text" name="firstName" placeholder="Nom" required/>
                                         <input type="text" name="lastName" placeholder="Prénom" required/>
                                         <input type="text" name="country" placeholder="Pays" required/>
                                         <input type="text" name="city" placeholder="Ville" required/>
                                         <input type="text" name="address" placeholder="Adresse" required/>
                                     </div>
-                                    <div class="col2">
+                                    <div class="hk-col2">
                                         <input type="email" name="mail" placeholder="Adresse mail" required/>
                                         <input type="text" name="cellPhoneNumber" placeholder="Numéro de téléphone"
                                                required/>
@@ -84,7 +83,7 @@
                                                placeholder="Répétez votre mot de passe" required/>
                                     </div>
                                 </div>
-                                <input type="file" name="quote"/>
+                                <input id="upload-quote" type="file" name="quote"/>
                                 <input class="button" type="submit" value="Envoyer"/>
                             </form>
                         </div>
