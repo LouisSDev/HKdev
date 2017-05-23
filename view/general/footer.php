@@ -8,8 +8,7 @@
                 <h3 class="nom">Home Keeper :</h3>
                 <p class="lieu"> 28 rue Notre Dame des Champs,
                     75006 Paris</p>
-
-                    <p class="mail">home.keeper@home.keeper.fr</p>
+                    <p class="email">home.keeper@home.keeper.fr</p>
 
                     <p class="tel">0103030303</p>
                 </p>
