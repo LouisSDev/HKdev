@@ -438,6 +438,8 @@ class BackOfficeController extends AdminStaticController
             $this->args['success_message'] = "Félicitation l'effecteur sélectionné a bien été ajouté";
         } else {
             $this->args['error_message'] = "Les données entrées ne sont pas valides";
+            $this->args['errors'] = $effectorType->getErrorMessage();
+
         }
 
     }
@@ -455,7 +457,6 @@ class BackOfficeController extends AdminStaticController
 
             /**@var EffectorType $etp*/
             foreach ($effectorTypes as $etp) {
-                Utils::addWarning($etp->getId()  . '   ' . $_POST['effectorTypeId'] );
                 if ($etp->getId() == $_POST['effectorTypeId']) {
                     $effectorType = $etp;
                 }

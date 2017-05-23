@@ -38,4 +38,13 @@ class SensorValueRepository extends Repository
         return $this->getResultantObjects( $getValues);
 
     }
+
+    public function deleteValuesFromSensors($id)
+    {
+        $request = $db->prepare('DELETE FROM ' . self::OBJECT_CLASS_NAME . ' WHERE sensor = :id');
+        $request ->bindParam(':id', $this->$id, PDO::PARAM_INT);
+        $request->execute();
+        $request->closeCursor();
+        return $this;
+    }
 }
