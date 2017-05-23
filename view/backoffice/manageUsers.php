@@ -65,24 +65,7 @@ $users = $GLOBALS['view']['users'];
 <div class="delete">
     <h1>Supprmier une maison à un utilisateur</h1>
     <form method="post">
-        <label class="text"> Sélectionnez l'utilisateur :</label><br>
-        <input type="hidden" name="submittedForm" value="DELETE_HOME"/>
-        <select name="user">
-            <?php
-            /** @var  User $user*/
-            foreach ($users as $user) {
 
-                echo '<option label="" value="'
-                    . $user -> getId() . '">'
-                    . $user -> getFirstName() . ' '
-                    . $user -> getLastName()
-                    . '</option>';
-
-            }
-            ?>
-        </select>
-        <br>
-        <br>
         <label class="text"> Sélectionnez la maison à supprimer :</label><br>
         <select name="home">
             <?php
@@ -90,6 +73,8 @@ $users = $GLOBALS['view']['users'];
             foreach ($homes as $home) {
 
                 echo '<option label="" value="'
+                    . $home -> getId() . '">'
+                    . $home -> getName() . ' '
                     . $home -> getAddress() . ' '
                     . $home -> getCity(). ' '
                     . $home -> getCountry()

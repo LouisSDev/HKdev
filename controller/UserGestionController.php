@@ -85,11 +85,32 @@ class UserGestionController  extends AdminController
                     }else{
                         $this->args['error_message'] = "Les données entrées ne sont pas valides !";
                     }
-                }else{
+                }if($_POST['homeType'] === 'building'){
+
+                    /**  @var User $userHome */
+                    $userHome =null;
+                    /** @var User $user */
+                    foreach ($users as $user){
+                        if($user ->getId() === $_POST['selectUser']){
+                            $userHome = $user;
+                        }
+                    }
+
                     $home -> setHasHomes(true);
+                    $home -> setUser($userHome);
+                    $home -> setName($_POST['name']);
+                    $home -> setAddress($_POST['address']);
+                    $home -> setCity($_POST['city']);
+                    $home -> setCountry($_POST['country']);
+
+                    if($home -> save($this->db)){
+
+                        $this->args['success_message'] = "Félicitation l'immeuble a bien été ajouté";
+                    }else{
+                        $this->args['error_message'] = "Les données entrées ne sont pas valides !";
+                    }
+
                 }
-
-
 
             }
             else{
