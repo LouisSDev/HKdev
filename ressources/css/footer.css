@@ -1,26 +1,15 @@
-.test,
-.left{
-    position: relative;
-    float : left;
-    width: 50%;
-    color: white;
-    border:none;
-
-}
-
 .top{
     background: #222222;
     height: 100px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    border:none;
 }
 
-.oui{
-    margin-top: 25px;
-    margin-bottom: 1px;
-}
-.description{
+.left{
     position: relative;
-    top: calc(50% - 56px);
-    left: calc(843px - 60%) ;
+    right: 2.5%;
 }
 
 .nom{
@@ -31,7 +20,7 @@
 }
 
 .lieu,
-.mail,
+.email,
 .tel{
     margin-left: 20%;
     margin-bottom: 0.1%;
@@ -51,6 +40,8 @@
     margin-top: 1px;
     font-size: 14px;
 }
-.footer{
-    margin-top: 4%;
+
+footer{
+    bottom: 0;
+    width: 100%;
 }
