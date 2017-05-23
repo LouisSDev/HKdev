@@ -228,8 +228,8 @@ class BackOfficeController extends AdminStaticController
 
                     $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été supprimé";
                 } else {
-                    $this->args['error_message'] = "Les données entrées ne sont pas valides";
-                    $this->args['errors'] = $sensorType->getErrorMessage();
+                    //$this->args['error_message'] = "Les données entrées ne sont pas valides";
+                    //$this->args['errors'] = $sensorType->getErrorMessage();
                 }
             } else {
                 $this->args['error_message'] = "Les données entrées ne sont pas valides";

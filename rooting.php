@@ -105,36 +105,6 @@ switch($globalPath){
         }
 
         break;
-    case 'admin':
-        if(isset($path[3])) {
-            switch ($path[3]) {
-                case 'users' :
-                    //TODO
-                    break;
-                case 'products' :
-                    $backOfficeController = new BackOfficeController($db);
-                    $backOfficeController -> manageProducts();
-                    break;
-                case 'quotes' :
-                    $backOfficeController = new BackOfficeController($db);
-                    $backOfficeController -> quoteValidation();
-                    break;
-                case 'dashboard' :
-                    $backOfficeController = new BackOfficeController($db);
-                    $backOfficeController -> getAdminDashboard();
-                    break;
-                default :
-                    $staticController = new StaticController();
-                    $staticController -> notFound();
-            }
-        }else{
-            $backOfficeController = new BackOfficeController($db);
-            $backOfficeController -> getAdminDashboard();
-            break;
-        }
-        break;
-
-
     case 'api':
         if(isset($path[3])) {
             switch($path[3]){
@@ -214,6 +184,37 @@ switch($globalPath){
             exit();
         }
         break;
+
+    case 'admin':
+        if(isset($path[3])) {
+            switch ($path[3]) {
+                case 'user' :
+                    $userGestionController = new UserGestionController($db);
+                    $userGestionController -> manageHomeUsers();
+                    break;
+                case 'products' :
+                    $backOfficeController = new BackOfficeController($db);
+                    $backOfficeController -> manageProducts();
+                    break;
+                case 'quotes' :
+                    $backOfficeController = new BackOfficeController($db);
+                    $backOfficeController -> quoteValidation();
+                    break;
+                case 'dashboard' :
+                    $backOfficeController = new BackOfficeController($db);
+                    $backOfficeController -> getAdminDashboard();
+                    break;
+                default :
+                    $staticController = new StaticController();
+                    $staticController -> notFound();
+            }
+        }else{
+            $backOfficeController = new BackOfficeController($db);
+            $backOfficeController -> getAdminDashboard();
+            break;
+        }
+        break;
+
 
     // TODO To delete!!!
     case 'lol':
