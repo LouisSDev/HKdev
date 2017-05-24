@@ -67,6 +67,7 @@ $users = $GLOBALS['view']['users'];
     <form method="post">
 
         <label class="text"> Sélectionnez la maison à supprimer :</label><br>
+        <input type="hidden" name="submittedForm" value="DELETE_HOME"/>
         <select name="home">
             <?php
 

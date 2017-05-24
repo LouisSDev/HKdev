@@ -156,6 +156,7 @@ class UserGestionController  extends AdminStaticController
         foreach ($home->getRooms() as $rm){
             $this -> deleteRoom($rm);
         }
+
         $home->delete($this->db);
     }
 
