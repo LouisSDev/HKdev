@@ -140,14 +140,23 @@ class UserGestionController  extends AdminController
                 }
             }
 
-                //if ($homeUser->delete($this->db)) {
+                if ($homeUser->delete($this->db)) {
 
-                  //  $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été supprimé";
-                //} else {
-                  //  $this->args['error_message'] = "Les données entrées ne sont pas valides";
-                //}
+                  $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été supprimé";
+                } else {
+                  $this->args['error_message'] = "Les données entrées ne sont pas valides";
+                }
         }
 
+    }
+
+    protected function removeHome(Home $home){
+
+        /**@var Room $rm */
+        foreach ($home->getRooms() as $rm){
+            removeRoom($rm);
+        }
+        $home->delete($this->db);
     }
 
 }
