@@ -42,7 +42,7 @@
     margin-bottom: 30px;
 }
 
-.hk-form input[type="text"]{
+.hk-form input[type="text"], .hk-form input[type="number"]{
     text-align: left;
     padding : 5px 5px 5px 5px;
     width:auto;
