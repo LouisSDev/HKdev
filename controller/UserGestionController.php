@@ -6,7 +6,7 @@
  * Date: 22/05/2017
  * Time: 10:04
  */
-class UserGestionController  extends AdminController
+class UserGestionController  extends AdminStaticController
 {
     public function manageUsers()
     {
@@ -34,7 +34,7 @@ class UserGestionController  extends AdminController
                         $this -> addHome($users);
                         break;
                     case 'DELETE_HOME' :
-                        $this -> deleteHome($home);
+                        $this -> removeHome($home);
                         break;
                     default:
                         $this -> generateView('static/404.php', '404');
@@ -124,7 +124,7 @@ class UserGestionController  extends AdminController
 
     }
 
-    public function deleteHome($home)
+    public function removeHome($home)
     {
         if(!empty($_POST['home']))
         {
@@ -140,14 +140,23 @@ class UserGestionController  extends AdminController
                 }
             }
 
-                //if ($homeUser->delete($this->db)) {
+                if ($homeUser->delete($this->db)) {
 
-                  //  $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été supprimé";
-                //} else {
-                  //  $this->args['error_message'] = "Les données entrées ne sont pas valides";
-                //}
+                  $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été supprimé";
+                } else {
+                  $this->args['error_message'] = "Les données entrées ne sont pas valides";
+                }
         }
 
+    }
+
+    protected function deleteHome(Home $home){
+
+        /**@var Room $rm */
+        foreach ($home->getRooms() as $rm){
+            $this -> deleteRoom($rm);
+        }
+        $home->delete($this->db);
     }
 
 }
