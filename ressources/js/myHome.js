@@ -16,15 +16,6 @@ $(document).ready(function () {
         $('.bedroom,.kitchen,.bath').hide("slow");
         $('.living').slideToggle();
     });
-
-    $('.bath > div').click(function () {
-        var array = $('.bath > div');
-        for(i=0;i<array.length;i++){
-            var current = array[i];
-                $("."+$('current').attr("id")).slideToggle("slow");
-            }
-    });
-
 });
 
 

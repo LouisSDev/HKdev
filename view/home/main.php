@@ -81,6 +81,5 @@ $home = $GLOBALS['view']['home'];
         }
         ?>
     </div>
-<?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
 </body>
 </html>

@@ -83,14 +83,13 @@
     font-style: normal;
     width: 100%;
     margin-bottom: 10px;
-    cursor: pointer;
 }
 
 .hk-form input[type="submit"]
 {
     background-color: #1abc9c;
     color:#fff;
-    padding: 15px 39px 15px 39px;
+    cursor: pointer;
 }
 
 .hk-form input[type="submit"]:hover
