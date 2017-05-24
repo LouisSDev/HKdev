@@ -16,14 +16,14 @@ include_once ($GLOBALS['root_dir'] . "/view/general/adminHeader.php");
 include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
 
-$home = $GLOBALS['view']['home'];
-$room = $GLOBALS['view']['room'];
+$homes = $GLOBALS['view']['homes'];
+$rooms = $GLOBALS['view']['rooms'];
 $users = $GLOBALS['view']['users'];
 
 
 ?>
 
-    <div class="select">
+    <div class="addHome">
         <h1>Ajouter une maison à un utilisateur</h1>
         <form method="post">
             <label class="text"> Sélectionnez l'utilisateur :</label><br>
@@ -62,16 +62,17 @@ $users = $GLOBALS['view']['users'];
     </div>
 
 
-<div class="delete">
+<div class="deleteHome">
     <h1>Supprmier une maison à un utilisateur</h1>
     <form method="post">
 
         <label class="text"> Sélectionnez la maison à supprimer :</label><br>
+        <input type="hidden" name="submittedForm" value="DELETE_HOME"/>
         <select name="home">
             <?php
 
-            /** @var  Hm $hm*/
-            foreach ($home as $hm) {
+            /** @var  Home $hm*/
+            foreach ($homes as $hm) {
 
                 echo '<option label="" value="'
                     . $hm -> getId() . '">'
@@ -79,6 +80,35 @@ $users = $GLOBALS['view']['users'];
                     . $hm -> getAddress() . ' '
                     . $hm -> getCity(). ' '
                     . $hm -> getCountry()
+                    . '</option>';
+
+            }
+            ?>
+        </select><br>
+
+
+        <input class="btn" type="submit" value="Supprimer" />
+
+
+    </form>
+</div>
+
+<div class="deleteUser">
+    <h1>Supprmier un utilisateur</h1>
+    <form method="post">
+
+        <label class="text"> Sélectionnez l'utilisateur :</label><br>
+        <input type="hidden" name="submittedForm" value="DELETE_USER"/>
+        <select name="deleteUser">
+            <?php
+
+            /** @var  Home $hm*/
+            foreach ($users as $user) {
+
+                echo '<option label="" value="'
+                    . $user -> getId() . '">'
+                    . $user -> getFirstName() . ' '
+                    . $user -> getLastName()
                     . '</option>';
 
             }
