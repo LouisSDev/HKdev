@@ -68,6 +68,9 @@ ul.submenu > a{
 .logo{
     margin-right: 100px;
     width: 75px;
+}
 
+li{
+    height: 80px;
 }
 
