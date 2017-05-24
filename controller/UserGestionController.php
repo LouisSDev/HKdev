@@ -6,7 +6,7 @@
  * Date: 22/05/2017
  * Time: 10:04
  */
-class UserGestionController  extends AdminController
+class UserGestionController  extends AdminStaticController
 {
     public function manageUsers()
     {
@@ -19,12 +19,12 @@ class UserGestionController  extends AdminController
         $roomRepository = $this -> getRoomRepository();
         $userRepository = $this -> getUserRepository();
 
-        $home =  $homeRepository -> getAll();
-        $this -> args['home'] = $home ;
+        $homes =  $homeRepository -> getAll();
+        $this -> args['homes'] = $homes ;
         $users = $userRepository ->getAll();
         $this ->args['users'] = $users;
-        $room =  $roomRepository -> getAll();
-        $this -> args['room'] = $room ;
+        $rooms =  $roomRepository -> getAll();
+        $this -> args['rooms'] = $rooms ;
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             if(!empty($_POST['submittedForm'])){
@@ -34,7 +34,10 @@ class UserGestionController  extends AdminController
                         $this -> addHome($users);
                         break;
                     case 'DELETE_HOME' :
-                        $this -> deleteHome($home);
+                        $this -> removeHome($homes);
+                        break;
+                    case 'DELETE_USER' :
+                        $this -> removeUser($users);
                         break;
                     default:
                         $this -> generateView('static/404.php', '404');
@@ -124,30 +127,81 @@ class UserGestionController  extends AdminController
 
     }
 
-    public function deleteHome($home)
+    public function removeHome($homes)
     {
         if(!empty($_POST['home']))
         {
 
-            /** @var HomeUser $homeUser */
+            /** @var Home $homeUser */
             $homeUser = null;
 
-            /**@var HomeUser $stp */
-            foreach ($home as $stp) {
-                if ($stp->getId() === $_POST['home']) {
-                    $homeUser = $stp;
+            /**@var Home $hm */
+            foreach ($homes as $hm) {
+                if ($hm->getId() === $_POST['home']) {
+                    $homeUser = $hm;
                     break;
                 }
             }
 
-                //if ($homeUser->delete($this->db)) {
-
-                  //  $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été supprimé";
-                //} else {
-                  //  $this->args['error_message'] = "Les données entrées ne sont pas valides";
-                //}
+                if ($homeUser) {
+                    $this -> deleteHome($homeUser);
+                  $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été supprimé";
+                } else {
+                  $this->args['error_message'] = "Les données entrées ne sont pas valides";
+                }
         }
 
     }
 
+    protected function deleteHome(Home $home){
+
+        /**@var Room $rm */
+        foreach ($home->getRooms() as $rm){
+            $this -> deleteRoom($rm);
+        }
+
+        $home->delete($this->db);
+    }
+
+    protected function deleteBuilding($building){
+
+        /**@var Home $hm */
+        foreach ($building->getHomes() as $hm){
+            $this -> deleteHome($hm);
+        }
+
+        $building->delete($this->db);
+    }
+
+    public function removeUser($users)
+    {
+        if(!empty($_POST['deleteUser']))
+        {
+
+            /** @var User $deletedUser */
+            $deletedUser = null;
+
+            /**@var User $user */
+            foreach ($users as $user) {
+                if ($user->getId() === $_POST['deleteUser']) {
+                    $deletedUser = $user;
+                    break;
+                }
+            }
+
+            if ($deletedUser) {
+
+                /**@var Home $hm */
+                foreach ($deletedUser->getHomes() as $hm){
+                    $this -> removeHome($hm);
+                }
+
+                $deletedUser->delete($this->db);
+
+                $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été supprimé";
+            } else {
+                $this->args['error_message'] = "Les données entrées ne sont pas valides";
+            }
+        }
+    }
 }

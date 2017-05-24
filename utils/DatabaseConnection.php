@@ -20,13 +20,13 @@ class DatabaseConnection
         $dbidentifier = $dbConfig->database_user;
 
         $dbpw = $dbConfig->database_password;
+        $GLOBALS['confSwift'] = JsonUtils::decodeJsonFileOrFail('config/config.json');
 
         try {
             $this->db = new PDO($dbhost, $dbidentifier, $dbpw ,array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
             $GLOBALS['salt'] = $config -> password_salt;
             $GLOBALS['server_root'] = $config -> server_root;
-
-            $this->createRepositories();
+            $this -> createRepositories();
         }
         catch (Exception $e){
 
@@ -63,8 +63,6 @@ class DatabaseConnection
         $GLOBALS['repositories']['sensor'] = new SensorRepository($this->db, $user);
         $GLOBALS['repositories']['sensorType'] = new SensorTypeRepository($this->db, $user);
         $GLOBALS['repositories']['sensorValue'] = new SensorValueRepository($this->db, $user);
+
     }
-
-
-
 }
