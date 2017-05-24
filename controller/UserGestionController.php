@@ -36,6 +36,9 @@ class UserGestionController  extends AdminStaticController
                     case 'DELETE_HOME' :
                         $this -> removeHome($homes);
                         break;
+                    case 'DELETE_USER' :
+                        $this -> removeUser($users);
+                        break;
                     default:
                         $this -> generateView('static/404.php', '404');
 
@@ -160,4 +163,45 @@ class UserGestionController  extends AdminStaticController
         $home->delete($this->db);
     }
 
+    protected function deleteBuilding($building){
+
+        /**@var Home $hm */
+        foreach ($building->getHomes() as $hm){
+            $this -> deleteHome($hm);
+        }
+
+        $building->delete($this->db);
+    }
+
+    public function removeUser($users)
+    {
+        if(!empty($_POST['deleteUser']))
+        {
+
+            /** @var User $deletedUser */
+            $deletedUser = null;
+
+            /**@var User $user */
+            foreach ($users as $user) {
+                if ($user->getId() === $_POST['deleteUser']) {
+                    $deletedUser = $user;
+                    break;
+                }
+            }
+
+            if ($deletedUser) {
+
+                /**@var Home $hm */
+                foreach ($deletedUser->getHomes() as $hm){
+                    $this -> removeHome($hm);
+                }
+
+                $deletedUser->delete($this->db);
+
+                $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été supprimé";
+            } else {
+                $this->args['error_message'] = "Les données entrées ne sont pas valides";
+            }
+        }
+    }
 }

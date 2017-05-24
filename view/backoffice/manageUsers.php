@@ -23,7 +23,7 @@ $users = $GLOBALS['view']['users'];
 
 ?>
 
-    <div class="select">
+    <div class="addHome">
         <h1>Ajouter une maison à un utilisateur</h1>
         <form method="post">
             <label class="text"> Sélectionnez l'utilisateur :</label><br>
@@ -62,7 +62,7 @@ $users = $GLOBALS['view']['users'];
     </div>
 
 
-<div class="delete">
+<div class="deleteHome">
     <h1>Supprmier une maison à un utilisateur</h1>
     <form method="post">
 
@@ -80,6 +80,35 @@ $users = $GLOBALS['view']['users'];
                     . $hm -> getAddress() . ' '
                     . $hm -> getCity(). ' '
                     . $hm -> getCountry()
+                    . '</option>';
+
+            }
+            ?>
+        </select><br>
+
+
+        <input class="btn" type="submit" value="Supprimer" />
+
+
+    </form>
+</div>
+
+<div class="deleteUser">
+    <h1>Supprmier un utilisateur</h1>
+    <form method="post">
+
+        <label class="text"> Sélectionnez l'utilisateur :</label><br>
+        <input type="hidden" name="submittedForm" value="DELETE_USER"/>
+        <select name="deleteUser">
+            <?php
+
+            /** @var  Home $hm*/
+            foreach ($users as $user) {
+
+                echo '<option label="" value="'
+                    . $user -> getId() . '">'
+                    . $user -> getFirstName() . ' '
+                    . $user -> getLastName()
                     . '</option>';
 
             }
