@@ -19,12 +19,12 @@ class UserGestionController  extends AdminStaticController
         $roomRepository = $this -> getRoomRepository();
         $userRepository = $this -> getUserRepository();
 
-        $home =  $homeRepository -> getAll();
-        $this -> args['home'] = $home ;
+        $homes =  $homeRepository -> getAll();
+        $this -> args['homes'] = $homes ;
         $users = $userRepository ->getAll();
         $this ->args['users'] = $users;
-        $room =  $roomRepository -> getAll();
-        $this -> args['room'] = $room ;
+        $rooms =  $roomRepository -> getAll();
+        $this -> args['rooms'] = $rooms ;
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             if(!empty($_POST['submittedForm'])){
@@ -34,7 +34,7 @@ class UserGestionController  extends AdminStaticController
                         $this -> addHome($users);
                         break;
                     case 'DELETE_HOME' :
-                        $this -> removeHome($home);
+                        $this -> removeHome($homes);
                         break;
                     default:
                         $this -> generateView('static/404.php', '404');
@@ -124,24 +124,24 @@ class UserGestionController  extends AdminStaticController
 
     }
 
-    public function removeHome($home)
+    public function removeHome($homes)
     {
         if(!empty($_POST['home']))
         {
 
-            /** @var HomeUser $homeUser */
+            /** @var Home $homeUser */
             $homeUser = null;
 
-            /**@var HomeUser $stp */
-            foreach ($home as $stp) {
-                if ($stp->getId() === $_POST['home']) {
-                    $homeUser = $stp;
+            /**@var Home $hm */
+            foreach ($homes as $hm) {
+                if ($hm->getId() === $_POST['home']) {
+                    $homeUser = $hm;
                     break;
                 }
             }
 
-                if ($homeUser->delete($this->db)) {
-
+                if ($homeUser) {
+                    $this -> deleteHome($homeUser);
                   $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été supprimé";
                 } else {
                   $this->args['error_message'] = "Les données entrées ne sont pas valides";

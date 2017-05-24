@@ -16,8 +16,8 @@ include_once ($GLOBALS['root_dir'] . "/view/general/adminHeader.php");
 include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
 
-$home = $GLOBALS['view']['home'];
-$room = $GLOBALS['view']['room'];
+$homes = $GLOBALS['view']['homes'];
+$rooms = $GLOBALS['view']['rooms'];
 $users = $GLOBALS['view']['users'];
 
 
@@ -70,8 +70,8 @@ $users = $GLOBALS['view']['users'];
         <select name="home">
             <?php
 
-            /** @var  Hm $hm*/
-            foreach ($home as $hm) {
+            /** @var  Home $hm*/
+            foreach ($homes as $hm) {
 
                 echo '<option label="" value="'
                     . $hm -> getId() . '">'
