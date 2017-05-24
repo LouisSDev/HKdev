@@ -42,6 +42,11 @@
     margin-bottom: 30px;
 }
 
+.hk-form input[type="text"]{
+    text-align: left;
+    padding : 5px 5px 5px 5px;
+    width:auto;
+}
 
 
 .hk-form input:focus,
@@ -50,6 +55,22 @@
     background: #d2d9dd;
 }
 
+.form-notice-message{
+    margin-bottom: 2px;
+    padding-bottom: 2px;
+    padding-left: 2px;
+    padding-right: 2px;
+    padding-top: 2px;
+    margin-left:2%;
+    margin-right:2%;
+    border-top-style: none;
+    border-bottom-style: none;
+}
+
+.form-notice-message{
+    font-size:15px;
+    padding-bottom:8px;
+}
 
 .hk-form select{
     -webkit-appearance: menulist-button;
@@ -89,6 +110,7 @@
 {
     background-color: #1abc9c;
     color:#fff;
+    padding: 15px 39px 15px 39px;
     cursor: pointer;
 }
 

@@ -32,7 +32,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
 
 
 <br><br><br>
-    <div class="hello information-message">Bonjour <?php echo $user -> getFirstName() ?>
+    <div class="notice-message information-message">Bonjour <?php echo $user -> getFirstName() ?>
         <br>
         Avez-vous passé une bonne journée?
         <br>

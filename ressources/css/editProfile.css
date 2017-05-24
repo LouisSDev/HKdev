@@ -1,8 +1,8 @@
 .mail,.infoPers,.mdp{
     display: none;
-    width: 45%;
+    width: 50%;
     position: relative;
-    left: 19%;  }
+    left: 25%;  }
 
 body{
     text-align: center

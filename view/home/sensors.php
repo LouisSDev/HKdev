@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/sensor.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/form.css">
     <?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>
 
 </head>
@@ -19,10 +20,10 @@
     include_once($GLOBALS['root_dir'] . '/view/general/error.php')
     ?>
 
-    <div class="ajouts">
-        <form method="post">
-            <h1>Ajouter des capteurs </h1>
-            <label class="text"> Sélectionnez votre capteur :</label><br>
+    <div class="user-add-sensor">
+        <form method="post" class="hk-form">
+            <h1  class="hk-title hk-text  sensors-text">Ajouter des capteurs </h1>
+            <label class="hk-text sensors-text"> Sélectionnez votre capteur :</label><br>
             <select name="sensorType">
                 <?php
                     foreach (SensorType::TYPE_ARRAY as $type){
@@ -45,14 +46,10 @@
 
                 ?>
             </select><br>
-            <!--
-            <label>Quantité</label><br>
-            <input type="number" step="1" value="1" min="0" max="20" name="quantity"/><br>
-            -->
-            <label class="text">Numéro de série du capteur</label><br>
+            <label class="hk-text sensors-text">Numéro de série du capteur</label><br>
             <input type="text" name="sensorId"/><br>
 
-            <label class="text">Sélectionnez la pièces ou vous souhaitez ajouter les capteurs :</label><br>
+            <label class="hk-text sensors-text">Sélectionnez la pièces ou vous souhaitez ajouter les capteurs :</label><br>
             <select name="room">
                 <option selected label="aucune" value="">Aucune</option>
                 <?php
@@ -74,20 +71,21 @@
                 ?>
             </select> <br>
 
-            <input class="btn" type="submit" value="Envoyer" />
-            <p class="text">Nous vous contacterons dans la semaine qui suit cet envoie</p>
+            <input class="hk-btn" type="submit" value="Envoyer" />
+            <div class="form-notice-message notice-message information-message">
+                <p class="form-notice-message">Nous vous contacterons dans la semaine qui suit cet envoi</p>
+            </div>
         </form>
     </div>
 
-    <div class="suppression">
+    <div class="user-delete-sensor">
         <?php $path =   explode( '/', $_SERVER['REQUEST_URI']);
         $endpointName = $path[count($path) - 1];
         $url = str_replace($endpointName, 'deleteSensor',$_SERVER['REQUEST_URI']);
         ?>
-        <h1>Supprimer des capteurs</h1>
-
-        <form method="post" action="<?php echo $url?>">
-            <label class="text">Sélectionnez votre capteur :</label><br>
+        <form method="post" action="<?php echo $url?>"  class="hk-form">
+            <h1  class="hk-title hk-text sensors-text">Supprimer des capteurs</h1>
+            <label class="hk-text hk-text sensors-text">Sélectionnez votre capteur :</label><br>
             <select name="sensorId">
                 <?php
                 foreach (SensorType::TYPE_ARRAY as $type){
@@ -111,11 +109,9 @@
                     echo '</optgroup>';
                 }
 
-
-
                 ?>
             </select><br>
-            <input class="btn" type="submit" value="Supprimer"/>
+            <input class="hk-btn" type="submit" value="Supprimer"/>
         </form>
 
     </div>
