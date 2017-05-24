@@ -7,7 +7,7 @@ use BernardoSecades\Json\Json;
  * Date: 16/05/2017
  * Time: 09:26
  */
-class BackOfficeController extends AdminStaticController
+class BackOfficeController extends AdminController
 {
 
     public function manageProducts(){
