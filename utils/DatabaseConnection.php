@@ -10,6 +10,8 @@ class DatabaseConnection
     public function __construct(){
         $config = JsonUtils::decodeJsonFileOrFail('config/config.json');
         $dbConfig = $config -> database;
+        $mailConfig = $config -> conf_swift;
+        $GLOBALS['confMail'] = $mailConfig;
 
         $dbhostname = $dbConfig->database_host;
 
@@ -20,7 +22,7 @@ class DatabaseConnection
         $dbidentifier = $dbConfig->database_user;
 
         $dbpw = $dbConfig->database_password;
-        $GLOBALS['confSwift'] = JsonUtils::decodeJsonFileOrFail('config/config.json');
+
 
         try {
             $this->db = new PDO($dbhost, $dbidentifier, $dbpw ,array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));

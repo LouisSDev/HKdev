@@ -19,11 +19,9 @@ abstract class Controller
     /** @var ApiResponse $apiResponse */
     protected $apiResponse = null;
 
-    /** @var $mailTransport Swift_SmtpTransport */
+
     private $mailTransport = null;
-    /**
-     * @var User $user
-     */
+
     protected  $user = null;
 
     /**
@@ -179,7 +177,7 @@ abstract class Controller
             $port = $confMail -> port;
             $username = $confMail -> username;
             $password = $confMail -> password;
-            $this -> mailTransport = new Swift_SmtpTransport($server,$port,'ssl');
+            $this -> mailTransport = Swift_SmtpTransport::newInstance($server,$port,"ssl");
             $this ->mailTransport -> setUsername($username);
             $this ->mailTransport -> setPassword($password);
             return $this->mailTransport;

@@ -44,8 +44,18 @@ class AdminStaticController extends AdminLoggingsFormController
         $room->delete($this->db);
     }
 
-    private function sendMail(){
-        
+    public function sendMail(){
+        $transport = $this->getMail();
+        $mailer = Swift_Mailer::newInstance($transport);
+        $message = Swift_Message::newInstance('Testing Swift Mail');
+        $message->setTo(['steimberg@hotmail.fr' => 'Louis Steimberg']);
+        $message ->setBody('HomeKeeper is the best company in the world !');
+        if($mailer->send($message) == 1){
+            echo 'send ok';
+        }
+        else {
+            echo 'send error';
+        }
     }
 
 }
