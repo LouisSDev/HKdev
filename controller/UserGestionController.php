@@ -39,6 +39,9 @@ class UserGestionController  extends AdminStaticController
                     case 'DELETE_USER' :
                         $this -> removeUser($users);
                         break;
+                    case 'DELETE_ROOM' :
+                        $this -> removeRoom($rooms);
+                        break;
                     default:
                         $this -> generateView('static/404.php', '404');
 
