@@ -97,7 +97,8 @@ $users = $GLOBALS['view']['users'];
 
 <div class="deleteRoom">
     <form method="POST" class="hk-form">
-        <p class="hk-title">Supprimer la pièce d'un utilisateur</p>
+        <p class="hk-title"> Supprimer la pièce d'un utilisateur</p>
+        <p class="hk-text">Supprimer la maison :</p>
         <input type="hidden" name="submittedForm" value="DELETE_ROOM"/>
         <select id="homeId">
             <?php
@@ -135,6 +136,30 @@ $users = $GLOBALS['view']['users'];
             }
             ?>
             <input class="btn" type="submit" value="Supprimer" />
+
+        </select><br>
+    </form>
+</div>
+
+<div class="addRoom">
+    <form method="POST" class="hk-form">
+        <p class="hk-title"> Ajouter une pièce</p>
+        <input type="hidden" name="submittedForm" value="ADD_ROOM">
+        <p class="hk-text">Sélectionnez un type de pièce :</p>
+        <select name="addRoom">
+            <?php
+
+            foreach (Room::TYPE_ARRAY as $type){
+                echo '<option label="" value="'
+                    . $type .'">'. $type
+                    . '</option>';
+
+            }
+
+            ?>
+            <input type="text" name="name" placeholder="Nom de la nouvelle pièce">
+
+            <input class="btn" type="submit" value="Ajouter" />
 
         </select><br>
     </form>
