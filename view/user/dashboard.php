@@ -3,8 +3,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     <title>Editer mon profil</title>
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
-    <link rel="stylesheet" href="<?php echo $GLOBALS['server_root']?>/ressources/css/chart.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/dashboard.css">
+    <link rel="stylesheet" href="<?php echo $GLOBALS['server_root']?>/ressources/css/general/chart.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/user/dashboard.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">

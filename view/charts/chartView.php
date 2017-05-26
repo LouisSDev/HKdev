@@ -5,7 +5,7 @@
     <title><?php echo $GLOBALS['view']['page_title']?></title>
 </head>
 
-<link rel="stylesheet" href="<?php echo $GLOBALS['server_root']?>/ressources/css/chart.css">
+<link rel="stylesheet" href="<?php echo $GLOBALS['server_root']?>/ressources/css/general/chart.css">
 
 <body>
 <svg width="960" height="500"></svg>

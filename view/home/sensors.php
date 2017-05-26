@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <title><?php echo $GLOBALS['view']['page_title']?></title>
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/form.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/general/form.css">
     <?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>
 
 </head>
