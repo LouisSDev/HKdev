@@ -8,6 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/86ed160d29.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/manageUsers.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/form.css">
 </head>
 
 <body>
@@ -26,9 +27,9 @@ $users = $GLOBALS['view']['users'];
 ?>
 
     <div class="addHome">
-        <h1>Ajouter une maison à un utilisateur</h1>
-        <form method="post">
-            <label class="text"> Sélectionnez l'utilisateur :</label><br>
+        <form method="post" class="hk-form">
+            <p class="hk-title">Ajouter une maison à un utilisateur</p>
+            <label class="hk-text"> Sélectionnez l'utilisateur :</label><br>
             <input type="hidden" name="submittedForm" value="ADD_HOME"/>
             <select name="selectUser">
                 <?php
@@ -65,10 +66,9 @@ $users = $GLOBALS['view']['users'];
 
 
 <div class="deleteHome">
-    <h1>Supprimer une maison à un utilisateur</h1>
-    <form method="post">
-
-        <label class="text"> Sélectionnez la maison à supprimer :</label><br>
+    <form method="post" class="hk-form">
+        <p class="hk-title">Supprimer la maison ou l'immeuble d'un utilisateur</p>
+        <label class="hk-text"> Sélectionnez la maison à supprimer :</label><br>
         <input type="hidden" name="submittedForm" value="DELETE_HOME"/>
         <select name="home">
             <?php
@@ -96,9 +96,8 @@ $users = $GLOBALS['view']['users'];
 </div>
 
 <div class="deleteRoom">
-    <h1>Supprimer un pièce</h1>
-    <form method="POST">
-        <label class="text">Sélectionnez une maison dans laquelle vous voulez supprimer une pièce :</label>
+    <form method="POST" class="hk-form">
+        <p class="hk-title">Supprimer la pièce d'un utilisateur</p>
         <input type="hidden" name="submittedForm" value="DELETE_ROOM"/>
         <select id="homeId">
             <?php
@@ -117,7 +116,7 @@ $users = $GLOBALS['view']['users'];
             }
             ?>
         </select><br>
-        <label class="text">Sélectionnez une pièce à supprimer :</label>
+        <p class="hk-text">Sélectionnez une pièce à supprimer :</p>
         <select id="roomId">
             <?php
             foreach (Room::TYPE_ARRAY as $type){
@@ -142,10 +141,9 @@ $users = $GLOBALS['view']['users'];
 </div>
 
 <div class="deleteUser">
-    <h1>Supprimer un utilisateur</h1>
-    <form method="post">
-
-        <label class="text"> Sélectionnez l'utilisateur :</label><br>
+    <form method="post" class="hk-form">
+        <p class="hk-title">Supprimer un utilisateur</p>
+        <label class="hk-text"> Sélectionnez l'utilisateur :</label><br>
         <input type="hidden" name="submittedForm" value="DELETE_USER"/>
         <select name="deleteUser">
             <?php

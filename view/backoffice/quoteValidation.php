@@ -2,9 +2,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Gérer les Capteurs et les Effecteurs</title>
-    <!--<link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/quoteValidation.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/quoteValidation.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">-->
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/form.css">
 
 </head>
 
@@ -52,8 +53,8 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
 </table>
 
-<form method="post">
-    <label class="text"> Sélectionnez le devis :</label><br>
+<form method="post" class="hk-form">
+    <label class="hk-text"> Sélectionnez le devis :</label><br>
     <select name="treatedUserId">
         <?php
 
@@ -75,8 +76,8 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 </form>
 
 
-<h1>Consultez les utilisateurs dont la demande a été prise en charge puis supprimez leur compte ou validez le</h1>
-<h2>Devis soumis : </h2>
+<p class="hk-title">Consultez les utilisateurs dont la demande a été prise en charge puis supprimez leur compte ou validez le</p>
+<p class="hk-title">Devis soumis : </p>
 <table class="user-display">
     <tr class="user-display-column">
         <th class="user-display-cell title-cell">Prénom</th>
@@ -101,9 +102,9 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
         echo '</tr>';
     }
     ?>
-
-    <form method="post">
-        <label class="text"> Sélectionnez le devis à valider:</label><br>
+</table>
+    <form method="post" class="hk-form">
+        <label class="hk-text"> Sélectionnez le devis à valider:</label><br>
         <select name="validatedUserId">
             <?php
 
@@ -124,8 +125,8 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
         <input class="btn" type="submit" value="Valider cet utilisateur" />
     </form>
 
-    <form method="post">
-        <label class="text"> Sélectionnez le devis à supprimer:</label><br>
+    <form method="post" class="hk-form">
+        <label class="hk-text"> Sélectionnez le devis à supprimer:</label><br>
         <select name="deletedUserId">
             <?php
 
@@ -144,7 +145,5 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
         </select><br>
 
         <input class="btn" type="submit" value="Supprimer cet utilisateur" />
-
-        <?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
 </body>
 </html>

@@ -34,7 +34,7 @@ $building = $GLOBALS['view']['building'];
 
 <?php include_once($GLOBALS['root_dir'] . '/view/general/error.php')  ?>
 
-<form class="hk-form" id="hk-form" method="post" >
+<form class="hk-form hk-form-centered" id="hk-form" method="post" >
 
     <h3> Attribuer de nouveaux identifiants</h3>
 

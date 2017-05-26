@@ -59,7 +59,8 @@
 .hk-form-centered input[type="number"],
 .hk-form-centered input[type="password"],
 .hk-form-centered input[type="email"],
-.hk-form-centered input[type="tel"]{
+.hk-form-centered input[type="tel"],
+.hk-form-centered select{
     text-align: center;
 }
 .hk-form input:focus,
