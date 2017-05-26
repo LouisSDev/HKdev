@@ -2,9 +2,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Gérer les Capteurs et les Effecteurs</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/quoteValidation.css">
+    <!--<link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/quoteValidation.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">-->
 
 </head>
 
@@ -147,3 +147,4 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
         <?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
 </body>
+</html>
