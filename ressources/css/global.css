@@ -140,3 +140,181 @@ body{
     margin-left:1.5%;
     margin-bottom: 3%;
 }
+
+
+
+.oups{
+    height:auto;
+    width:100%;
+}
+
+.not-found-body{
+    background-color: #F3E4BB;
+}
+
+
+.notFound{
+    text-align: center;
+    width:55%;
+    margin-left: 23%;
+    margin-top: 60px;
+}
+
+
+
+
+
+
+
+.logo{
+    width: 22%;
+    height: auto;
+    left: 0;
+    top: 5px;
+
+}
+/* HEADER */
+.header{
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 80px;
+    line-height: 80px;
+    background-color: #222222;
+    z-index: 999;
+}
+
+.menu{
+    text-align: right;
+}
+
+.menu a{
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+    text-decoration: none;
+    padding: 0 20px;
+    color: #FFF;
+    transition: all 0.1s ease 0.2s;
+}
+
+.menu a:hover{
+    color: #62bcda;
+    transition: all 0.3s ease 0.2s;
+}
+
+nav > ul{
+    list-style-type: none;
+    display: flex;
+    float: right;
+    margin: 0;
+    padding: 0;
+}
+/* Submenus */
+.submenu{
+    display: none;
+    list-style-type: none;
+    background-color: #222222;
+    padding-left: 0;
+}
+li:hover ul.submenu{
+    display: block;
+    position: absolute;
+}
+
+/* Line height modified for better design */
+ul.submenu > li{
+    line-height: 45px;
+    height: 45px;
+    border: 1px solid lightgray;
+}
+
+ul.submenu > a{
+    display: none;
+}
+
+.logo{
+    margin-right: 100px;
+    width: 75px;
+}
+
+li{
+    height: 80px;
+}
+
+
+
+/* Footer */
+
+.top{
+    background: #222222;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    border:none;
+}
+
+.left{
+    position: relative;
+    right: 2.5%;
+}
+
+.nom{
+    margin-left: 17.5%;
+    margin-bottom: 0.1%;
+    margin-top: 1%;
+    font-size: 17px;
+}
+
+.lieu,
+.email,
+.tel{
+    margin-left: 20%;
+    margin-bottom: 0.1%;
+    margin-top: 0.5%;
+    font-size: 15px;
+}
+
+.legal{
+    background: black;
+    padding : 0.75%;
+    color: white;
+    text-align: center;
+    height: 20px;
+}
+
+.copyright{
+    margin-top: 1px;
+    font-size: 14px;
+}
+/* gg*/
+footer{
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+
+#modal{
+    position: fixed;
+    height: 300px;
+    width: 200px;
+    z-index: 9999;
+    background-color: #f4f7f8;
+    border: 1px solid gray;
+    border-radius: 10px;
+    display: none;
+    padding: 20px;
+    text-align: center;
+}
+
+.close{
+    position: absolute;
+    top: -1.5%;
+    right: -2%;
+    cursor: pointer;
+    border-radius: 100%;
+    background-color: white;
+}

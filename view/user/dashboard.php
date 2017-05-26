@@ -3,8 +3,6 @@
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     <title>Editer mon profil</title>
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/modal.css">
     <link rel="stylesheet" href="<?php echo $GLOBALS['server_root']?>/ressources/css/chart.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/dashboard.css">
 

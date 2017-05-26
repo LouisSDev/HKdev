@@ -1,23 +1,18 @@
+
+
 .mail,.infoPers,.mdp{
     display: none;
     width: 50%;
     position: relative;
-    left: 25%;  }
-
-body{
-    text-align: center
+    left: 25%;
 }
-#infoTitle,#mdpTitle,#mailTitle{
+#infoTitle,#mdpTitle,#mailTitle {
     display: inline;
     cursor: pointer;
 }
 
-
-.form{
-    width: 45%;
-    position: relative;
-    left: 19%;
-    margin: 10px;
+body{
+    text-align: center
 }
 
 .container{

@@ -2,12 +2,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Gérer les Utilisateurs</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/chart/chartManageUsers.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/86ed160d29.js"></script>
-    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/manageUsers.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/form.css">
 </head>
 

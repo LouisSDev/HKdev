@@ -2,8 +2,6 @@
 <head>
     <meta charset="UTF-8">
     <title><?php echo $GLOBALS['view']['page_title']?></title>
-    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/sensor.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/form.css">
     <?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>
