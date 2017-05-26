@@ -4,8 +4,10 @@
     <title>Gérer les Utilisateurs</title>
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
+    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/chart/chartManageUsers.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/86ed160d29.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/manageUsers.css">
 </head>
 
 <body>
@@ -63,7 +65,7 @@ $users = $GLOBALS['view']['users'];
 
 
 <div class="deleteHome">
-    <h1>Supprmier une maison à un utilisateur</h1>
+    <h1>Supprimer une maison à un utilisateur</h1>
     <form method="post">
 
         <label class="text"> Sélectionnez la maison à supprimer :</label><br>
@@ -93,8 +95,54 @@ $users = $GLOBALS['view']['users'];
     </form>
 </div>
 
+<div class="deleteRoom">
+    <h1>Supprimer un pièce</h1>
+    <form method="POST">
+        <label class="text">Sélectionnez une maison dans laquelle vous voulez supprimer une pièce :</label>
+        <input type="hidden" name="submittedForm" value="DELETE_ROOM"/>
+        <select id="homeId">
+            <?php
+
+            /**
+             * @var Home $home
+             */
+            foreach ($homes as $home){
+
+                if(!$home->getHasHomes()){
+
+                    echo '<option label="" value="' . $home ->getId() . '" >'
+                        . $home -> getName() . ' - ' . $home -> getBuilding() -> getName()
+                        .'</option>';
+                }
+            }
+            ?>
+        </select><br>
+        <label class="text">Sélectionnez une pièce à supprimer :</label>
+        <select id="roomId">
+            <?php
+            foreach (Room::TYPE_ARRAY as $type){
+
+                echo '<optgroup label="'. $type .'">';
+
+                /** @var Room $room */
+                foreach ($rooms as $room){
+                    if ($room -> getType() === $type ) {
+                        echo '<option class="roomSelector" homeId="' . $room -> getHome() -> getId()
+                            . '" label="" value="' . $room -> getId() .'">'
+                            . $room -> getName() . '</option>';
+                    }
+                }
+                echo '</optgroup>';
+            }
+            ?>
+            <input class="btn" type="submit" value="Supprimer" />
+
+        </select><br>
+    </form>
+</div>
+
 <div class="deleteUser">
-    <h1>Supprmier un utilisateur</h1>
+    <h1>Supprimer un utilisateur</h1>
     <form method="post">
 
         <label class="text"> Sélectionnez l'utilisateur :</label><br>

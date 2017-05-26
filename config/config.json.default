@@ -11,7 +11,7 @@
 
     "conf_swift" : {
       "server" : "smtp.gmail.com",
-      "port" : "547",
+      "port" : "587",
       "username" : "hkdevelopper@gmail.com",
       "password" : "azertyazerty"
     }

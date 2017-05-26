@@ -179,11 +179,10 @@ abstract class Controller
             $port = $confMail -> port;
             $username = $confMail -> username;
             $password = $confMail -> password;
-            $this -> mailTransport = new Swift_SmtpTransport($server,$port);
-            $this ->mailTransport ->setUsername($username);
-            $this ->mailTransport ->setPassword($password);
+            $this -> mailTransport = new Swift_SmtpTransport($server,$port,'ssl');
+            $this ->mailTransport -> setUsername($username);
+            $this ->mailTransport -> setPassword($password);
             return $this->mailTransport;
-
         }
     }
 
