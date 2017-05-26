@@ -12,7 +12,7 @@
 
 </head>
 
-
+<body>
 <?php
 
  include_once ($GLOBALS['root_dir'] . "/view/general/header.php");
@@ -34,7 +34,7 @@ $building = $GLOBALS['view']['building'];
 
 <?php include_once($GLOBALS['root_dir'] . '/view/general/error.php')  ?>
 
-<form class="form" id="form" method="post" >
+<form class="hk-form" id="hk-form" method="post" >
 
     <h3> Attribuer de nouveaux identifiants</h3>
 
@@ -61,17 +61,15 @@ $building = $GLOBALS['view']['building'];
         ?>
     </select><br>
 
-    <div class="col2">
-        <input type ="password" name="adminPassword" placeholder="Votre mot de passe administrateur" ><br>
-        <input type="text" name="firstName" placeholder="Nom du nouveau locataire"><br>
-        <input type="text" name="lastName" placeholder="Prénom du nouveau locataire"><br>
-    </div>
-    <div class="col2" id="col1">
-        <input type="email" name="mail" placeholder="Email temporaire"><br>
-        <input type="password" name="password" placeholder="mot de passe temporaire"><br>
-        <input type="password" name="passwordConf" placeholder="Confirmation du mot de passe temporaire"><br>
+    <input type ="password" name="adminPassword" placeholder="Votre mot de passe administrateur" ><br>
+    <input type="text" name="firstName" placeholder="Nom du nouveau locataire"><br>
+    <input type="text" name="lastName" placeholder="Prénom du nouveau locataire"><br>
+    <input type="email" name="mail" placeholder="Email temporaire"><br>
+    <input type="password" name="password" placeholder="mot de passe temporaire"><br>
+    <input type="password" name="passwordConf" placeholder="Confirmation du mot de passe temporaire"><br>
 
-    </div><br>
+    <br>
+
 
     <input id="submit"  type="submit" value="Valider">
 

@@ -27,15 +27,35 @@ form{
     text-align: center;
 }
 
-input{
-    /*margin-top: 2%;*/
+.hk-text{
+    font-size: 15px;
+    text-align: center;
+    color: rgb(122, 135, 144);
+    font-family: Georgia,"Roboto",Times,serif;
 }
 
+.hk-title{
 
+    color: #000000;
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Roboto', sans-serif; /*Website font*/
+}
 
-
-
-
+.hk-notice{
+    font-size: 14px;
+    font-style: italic;
+    font-family: Georgia,"Roboto",Times,serif;
+}
+.notice-message{
+    background-color: rgb(217, 237, 247);
+    border-bottom-color: rgb(188, 232, 241);
+    border-left-color: rgb(188, 232, 241);
+    border-right-color: rgb(188, 232, 241);
+    border-top-color: rgb(188, 232, 241);
+    color: rgb(49, 112, 143);
+}
 
 
 .success-message{

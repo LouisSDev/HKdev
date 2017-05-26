@@ -44,4 +44,8 @@ class AdminStaticController extends AdminLoggingsFormController
         $room->delete($this->db);
     }
 
+    private function sendMail(){
+        
+    }
+
 }

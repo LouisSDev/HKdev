@@ -7,6 +7,7 @@
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/chart/chartManageUsers.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/86ed160d29.js"></script>
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/manageUsers.css">
 </head>
 
 <body>

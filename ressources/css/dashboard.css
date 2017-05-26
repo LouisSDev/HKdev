@@ -1,11 +1,3 @@
-.hello{
-    background-color: rgb(217, 237, 247);
-    border-bottom-color: rgb(188, 232, 241);
-    border-left-color: rgb(188, 232, 241);
-    border-right-color: rgb(188, 232, 241);
-    border-top-color: rgb(188, 232, 241);
-    color: rgb(49, 112, 143);
-}
 
 .drop{
     position: relative;

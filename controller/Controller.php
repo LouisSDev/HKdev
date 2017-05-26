@@ -19,6 +19,8 @@ abstract class Controller
     /** @var ApiResponse $apiResponse */
     protected $apiResponse = null;
 
+    /** @var $mailTransport Swift_SmtpTransport */
+    private $mailTransport = null;
     /**
      * @var User $user
      */
@@ -165,4 +167,24 @@ abstract class Controller
     {
         $this -> api = true;
     }
+
+    protected function getMail()
+    {
+        if($this -> mailTransport){
+            return $this -> mailTransport;
+        }
+        else{
+            $confMail = $GLOBALS['confMail'];
+            $server = $confMail -> server;
+            $port = $confMail -> port;
+            $username = $confMail -> username;
+            $password = $confMail -> password;
+            $this -> mailTransport = new Swift_SmtpTransport($server,$port,'ssl');
+            $this ->mailTransport -> setUsername($username);
+            $this ->mailTransport -> setPassword($password);
+            return $this->mailTransport;
+        }
+    }
+
+
 }

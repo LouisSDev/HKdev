@@ -5,6 +5,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/products.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/header.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/form.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/86ed160d29.js"></script>
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/editProfile.js"></script>
@@ -23,10 +24,10 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
 ?>
 
-<div class="sensorType">
+<div class="sensor-type">
     <h1 class="categorie">Les Capteurs<i class="fa fa-chevron-down" aria-hidden="true"></i></h1>
-    <div class="ajouts">
-        <form method="post">
+    <div class="add-sensor-type">
+        <form method="post" class="hk-form">
             <h2>Ajouter un nouveau capteur</h2>
             <label class="text"> Sélectionnez votre type de capteur :</label><br>
             <input type="hidden" name="submittedForm" value="ADD_SENSOR_TYPE"/>
@@ -44,14 +45,12 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
             <input type="number" name="minVal" placeholder="Valeur minimale">
             <input type="number" name="maxVal" placeholder="Valeur maximale"><br/>
             <input type="text" name="price" placeholder="Prix"><br/>
-
-
-            <input class="btn" type="submit" value="Ajouter" />
+            <input class="" type="submit" value="Ajouter" />
         </form>
     </div>
 
-    <div class="ajouts">
-        <form method="post">
+    <div class="add-sensors">
+        <form method="post" class="hk-form">
             <h2>Ajouter des capteurs dans le stock </h2>
             <label class="text"> Sélectionnez votre capteur :</label><br>
             <input type="hidden" name="submittedForm" value="ADD_SENSORS"/>
@@ -82,12 +81,12 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
             <input type="number" name="sensorNb" placeholder="0"><br/>
 
 
-            <input class="btn" type="submit" value="Ajouter" />
+            <input class="" type="submit" value="Ajouter" />
         </form>
     </div>
 
-    <div class="suppression">
-        <form method="post">
+    <div class="delete-sensor-type">
+        <form method="post" class="hk-form">
             <h2>Supprimer un type de capteur </h2>
             <label class="text"> Sélectionnez votre capteur :</label><br>
             <input type="hidden" name="submittedForm" value="REMOVE_SENSOR_TYPE"/>
@@ -119,8 +118,8 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
         </form>
     </div>
-    <div class="modification">
-        <form method="POST">
+    <div class="edit-sensor-type">
+        <form method="POST" class="hk-form">
             <h2>Mofifier les informations d'un capteur</h2>
             <label class="text"> Sélectionnez votre capteur :</label><br>
             <input type="hidden" name="submittedForm" value="CHANGE_SENSORS_TYPE"/>
@@ -159,10 +158,10 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
 
 
-<div class="effectorType">
+<div class="effector-type">
     <h1 class="categorie">Les Effecteurs<i class="fa fa-chevron-down" aria-hidden="true"></i></h1>
     <div class="addEffectorType">
-        <form method="post">
+        <form method="post" class="hk-form">
             <h2>Ajouter un nouvel effecteur</h2>
             <label class="text"> Sélectionnez votre type d'effecteur :</label><br>
             <input type="hidden" name="submittedForm" value="ADD_EFFECTOR_TYPE"/>
@@ -191,7 +190,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
 
     <div class="ajouts">
-        <form method="post">
+        <form method="post" class="hk-form">
             <h2>Ajouter des effecteurs dans le stock </h2>
             <label class="text"> Sélectionnez votre effecteur :</label><br>
             <input type="hidden" name="submittedForm" value="ADD_EFFECTORS"/>
@@ -229,7 +228,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
 
     <div class="removeEffectorType">
-        <form method="post">
+        <form method="post" class="hk-form">
             <h2>Supprimer un type d'effecteur</h2>
             <label class="text">Selectionnez votre effecteur :</label>
             <input type="hidden" name="submittedForm" value="REMOVE_EFFECTOR_TYPE"/>
@@ -260,7 +259,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
     </div>
 
         <div class="modification">
-            <form method="POST">
+            <form method="POST" class="hk-form">
                 <h2>Mofifier les informations d'un effecteur</h2>
                 <label class="text"> Sélectionnez votre effecteur :</label><br>
                 <input type="hidden" name="submittedForm" value="CHANGE_EFFECTORS_TYPE"/>

@@ -8,4 +8,11 @@
 
   "password_salt" : "juZE58yuh4",
   "server_root" : "http://localhost/HK"
+
+    "conf_swift" : {
+      "server" : "smtp.gmail.com",
+      "port" : "587",
+      "username" : "hkdevelopper@gmail.com",
+      "password" : "azertyazerty"
+    }
 }
