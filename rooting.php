@@ -221,6 +221,10 @@ switch($globalPath){
         require_once __DIR__ . '/view/tests/lol.php';
         break;
 
+    case 'mentionlegal':
+        require_once __DIR__ .'/view/static/mentionLegal.php';
+        break;
+
     case '404' :
         $staticController = new StaticController();
         $staticController -> notFound();
