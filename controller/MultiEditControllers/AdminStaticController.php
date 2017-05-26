@@ -61,6 +61,7 @@ class AdminStaticController extends AdminLoggingsFormController
         $transport = $this->getMail();
         $mailer = Swift_Mailer::newInstance($transport);
         $message = Swift_Message::newInstance('Testing Swift Mail');
+        $message -> setFrom(['hkdevelopper@gmail.com' => "HomeKeeper"]);
         $message->setTo(['steimberg@hotmail.fr' => 'Louis Steimberg']);
         $message ->setBody('HomeKeeper is the best company in the world !');
         if($mailer->send($message) == 1){
