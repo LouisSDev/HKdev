@@ -64,7 +64,7 @@
                     <div class="form_content">
                         <h1>Vous êtes intéressé ?</h1>
                         <h1>Demander un devis !</h1>
-                        <div class="hk-form">
+                        <div class="hk-form hk-form-centered">
                             <form method="post" enctype="multipart/form-data">
                                 <div class="hk-rows">
                                     <div class="hk-col1">

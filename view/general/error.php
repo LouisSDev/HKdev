@@ -1,6 +1,12 @@
 
 <div class="error">
     <?php
+    if(isset ($GLOBALS['view']['error_block'],
+                $GLOBALS['view']['success_message'])
+        || isset ($GLOBALS['view']['error_block'],
+            $GLOBALS['view']['error_message'])){
+        echo '<div class="hk-block hk-block-margin">';
+    }
 
         if(isset ($GLOBALS['view']['success_message'])){ ?>
             <div class="success-message information-message">
@@ -25,5 +31,11 @@
             </div>
             <?php
         }
+    if(isset ($GLOBALS['view']['error_block'],
+            $GLOBALS['view']['success_message'])
+        || isset ($GLOBALS['view']['error_block'],
+            $GLOBALS['view']['error_message'])){
+            echo '</div>';
+    }
     ?>
 </div>

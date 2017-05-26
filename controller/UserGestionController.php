@@ -39,6 +39,12 @@ class UserGestionController  extends AdminStaticController
                     case 'DELETE_USER' :
                         $this -> removeUser($users);
                         break;
+                    case 'DELETE_ROOM' :
+                        $this -> removeRoom($rooms);
+                        break;
+                    case 'ADD_ROOM'    :
+                        $this -> addRoom();
+                        break;
                     default:
                         $this -> generateView('static/404.php', '404');
 
@@ -145,7 +151,7 @@ class UserGestionController  extends AdminStaticController
 
                 if ($homeUser) {
                     $this -> deleteHome($homeUser);
-                  $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été supprimé";
+                  $this->args['success_message'] = "Félicitation la maison sélectionné a bien été supprimé";
                 } else {
                   $this->args['error_message'] = "Les données entrées ne sont pas valides";
                 }
@@ -191,6 +197,16 @@ class UserGestionController  extends AdminStaticController
 
             if ($deletedUser) {
 
+                /** @var Home $home */
+                foreach ($deletedUser -> getHomes() as $home) {
+                    if($home -> getHasHomes()){
+                        /** @var Home $hm */
+                        foreach($home as $hm){
+                            $hm -> delete($this -> db);
+                        }
+                    }
+                }
+
                 /**@var Home $hm */
                 foreach ($deletedUser->getHomes() as $hm){
                     $this -> removeHome($hm);
@@ -198,7 +214,7 @@ class UserGestionController  extends AdminStaticController
 
                 $deletedUser->delete($this->db);
 
-                $this->args['success_message'] = "Félicitation le capteur sélectionné a bien été supprimé";
+                $this->args['success_message'] = "Félicitation l'utilisateur sélectionné a bien été supprimé";
             } else {
                 $this->args['error_message'] = "Les données entrées ne sont pas valides";
             }

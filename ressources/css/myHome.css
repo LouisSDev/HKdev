@@ -1,6 +1,4 @@
-body{
-    background-color: floralwhite;
-}
+
 .home {
     margin-top: 150px;
     text-align: center;
@@ -55,7 +53,7 @@ body{
 }
 
 .iconBath{
-    background-color: #BFDBF7;
+    background-color: #8ca4b7;
     border-radius: 100%;
     padding: 20px;
     width:70px;

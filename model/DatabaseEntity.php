@@ -56,6 +56,11 @@ abstract class DatabaseEntity
     protected $error = false;
 
     /**
+     * @var $delete boolean
+     */
+    protected $delete = false;
+
+    /**
      * @var $errorMessage array
      */
     protected $errorMessage;
@@ -101,7 +106,7 @@ abstract class DatabaseEntity
                 }
 
 
-                else if($name != "error" && $name != "errorMessage" && !empty($data[$name])){
+                else if($name !== "error" && $name !== "errorMessage" && $name !== "delete" && !empty($data[$name])){
                     // If the param is a simple param and not neither the error or errorMessage param
                     // We put the data array value inside this param and we're done
 
@@ -213,7 +218,7 @@ abstract class DatabaseEntity
             }
         }
 
-
+        $this -> delete = true;
         return $this;
     }
 
@@ -262,7 +267,7 @@ abstract class DatabaseEntity
 
                 }
                 // Now, if the var is neither "error", nor "errorMessage" (because we don't save this into the database)
-                else if($name != "error" && $name != "errorMessage"
+                else if($name !== "error" && $name !== "errorMessage" && $name !== "delete"
                         && !in_array($name, self::LAZY_LOADING_PARAMS[$this -> getClassName()])){
 
 
@@ -466,6 +471,8 @@ abstract class DatabaseEntity
                 }
             }
 
+            $this -> delete = true;
+
             // We return this object
             return $this;
 
@@ -483,11 +490,16 @@ abstract class DatabaseEntity
      */
     public function delete($db)
     {
-        $request = $db->prepare('DELETE FROM ' . strtolower($this -> getClassName()) . ' WHERE id = :id');
-        $request ->bindParam(':id', $this->id, PDO::PARAM_INT);
-        $request->execute();
-        $request->closeCursor();
+        if($this -> delete) {
+
+            $request = $db->prepare('DELETE FROM ' . strtolower($this->getClassName()) . ' WHERE id = :id');
+            $request->bindParam(':id', $this->id, PDO::PARAM_INT);
+            $request->execute();
+            $request->closeCursor();
+            $this -> delete = false;
+        }
         return $this;
+
     }
 
     public function getValid(){

@@ -189,7 +189,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
 
 
-    <div class="ajouts">
+    <div class="addEffectorTypeStock">
         <form method="post" class="hk-form">
             <h2>Ajouter des effecteurs dans le stock </h2>
             <label class="text"> Sélectionnez votre effecteur :</label><br>
