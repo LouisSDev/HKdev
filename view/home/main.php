@@ -59,7 +59,7 @@ $home = $GLOBALS['view']['home'];
             echo '<i class="fa fa-bath iconBath" aria-hidden="true" style="cursor:pointer;"></i>';
             echo '<div class="bath">';
             foreach ($home ->getRoomsPerType("Salles d'eau") as $room){
-                echo '<div id="room'.$room->getId().'" class="circle" style="background-color:#BFDBF7"><p class="title">'.$room->getName().'</p>';
+                echo '<div id="room'.$room->getId().'" class="circle" style="background-color:#8ca4b7"><p class="title">'.$room->getName().'</p>';
                 echo '<div class="effectorsContainer room'.$room->getId().'">';
                 displayEffectors($room);
                 echo '</div>';

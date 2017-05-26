@@ -17,9 +17,6 @@
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/pop-up.js"></script>
 </head>
 <body>
-<br>
-<br>
-<br>
 <?php
 /** @var $user User */
 $user = $GLOBALS['view']['user'] ;
@@ -30,8 +27,11 @@ $rooms = $user -> getAllRooms();
 
 include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
 
+<br>
+<br>
+<br>
 
-<br><br><br>
+<div class="hk-block">
     <div class="notice-message information-message">Bonjour <?php echo $user -> getFirstName() ?>
         <br>
         Avez-vous passé une bonne journée?
@@ -40,7 +40,6 @@ include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
         <br>
         Voici un petit résumé de vos consommations récentes.
     </div>
-    <div class="error"></div>
 
     <form class="drop" method="post" action="<?php echo $GLOBALS['server_root']?>/api/get/sensors/values">
         <label>Date de début: <br><input type="text" id="fromDate"></label></br>
@@ -86,8 +85,10 @@ include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
     </form>
 
     <button class="btn" id="searchCharts">Afficher les statistiques!</button>
+</div>
+<div class="hk-block">
 
-
+    <div class="error"></div>
     <table>
         <tr>
             <td>
@@ -116,6 +117,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
             </td>
         </tr>
     </table>
+</div>
 <?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
 </body>
 </html>

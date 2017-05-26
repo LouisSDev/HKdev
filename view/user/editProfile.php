@@ -16,11 +16,14 @@
 
 </head>
 <body>
-<?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>
-<?php include_once ($GLOBALS['root_dir'] . "/view/general/modal.php")?>
-<?php include_once($GLOBALS['root_dir'] . '/view/general/error.php') ?>
+<?php
+include_once ($GLOBALS['root_dir'] . "/view/general/header.php");
 
+include_once ($GLOBALS['root_dir'] . "/view/general/modal.php");
+ $GLOBALS['view']['error_block'] = true;
+include_once($GLOBALS['root_dir'] . '/view/general/error.php'); ?>
 
+<div class="hk-centered-block">
 <div class="container">
         <h2 id="infoTitle">Editer mes infos personnelles <i class="fa fa-chevron-down" aria-hidden="true"></i></h2>
         <div class="infoPers">
@@ -59,6 +62,6 @@
             </div>
         </div>
 </div>
-
+</div>
 </body>
 </html>

@@ -112,3 +112,31 @@ form{
 .error{
     margin-top : 5%;
 }
+
+body{
+    background-color: #b5def9;
+}
+
+.hk-block{
+    padding: 10px 20px;
+    background: #f4f7f8;
+    margin: 10px auto;
+    border-radius: 8px;
+    width: 95%;
+    margin-top:3%;
+    margin-bottom: 3%;
+}
+
+
+.hk-block-margin{
+    margin-top:20%;
+}
+
+.hk-centered-block{
+    margin-top : 25%;
+    padding: 10px 20px;
+    border-radius: 8px;
+    width: 95%;
+    margin-left:1.5%;
+    margin-bottom: 3%;
+}
