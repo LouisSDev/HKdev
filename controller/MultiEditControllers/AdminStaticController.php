@@ -44,6 +44,19 @@ class AdminStaticController extends AdminLoggingsFormController
         $room->delete($this->db);
     }
 
+    protected function addRoom(){
+        $room = new Room();
+        $room ->createFromResults($_POST);
+
+        if($room-> save($this->db)){
+            $this->args['success_message'] = "Félicitation la pièce sélectionné a bien été ajoutée";
+        } else {
+            $this->args['error_message'] = "Les données entrées ne sont pas valides";
+            $this->args['errors'] = $room->getErrorMessage();
+
+        }
+    }
+
     private function sendMail(){
         
     }
