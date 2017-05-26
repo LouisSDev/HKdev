@@ -163,7 +163,7 @@ class UserGestionController  extends AdminStaticController
         $home->delete($this->db);
     }
 
-    protected function deleteBuilding($building){
+    protected function deleteBuilding(Home $building){
 
         /**@var Home $hm */
         foreach ($building->getHomes() as $hm){
