@@ -16,7 +16,7 @@
 include_once ($GLOBALS['root_dir'] . "/view/general/adminHeader.php");
 include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
-
+$effectorsTypes = $GLOBALS['view']['effectors_types'];
 $homes = $GLOBALS['view']['homes'];
 $rooms = $GLOBALS['view']['rooms'];
 $users = $GLOBALS['view']['users'];
@@ -182,10 +182,90 @@ $users = $GLOBALS['view']['users'];
 
             }
             ?>
+<<<<<<< c3e9b36a7299a724a25382eef5657039dcb4ff92
 
             <input class="btn" type="submit" value="Supprimer" />
         </select><br>
+=======
+        </select><br>
 
+
+        <input class="btn" type="submit" value="Supprimer" />
     </form>
 </div>
+
+<div class="modificationEffectorTypesFromRoom">
+    <form method="POST" class="hk-form">
+        <h2 class="hk-title">Mofifier les informations d'un effecteur d'une pièce</h2>
+        <label class="hk-text"> Sélectionnez votre maison :</label><br>
+        <input type="hidden" name="submittedForm" value="CHANGE_EFFECTORS_TYPE_FROM_ROOM"/>
+        <select name="home">
+        <?php
+
+        /**
+         * @var Home $home
+         */
+        foreach ($homes as $home){
+
+            if(!$home->getHasHomes()){
+
+                echo '<option label="" value="' . $home ->getId() . '" >'
+                    . $home -> getName() . ' - ' . $home -> getBuilding() -> getName()
+                    .'</option>';
+            }
+        }
+        ?>
+        </select>
+        <label class="hk-text"> Sélectionnez votre pièce :</label><br>
+        <select name="room">
+            <?php
+            foreach (Room::TYPE_ARRAY as $type) {
+
+                echo '<optgroup label="' . $type . '">';
+
+                /** @var Room $room */
+                foreach ($rooms as $room) {
+                    if ($room->getType() === $type) {
+                        echo '<option class="roomSelector" homeId="' . $room->getHome()->getId()
+                            . '" label="" value="' . $room->getId() . '">'
+                            . $room->getName() . '</option>';
+                    }
+                }
+                echo '</optgroup>';
+            }
+            ?>
+
+        </select>
+        <label class="hk-text">Sélectionner l'effecteur a modifier :</label>
+        <select name="effectorType">
+            <?php
+            foreach (EffectorType::TYPE_ARRAY as $type){
+                echo '<optgroup label="'. $type . '">';
+                /** @var  $effectorType EffectorType*/
+                foreach ($effectorsTypes as $effectorType) {
+
+                    if ($effectorType->getType() === $type && $effectorType -> getSelling()) {
+                        echo '<option label="" value="'
+                            . $effectorType -> getId() . '">'
+                            . $type . ' : ' . $effectorType -> getName()
+                            . ' - ' . $effectorType -> getRef()
+                            . '</option>';
+                    }
+                }
+                echo '</optgroup>';
+            }
+            ?>
+        </select><br>
+        <input type="text" name="name"  placeholder="Nom" />
+        <input type="text" name="ref"  placeholder="Référence"/><br/>
+        <input type="number" name="minVal" placeholder="Valeur minimale">
+        <input type="number" name="maxVal" placeholder="Valeur maximale"><br/>
+        <input type="text" name="price"  placeholder="Prix"/><br/>
+
+
+        <input class="btn" type="submit" value="Modifier" />
+    </form>
+</div>
+
+
 </body>
