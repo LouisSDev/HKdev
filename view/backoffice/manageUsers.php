@@ -182,11 +182,9 @@ $users = $GLOBALS['view']['users'];
 
             }
             ?>
+
+            <input class="btn" type="submit" value="Supprimer" />
         </select><br>
-
-
-        <input class="btn" type="submit" value="Supprimer" />
-
 
     </form>
 </div>
