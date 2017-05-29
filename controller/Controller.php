@@ -20,7 +20,7 @@ abstract class Controller
     protected $apiResponse = null;
 
 
-    private $mailTransport = null;
+    private $mailer = null;
 
     protected  $user = null;
 
@@ -168,8 +168,8 @@ abstract class Controller
 
     protected function getMail()
     {
-        if($this -> mailTransport){
-            return $this -> mailTransport;
+        if($this -> mailer){
+            return $this -> mailer;
         }
         else{
             $confMail = $GLOBALS['confMail'];
@@ -177,10 +177,15 @@ abstract class Controller
             $port = $confMail -> port;
             $username = $confMail -> username;
             $password = $confMail -> password;
-            $this -> mailTransport = Swift_SmtpTransport::newInstance($server,$port,"ssl");
-            $this ->mailTransport -> setUsername($username);
-            $this ->mailTransport -> setPassword($password);
-            return $this->mailTransport;
+            $this -> mailer = new PHPMailer;
+            $this -> mailer -> isSMTP();
+            $this -> mailer ->Host = $server;
+            $this -> mailer->SMTPAuth = true;
+            $this ->mailer ->Username = $username;
+            $this ->mailer ->Password = $password;
+            $this ->mailer ->SMTPSecure = 'tls';
+            $this ->mailer ->Port = $port;
+            return $this ->mailer;
         }
     }
 

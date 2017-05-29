@@ -31,10 +31,11 @@ class SensorRepository extends Repository {
     }
 
     public function getSensorsUnusedByType($type){
-        $objectQuery = $this -> db -> prepare('SELECT COUNT(*) FROM ' . $this ->getObjectClassName() . ' WHERE room IS null AND sensorType = :type');
+        $objectQuery = $this -> db -> prepare('SELECT COUNT(*) AS nb FROM ' . $this ->getObjectClassName() . ' WHERE room IS null AND sensorType = :type');
         $objectQuery -> bindParam(':type', $type, PDO::PARAM_INT);
-        $result = $objectQuery -> execute();
-        return $result;
+        $objectQuery -> execute();
+        $columns = $objectQuery ->fetch();
+        return $columns['nb'];
     }
 
 }

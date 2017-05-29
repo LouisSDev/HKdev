@@ -10,7 +10,7 @@ class DatabaseConnection
     public function __construct(){
         $config = JsonUtils::decodeJsonFileOrFail('config/config.json');
         $dbConfig = $config -> database;
-        $mailConfig = $config -> conf_swift;
+        $mailConfig = $config -> conf_mailer;
         $GLOBALS['confMail'] = $mailConfig;
 
         $dbhostname = $dbConfig->database_host;
