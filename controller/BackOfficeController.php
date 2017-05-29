@@ -400,8 +400,8 @@ class BackOfficeController extends AdminController
     {
         $effectorTypeRepository = $this->getEffectorTypeRepository();
         $effectorTypes = $effectorTypeRepository->getAll();
+        $effectorRepo = $this ->getEffectorRepository();
         $effectorsByType = array();
-        /** @var EffectorRepository $effectorRepo */
         /** @var EffectorType $effectorType */
         foreach ($effectorTypes as $effectorType) {
             $effectorsByType[$effectorType->getName()] = $effectorRepo->getUnusedEffectorsByType($effectorType->getId());
@@ -411,13 +411,13 @@ class BackOfficeController extends AdminController
 
     public function getSensorsStocksByType()
     {
-        $sensorTypeRepo = $this->getSensorRepository();
+        $sensorTypeRepo = $this->getSensorTypeRepository();
         $sensorTypes = $sensorTypeRepo->getAll();
+        $sensorRepo = $this ->getSensorRepository();
         $sensorsByType = array();
-        /** @var SensorRepository $sensorRepo */
         /** @var SensorType $sensorType */
         foreach ($sensorTypes as $sensorType) {
-            $sensorsByType[$sensorType->getName()] = $sensorTypeRepo->getSensorsUnusedByType($sensorType->getId());
+            $sensorsByType[$sensorType->getName()] = $sensorRepo->getSensorsUnusedByType($sensorType->getId());
         }
         return $sensorsByType;
     }
