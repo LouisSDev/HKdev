@@ -16,7 +16,7 @@
 include_once ($GLOBALS['root_dir'] . "/view/general/adminHeader.php");
 include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
-$effectorsTypes = $GLOBALS['view']['effectors_types'];
+//$effectorsTypes = $GLOBALS['view']['effectors_types'];
 $homes = $GLOBALS['view']['homes'];
 $rooms = $GLOBALS['view']['rooms'];
 $users = $GLOBALS['view']['users'];
@@ -182,14 +182,7 @@ $users = $GLOBALS['view']['users'];
 
             }
             ?>
-<<<<<<< c3e9b36a7299a724a25382eef5657039dcb4ff92
-
-            <input class="btn" type="submit" value="Supprimer" />
         </select><br>
-=======
-        </select><br>
-
-
         <input class="btn" type="submit" value="Supprimer" />
     </form>
 </div>
