@@ -78,17 +78,16 @@ class AdminStaticController extends AdminLoggingsFormController
     }
 
     public function sendMail(){
-        $transport = $this->getMail();
-        $mailer = Swift_Mailer::newInstance($transport);
-        $message = Swift_Message::newInstance('Testing Swift Mail');
-        $message -> setFrom(['hkdevelopper@gmail.com' => "HomeKeeper"]);
-        $message->setTo(['steimberg@hotmail.fr' => 'Louis Steimberg']);
-        $message ->setBody('HomeKeeper is the best company in the world !');
-        if($mailer->send($message) == 1){
-            echo 'send ok';
-        }
-        else {
-            echo 'send error';
+        $message = $this->getMail();
+        $message -> setFrom('hkdevelopper@gmail.com', "HomeKeeper");
+        $message -> addAddress('steimberg@hotmail.fr', 'Louis Steimberg');
+        $message -> Subject = 'Bonjour et bienvenue chez vous';
+        $message -> Body = 'Bonjour Louis, merci de faire confiance à HomeKeeper.';
+        if(!$message -> send()) {
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $message->ErrorInfo;
+        } else {
+            echo 'Message has been sent';
         }
     }
 
