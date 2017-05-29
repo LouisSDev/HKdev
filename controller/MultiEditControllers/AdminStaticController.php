@@ -57,6 +57,26 @@ class AdminStaticController extends AdminLoggingsFormController
         }
     }
 
+    protected function modifyEffectorOnRoom($effectorTypes){
+
+        if (!empty($_POST['room'])) {
+            /** @var Room $room */
+            $room = null;
+            /**@var Room $rm */
+            foreach ($room as $rm) {
+                if ($rm->getId() === $_POST['roomId']) {
+                    $room = $rm;
+                    break;
+                }
+            }
+            if ($room){
+                $this->changeEffectors($effectorTypes);
+            }
+        }
+
+
+    }
+
     public function sendMail(){
         $transport = $this->getMail();
         $mailer = Swift_Mailer::newInstance($transport);

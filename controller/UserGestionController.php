@@ -45,6 +45,9 @@ class UserGestionController  extends AdminStaticController
                     case 'ADD_ROOM'    :
                         $this -> addRoom();
                         break;
+                    case 'CHANGE_EFFECTORS_TYPE_FROM_ROOM'  :
+                        $this -> modifyEffectorOnRoom($effectorTypes);
+                        break;
                     default:
                         $this -> generateView('static/404.php', '404');
 
