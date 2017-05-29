@@ -67,6 +67,7 @@ class BackOfficeController extends AdminController
 
     public function getAdminDashboard()
     {
+        $this->createStocksArrays();
         $this -> generateView('backoffice/dashboard.php', 'Tableau de bord Administrateur');
     }
 
@@ -427,7 +428,6 @@ class BackOfficeController extends AdminController
         $sensorStock = $this->getSensorsStocksByType();
         $this->args['effectorStock'] = Json::encode($effectorStock);
         $this->args['sensorStock'] = Json::encode($sensorStock);
-        $this->generateView('backoffice/dashboard.php', "Tableau de bord Administrateur");
     }
 
     protected function addEffectorType(){
