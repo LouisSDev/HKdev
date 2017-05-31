@@ -211,7 +211,6 @@ class UserGestionController  extends AdminStaticController
             /**@var Home $hm*/
             foreach ($deletedUser->getHomes() as $hm){
                 if(!$hm -> getHasHomes()){
-                    Utils::addWarning($hm->getId());
                     $this -> deleteHome($hm);
                 }
             }
