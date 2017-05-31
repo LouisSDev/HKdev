@@ -450,7 +450,6 @@ class User extends DatabaseEntity
             && $this->cellPhoneNumber != null
             && $this-> address != null
             && $this->country != null
-            && $this->password != null
             && $this->city != null
         ){
             return true;

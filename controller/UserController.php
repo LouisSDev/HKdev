@@ -56,6 +56,12 @@ class UserController extends Controller
 
                if($this -> user -> save($this -> db)) {
                    $this->args['success_message'] = "Félicitations! Votre profil a bien été édité";
+                   $subject = "Informations relatives à votre compte";
+                   $body = "<h1>Bonjour".$this->user->getFirstName()."</h1><br>".
+                   "Votre mot de mot de passe vient d'être modifié.<br>".
+                   "Si vous n'êtes pas à l'orgine de ce changement, veuillez contacter un administrateur immédiatement.<br><br>".
+                   "L'équipe HomeKeeper";
+                   $this->sendMail($this->user->getMail(),$this->user->getFirstName(),$subject,$body);
                }
 
                else{
