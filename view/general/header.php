@@ -85,5 +85,5 @@
     <?php
     }
     ?>
-    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/currentElementHeader.js"></script>
+    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/general.js"></script>
 </header>

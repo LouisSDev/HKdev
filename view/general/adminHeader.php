@@ -11,5 +11,5 @@
                     <li><a href="<?php echo $GLOBALS['server_root'] . '/user/disconnect'?>">Déconnexion</a></li>
                 </ul>
             </nav>
-<script src="<?php echo $GLOBALS['server_root']?>/ressources/js/currentElementHeader.js"></script>
+<script src="<?php echo $GLOBALS['server_root']?>/ressources/js/general.js"></script>
 </header>

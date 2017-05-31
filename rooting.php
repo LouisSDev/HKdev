@@ -19,6 +19,7 @@ $db = $dbConnector -> getDatabase();
 $GLOBALS['timestamp_after_db_connection'] = microtime(true);
 
 
+
 switch($globalPath){
     case 'home' :
         homepage($db);
