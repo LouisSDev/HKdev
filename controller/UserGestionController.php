@@ -203,24 +203,24 @@ class UserGestionController  extends AdminStaticController
                 /** @var Home $home */
                 foreach ($deletedUser -> getHomes() as $home) {
                     if($home -> getHasHomes()){
-                            $home -> delete($this -> db);
+                            $this -> deleteBuilding($home);
                         }
                     }
                 }
 
-                /**@var Home $hm*/
-                foreach ($deletedUser->getHomes() as $hm){
-                    if(!$hm -> getHasHomes()){
-                        $this -> deleteHome($hm);
-                    }
+            /**@var Home $hm*/
+            foreach ($deletedUser->getHomes() as $hm){
+                if(!$hm -> getHasHomes()){
+                    Utils::addWarning($hm->getId());
+                    $this -> deleteHome($hm);
                 }
+            }
 
-                $deletedUser->delete($this->db);
+            $deletedUser->delete($this->db);
 
-                $this->args['success_message'] = "Félicitation l'utilisateur sélectionné a bien été supprimé";
+            $this->args['success_message'] = "Félicitation l'utilisateur sélectionné a bien été supprimé";
             } else {
                 $this->args['error_message'] = "Les données entrées ne sont pas valides";
             }
         }
-
 }

@@ -108,8 +108,13 @@ $users = $GLOBALS['view']['users'];
 
                 if(!$home->getHasHomes()){
 
+                    $buildingName = $home -> getName();
+                    if($home->getBuilding()){
+                        $buildingName = $home->getBuilding()->getName();
+                    }
+
                     echo '<option label="" value="' . $home ->getId() . '" >'
-                        . $home -> getName() . ' - ' . $home -> getBuilding() -> getName()
+                        . $home -> getName() . ' - ' . $buildingName
                         .'</option>';
                 }
             }
