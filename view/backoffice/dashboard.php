@@ -8,7 +8,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/86ed160d29.js"></script>
 
-    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/pop-up.js"></script>
+    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/general.js"></script>
 
 </head>
 <body>

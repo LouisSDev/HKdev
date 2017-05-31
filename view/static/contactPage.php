@@ -6,9 +6,7 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/static/contactPage.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/86ed160d29.js"></script>
-    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/googleMap.js"></script>
-    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/pop-up.js"></script>
-    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/smoothScrolling.js"></script>
+    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/general.js"></script>
     <!--[if IE]><script>
         $(document).ready(function() {
             $("#form_wrap").addClass('hide');
