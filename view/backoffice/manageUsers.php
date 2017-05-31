@@ -193,6 +193,7 @@ $users = $GLOBALS['view']['users'];
         <label class="hk-text"> Sélectionnez votre maison :</label><br>
         <input type="hidden" name="submittedForm" value="CHANGE_EFFECTORS_TYPE_FROM_ROOM"/>
         <select name="home">
+
         <?php
 
         /**
@@ -208,6 +209,7 @@ $users = $GLOBALS['view']['users'];
             }
         }
         ?>
+
         </select>
         <label class="hk-text"> Sélectionnez votre pièce :</label><br>
         <select name="room">
