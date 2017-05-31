@@ -11,8 +11,10 @@
     "php": ">=5.4",
     "monolog/monolog" : "1.22.1",
     "os/php-excel" : "2.1",
-    "swiftmailer/swiftmailer" : "5.4.8",
-    "bernardosecades/php-json" : "1.0.*"
+    "bernardosecades/php-json" : "1.0.*",
+    "phpmailer/phpmailer": "~5.2",
+    "league/oauth2-client": "~2.0",
+    "league/oauth2-google": "^2.0"
   },
 
   "config" : {

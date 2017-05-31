@@ -45,6 +45,9 @@ class UserGestionController  extends AdminStaticController
                     case 'ADD_ROOM'    :
                         $this -> addRoom();
                         break;
+                    case 'CHANGE_EFFECTORS_TYPE_FROM_ROOM'  :
+                        $this -> modifyEffectorOnRoom($effectorTypes);
+                        break;
                     default:
                         $this -> generateView('static/404.php', '404');
 
@@ -200,16 +203,16 @@ class UserGestionController  extends AdminStaticController
                 /** @var Home $home */
                 foreach ($deletedUser -> getHomes() as $home) {
                     if($home -> getHasHomes()){
-                        /** @var Home $hm */
-                        foreach($home as $hm){
-                            $hm -> delete($this -> db);
+                            $home -> delete($this -> db);
                         }
                     }
                 }
 
-                /**@var Home $hm */
+                /**@var Home $hm*/
                 foreach ($deletedUser->getHomes() as $hm){
-                    $this -> removeHome($hm);
+                    if(!$hm -> getHasHomes()){
+                        $this -> deleteHome($hm);
+                    }
                 }
 
                 $deletedUser->delete($this->db);
@@ -219,5 +222,5 @@ class UserGestionController  extends AdminStaticController
                 $this->args['error_message'] = "Les données entrées ne sont pas valides";
             }
         }
-    }
+
 }

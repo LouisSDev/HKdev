@@ -16,6 +16,11 @@
 
     //nb de user
 
+    <?php
+    echo $GLOBALS['view']['sensorStock'];
+    echo $GLOBALS['view']['effectorStock'];
+    ?>
+
     //nb de capteurs actifs
 
     //nb de capteurs supprimés

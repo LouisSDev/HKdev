@@ -213,6 +213,7 @@ abstract class DatabaseEntity
 
                     }else{
                         $this -> $setterName($data[$name]);
+                        //Utils::addWarning($this->getClassName() . ' / ' . $setterName . ' / ' .  $name);
                     }
                 }
             }
