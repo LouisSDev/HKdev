@@ -29,6 +29,7 @@ $building = $GLOBALS['view']['building'];
 <br>
 
 
+
 <?php include_once($GLOBALS['root_dir'] . '/view/general/error.php')  ?>
 
 <form class="hk-form hk-form-centered" id="hk-form" method="post" >
