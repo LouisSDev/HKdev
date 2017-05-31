@@ -261,6 +261,6 @@ $users = $GLOBALS['view']['users'];
         <input class="btn" type="submit" value="Modifier" />
     </form>
 </div>
-
+<?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
 
 </body>
