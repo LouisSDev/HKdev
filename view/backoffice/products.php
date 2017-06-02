@@ -2,7 +2,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Gérer les Capteurs et les Effecteurs</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/products.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/general/form.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -257,7 +256,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
         </form>
     </div>
 
-        <div class="modification">
+        <div class="editEffector">
             <form method="POST" class="hk-form">
                 <h2>Mofifier les informations d'un effecteur</h2>
                 <label class="text"> Sélectionnez votre effecteur :</label><br>

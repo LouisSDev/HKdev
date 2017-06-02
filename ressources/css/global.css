@@ -188,6 +188,32 @@ body{
     margin-top: 1%;
 }
 
+.table{
+    position:relative;
+    left:25%;
+    width: 50%;
+    margin-bottom: 1rem;
+    border-color: grey;
+    border-collapse: collapse;
+    display: table;
+
+
+}
+
+.cell{
+    border-top: 1px solid rgba(201,207,208,0.75);
+    border-bottom: 1px solid rgba(201,207,208,0.75);
+    background-color: rgba(232,238,239,0.55);
+    padding: 0.55rem;
+}
+
+.title-cell{
+    border-bottom: 2px solid rgba(201,207,208,0.75);
+    border-left : 1px solid rgba(201,207,208,0.75);
+    border-right : 1px solid rgba(201,207,208,0.75);
+    background-color: rgba(232,238,239,0.75);
+}
+
 /* HEADER */
 .header{
     position: fixed;

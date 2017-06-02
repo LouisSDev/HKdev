@@ -95,13 +95,14 @@ class BackOfficeController extends AdminController
                     $user -> setValidated(true);
                     if($user -> save($this -> db)){
                         $password = Utils::randomHash(10);
+                        $user->setNewPassword($password,null,$password);
                         $subject = "Informations relatives à votre compte";
-                        $body = "<h1>Bonjour".$user->getFirstName()."</h1><br>".
+                        $body = "<!DOCTYPE html><html><body><h1>Bonjour ".$user->getFirstName()."</h1><br>".
                             "Votre compte a été validé.<br>".
-                            "Voici votre mot de passe :".$password."<br><br>".
+                            "Voici votre mot de passe : ".$password."<br><br>".
                             "Vous pouvez maintenant vous connecter avec votre email et ce mot de passe.<br>".
                             "Nous vous recommandons de changer ce mot de passe".
-                            "L'équipe HomeKeeper";
+                            "L'équipe HomeKeeper"."</body></html>";
                         $this->sendMail($this->user->getMail(),$this->user->getFirstName(),$subject,$body);
                         $this->args['success_message'] = "Félicitations l'utilisateur a bien été validé";
                     }else{
