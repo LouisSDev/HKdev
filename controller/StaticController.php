@@ -17,7 +17,7 @@ class StaticController extends Controller
             $this -> args['error_message'] = $_GET['errorMessage'];
         }
 
-        $this -> generateView('general/connection.php', 'Connection' );
+        $this -> generateView('static/homepage.php', 'Accueil' );
     }
 
     public function contact()

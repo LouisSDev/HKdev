@@ -65,10 +65,12 @@ class SecurityController extends Controller
 
         $user -> save($this -> db);
         $subject = "Informations relatives à votre compte";
-        $body = "<h1>Bonjour".$user->getFirstName()."</h1><br>".
+        $body = "<!DOCTYPE html>"."<html><body>"."<h1>Bonjour ".$user->getFirstName()."</h1><br>".
             "Votre inscription a bien été prise en compte.<br>".
             "Votre demande sera traitée par un administrateur dans les plus brefs délais.<br><br>".
-            "L'équipe HomeKeeper";
+            "L'équipe HomeKeeper".
+            "</body>".
+            "</html>";
         $this->sendMail($user->getMail(),$user->getFirstName(),$subject,$body);
 
         $this -> args['registration'] = true;

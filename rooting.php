@@ -219,8 +219,6 @@ switch($globalPath){
 
     // TODO To delete!!!
     case 'lol':
-        $AdminController = new AdminStaticController();
-        $AdminController ->sendMail();
         require_once __DIR__ . '/view/tests/lol.php';
         break;
 
