@@ -20,7 +20,7 @@ include_once ($GLOBALS['root_dir'] . "/view/general/modal.php");
 include_once($GLOBALS['root_dir'] . '/view/general/error.php'); ?>
 
 <div class="hk-centered-block">
-<div class="container">
+    <div class="container">
         <h2 id="infoTitle">Editer mes infos personnelles <i class="fa fa-chevron-down" aria-hidden="true"></i></h2>
         <div class="infoPers">
             <div class="hk-form">
@@ -46,7 +46,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php'); ?>
         </div>
         <br>
         <br>
-        <h2 id="mdpTitle">Editer mon mot de passe <i class="fa fa-chevron-down" aria-hidden="true"></i></h2>
+        <h2 id="passwordTitle">Editer mon mot de passe <i class="fa fa-chevron-down" aria-hidden="true"></i></h2>
         <div class="mdp">
             <div class="hk-form">
                 <form method="POST" action="<?php echo $GLOBALS['server_root'] . '/user/edit'?>">
@@ -57,7 +57,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php'); ?>
                 </form>
             </div>
         </div>
-</div>
+    </div>
 </div>
 </body>
 </html>
