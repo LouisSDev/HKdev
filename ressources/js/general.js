@@ -142,6 +142,7 @@ $(document).ready(function () {
     }
 
 
+
     function myMap() {
         var center= new google.maps.LatLng(48.845416, 2.328119);
         var mapCanvas = document.getElementById("googleMap");
