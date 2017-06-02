@@ -7,6 +7,7 @@
         <?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>
     </head>
     <body>
+
         <p>Société : Home Keeper</p>
         <p>Numéro de SIREN :</p><br/>
         <p>Raison social : Home Keeper</p><br/>
