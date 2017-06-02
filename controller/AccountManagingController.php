@@ -179,7 +179,6 @@ abstract class AccountManagingController extends Controller
             }
         }
 
-
         /** @var Effector $eff */
         foreach($effectors as $eff){
             if($eff -> getEffectorType() -> getChart()){
