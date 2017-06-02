@@ -13,6 +13,7 @@ class RoomController extends AccountManagingController
     {
         $this -> enableApiMode();
 
+        Utils::addWarning('fghjkl');
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'
             && !empty($_POST['roomId'])
@@ -24,7 +25,6 @@ class RoomController extends AccountManagingController
             $room = $this -> findRoomFromIdInUsersRooms($_POST['roomId']);
 
             $effectors = array();
-
             // For each effectors in the room
             $this -> updateEffectors($room -> getEffectors());
 
