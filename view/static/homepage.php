@@ -75,9 +75,6 @@
                                         <input type="email" name="mail" placeholder="Adresse mail" required/>
                                         <input type="text" name="cellPhoneNumber" placeholder="Numéro de téléphone"
                                                required/>
-                                        <input type="password" name="password" placeholder="Mot de passe" required/>
-                                        <input type="password" name="passwordRepeat"
-                                               placeholder="Répétez votre mot de passe" required/>
                                     </div>
                                 </div>
                                 <input id="upload-quote" type="file" name="quote"/>

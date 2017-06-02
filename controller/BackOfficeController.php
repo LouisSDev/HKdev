@@ -94,7 +94,16 @@ class BackOfficeController extends AdminController
                 if($user){
                     $user -> setValidated(true);
                     if($user -> save($this -> db)){
-                        $this->args['success_message'] = "Félicitation l'utilisateur a bien été validé";
+                        $password = Utils::randomHash(10);
+                        $subject = "Informations relatives à votre compte";
+                        $body = "<h1>Bonjour".$user->getFirstName()."</h1><br>".
+                            "Votre compte a été validé.<br>".
+                            "Voici votre mot de passe :".$password."<br><br>".
+                            "Vous pouvez maintenant vous connecter avec votre email et ce mot de passe.<br>".
+                            "Nous vous recommandons de changer ce mot de passe".
+                            "L'équipe HomeKeeper";
+                        $this->sendMail($this->user->getMail(),$this->user->getFirstName(),$subject,$body);
+                        $this->args['success_message'] = "Félicitations l'utilisateur a bien été validé";
                     }else{
                         $this->args['error_message'] = "Il y a eu une erreur lors de la sauvegarde dans la base de données, veuillez réessayer.";
                         $this->args['errors'] = $user -> getErrorMessage();

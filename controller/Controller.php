@@ -189,5 +189,18 @@ abstract class Controller
         }
     }
 
-
+    protected function sendMail($mail,$username,$subject,$body){
+        $message = $this->getMail();
+        $message -> setFrom('hkdevelopper@gmail.com', "HomeKeeper");
+        $message -> addAddress($mail, $username);
+        $message -> Subject = $subject;
+        $message -> Body = $body;
+        $message-> CharSet ="UTF-8";
+        if(!$message -> send()) {
+            $this->args['error_message_mail'] = "L'email n'a pas pu être envoyé, veuillez réessayez";
+            echo 'Mailer Error: ' . $message->ErrorInfo;
+        } else {
+            $this ->args['success_message_mail'] = 'Un mail vient de vous être envoyé';
+        }
+    }
 }

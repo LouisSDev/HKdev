@@ -1,158 +1,41 @@
-
-form{
-    position: relative;
-    text-align: center;
-}
-
-.principal
+.container
 {
     margin-top : 90px;
-    left:25%;
-}
-
-
-.valider{
-    position: relative;
-    background: #f4f7f8;
-    border-radius: 4px;
-    width: 50%;
-    left:25%;
-}
-
-input[name="userId"],
-input[type="text"],
-select
-{
-    background-color: #e8eeef;
-    border:none;
-    border-radius: 4px;
-    font-family: Georgia, "Roboto", Times, serif;
-    font-size: 15px;
-    color:#49545e;
-    width: 65%;
-    margin: 1%;
 }
 
 .btn{
-    background-color: lightgray;
-    text-decoration: none;
-    text-align: center;
-    border: 0;
-    font-size: 25px;
-    padding: 10px;
-    display: inline-block;
-    cursor: pointer;
-    transition-duration: 0.4s;
-    opacity: 0.7;
     margin: 1%;
 }
 
 .btn:hover{
-    padding-left: 25px;
-    padding-right: 25px;
-    transition-duration: 0.4s;
-    opacity: 1;
     margin:1%;
 }
 
-.user-display,
-.tbody{
-    background-color: transparent;
-    border-bottom-color: rgb(51, 51, 51);
-    border-bottom-style: none;
-    border-bottom-width: 0px;
-    border-collapse: collapse;
-    border-image-outset: 0 0 0 0;
-    border-image-repeat: stretch stretch;
-    border-image-slice: 100% 100% 100% 100%;
-    border-image-source: none;
-    border-image-width: 1 1 1 1;
-    border-left-color: rgb(51, 51, 51);
-    border-left-style: none;
-    border-left-width: 1px;
-    border-right-color: rgb(51, 51, 51);
-    border-right-style: none;
-    border-right-width: 0px;
-    border-spacing: 0px 0px;
-    border-top-color: rgb(51, 51, 51);
-    border-top-style: none;
-    border-top-width: 0px;
-    box-sizing: border-box;
-    color: rgb(51, 51, 51);
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    line-height: 20px;
-    margin-bottom: 0px;
-    max-width: 100%;
-    text-align: center;
-}
-
-.user-display-column,
-.user-display-sell{
-    background-color: rgb(251, 251, 251);
-    border-bottom-color: rgb(51, 51, 51);
-    border-bottom-style: none;
-    border-bottom-width: 0px;
-    border-collapse: collapse;
-    border-image-outset: 0 0 0 0;
-    border-image-repeat: stretch stretch;
-    border-image-slice: 100% 100% 100% 100%;
-    border-image-source: none;
-    border-image-width: 1 1 1 1;
-    border-left-color: rgb(51, 51, 51);
-    border-left-style: none;
-    border-left-width: 0px;
-    border-right-color: rgb(51, 51, 51);
-    border-right-style: none;
-    border-right-width: 0px;
-    border-spacing: 0px 0px;
-    border-top-color: rgb(51, 51, 51);
-    border-top-style: none;
-    border-top-width: 0px;
-    box-sizing: border-box;
-    color: rgb(51, 51, 51);
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    line-height: 20px;
-    text-align: center;
-
-}
-
 .user-display{
-    border-bottom-color: rgb(221, 221, 221);
-    border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-collapse: collapse;
-    border-image-outset: 0 0 0 0;
-    border-image-repeat: stretch stretch;
-    border-image-slice: 100% 100% 100% 100%;
-    border-image-source: none;
-    border-image-width: 1 1 1 1;
-    border-left-color: rgb(221, 221, 221);
-    border-left-style: solid;
-    border-left-width: 0px;
-    border-right-color: rgb(221, 221, 221);
-    border-right-style: solid;
-    border-right-width: 1px;
-    border-spacing: 0px 0px;
-    border-top-color: rgb(0, 0, 0);
-    border-top-style: none;
-    border-top-width: 0px;
-    box-sizing: border-box;
-    color: rgb(0, 0, 0);
-    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-    font-size: 14px;
-    line-height: 20px;
-    max-width: 80px;
-    min-width: 80px;
-    overflow: hidden;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    padding-bottom: 4px;
-    padding-left: 4px;
-    padding-right: 4px;
-    padding-top: 4px;
-    text-align: center;
-    vertical-align:top
+    position:relative;
+    left:25%;
+    width: 50%;
+    margin-bottom: 1rem;
 
 }
+table {
+    display: table;
+    border-color: grey;
+    border-collapse: collapse;
+}
+
+.user-display-cell{
+    border-top: 1px solid rgba(201,207,208,0.75);
+    border-bottom: 1px solid rgba(201,207,208,0.75);
+    background-color: rgba(232,238,239,0.55);
+    padding: 0.55rem;
+}
+
+.title-cell{
+    border-bottom: 2px solid rgba(201,207,208,0.75);
+    border-left : 1px solid rgba(201,207,208,0.75);
+    border-rigth : 1px solid rgba(201,207,208,0.75);
+    background-color: rgba(232,238,239,0.75);
+}
+
+
