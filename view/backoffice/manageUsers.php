@@ -108,8 +108,13 @@ $users = $GLOBALS['view']['users'];
 
                 if(!$home->getHasHomes()){
 
+                    $buildingName = $home -> getName();
+                    if($home->getBuilding()){
+                        $buildingName = $home->getBuilding()->getName();
+                    }
+
                     echo '<option label="" value="' . $home ->getId() . '" >'
-                        . $home -> getName() . ' - ' . $home -> getBuilding() -> getName()
+                        . $home -> getName() . ' - ' . $buildingName
                         .'</option>';
                 }
             }
@@ -193,6 +198,7 @@ $users = $GLOBALS['view']['users'];
         <label class="hk-text"> Sélectionnez votre maison :</label><br>
         <input type="hidden" name="submittedForm" value="CHANGE_EFFECTORS_TYPE_FROM_ROOM"/>
         <select name="home">
+
         <?php
 
         /**
@@ -208,6 +214,7 @@ $users = $GLOBALS['view']['users'];
             }
         }
         ?>
+
         </select>
         <label class="hk-text"> Sélectionnez votre pièce :</label><br>
         <select name="room">
@@ -259,6 +266,6 @@ $users = $GLOBALS['view']['users'];
         <input class="btn" type="submit" value="Modifier" />
     </form>
 </div>
-
+<?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
 
 </body>

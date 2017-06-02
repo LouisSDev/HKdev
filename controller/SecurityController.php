@@ -19,8 +19,7 @@ class SecurityController extends Controller
         $user -> createFromResults($_POST);
 
         // We set the password
-        $user -> setPassword(null);
-        $user -> setNewPassword($_POST['password'], '', $_POST['passwordRepeat']);
+        $user -> setPassword("");
 
 
         // If the save method is thrown, we'll forward it to the controller
@@ -65,6 +64,12 @@ class SecurityController extends Controller
         $user -> setQuoteFilePath($quoteFileRelativePath);
 
         $user -> save($this -> db);
+        $subject = "Informations relatives à votre compte";
+        $body = "<h1>Bonjour".$user->getFirstName()."</h1><br>".
+            "Votre inscription a bien été prise en compte.<br>".
+            "Votre demande sera traitée par un administrateur dans les plus brefs délais.<br><br>".
+            "L'équipe HomeKeeper";
+        $this->sendMail($user->getMail(),$user->getFirstName(),$subject,$body);
 
         $this -> args['registration'] = true;
         $this -> generateView('static/homepage.php', 'Home');

@@ -76,19 +76,4 @@ class AdminStaticController extends AdminLoggingsFormController
 
 
     }
-
-    public function sendMail(){
-        $message = $this->getMail();
-        $message -> setFrom('hkdevelopper@gmail.com', "HomeKeeper");
-        $message -> addAddress('steimberg@hotmail.fr', 'Louis Steimberg');
-        $message -> Subject = 'Bonjour et bienvenue chez vous';
-        $message -> Body = 'Bonjour Louis, merci de faire confiance à HomeKeeper.';
-        if(!$message -> send()) {
-            echo 'Message could not be sent.';
-            echo 'Mailer Error: ' . $message->ErrorInfo;
-        } else {
-            echo 'Message has been sent';
-        }
-    }
-
 }

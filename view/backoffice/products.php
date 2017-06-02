@@ -24,7 +24,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 ?>
 
 <div class="sensor-type">
-    <h1 class="categorie">Les Capteurs<i class="fa fa-chevron-down" aria-hidden="true"></i></h1>
+    <h1 class="hk-title">Les Capteurs<i class="fa fa-chevron-down" aria-hidden="true"></i></h1>
     <div class="add-sensor-type">
         <form method="post" class="hk-form">
             <h2>Ajouter un nouveau capteur</h2>
@@ -158,7 +158,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
 
 <div class="effector-type">
-    <h1 class="categorie">Les Effecteurs<i class="fa fa-chevron-down" aria-hidden="true"></i></h1>
+    <h1 class="hk-title">Les Effecteurs<i class="fa fa-chevron-down" aria-hidden="true"></i></h1>
     <div class="addEffectorType">
         <form method="post" class="hk-form">
             <h2>Ajouter un nouvel effecteur</h2>

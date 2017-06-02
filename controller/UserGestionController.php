@@ -18,6 +18,7 @@ class UserGestionController  extends AdminStaticController
         $homeRepository = $this -> getHomeRepository();
         $roomRepository = $this -> getRoomRepository();
         $userRepository = $this -> getUserRepository();
+        $effectorTypesRepository = $this -> getEffectorTypeRepository();
 
         $homes =  $homeRepository -> getAll();
         $this -> args['homes'] = $homes ;
@@ -25,6 +26,8 @@ class UserGestionController  extends AdminStaticController
         $this ->args['users'] = $users;
         $rooms =  $roomRepository -> getAll();
         $this -> args['rooms'] = $rooms ;
+        $effectorTypes = $effectorTypesRepository -> getAll();
+        $this -> args['effectorTypes'] = $effectorTypes;
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             if(!empty($_POST['submittedForm'])){
@@ -203,24 +206,23 @@ class UserGestionController  extends AdminStaticController
                 /** @var Home $home */
                 foreach ($deletedUser -> getHomes() as $home) {
                     if($home -> getHasHomes()){
-                            $home -> delete($this -> db);
+                            $this -> deleteBuilding($home);
                         }
                     }
                 }
 
-                /**@var Home $hm*/
-                foreach ($deletedUser->getHomes() as $hm){
-                    if(!$hm -> getHasHomes()){
-                        $this -> deleteHome($hm);
-                    }
+            /**@var Home $hm*/
+            foreach ($deletedUser->getHomes() as $hm){
+                if(!$hm -> getHasHomes()){
+                    $this -> deleteHome($hm);
                 }
+            }
 
-                $deletedUser->delete($this->db);
+            $deletedUser->delete($this->db);
 
-                $this->args['success_message'] = "Félicitation l'utilisateur sélectionné a bien été supprimé";
+            $this->args['success_message'] = "Félicitation l'utilisateur sélectionné a bien été supprimé";
             } else {
                 $this->args['error_message'] = "Les données entrées ne sont pas valides";
             }
         }
-
 }
