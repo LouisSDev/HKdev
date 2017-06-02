@@ -173,7 +173,7 @@ abstract class AccountManagingController extends Controller
                     ApiHandler::throwError(400, 'Vous ne pouvez pas modifier l\'état de ce type d\'effecteur');
                 }
 
-                if(!$eff -> getEffectorType() -> getChart() && !empty(empty($_POST['value']))){
+                if(!$eff -> getEffectorType() -> getChart() && !empty($_POST['value'])){
                     ApiHandler::throwError(400, 'Vous ne pouvez pas modifier la valeur de ce type d\'effecteur');
                 }
             }

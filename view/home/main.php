@@ -30,12 +30,12 @@ $home = $GLOBALS['view']['home'];
         <?php
         if($home ->getRoomsPerType("Chambres")!=null){
             echo '<i class="fa fa-bed iconBed" id="bed" aria-hidden="true" style="cursor:pointer;"></i>';
-            echo '<div class="bedroom">';
+            echo '<div class="bedroom my-rooms">';
             foreach ($home ->getRoomsPerType("Chambres") as $room){
-                echo '<div id="room'.$room->getId().'" class="circle click-bedroom" roomId="' . $room -> getId() . '" style="background-color:#FFBC42"><p class="title">'.$room->getName().'</p>';
+                echo '<div id="room'.$room->getId().'" class="circle click-bedroom click-room" roomId="' . $room -> getId() . '" style="background-color:#FFBC42"><p class="title">'.$room->getName().'</p>';
+                echo '</div>';
                 echo '<div class="effectorsContainer room'.$room->getId().'">';
                 displayEffectors($room);
-                echo '</div>';
                 echo '</div>';
             }
 
@@ -43,36 +43,36 @@ $home = $GLOBALS['view']['home'];
         }
         if($home ->getRoomsPerType("Cuisines")!=null){
             echo '<i class="fa fa-cutlery iconKitchen" aria-hidden="true" style="cursor:pointer;"></i>';
-            echo '<div class="kitchen">';
+            echo '<div class="kitchen my-rooms">';
             foreach ($home ->getRoomsPerType("Cuisines") as $room){
-                echo '<div id="room'.$room->getId().'" class="circle click-kitchen" roomId="' . $room -> getId() . '"  style="background-color:#FB3640"><p class="title">'.$room->getName().'</p>';
+                echo '<div id="room'.$room->getId().'" class="circle click-kitchen click-room" roomId="' . $room -> getId() . '"  style="background-color:#FB3640"><p class="title">'.$room->getName().'</p>';
+                echo '</div>';
                 echo '<div class="effectorsContainer room'.$room->getId().'">';
                 displayEffectors($room);
-                echo '</div>';
                 echo '</div>';
             }
             echo '</div>';
         }
         if($home ->getRoomsPerType("Salles d'eau")!=null){
             echo '<i class="fa fa-bath iconBath" aria-hidden="true" style="cursor:pointer;"></i>';
-            echo '<div class="bath">';
+            echo '<div class="bath my-rooms">';
             foreach ($home ->getRoomsPerType("Salles d'eau") as $room){
-                echo '<div id="room'.$room->getId().'" class="circle click-bath"  roomId="' . $room -> getId() . '" style="background-color:#8ca4b7"><p class="title">'.$room->getName().'</p>';
+                echo '<div id="room'.$room->getId().'" class="circle click-bath click-room"  roomId="' . $room -> getId() . '" style="background-color:#8ca4b7"><p class="title">'.$room->getName().'</p>';
+                echo '</div>';
                 echo '<div class="effectorsContainer room'.$room->getId().'">';
                 displayEffectors($room);
-                echo '</div>';
                 echo '</div>';
             }
             echo '</div>';
         }
         if($home ->getRoomsPerType("Pièces à vivre")!=null){
             echo '<i class="fa fa-television iconSofa" aria-hidden="true" style="cursor:pointer;"></i>';
-            echo '<div class="living">';
+            echo '<div class="living my-rooms">';
             foreach ($home ->getRoomsPerType("Pièces à vivre") as $room){
-                echo '<div id="room'.$room->getId().'" class="circle click-living" style="background-color:#F2F3AE"><p class="title">'.$room->getName().'</p>';
+                echo '<div id="room'.$room->getId().'" class="circle click-living click-room" style="background-color:#F2F3AE"><p class="title">'.$room->getName().'</p>';
+                echo '</div>';
                 echo '<div class="effectorsContainer room'.$room->getId().'">';
                 displayEffectors($room);
-                echo '</div>';
                 echo '</div>';
             }
             echo '</div>';

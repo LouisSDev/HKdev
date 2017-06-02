@@ -1,13 +1,15 @@
 
 $(document).ready(function () {
-    $('#on').hide();
-    $('#off').click(function() {
-        $('#off').hide();
-        $('#on').show();
+    $switchOn = $('.switch-on');
+    $switchOn.hide();
+    $('.switch-off').click(function() {
+        $(this).hide();
+        $('#switch-on-' + $(this).attr('roomId')).show();
     });
-    $('#on').click(function() {
-        $('#on').hide();
-        $('#off').show();
+
+    $switchOn.click(function() {
+        $(this).hide();
+        $('#switch-off-' + $(this).attr('roomId')).show();
     });
 
     $("#homeId").change(function(){
@@ -56,24 +58,24 @@ $(document).ready(function () {
     $('.effectors-input').hide();
 
     $('.bedroom,.kitchen,.bath,.living').hide();
-    $('.iconBed').click(function(){
+    $('.iconBed').unbind('click').bind('click',function(){
         $('.kitchen,.bath,.living').hide("slow");
         iconClick('bedroom', $(this));
     });
-    $('.iconKitchen').click(function(){
+    $('.iconKitchen').unbind('click').bind('click',function(){
         $('.bedroom,.bath,.living').hide("slow");
         iconClick('kitchen', $(this));
     });
-    $('.iconBath').click(function(){
+    $('.iconBath').unbind('click').bind('click',function(){
         $('.bedroom,.kitchen,.living').hide("slow");
         iconClick('bath', $(this));
     });
-    $('.iconSofa').click(function(){
+    $('.iconSofa').unbind('click').bind('click',function(){
         $('.bedroom,.kitchen,.bath').hide("slow");
         iconClick('living', $(this));
     });
 
-    $('.click-bedroom').click(function(e){
+    $('.click-room').unbind('click').bind('click', function (e) {
         roomClick($(this));
     });
 
@@ -97,24 +99,24 @@ $(document).ready(function () {
         $('html, body').animate({scrollTop: $(position).offset().top},speed);
         return false;
     });
-});
 
 
-function roomClick($clickedBlock){
-    if($clickedBlock.attr("state") != "on") {
-        $(".effectorsContainer").show();
-        $('effectors-' + $clickedBlock.attr("roomid")).show();
-        $clickedBlock.attr("on");
-    }else{
-        $(".effectorsContainer").hide();
-        $('effectors-' + $clickedBlock.attr("roomid")).hide();
-        $clickedBlock.attr("off");
+    function roomClick($clickedBlock){
+        if($clickedBlock.attr("state") != "on") {
+            $(".effectorsContainer").show();
+            $('.effectors-' + $clickedBlock.attr("roomid")).show();
+            $clickedBlock.attr("state", "on");
+        }else{
+            $(".effectorsContainer").hide();
+            $('.effectors-' + $clickedBlock.attr("roomid")).hide();
+            $clickedBlock.attr("state", "off");
+        }
     }
-}
 
 function iconClick(name, $actualElement){
 
-    if($actualElement.attr("state") == "off"){
+    if($actualElement.attr("state") != "on"){
+        $('.my-rooms').attr("state", "off");
         $actualElement.attr("state", "on");
         $('.' +  name).show("slow");
     }else{
@@ -132,3 +134,6 @@ function myMap() {
     var marker = new google.maps.Marker({position: center});
     marker.setMap(map);
 }
+
+
+});
