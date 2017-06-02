@@ -70,7 +70,23 @@ class AdminStaticController extends AdminLoggingsFormController
                 }
             }
             if ($room){
-                $this->changeEffectors($effectorTypes);
+                if (!empty($_POST['effectorTypeId'])){
+
+                    /**@var EffectorType $effectorType*/
+                    $effectorType = null;
+
+                    /**@var EffectorType $etp*/
+                    foreach ($effectorTypes as $etp) {
+                        if ($etp->getId() == $_POST['effectorTypeId']) {
+                            $effectorType = $etp;
+                        }
+                    }
+                    
+                }
+                else{
+                    $this->args['error_message'] = "Veuillez sélectionner un effecteur";
+
+                }
             }
         }
 

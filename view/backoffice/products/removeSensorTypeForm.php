@@ -7,8 +7,8 @@
 <br>
 
 
-<dv class="tableauDelete">
-    <div class="suppression">
+<dv class="deleteArray">
+    <div class="delete">
         <form method="post">
             <h1>Supprimer un type de capteur </h1>
             <label class="text"> Sélectionnez votre capteur :</label><br>
