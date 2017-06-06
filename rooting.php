@@ -35,6 +35,10 @@ switch($globalPath){
         $staticController = new StaticController();
         $staticController -> contact();
         break;
+    case 'sendForm' :
+        $ContactFormControlleur = new ContactFormController();
+        $ContactFormControlleur -> sendFrom();
+        break;
     case 'connect' :
         $userController = new UserController($db);
         $userController -> getDashboard();
