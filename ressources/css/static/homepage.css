@@ -107,9 +107,12 @@ p {
 #form{
     position: relative;
     bottom: 20px;
+    height: 79vh;
 }
 .form_content{
+    position: relative;
     text-align: center;
+    top: 120px;
 }
 
 .link{
