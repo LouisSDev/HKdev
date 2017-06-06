@@ -185,6 +185,7 @@ abstract class Controller
             $this ->mailer ->Password = $password;
             $this ->mailer ->SMTPSecure = 'tls';
             $this ->mailer ->Port = $port;
+            $this ->mailer ->isHTML(true);
             return $this ->mailer;
         }
     }
