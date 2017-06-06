@@ -8,8 +8,7 @@
  */
 class ContactFormController extends Controller
 {
-
-    public function sendFrom(){
+    public function sendForm(){
         if(!empty($_POST['message']) && !empty($_POST['lastName']) && !empty($_POST['firstName']) && !empty($_POST['email'])){
             $message = $_POST['message'];
             $lastName = $_POST['lastName'];
@@ -25,7 +24,7 @@ class ContactFormController extends Controller
             $this->sendMail($GLOBALS['confMail']->username,$firstName." ".$lastName,$subject,$body);
             $this -> generateView('static/contactPage.php', 'Contact');
         }else{
-            echo 'Les données entrées ne sont pas valides';
+            echo 'Veuillez remplir tous les champs';
         }
     }
 
