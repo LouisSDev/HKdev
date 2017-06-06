@@ -43,7 +43,6 @@ class Repository
             $objects = null;
         }
 
-        $fetch = true;
 
         while($objectData = $objectsQuery -> fetch(PDO::FETCH_ASSOC)){
 

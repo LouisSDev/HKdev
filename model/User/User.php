@@ -137,6 +137,8 @@ class User extends DatabaseEntity
     }
 
     /**
+     * filter_var php doc
+     *
      * @param string $mail
      * @return User
      */

@@ -65,7 +65,7 @@ class Utils
 
     static public function analyzeTimeExecution(){
         self::addWarning('Full Execution Time : ' . (microtime(true) - $_SERVER["REQUEST_TIME_FLOAT"]));
-        self::addWarning('Time to load database : ' .( $GLOBALS['timestamp_after_db_connection'] -$_SERVER["REQUEST_TIME_FLOAT"] ));
+        self::addWarning('Time to load database : ' .( $GLOBALS['timestamp_after_db_connection'] - $_SERVER["REQUEST_TIME_FLOAT"] ));
         self::addWarning('After Connection Execution Time : ' .( microtime(true) - $GLOBALS['timestamp_after_db_connection']));
 
         $i = 0;

@@ -82,6 +82,7 @@ class UserRepository extends Repository
     }
 
     public function isMailAlreadyUsed($mail){
+
         $find = $this->db->prepare('SELECT * FROM user WHERE mail = :mail  ');
         $find -> bindParam(':mail', $mail, PDO::PARAM_STR, strlen($mail));
         $find -> execute();
