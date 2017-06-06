@@ -139,8 +139,10 @@
 }
 
 .effectors-input > i {
-    font-size: 20px;
-    margin-top: 13px;
+    font-size: 33px;
+    margin-top: 7px;
+    margin-left: -20px;
+    margin-right: 5px;
 }
 .effectors-input input,p,button{
     margin-right: 5px;
@@ -161,6 +163,11 @@
 
 .lum button {
     margin-left: 21px;
+}
+
+input[type=number] {
+    height: 20px;
+    margin-top: 10px;
 }
 
 input[type=range] {
