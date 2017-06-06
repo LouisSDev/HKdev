@@ -26,8 +26,8 @@ class ContactFormController extends Controller
         }else{
             echo 'Veuillez remplir tous les champs';
         }
-    }
 
+    }
 
 }
 
