@@ -23,7 +23,7 @@ class ContactFormController extends Controller
             "Vous pouvez lui répondre à l'adresse mail suivante : ". $email;
 
             $this->sendMail($GLOBALS['confMail']->username,$firstName." ".$lastName,$subject,$body);
-            $this -> generateView('static/homepage.php', 'Home');
+            $this -> generateView('static/contactPage.php', 'Contact');
         }else{
             echo 'Les données entrées ne sont pas valides';
         }
