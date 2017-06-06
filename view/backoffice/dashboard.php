@@ -4,6 +4,7 @@
     <title><?php echo $GLOBALS['view']['page_title']?></title>
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/user/dashboard.css">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/86ed160d29.js"></script>
@@ -12,19 +13,16 @@
 
 </head>
 <body>
+
     <?php include_once ($GLOBALS['root_dir'] . "/view/general/adminHeader.php"); ?>
+<div id="sensortest"   value="<?php echo $GLOBALS['view']['sensorStock']?>"></div>
+    <input type="hidden" id="sensorStock" value="<?php echo $GLOBALS['view']['sensorStock']?>">
+    <input type="hidden" id="effectorStock" value="<?php echo $GLOBALS['view']['effectorStock']?>">
 
-    //nb de user
 
-    <?php
-    echo $GLOBALS['view']['sensorStock'];
-    echo $GLOBALS['view']['effectorStock'];
-    ?>
 
-    //nb de capteurs actifs
+    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/chart/back_office_chart.js"></script>
 
-    //nb de capteurs supprimés
-    <?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
 </body>
 
 

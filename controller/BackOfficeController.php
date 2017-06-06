@@ -414,7 +414,11 @@ class BackOfficeController extends AdminController
         $effectorsByType = array();
         /** @var EffectorType $effectorType */
         foreach ($effectorTypes as $effectorType) {
-            $effectorsByType[$effectorType->getName()] = $effectorRepo->getUnusedEffectorsByType($effectorType->getId());
+            $effectorsByType[] = [
+                "name" => $effectorType->getName(),
+                "value" => $effectorRepo->getUnusedEffectorsByType($effectorType->getId())
+            ] ;
+
         }
         return $effectorsByType;
     }
@@ -427,7 +431,10 @@ class BackOfficeController extends AdminController
         $sensorsByType = array();
         /** @var SensorType $sensorType */
         foreach ($sensorTypes as $sensorType) {
-            $sensorsByType[$sensorType->getName()] = $sensorRepo->getSensorsUnusedByType($sensorType->getId());
+            $sensorsByType[] = [
+                "name" => $sensorType->getName(),
+                "value" =>$sensorRepo->getSensorsUnusedByType($sensorType->getId())
+            ] ;
         }
         return $sensorsByType;
     }
@@ -437,7 +444,7 @@ class BackOfficeController extends AdminController
         $effectorStock = $this->getEffectorsStocksByType();
         $sensorStock = $this->getSensorsStocksByType();
         $this->args['effectorStock'] = Json::encode($effectorStock);
-        $this->args['sensorStock'] = Json::encode($sensorStock);
+        $this->args['sensorStock'] =Json::encode($sensorStock) ;
     }
 
     protected function addEffectorType(){

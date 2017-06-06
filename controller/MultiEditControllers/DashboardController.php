@@ -13,7 +13,6 @@ class DashboardController extends AdminController
 
 
 
-
     public function changeSensors($sensorsTypes)
     {
 

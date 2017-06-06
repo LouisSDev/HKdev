@@ -658,7 +658,9 @@ svg.nvd3-svg {
     display: none;
 }
 
-
+.svgStock{
+    margin-top: 90%;
+}
 /****
 Interactive Layer
 */
@@ -667,4 +669,9 @@ Interactive Layer
 }
 .nvd3 line.nv-guideline {
     stroke: #ccc;
+}
+div.bar{       display: inline-block;
+    width :7px;
+    background-color:teal;
+    margin-right: 1px;
 }
