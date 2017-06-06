@@ -50,12 +50,12 @@ class Repository
             $objectClassName = $this -> getObjectClassName();
             $object = new $objectClassName();
 
+
             if($setterName) {
                 $object->$setterName($originEntity);
             }
 
             $object -> createFromResults($objectData, $cascading);
-
 
             if($asArray) {
                 $objects[] = $object;
@@ -86,7 +86,11 @@ class Repository
             . $fromTable . ' WHERE ' . $fromObject . ' = :' . $fromObject ) ;
             // Example :  SELECT * FROM room WHERE home = :home
 
-
+        /*
+         *
+         *Utils::addWarning('SELECT * FROM ' . $fromTable . ' WHERE ' . $fromObject . ' = :' . $id );
+         * debug log
+         */
 
         // We bind the param and execute the request
         $objectsQuery -> bindParam(':' . $fromObject , $id, PDO::PARAM_INT);

@@ -30,6 +30,23 @@ $(document).ready(function () {
 
     });
 
+    $(".save-lum-effector").click(function(e){
+        var type = 'Lumière',
+            roomId = $(this).attr('roomId'),
+            $effectorInput = $('#lum-eff-val-' + roomId),
+            value = $effectorInput.val();
+        saveNewEffectorSetup(type, roomId, value, null);
+
+    });
+
+    var current = window.location.href;
+    for(var i=0;i<$("nav > a").length;i++){
+        var menu = $("nav > a")[i];
+        if($(menu).attr("href") === current){
+            $(menu).css('color', '#62bcda');
+            break;
+        }
+    }
 
     $("#mdpTitle").click(function(){
         $(".mdp").slideToggle();
@@ -112,27 +129,36 @@ $(document).ready(function () {
         }
     }
 
-function iconClick(name, $actualElement){
+    function iconClick(name, $actualElement){
 
-    if($actualElement.attr("state") != "on"){
-        $('.my-rooms').attr("state", "off");
-        $actualElement.attr("state", "on");
-        $('.' +  name).show("slow");
-    }else{
-        $actualElement.attr("state", "off");
-        $('.' + name).hide("slow");
+        if($actualElement.attr("state") != "on"){
+            $('.my-rooms').attr("state", "off");
+            $actualElement.attr("state", "on");
+            $('.' +  name).show("slow");
+        }else{
+            $actualElement.attr("state", "off");
+            $('.' + name).hide("slow");
+        }
     }
-}
 
 
-function myMap() {
-    var center= new google.maps.LatLng(48.845416, 2.328119);
-    var mapCanvas = document.getElementById("googleMap");
-    var mapOptions = {center: center, zoom: 17};
-    var map = new google.maps.Map(mapCanvas, mapOptions);
-    var marker = new google.maps.Marker({position: center});
-    marker.setMap(map);
-}
 
+    function myMap() {
+        var center= new google.maps.LatLng(48.845416, 2.328119);
+        var mapCanvas = document.getElementById("googleMap");
+        var mapOptions = {center: center, zoom: 17};
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+        var marker = new google.maps.Marker({position: center});
+        marker.setMap(map);
+    }
+
+    function saveNewEffectorSetup(type, roomId, value, state) {
+        $.post($('#body').attr('server_root') + '/api/edit/room', {
+            'effectorType' : type,
+            'roomId' : roomId,
+            'value' : value,
+            'state' : state
+        });
+    }
 
 });
