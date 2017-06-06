@@ -13,7 +13,7 @@
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/general.js"></script>
 
 </head>
-<body>
+<body id="body" server_root="<?php echo  $GLOBALS['server_root'] ?>">
 <?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>
 <?php include ($GLOBALS['root_dir']."/view/home/displayEffectors.php")?>
 

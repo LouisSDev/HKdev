@@ -26,7 +26,7 @@ function displayEffectors(Room $room){
 
         if($effectorType->getType() === "Lumière"){
             echo '<div class="effectors-input lum effectors-' . $room -> getId() . '">
-                    <input type="range"  min="0" max="100" />
+                    <input type="range"  min="0" max="100" id="lum-eff-val-' . $room -> getId() . '" />
                     <p class="info">Luminosité</p>
                     <button id="lum-effector-' . $room -> getId() . '" roomId="' . $room -> getId() . '" class ="save-lum-effector">
                         Sauvegarder
