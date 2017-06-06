@@ -305,4 +305,3 @@ function printDiagramm(data, ind, dataSpecs){
     }
     return false;
 }
-
