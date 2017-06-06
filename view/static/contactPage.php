@@ -62,7 +62,7 @@
         ?>
         <div id="wrap">
             <div id='form_wrap'>
-                <form>
+                <form method="POST">
                     <p><?php echo $firstName; ?></p>
                     <label for="email">Votre message : </label>
                     <textarea  name="message" value="Your Message" id="message" ></textarea>
