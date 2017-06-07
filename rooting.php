@@ -227,7 +227,8 @@ switch($globalPath){
         break;
 
     case 'disclaimer':
-        require_once __DIR__ .'/view/static/mentionLegal.php';
+        $staticController = new StaticController();
+        $staticController -> disclaimer();
         break;
 
     case '404' :

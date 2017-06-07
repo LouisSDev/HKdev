@@ -85,7 +85,7 @@
             </div>
         </div>
         <div class="legal">
-            <p class="copyright"> <a  href="<?php echo $GLOBALS['server_root'] . '/mentionlegal'?>">Mentions légals</a>   © Copyright 2017 Home Keeper</p>
+            <p class="copyright"> <a  href="<?php echo $GLOBALS['server_root'] . '/disclaimer'?>">Mentions légals</a>   © Copyright 2017 Home Keeper</p>
         </div>
     </div>
 </footer>

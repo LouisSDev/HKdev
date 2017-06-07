@@ -141,4 +141,13 @@ class UserController extends Controller
         $this->generateView('home', 'Home', '');
     }
 
+    public function cookie(){
+        if($_POST['submittedform']==='Jaccepte'){
+            $this -> generateView('static/homepage.php', 'Home');
+        }
+        if($_POST['submittedform']==='Je refuse'){
+            $this->disconnect();
+        }
+
+    }
 }
