@@ -6,9 +6,13 @@
     position: relative;
     left: 25%;
 }
-#infoTitle,#mdpTitle,#mailTitle {
+#infoTitle,#passwordTitle,#mailTitle {
     display: inline;
     cursor: pointer;
+}
+
+#passwordTitle{
+    margin: 0;
 }
 
 body{

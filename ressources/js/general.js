@@ -48,14 +48,24 @@ $(document).ready(function () {
         }
     }
 
-    $("#mdpTitle").click(function(){
+    $("#passwordTitle").unbind("click").bind('click',function(){
         $(".mdp").slideToggle();
     });
-    $("#infoTitle").click(function(){
+    $("#infoTitle").unbind("click").bind('click',function(){
         $(".infoPers").slideToggle();
     });
-    $("#mailTitle").click(function () {
+    $("#mailTitle").unbind('click').bind('click',function () {
         $(".mail").slideToggle();
+    });
+
+    $(".toggleSensors").unbind("click").bind('click',function () {
+        $(".effector-type").hide("slow");
+       $(".sensor-type").slideToggle();
+    });
+
+    $(".toggleEffectors").unbind('click').bind('click',function () {
+        $(".sensor-type").hide("slow");
+       $(".effector-type").slideToggle();
     });
 
     $(".effectorsContainer").hide();

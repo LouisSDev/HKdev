@@ -359,3 +359,7 @@ footer{
     border-radius: 100%;
     background-color: white;
 }
+
+.toggleEffectors, .toggleSensors{
+    cursor: pointer;
+}
