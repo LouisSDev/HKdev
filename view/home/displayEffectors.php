@@ -20,7 +20,7 @@ function displayEffectors(Room $room){
                     <p class="info">Température</p>
                     
                     <button id="temp-effector-' . $room -> getId() . '" roomId="' . $room -> getId()
-                . '" class ="save-clim-effector">
+                . '" class ="save-clim-effector btn">
                 
                         Sauvegarder
                     </button>    
@@ -51,7 +51,7 @@ function displayEffectors(Room $room){
                     <p class="info">Volets automatique</p>
                     <input type = \'hidden\'  value="' . $shutterState . '" id="vol-eff-val-' . $room -> getId() . '">
                     <button id="volet-effector-' . $room -> getId() . '" roomId="' . $room -> getId()
-                . '" class ="save-volet-effector">
+                . '" class ="save-volet-effector btn">
                 
                         Sauvegarder
                     </button>    
@@ -70,7 +70,7 @@ function displayEffectors(Room $room){
                     <p class="info">Luminosité</p>
                     
                     <button id="lum-effector-' . $room -> getId() . '" roomId="' . $room -> getId()
-                . '" class ="save-lum-effector">
+                . '" class ="save-lum-effector btn">
                 
                         Sauvegarder
                     </button>    
