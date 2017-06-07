@@ -23,16 +23,20 @@
 
     ?>
     <div class="container">
-        <h1 class="hk-title">Consultez les demandes de devis et marquez les ici comme étant en cours de traitement </h1>
+        <div class="hk-block">
+            <h1 class="hk-title">Consultez les demandes de devis et marquez les ici comme étant en cours de traitement </h1>
+        </div>
         <div classe="new-devis">
-            <h2 class="hk-title-2">Devis soumis : </h2>
-            <table class="table">
-                <tr class="user-display-column">
-                    <th class="title-cell">Prénom</th>
-                    <th class="title-cell">Nom</th>
-                    <th class="title-cell">Mail</th>
-                    <th class="title-cell">Numéro de téléphone</th>
-                    <th class="title-cell">Détail de la demande</th>
+            <div class="hk-block">
+                <h2 class="hk-title-2">Devis soumis : </h2>
+            </div>
+            <table class="table-fill">
+                <tr >
+                    <th class="text-left">Prénom</th>
+                    <th class="text-left">Nom</th>
+                    <th class="text-left">Mail</th>
+                    <th class="text-left">Numéro de téléphone</th>
+                    <th class="text-left">Détail de la demande</th>
                 </tr>
                 <?php
 
@@ -41,11 +45,11 @@
                 foreach ($quoteSubmittedUsers as $quote) {
                     echo '<tr class="user-display-column">';
 
-                    echo  '<td class="cell">' . $quote -> getFirstName() . '</td class="cell">'
-                        . '<td class="cell">' . $quote -> getLastName() . '</th>'
-                        . '<td class="cell">' . $quote -> getMail() . '</th>'
-                        . '<td class="cell">' . $quote -> getCellPhoneNumber() . '</th>'
-                        . '<td class="cell"><a href="'. $GLOBALS['server_root'] . '/' . $quote -> getQuoteFilePath() . '" target="_blank">Devis</a></th>';
+                    echo  '<td class="text-left">' . $quote -> getFirstName() . '</td class="cell">'
+                        . '<td class="text-left">' . $quote -> getLastName() . '</th>'
+                        . '<td class="text-left">' . $quote -> getMail() . '</th>'
+                        . '<td class="text-left">' . $quote -> getCellPhoneNumber() . '</th>'
+                        . '<td class="text-left"><a href="'. $GLOBALS['server_root'] . '/' . $quote -> getQuoteFilePath() . '" target="_blank">Devis</a></th>';
 
                     echo '</tr>';
                 }
@@ -76,15 +80,17 @@
             </form>
         </div>
 
-        <h1 class="hk-title">Consultez les utilisateurs dont la demande a été prise en charge puis supprimez leur compte ou validez le Devis soumis :</h1>
+        <div class="hk-block">
+            <h1 class="hk-title">Consultez les utilisateurs dont la demande a été prise en charge puis supprimez leur compte ou validez le Devis soumis :</h1>
+        </div>
             <div class="user-devis">
-                <table class="table">
+                <table class="table-fill">
                     <tr class="user-display-column">
-                        <th class="title-cell">Prénom</th>
-                        <th class="title-cell">Nom</th>
-                        <th class="title-cell">Mail</th>
-                        <th class="title-cell">Numéro de téléphone</th>
-                        <th class="title-cell">Détail de la demande</th>
+                        <th class="text-left">Prénom</th>
+                        <th class="text-left">Nom</th>
+                        <th class="text-left">Mail</th>
+                        <th class="text-left">Numéro de téléphone</th>
+                        <th class="text-left">Détail de la demande</th>
                     </tr>
                     <?php
 
@@ -93,11 +99,11 @@
                     foreach ($quoteTreatedUsers as $quote) {
                         echo '<tr class="user-display-column">';
 
-                        echo  '<td class="cell">' . $quote -> getFirstName() . '</td class="cell">'
-                            . '<td class="cell">' . $quote -> getLastName() . '</th>'
-                            . '<td class="cell">' . $quote -> getMail() . '</th>'
-                            . '<td class="cell">' . $quote -> getCellPhoneNumber() . '</th>'
-                            . '<td class="cell"><a href="'. $GLOBALS['server_root'] . '/' . $quote -> getQuoteFilePath() . '" target="_blank">Devis</a></th>';
+                        echo  '<td class="text-left">' . $quote -> getFirstName() . '</td class="text-left">'
+                            . '<td class="text-left">' . $quote -> getLastName() . '</th>'
+                            . '<td class="text-left">' . $quote -> getMail() . '</th>'
+                            . '<td class="text-left">' . $quote -> getCellPhoneNumber() . '</th>'
+                            . '<td class="text-left"><a href="'. $GLOBALS['server_root'] . '/' . $quote -> getQuoteFilePath() . '" target="_blank">Devis</a></th>';
 
                         echo '</tr>';
                     }
@@ -150,4 +156,3 @@
     </body>
 
 </html>
-<?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>

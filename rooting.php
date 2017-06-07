@@ -226,7 +226,7 @@ switch($globalPath){
         require_once __DIR__ . '/view/tests/lol.php';
         break;
 
-    case 'mentionlegal':
+    case 'disclaimer':
         require_once __DIR__ .'/view/static/mentionLegal.php';
         break;
 
