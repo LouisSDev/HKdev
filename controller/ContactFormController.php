@@ -6,8 +6,30 @@
  * Date: 02/06/2017
  * Time: 10:54
  */
-class ContactFormController extends Controller
-{
+class ContactFormController extends Controller{
+
+    public function choiceForm()
+    {
+
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if (!empty($_POST['submittedForm'])) {
+
+                switch ($_POST['submittedForm']) {
+                    case 'REMOVE_SENSOR_TYPE':
+                        $this->sendForm();
+                        break;
+                    default:
+                        $this->generateView('static/404.php', '404');
+
+                }
+            } else {
+                $this->generateView('static/404.php', '404');
+
+            }
+
+        }
+    }
+
     public function sendForm(){
         if(!empty($_POST['message']) && !empty($_POST['lastName']) && !empty($_POST['firstName']) && !empty($_POST['email'])){
             $message = $_POST['message'];
@@ -30,5 +52,3 @@ class ContactFormController extends Controller
     }
 
 }
-
-?>

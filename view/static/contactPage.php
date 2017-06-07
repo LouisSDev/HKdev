@@ -62,7 +62,8 @@
         ?>
         <div id="wrap">
             <div id='form_wrap'>
-                <form method="POST">
+                <form method="POST" action="<?php include_once ($GLOBALS['root_dir'] . "/controller/ContactFormController.php")?>">
+                    <input type="hidden" name="submittedForm" value="CONTACT"/>
                     <p><?php echo $firstName; ?></p>
                     <label for="email">Votre message : </label>
                     <textarea  name="message" value="Your Message" id="message" ></textarea>
