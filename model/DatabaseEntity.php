@@ -126,6 +126,7 @@ abstract class DatabaseEntity
                         }
                     }
 
+
                     $this->$setterName($data[$name]);
                 }
             }else{

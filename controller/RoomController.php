@@ -13,13 +13,12 @@ class RoomController extends AccountManagingController
     {
         $this -> enableApiMode();
 
-        Utils::addWarning('fghjkl');
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'
             && !empty($_POST['roomId'])
             && !empty($_POST['effectorType'])
             && in_array($_POST['effectorType'], EffectorType::TYPE_ARRAY)
-            && (!empty($_POST['value']) ||  !empty($_POST['state']) || !empty($_POST['auto']))
+            && (!empty($_POST['value']) ||  isset($_POST['state']) || isset($_POST['auto']))
         )
         {
             $room = $this -> findRoomFromIdInUsersRooms($_POST['roomId']);
