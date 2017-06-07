@@ -15,7 +15,7 @@ class ContactFormController extends Controller{
             if (!empty($_POST['submittedForm'])) {
 
                 switch ($_POST['submittedForm']) {
-                    case 'REMOVE_SENSOR_TYPE':
+                    case 'CONTACT':
                         $this->sendForm();
                         break;
                     default:
