@@ -38,51 +38,51 @@ include_once($GLOBALS['root_dir'] . '/view/general/header.php') ?>
         <br>
         Voici un petit résumé de vos consommations récentes.
     </div>
+    <div class="formstat">
+        <form class="drop" method="post" action="<?php echo $GLOBALS['server_root']?>/api/get/sensors/values">
+            <label>Date de début: <input type="text" id="fromDate"></label>
+            <label>Date de fin: <input type="text" id="toDate"></label>
+            <select id="homeId" class="homes">
+                <option label = "" value = "-1">Statistiques générales de mes maisons</option>
 
-    <form class="drop" method="post" action="<?php echo $GLOBALS['server_root']?>/api/get/sensors/values">
-        <label>Date de début: <br><input type="text" id="fromDate"></label></br>
-        <label>Date de fin: <br><input type="text" id="toDate"></label>
-        <select id="homeId" class="homes">
-            <option label = "" value = "-1">Statistiques générales de mes maisons</option>
+                <?php
 
-            <?php
+                /**
+                 * @var Home $home
+                 */
+                foreach ($homes as $home){
 
-            /**
-             * @var Home $home
-             */
-            foreach ($homes as $home){
+                    if(!$home->getHasHomes()){
 
-                if(!$home->getHasHomes()){
-
-                    echo '<option label="" value="' . $home ->getId() . '" >'
-                        . $home -> getName() . ' - ' . $home -> getBuilding() -> getName()
-                        .'</option>';
-                }
-            }
-            ?>
-        </select><br>
-        <select id="roomId">
-            <option label = "" value = "-1">Statistiques générales de mes pièces</option>
-            <?php
-            foreach (Room::TYPE_ARRAY as $type){
-
-                echo '<optgroup label="'. $type .'">';
-
-                /** @var Room $room */
-                foreach ($rooms as $room){
-                    if ($room -> getType() === $type ) {
-                        echo '<option class="roomSelector" homeId="' . $room -> getHome() -> getId()
-                        . '" label="" value="' . $room -> getId() .'">'
-                            . $room -> getName() . '</option>';
+                        echo '<option label="" value="' . $home ->getId() . '" >'
+                            . $home -> getName() . ' - ' . $home -> getBuilding() -> getName()
+                            .'</option>';
                     }
                 }
-                echo '</optgroup>';
-            }
-            ?>
-        </select>
-    </form>
+                ?>
+            </select>
+            <select id="roomId">
+                <option label = "" value = "-1">Statistiques générales de mes pièces</option>
+                <?php
+                foreach (Room::TYPE_ARRAY as $type){
 
-    <button class="btn" id="searchCharts">Afficher les statistiques!</button>
+                    echo '<optgroup label="'. $type .'">';
+
+                    /** @var Room $room */
+                    foreach ($rooms as $room){
+                        if ($room -> getType() === $type ) {
+                            echo '<option class="roomSelector" homeId="' . $room -> getHome() -> getId()
+                            . '" label="" value="' . $room -> getId() .'">'
+                                . $room -> getName() . '</option>';
+                        }
+                    }
+                    echo '</optgroup>';
+                }
+                ?>
+            </select>
+        </form>
+        <button class="btn" id="searchCharts">Afficher les statistiques!</button>
+    </div>
 </div>
 <div class="hk-block">
 

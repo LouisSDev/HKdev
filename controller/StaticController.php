@@ -31,5 +31,9 @@ class StaticController extends Controller
         $this -> generateView('static/homepage.php', 'Home');
     }
 
+    public function disclaimer(){
+        $this -> generateView('static/disclaimer.php', 'Mention Légal');
+    }
+
 }
 
