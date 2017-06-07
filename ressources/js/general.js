@@ -1,15 +1,22 @@
 
 $(document).ready(function () {
     $switchOn = $('.switch-on');
-    $switchOn.hide();
+    $unactiveSwitch = $('.unactive-switch');
+
+    $unactiveSwitch.hide();
+
     $('.switch-off').click(function() {
         $(this).hide();
-        $('#switch-on-' + $(this).attr('roomId')).show();
+        var roomId = $(this).attr('roomId');
+        $('#switch-on-' + roomId).show();
+        $('#vol-eff-val-' + roomId).val(1);
     });
 
     $switchOn.click(function() {
         $(this).hide();
-        $('#switch-off-' + $(this).attr('roomId')).show();
+        var roomId = $(this).attr('roomId');
+        $('#switch-off-' + roomId).show();
+        $('#vol-eff-val-' + roomId).val(0);
     });
 
     $("#homeId").change(function(){
@@ -27,16 +34,30 @@ $(document).ready(function () {
                 }
             });
         }
-
     });
 
-    $(".save-lum-effector").click(function(e){
+    $(".save-lum-effector").unbind('click').bind('click',function(e){
         var type = 'Lumière',
             roomId = $(this).attr('roomId'),
             $effectorInput = $('#lum-eff-val-' + roomId),
             value = $effectorInput.val();
         saveNewEffectorSetup(type, roomId, value, null);
+    });
 
+    $(".save-volet-effector").unbind('click').bind('click',function(e){
+        var type = 'Volets',
+            roomId = $(this).attr('roomId'),
+            $effectorInput = $('#vol-eff-val-' + roomId),
+            value = $effectorInput.val();
+        saveNewEffectorSetup(type, roomId, null, value);
+    });
+
+    $(".save-clim-effector").unbind('click').bind('click',function(e){
+        var type = 'Climatisation',
+            roomId = $(this).attr('roomId'),
+            $effectorInput = $('#clim-eff-val-' + roomId),
+            value = $effectorInput.val();
+        saveNewEffectorSetup(type, roomId, value, null);
     });
 
     var current = window.location.href;

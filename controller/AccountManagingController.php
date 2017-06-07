@@ -162,9 +162,12 @@ abstract class AccountManagingController extends Controller
         exit();
     }
 
-    protected function updateEffectors($effectors){
+    protected function updateEffectors($allEffectors){
+
+        $effectors =  [];
+
         /** @var Effector $eff */
-        foreach ($effectors as $eff){
+        foreach ($allEffectors as $eff){
 
             if($eff -> getEffectorType() -> getType() === $_POST['effectorType']){
                 $effectors[] = $eff;
@@ -179,32 +182,41 @@ abstract class AccountManagingController extends Controller
             }
         }
 
+        if(isset($_POST['state']) && $_POST['state'] === '0' ){
+            $_POST['state'] = false;
+        }
+        if(isset($_POST['auto']) && $_POST['auto'] === '0' ){
+            $_POST['auto'] = false;
+        }
+
+
 
 
         /** @var Effector $eff */
         foreach($effectors as $eff){
 
+
             if($eff -> getEffectorType() -> getChart()){
                 if(!empty($_POST['value'])){
                     $eff -> setValue($_POST['value']);
                 }
-                else if(!empty($_POST['auto'])){
+                else if(isset($_POST['auto'])){
                     $eff -> setAuto($_POST['auto']);
                 }
             }
 
             else{
-                if(!empty($_POST['state'])){
+                if(isset($_POST['state'])){
                     $eff -> setState($_POST['state']);
                 }
-                else if(!empty($_POST['auto'])){
+                else if(isset($_POST['auto'])){
                     $eff -> setAuto($_POST['auto']);
                 }
             }
 
+            $eff -> save($this -> db);
         }
 
-        $this -> user -> save($this -> db);
 
         ApiHandler::returnValidResponse(null);
     }
