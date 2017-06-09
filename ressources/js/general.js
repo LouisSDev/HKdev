@@ -19,22 +19,6 @@ $(document).ready(function () {
         $('#vol-eff-val-' + roomId).val(0);
     });
 
-    $("#homeId").change(function(){
-        var valueSelected = $('#homeId option:selected' ).attr("value");
-        if(valueSelected === -1){
-            $roomsDropdown.hide();
-        }else{
-            $roomsDropdown.show();
-            $.each($roomsSelectors, function() {
-                $room = $(this);
-                if($room.attr("homeId") === valueSelected){
-                    $room.show();
-                }else{
-                    $room.hide();
-                }
-            });
-        }
-    });
 
     $(".save-lum-effector").unbind('click').bind('click',function(e){
         var type = 'Lumière',
@@ -146,6 +130,9 @@ $(document).ready(function () {
         $('html, body').animate({scrollTop: $(position).offset().top},speed);
         return false;
     });
+
+
+
 
 
     function roomClick($clickedBlock){

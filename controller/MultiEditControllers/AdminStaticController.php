@@ -10,7 +10,7 @@ class AdminStaticController extends AdminLoggingsFormController
 {
     protected function removeRoom($rooms)
     {
-        if (!empty($_POST['room'])) {
+        if (!empty($_POST['roomId'])) {
             /** @var Room $room */
             $room = null;
             /**@var Room $rm */
@@ -46,7 +46,10 @@ class AdminStaticController extends AdminLoggingsFormController
 
     protected function addRoom(){
         $room = new Room();
-        $room ->createFromResults($_POST);
+        $home = $this -> getHomeRepository() -> findById($_POST['homeId']);
+        $room -> setName($_POST['name'])
+            -> setType($_POST['type'])
+            -> setHome($home);
 
         if($room-> save($this->db)){
             $this->args['success_message'] = "Félicitation la pièce sélectionné a bien été ajoutée";
@@ -59,7 +62,7 @@ class AdminStaticController extends AdminLoggingsFormController
 
     protected function modifyEffectorOnRoom($effectorTypes){
 
-        if (!empty($_POST['room'])) {
+        if (!empty($_POST['roomId'])) {
             /** @var Room $room */
             $room = null;
             /**@var Room $rm */

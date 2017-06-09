@@ -27,7 +27,7 @@ class UserGestionController  extends AdminStaticController
         $rooms =  $roomRepository -> getAll();
         $this -> args['rooms'] = $rooms ;
         $effectorTypes = $effectorTypesRepository -> getAll();
-        $this -> args['effectorTypes'] = $effectorTypes;
+        $this -> args['effector_types'] = $effectorTypes;
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             if(!empty($_POST['submittedForm'])){
@@ -48,7 +48,10 @@ class UserGestionController  extends AdminStaticController
                     case 'ADD_ROOM'    :
                         $this -> addRoom();
                         break;
-                    case 'CHANGE_EFFECTORS_TYPE_FROM_ROOM'  :
+                    case 'ADD_EFFECTOR'  :
+                        $this -> addEffector($effectorTypes);
+                        break;
+                    case 'DELETE_EFFECTOR'  :
                         $this -> modifyEffectorOnRoom($effectorTypes);
                         break;
                     default:
@@ -88,19 +91,20 @@ class UserGestionController  extends AdminStaticController
                         }
                     }
 
+                    if(!empty($_POST['buildingId']) && $_POST['buildingId'] !== -1){
+                        $building = $this -> getHomeRepository() -> findById($_POST['buildingId']);
+                        $home -> setBuilding($building);
+                    }
+
                     $home -> setUser($userHome);
                     $home -> setName($_POST['name']);
                     $home -> setAddress($_POST['address']);
                     $home -> setCity($_POST['city']);
                     $home -> setCountry($_POST['country']);
 
-                    if($home -> save($this->db)){
+                }
 
-                        $this->args['success_message'] = "Félicitation la maison a bien été ajouté";
-                    }else{
-                        $this->args['error_message'] = "Les données entrées ne sont pas valides !";
-                    }
-                }if($_POST['homeType'] === 'building'){
+                else{
 
                     /**  @var User $userHome */
                     $userHome =null;
@@ -118,13 +122,14 @@ class UserGestionController  extends AdminStaticController
                     $home -> setCity($_POST['city']);
                     $home -> setCountry($_POST['country']);
 
-                    if($home -> save($this->db)){
 
-                        $this->args['success_message'] = "Félicitation l'immeuble a bien été ajouté";
-                    }else{
-                        $this->args['error_message'] = "Les données entrées ne sont pas valides !";
-                    }
+                }
 
+                if($home -> save($this->db)){
+
+                    $this->args['success_message'] = "Félicitation l'immeuble a bien été ajouté";
+                }else{
+                    $this->args['error_message'] = "Les données entrées ne sont pas valides !";
                 }
 
             }

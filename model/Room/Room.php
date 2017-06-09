@@ -64,6 +64,8 @@ class Room extends DatabaseEntity
 
     /**
      * @param string $type
+     *
+     * @return $this
      */
     public function setType($type)
     {
@@ -76,6 +78,7 @@ class Room extends DatabaseEntity
             $this->errorMessage []= "This isn\'t a valid room type";
         }
         $this->type = $type;
+        return $this;
     }
 
 

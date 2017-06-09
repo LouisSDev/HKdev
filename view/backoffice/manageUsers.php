@@ -1,10 +1,11 @@
-<html lang="fr">
+<html xmlns="http://www.w3.org/1999/html" lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Gérer les Utilisateurs</title>
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
-    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/general.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/general.js"></script>
+    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/manageUser.js"></script>
     <script src="https://use.fontawesome.com/86ed160d29.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/general/form.css">
 </head>
@@ -20,6 +21,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 $homes = $GLOBALS['view']['homes'];
 $rooms = $GLOBALS['view']['rooms'];
 $users = $GLOBALS['view']['users'];
+$effectorsTypes = $GLOBALS['view']['effector_types']
 
 
 ?>
@@ -50,10 +52,28 @@ $users = $GLOBALS['view']['users'];
             <input type="text" name="city" placeholder="Ville">
             <input type="text" name="country" placeholder="Pays">
 
-            <select name="homeType">
+            <select id="homeType" name="homeType">
                 <option value="house">Maison</option>
                 <option value="building">Immeuble</option>
             </select>
+            <select id="buildingId" name="buildingId">
+                <option label="" value="-1">Cette maison n'appartient à aucun immeuble</option>
+                <?php
+
+                /**
+                 * @var Home $home
+                 */
+                foreach ($homes as $home){
+
+                    if($home->getHasHomes()){
+
+                        echo '<option label="" value="' . $home ->getId() . '" >'
+                            . $home -> getName()
+                            .'</option>';
+                    }
+                }
+                ?>
+            </select><br>
             <br>
             <br>
             <input class="btn" type="submit" value="Ajouter" />
@@ -96,9 +116,10 @@ $users = $GLOBALS['view']['users'];
 <div class="deleteRoom">
     <form method="POST" class="hk-form">
         <p class="hk-title"> Supprimer la pièce d'un utilisateur</p>
-        <p class="hk-text">Supprimer la maison :</p>
+        <p class="hk-text">Sélectionnez la maison à laquelle appartient la pièce à supprimer:</p>
         <input type="hidden" name="submittedForm" value="DELETE_ROOM"/>
-        <select id="homeId">
+        <select name="homeId" id="homeId">
+            <option label="" value="">Aucune maison sélectionnée</option>
             <?php
 
             /**
@@ -121,7 +142,7 @@ $users = $GLOBALS['view']['users'];
             ?>
         </select><br>
         <p class="hk-text">Sélectionnez une pièce à supprimer :</p>
-        <select id="roomId">
+        <select name="roomId" id="roomId">
             <?php
             foreach (Room::TYPE_ARRAY as $type){
 
@@ -130,7 +151,7 @@ $users = $GLOBALS['view']['users'];
                 /** @var Room $room */
                 foreach ($rooms as $room){
                     if ($room -> getType() === $type ) {
-                        echo '<option class="roomSelector" homeId="' . $room -> getHome() -> getId()
+                        echo '<option  class="roomSelector-deleteRoom" homeId="' . $room -> getHome() -> getId()
                             . '" label="" value="' . $room -> getId() .'">'
                             . $room -> getName() . '</option>';
                     }
@@ -149,7 +170,7 @@ $users = $GLOBALS['view']['users'];
         <p class="hk-title"> Ajouter une pièce</p>
         <input type="hidden" name="submittedForm" value="ADD_ROOM">
         <p class="hk-text">Sélectionnez un type de pièce :</p>
-        <select name="addRoom">
+        <select name="type">
             <?php
 
             foreach (Room::TYPE_ARRAY as $type){
@@ -160,11 +181,35 @@ $users = $GLOBALS['view']['users'];
             }
 
             ?>
-            <input type="text" name="name" placeholder="Nom de la nouvelle pièce">
-
-            <input class="btn" type="submit" value="Ajouter" />
 
         </select><br>
+
+        <input type="text" name="name" placeholder="Nom de la nouvelle pièce">
+
+        <select name="homeId" id="homeId-addRoom">
+            <?php
+
+            /**
+             * @var Home $home
+             */
+            foreach ($homes as $home){
+
+                if(!$home->getHasHomes()){
+
+                    $buildingName = $home -> getName();
+                    if($home->getBuilding()){
+                        $buildingName = $home->getBuilding()->getName();
+                    }
+
+                    echo '<option label="" value="' . $home ->getId() . '" >'
+                        . $home -> getName() . ' - ' . $buildingName
+                        .'</option>';
+                }
+            }
+            ?>
+        </select><br>
+
+        <input class="btn" type="submit" value="Ajouter" />
     </form>
 </div>
 
@@ -192,80 +237,88 @@ $users = $GLOBALS['view']['users'];
     </form>
 </div>
 
-<div class="modificationEffectorTypesFromRoom">
+<div class="addEffector">
     <form method="POST" class="hk-form">
-        <h2 class="hk-title">Mofifier les informations d'un effecteur d'une pièce</h2>
-        <label class="hk-text"> Sélectionnez votre maison :</label><br>
-        <input type="hidden" name="submittedForm" value="CHANGE_EFFECTORS_TYPE_FROM_ROOM"/>
-        <select name="home">
-
-        <?php
-
-        /**
-         * @var Home $home
-         */
-        foreach ($homes as $home){
-
-            if(!$home->getHasHomes()){
-
-                echo '<option label="" value="' . $home ->getId() . '" >'
-                    . $home -> getName() . ' - ' . $home -> getBuilding() -> getName()
-                    .'</option>';
-            }
-        }
-        ?>
-
-        </select>
-        <label class="hk-text"> Sélectionnez votre pièce :</label><br>
-        <select name="room">
-            <?php
-            foreach (Room::TYPE_ARRAY as $type) {
-
-                echo '<optgroup label="' . $type . '">';
-
-                /** @var Room $room */
-                foreach ($rooms as $room) {
-                    if ($room->getType() === $type) {
-                        echo '<option class="roomSelector" homeId="' . $room->getHome()->getId()
-                            . '" label="" value="' . $room->getId() . '">'
-                            . $room->getName() . '</option>';
-                    }
-                }
-                echo '</optgroup>';
-            }
-            ?>
-
-        </select>
-        <label class="hk-text">Sélectionner l'effecteur a modifier :</label>
+        <input type="hidden" name="submittedForm" value="ADD_EFFECTOR"/>
+        <h1  class="hk-title hk-text  sensors-text">Ajouter des effecteurs à une pièce </h1>
+        <label class="hk-text sensors-text"> Sélectionnez votre effecteur :</label><br>
         <select name="effectorType">
             <?php
             foreach (EffectorType::TYPE_ARRAY as $type){
-                echo '<optgroup label="'. $type . '">';
-                /** @var  $effectorType EffectorType*/
-                foreach ($effectorsTypes as $effectorType) {
 
-                    if ($effectorType->getType() === $type && $effectorType -> getSelling()) {
+                echo '<optgroup label="'. $type . '">';
+
+                /** @var  $effType EffectorType*/
+                foreach ($effectorsTypes as $effType) {
+
+                    if ($effType->getType() === $type && $effType -> getSelling()) {
                         echo '<option label="" value="'
-                            . $effectorType -> getId() . '">'
-                            . $type . ' : ' . $effectorType -> getName()
-                            . ' - ' . $effectorType -> getRef()
-                            . '</option>';
+                            . $effType -> getId() . '">'
+                            . $type . ' : ' . $effType -> getName()
+                            . ' - ' . $effType -> getRef(). '</option>';
                     }
                 }
                 echo '</optgroup>';
             }
+
             ?>
         </select><br>
-        <input type="text" name="name"  placeholder="Nom" />
-        <input type="text" name="ref"  placeholder="Référence"/><br/>
-        <input type="number" name="minVal" placeholder="Valeur minimale">
-        <input type="number" name="maxVal" placeholder="Valeur maximale"><br/>
-        <input type="text" name="price"  placeholder="Prix"/><br/>
+        <label class="hk-text sensors-text">Numéro de série du capteur</label><br>
+        <input type="text" name="sensorId"/><br>
 
+        <label class="hk-text sensors-text">Sélectionnez la pièces ou vous souhaitez ajouter les effecteurs :</label><br>
 
-        <input class="btn" type="submit" value="Modifier" />
+        <select name="homeId" id="homeId-addEffector">
+            <?php
+
+            /**
+             * @var Home $home
+             */
+            foreach ($homes as $home){
+
+                if(!$home->getHasHomes()){
+
+                    $buildingName = $home -> getName();
+                    if($home->getBuilding()){
+                        $buildingName = $home->getBuilding()->getName();
+                    }
+
+                    echo '<option label=""  value="' . $home ->getId() . '" >'
+                        . $home -> getName() . ' - ' . $buildingName
+                        .'</option>';
+                }
+            }
+            ?>
+        </select><br>
+        <select name="roomId">
+            <option selected label="aucune" value="">Aucune</option>
+            <?php
+            foreach (Room::TYPE_ARRAY as $type){
+
+                echo '<optgroup label="'. $type .'">';
+
+                /** @var Room $room */
+                foreach ($rooms as $room){
+                    if ($room -> getType() === $type ) {
+                        echo '<option label="" homeId="' . $room -> getHome() -> getId() . '"  value="'
+                            . $room -> getId() .'" class ="roomSelector-addEffector">'
+                            . $room -> getName() . '</option>';
+                    }
+
+                }
+                echo '</optgroup>';
+            }
+            ?>
+        </select> <br>
+
+        <input class="hk-btn" type="submit" value="Envoyer" />
+        <div class="form-notice-message notice-message information-message">
+            <p class="form-notice-message">Nous vous contacterons dans la semaine qui suit cet envoi</p>
+        </div>
+
     </form>
 </div>
 <?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
 
 </body>
+</html>
