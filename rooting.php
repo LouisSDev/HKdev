@@ -37,7 +37,7 @@ switch($globalPath){
         break;
     case 'sendForm' :
         $ContactFormControlleur = new ContactFormController();
-        $ContactFormControlleur -> sendFrom();
+        $ContactFormControlleur -> sendForm();
         break;
     case 'connect' :
         $userController = new UserController($db);
@@ -219,6 +219,7 @@ switch($globalPath){
             break;
         }
         break;
+
 
 
     // TODO To delete!!!
