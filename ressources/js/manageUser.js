@@ -43,5 +43,33 @@ $(document).ready(function () {
 
     });
 
+    $("#homeId-deleteEffector").change(function(){
+        var valueSelected = $('#homeId-deleteEffector option:selected' ).attr("value");
+        console.log(valueSelected);
+        $.each($(".roomSelector-deleteEffector"), function() {
+            $room = $(this);
+            if($room.attr("homeId") == valueSelected){
+                $room.show();
+            }else{
+                $room.hide();
+            }
+        });
+
+    });
+
+    $("#roomId-deleteEffector").change(function(){
+        var valueSelected = $('#roomId-deleteEffector option:selected' ).attr("value");
+        console.log(valueSelected);
+        $.each($(".effectorSelector-deleteEffector"), function() {
+            $room = $(this);
+            if($room.attr("roomId") == valueSelected){
+                $room.show();
+            }else{
+                $room.hide();
+            }
+        });
+    });
+
+
 
 });

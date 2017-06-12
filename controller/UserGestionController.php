@@ -18,6 +18,7 @@ class UserGestionController  extends AdminStaticController
         $homeRepository = $this -> getHomeRepository();
         $roomRepository = $this -> getRoomRepository();
         $userRepository = $this -> getUserRepository();
+        $effectorRepository = $this -> getEffectorRepository();
         $effectorTypesRepository = $this -> getEffectorTypeRepository();
 
         $homes =  $homeRepository -> getAll();
@@ -28,6 +29,8 @@ class UserGestionController  extends AdminStaticController
         $this -> args['rooms'] = $rooms ;
         $effectorTypes = $effectorTypesRepository -> getAll();
         $this -> args['effector_types'] = $effectorTypes;
+        $effectors = $effectorRepository -> getAllUsed();
+        $this -> args['effectors'] = $effectors;
 
         if($_SERVER['REQUEST_METHOD'] === 'POST'){
             if(!empty($_POST['submittedForm'])){
@@ -52,7 +55,7 @@ class UserGestionController  extends AdminStaticController
                         $this -> addEffector($effectorTypes);
                         break;
                     case 'DELETE_EFFECTOR'  :
-                        $this -> modifyEffectorOnRoom($effectorTypes);
+                        $this -> removeEffector($effectorTypes);
                         break;
                     default:
                         $this -> generateView('static/404.php', '404');
@@ -230,4 +233,72 @@ class UserGestionController  extends AdminStaticController
                 $this->args['error_message'] = "Les données entrées ne sont pas valides";
             }
         }
+
+    private function addEffector($effectorTypes)
+    {
+
+        if( !empty($_POST['name']) &&  !empty($_POST['roomId']) && !empty($_POST['effectorId']) ) {
+
+            $room = $this
+                ->findRoomFromIdInUsersRooms($_POST['roomId']);
+
+            /** @var EffectorType $effectorType
+             */
+            $effectorType = null;
+
+
+            /**@var EffectorType $stp */
+            foreach ($effectorTypes as $stp) {
+                if ($stp->getId() === $_POST['effectorType']) {
+                    $effectorType = $stp;
+                    break;
+                }
+            }
+
+
+            /** @var Effector $effector */
+            $effector = $this
+                ->getEffectorRepository()
+                ->findById($_POST['effectorId']);
+
+            if ($effectorType && $effector
+                && $effectorType->getId() == $effector->getEffectorType()->getId()
+                && $effector->getRoom() == null
+            ) {
+
+
+                $effector->setName($_POST['name'])
+                    ->setRoom($room);
+
+
+                if ($effector->save($this->db)) {
+                    $this->args['success_message'] = 'L\'effecteur a bien été ajouté à la pièce ' . $room->getName() . ' de ' . $room->getHome()->getUser()->getFirstName();
+                } else {
+                    $this->args['error_message'] = "Les données entrée nous pas pu être enregistrées dans les stocks informatiques";
+                    $this->args['errors'] = $effectorType->getErrorMessage();
+                }
+            } else {
+                $this->args['error_message'] = "Les données entrée ne sont pas valides";
+            }
+        }else {
+            $this->args['error_message'] = "Les données entrée ne sont pas valides";
+        }
+
+    }
+
+    private function removeEffector($effectorTypes)
+    {
+        if(!empty($_POST['effectorId'])){
+            /** @var Effector $effector */
+            $effector = $this -> getEffectorRepository() -> findById($_POST['effectorId']);
+
+            if($effector) {
+                $effector->delete($this->db);
+                $this->args['success_message'] = 'L\'effecteur a bien été supprimé!';
+            }else{
+                $this->args['error_message'] = "Les données entrée ne sont pas valides";
+            }
+        }else {
+        }
+    }
 }
