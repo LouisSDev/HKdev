@@ -295,5 +295,4 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
     </div>
 
 </div>
-<?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
 </body>
