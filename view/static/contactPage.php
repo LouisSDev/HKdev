@@ -56,7 +56,6 @@
         <?php
         $firstName = 'Hello!';
         if(isset($GLOBALS['view']['connected']) && $GLOBALS['view']['connected']) {
-
             $firstName = $GLOBALS['view']['user'] -> getFirstName();
         }
         ?>
