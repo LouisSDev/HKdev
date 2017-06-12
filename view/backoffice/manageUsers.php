@@ -318,7 +318,6 @@ $effectorsTypes = $GLOBALS['view']['effector_types']
 
     </form>
 </div>
-<?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
 
 </body>
 </html>

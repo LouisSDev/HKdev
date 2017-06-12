@@ -6,7 +6,6 @@
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/static/contactPage.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <script src="https://use.fontawesome.com/86ed160d29.js"></script>
-    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/general.js"></script>
     <!--[if IE]><script>
         $(document).ready(function() {
             $("#form_wrap").addClass('hide');
@@ -40,9 +39,12 @@
                     </p>
                 </div>
             </div>
+
             <div class="column2">
-                <div id="googleMap" style="width:80%;height:400px;"></div>
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAfUVXK1gT4aQSnm4RZPoFHjc0MU-8U1vw&callback=myMap"></script>
+                <iframe width="80%" height="400px" frameborder="0" style="border:0"
+                        src="https://www.google.com/maps/embed/v1/place?q=place_id:ChIJ06_UP85x5kcRgBMNU5o4Kbc&key=AIzaSyAEFj7HYS5wGN49cLS1ei0miY6_kuCuuPs" allowfullscreen>
+
+                </iframe>
             </div>
         </div>
         <div class="form_pointer">
@@ -56,7 +58,6 @@
         <?php
         $firstName = 'Hello!';
         if(isset($GLOBALS['view']['connected']) && $GLOBALS['view']['connected']) {
-
             $firstName = $GLOBALS['view']['user'] -> getFirstName();
         }
         ?>
