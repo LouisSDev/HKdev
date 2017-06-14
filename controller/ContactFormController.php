@@ -30,24 +30,55 @@ class ContactFormController extends Controller{
         }
     }
 
-    public function sendForm(){
-        if(!empty($_POST['message']) && !empty($_POST['lastName']) && !empty($_POST['firstName']) && !empty($_POST['email'])){
-            $message = $_POST['message'];
-            $lastName = $_POST['lastName'];
-            $firstName = $_POST['firstName'];
-            $email = $_POST['email'];
-            $subject = "Demande d'informations";
-            $body = "<h1>Bonjour,</h1><br>".
-                $firstName ." ". $lastName . "souhaiterait avoir des détails. Voici le mail qu'il vous a envoyé :"."<br>".
-            $message."<br>".
-            "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-"."<br>".
-            "Vous pouvez lui répondre à l'adresse mail suivante : ". $email;
+    public function contactHK(){
 
-            $this->sendMail($GLOBALS['confMail']->username,$firstName." ".$lastName,$subject,$body);
-            $this -> generateView('static/contactPage.php', 'Contact');
-        }else{
-            echo 'Veuillez remplir tous les champs';
+        $this -> args['user'] = $this -> user;
+        if($_SERVER['REQUEST_METHOD'] === 'POST') {
+
+
+            if(!empty($_POST['message'])) {
+
+                $sendMail = true;
+
+                if ($this->user) {
+
+                    $lastName = $this->user->getLastName() . ' (id du client : ' . $this -> user -> getId() . ')';
+                    $firstName = $this->user->getFirstName();
+                    $email = $this->user->getMail();
+
+                } elseif (!empty($_POST['lastName']) && !empty($_POST['firstName']) && !empty($_POST['email'])) {
+
+                    $lastName = $_POST['lastName'];
+                    $firstName = $_POST['firstName'];
+                    $email = $_POST['email'];
+
+                } else {
+                    $sendMail = false;
+                    $this->args['error_message'] = 'Veuillez remplir tous les champs';
+                }
+
+                if($sendMail){
+
+                    $message = $_POST['message'];
+                    $subject = "Demande d'informations";
+                    $body = "<h1>Bonjour,</h1><br>" .
+                        $firstName . " " . $lastName . " souhaiterait avoir des détails. Voici le mail qu'il vous a envoyé :" . "<br>" .
+                        $message . "<br>" .
+                        "-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-" . "<br>" .
+                        "Vous pouvez lui répondre à l'adresse mail suivante : " . $email;
+
+                    $this->sendMail($GLOBALS['confMail']->username, $firstName . " " . $lastName, $subject, $body);
+
+                    $this->args['success_message'] = "Félicitations le mail a bien été envoyé, vous recevrez bientôt une réponse!";
+
+                }
+
+            }else {
+                $this->args['error_message'] = 'Veuillez remplir tous les champs';
+            }
         }
+
+        $this -> generateView('static/contactPage.php', 'Contactez Nous!' );
 
     }
 

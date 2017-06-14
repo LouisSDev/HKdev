@@ -20,12 +20,6 @@ class StaticController extends Controller
         $this -> generateView('static/homepage.php', 'Accueil' );
     }
 
-    public function contact()
-    {
-        $this -> generateView('static/contactPage.php', 'Contactez Nous!' );
-    }
-
-
     public function homepage()
     {
         $this -> generateView('static/homepage.php', 'Home');

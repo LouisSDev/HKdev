@@ -75,6 +75,10 @@ require_once $GLOBALS['root_dir'] . '/controller/AdminController.php';
     require_once $GLOBALS['root_dir'] . '/controller/SensorController.php';
 
 
+    // ContactForm
+    require_once $GLOBALS['root_dir'] . '/controller/ContactFormController.php';
+
+
     // MultiEditingControllers
     require_once $GLOBALS['root_dir'] . '/controller/MultiEditControllers/DashboardController.php';
     require_once $GLOBALS['root_dir'] . '/controller/MultiEditControllers/AdminLoggingsFormController.php';
