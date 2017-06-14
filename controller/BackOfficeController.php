@@ -323,9 +323,9 @@ class BackOfficeController extends AdminController
     {
 
         if (!empty($_POST['effectorType'])) {
+
             /** @var EffectorType $effectorType
              */
-
             $effectorType = null;
 
 

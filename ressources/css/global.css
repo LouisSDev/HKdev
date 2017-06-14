@@ -479,3 +479,17 @@ li{
 .toggleEffectors, .toggleSensors{
     cursor: pointer;
 }
+
+.margin-block-30{
+    margin-top: 30%;
+    display: block;
+}
+.margin-block-5{
+    margin-top: 5%;
+    display: block;
+}
+
+.margin-block-10{
+    margin-top: 10%;
+    display: block;
+}

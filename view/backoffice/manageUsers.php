@@ -8,6 +8,7 @@
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/manageUser.js"></script>
     <script src="https://use.fontawesome.com/86ed160d29.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/general/form.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/general/table.css">
 </head>
 
 <body>
@@ -21,10 +22,64 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 $homes = $GLOBALS['view']['homes'];
 $rooms = $GLOBALS['view']['rooms'];
 $users = $GLOBALS['view']['users'];
+$effectors = $GLOBALS['view']['effectors'];
 $effectorsTypes = $GLOBALS['view']['effector_types']
 
 
 ?>
+
+<div class="searchUser">
+        <p class="hk-title">Rechercher un utilisateur</p>
+        <table class="table-fill"  id="users-table">
+            <thead>
+                <tr>
+                    <th class="text-left">
+                        <input name="id" placeholder="Id" id="user-input-id"/>
+                    </th>
+                    <th class="text-left">
+                        <input name="firstName" placeholder="Prénom" id="user-input-firstName"/>
+                    </th>
+                    <th class="text-left">
+                        <input name="lastName" placeholder="Nom" id="user-input-lastName"/>
+                    </th>
+                    <th class="text-left">
+                        <input name="mail" placeholder="Email" id="user-input-mail"/>
+                    </th>
+                    <th class="text-left">
+                        <button action="<?php echo $GLOBALS['server_root']  ?>/api/get/users" id="user-input-search">Rechercher!</button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody  id="users-displayer">
+
+            </tbody>
+        </table>
+
+</div>
+<div class="deleteUser">
+    <form method="post" class="hk-form">
+        <p class="hk-title">Supprimer un utilisateur</p>
+        <label class="hk-text"> Sélectionnez l'utilisateur :</label><br>
+        <input type="hidden" name="submittedForm" value="DELETE_USER"/>
+        <select name="deleteUser">
+            <?php
+
+            /** @var  User $user*/
+            foreach ($users as $user) {
+
+                echo '<option label="" value="'
+                    . $user -> getId() . '">'
+                    . $user -> getFirstName() . ' '
+                    . $user -> getLastName()
+                    . '</option>';
+
+            }
+            ?>
+        </select><br>
+        <input class="btn" type="submit" value="Supprimer" />
+    </form>
+</div>
+
 
     <div class="addHome">
         <form method="post" class="hk-form">
@@ -213,29 +268,7 @@ $effectorsTypes = $GLOBALS['view']['effector_types']
     </form>
 </div>
 
-<div class="deleteUser">
-    <form method="post" class="hk-form">
-        <p class="hk-title">Supprimer un utilisateur</p>
-        <label class="hk-text"> Sélectionnez l'utilisateur :</label><br>
-        <input type="hidden" name="submittedForm" value="DELETE_USER"/>
-        <select name="deleteUser">
-            <?php
 
-            /** @var  Home $hm*/
-            foreach ($users as $user) {
-
-                echo '<option label="" value="'
-                    . $user -> getId() . '">'
-                    . $user -> getFirstName() . ' '
-                    . $user -> getLastName()
-                    . '</option>';
-
-            }
-            ?>
-        </select><br>
-        <input class="btn" type="submit" value="Supprimer" />
-    </form>
-</div>
 
 <div class="addEffector">
     <form method="POST" class="hk-form">
@@ -263,12 +296,15 @@ $effectorsTypes = $GLOBALS['view']['effector_types']
 
             ?>
         </select><br>
-        <label class="hk-text sensors-text">Numéro de série du capteur</label><br>
-        <input type="text" name="sensorId"/><br>
+        <label class="hk-text sensors-text">Numéro de série de l'effecteur</label><br>
+        <input type="text" name="effectorId"/><br>
+        <label class="hk-text sensors-text">Nom de l'efffecteur</label><br>
+        <input type="text" name="name"/><br>
 
         <label class="hk-text sensors-text">Sélectionnez la pièces ou vous souhaitez ajouter les effecteurs :</label><br>
 
         <select name="homeId" id="homeId-addEffector">
+            <option selected label="aucune" value="-1">Aucune</option>
             <?php
 
             /**
@@ -291,7 +327,6 @@ $effectorsTypes = $GLOBALS['view']['effector_types']
             ?>
         </select><br>
         <select name="roomId">
-            <option selected label="aucune" value="">Aucune</option>
             <?php
             foreach (Room::TYPE_ARRAY as $type){
 
@@ -309,15 +344,98 @@ $effectorsTypes = $GLOBALS['view']['effector_types']
                 echo '</optgroup>';
             }
             ?>
-        </select> <br>
+        </select>
+        <br>
 
         <input class="hk-btn" type="submit" value="Envoyer" />
         <div class="form-notice-message notice-message information-message">
-            <p class="form-notice-message">Nous vous contacterons dans la semaine qui suit cet envoi</p>
+            <p class="form-notice-message">Vous devez sélectionner un effecteur dont vous disposez réellement dans vos stocks.</p>
         </div>
 
     </form>
 </div>
 
+<div class="deleteEffector">
+    <form method="POST" class="hk-form">
+        <input type="hidden" name="submittedForm" value="DELETE_EFFECTOR"/>
+        <h1  class="hk-title hk-text  sensors-text">Supprimer un effecteur</h1>
+        <label class="hk-text sensors-text">Numéro de série de l'effecteur</label><br>
+        <label class="hk-text sensors-text">Sélectionnez la pièces ou vous souhaitez supprimer les effecteurs :</label><br>
+
+        <select name="homeId" id="homeId-deleteEffector">
+            <option selected label="aucune" value="-1">Aucune</option>
+            <?php
+
+            /**
+             * @var Home $home
+             */
+            foreach ($homes as $home){
+
+                if(!$home->getHasHomes()){
+
+                    $buildingName = $home -> getName();
+                    if($home->getBuilding()){
+                        $buildingName = $home->getBuilding()->getName();
+                    }
+
+                    echo '<option label=""  value="' . $home ->getId() . '" >'
+                        . $home -> getName() . ' - ' . $buildingName
+                        .'</option>';
+                }
+            }
+            ?>
+        </select><br>
+        <select name="roomId" id="roomId-deleteEffector">
+            <option selected label="aucune" value="-1">Aucune</option>
+            <?php
+            foreach (Room::TYPE_ARRAY as $type){
+
+                echo '<optgroup label="'. $type .'">';
+
+                /** @var Room $room */
+                foreach ($rooms as $room){
+                    if ($room -> getType() === $type ) {
+                        echo '<option label="" homeId="' . $room -> getHome() -> getId() . '"  value="'
+                            . $room -> getId() .'" class ="roomSelector-deleteEffector">'
+                            . $room -> getName() . '</option>';
+                    }
+
+                }
+                echo '</optgroup>';
+            }
+            ?>
+        </select>
+        <select name="effectorId">
+            <?php
+            foreach (EffectorType::TYPE_ARRAY as $type){
+
+                echo '<optgroup label="'. $type .'">';
+
+
+                /** @var Effector $eff */
+                foreach ($effectors as $eff){
+
+                    if ($eff -> getEffectorType() -> getType() === $type ) {
+
+                        $room = $eff -> getRoom();
+                        echo '<option label="" roomId="' . $room -> getId() . '"  value="'
+                            . $eff -> getId() .'" class ="effectorSelector-deleteEffector">'
+                            . $room -> getName() . ' : ' . $eff -> getName() . '</option>';
+                    }
+
+                }
+                echo '</optgroup>';
+            }
+            ?>
+        </select>
+        <br>
+
+        <input class="hk-btn" type="submit" value="Envoyer" />
+        <div class="form-notice-message notice-message information-message">
+            <p class="form-notice-message">Attention, cette opération est irrémédiable et desactivera un effecteur sans qu'il puisse etre réutilisé plus tard.</p>
+        </div>
+
+    </form>
+</div>
 </body>
 </html>

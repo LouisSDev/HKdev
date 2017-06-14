@@ -22,4 +22,13 @@ class EffectorRepository extends Repository
         $columns = $objectQuery ->fetch();
         return  $columns['nb'];
     }
+
+    public function getAllUsed()
+    {
+        $objectsQuery = $this -> db -> prepare('SELECT * FROM ' . $this -> getObjectClassName()
+            . ' WHERE room IS NOT NULL');
+        $objectsQuery -> execute();
+
+        return $this -> getResultantObjects($objectsQuery);
+    }
 }

@@ -118,7 +118,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
     </div>
     <div class="edit-sensor-type">
         <form method="POST" class="hk-form">
-            <h2>Mofifier les informations d'un capteur</h2>
+            <h2>Modifier les informations d'un capteur</h2>
             <label class="text"> Sélectionnez votre capteur :</label><br>
             <input type="hidden" name="submittedForm" value="CHANGE_SENSORS_TYPE"/>
             <select name="sensorType">
@@ -259,7 +259,7 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php');
 
         <div class="editEffector">
             <form method="POST" class="hk-form">
-                <h2>Mofifier les informations d'un effecteur</h2>
+                <h2>Modifier les informations d'un effecteur</h2>
                 <label class="text"> Sélectionnez votre effecteur :</label><br>
                 <input type="hidden" name="submittedForm" value="CHANGE_EFFECTORS_TYPE"/>
                 <select name="effectorType">

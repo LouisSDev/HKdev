@@ -15,7 +15,9 @@
     </script><![endif]-->
 </head>
 <body>
-<?php include_once ($GLOBALS['root_dir'] . "/view/general/modal.php");?>
+<?php
+    include_once ($GLOBALS['root_dir'] . "/view/general/modal.php");
+ ?>
 <div class="content">
     <?php include_once($GLOBALS['root_dir'] . "/view/general/header.php");?>
     <div id="textMap">
@@ -51,6 +53,9 @@
             <a class="arrow_black scrolling" href="#contactForm">&raquo;</a>
         </div>
     </div>
+    <?php
+        include_once($GLOBALS['root_dir'] . '/view/general/error.php');
+    ?>
     <div id="contactForm">
         <p class="textForm">
             Des questions ?
@@ -63,20 +68,26 @@
         ?>
         <div id="wrap">
             <div id='form_wrap'>
-                <form method="POST" action="<?php include_once ($GLOBALS['root_dir'] . "/controller/ContactFormController.php")?>">
-                    <input type="hidden" name="submittedForm" value="CONTACT"/>
+                <form method="POST" action="<?php echo $GLOBALS['server_root'] ?>/contact">
                     <p><?php echo $firstName; ?></p>
                     <label for="email">Votre message : </label>
                     <textarea  name="message" value="Your Message" id="message" ></textarea>
                     <p>Best,</p>
-                    <input type="text" name="lastName" value="" id="lastName" placeholder="Nom" />
-                    <input type="text" name="firstName" value="" id="firstName" placeholder="Prénom" />
-                    <input type="text" name="email" value="" id="email" placeholder="Adresse mail"/>
+                    <?php if(!$GLOBALS['view']['user']) { ?>
+                        <input type="text" name="lastName" value="" id="lastName" placeholder="Nom"/>
+                        <input type="text" name="firstName" value="" id="firstName" placeholder="Prénom"/>
+                        <input type="text" name="email" value="" id="email" placeholder="Adresse mail"/>
+                        <?php
+                    }
+                    ?>
+
                     <input type="submit" name ="submit" value="Envoyer" />
                 </form>
             </div>
         </div>
     </div>
+
+    <?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
 </div>
 </body>
 </html>

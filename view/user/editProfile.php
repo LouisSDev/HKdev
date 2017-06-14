@@ -59,5 +59,8 @@ include_once($GLOBALS['root_dir'] . '/view/general/error.php'); ?>
         </div>
     </div>
 </div>
+
+<div class="margin-block-10"></div>
+<?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
 </body>
 </html>

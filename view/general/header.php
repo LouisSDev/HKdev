@@ -66,7 +66,6 @@
                         echo '</ul></li>';
                     } ?>
                     <li><a href="<?php echo $GLOBALS['server_root'] . '/user/edit'?>">Mon compte</a></li>
-                    <li><a href="<?php echo $GLOBALS['server_root'] . '/contact'?>">Contact</a></li>
                     <li><a href="<?php echo $GLOBALS['server_root'] . '/user/disconnect'?>">Déconnexion</a></li>
                 </ul>
             </nav>
@@ -78,7 +77,6 @@
         <ul>
             <li><a href="<?php echo $GLOBALS['server_root']?>/"><img class="logo" src="<?php echo $GLOBALS['server_root']?>/ressources/img/logo hk blanc_redim.png"></a></li>
             <li><a href="<?php echo $GLOBALS['server_root']?>/">Accueil</a></li>
-            <li><a href="<?php echo $GLOBALS['server_root'] . '/contact'?>">Contact</a></li>
             <li><a id="show" href="#">Connexion</a></li>
         </ul>
     </nav>

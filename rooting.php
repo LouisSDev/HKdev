@@ -32,12 +32,8 @@ switch($globalPath){
         $staticController -> connection();
         break;
     case 'contact' :
-        $staticController = new StaticController();
-        $staticController -> contact();
-        break;
-    case 'sendForm' :
-        $ContactFormControlleur = new ContactFormController();
-        $ContactFormControlleur -> sendForm();
+        $staticController = new ContactFormController();
+        $staticController -> contactHK();
         break;
     case 'connect' :
         $userController = new UserController($db);
@@ -171,6 +167,10 @@ switch($globalPath){
                                     exit();
                                 }
                                 break;
+                            case 'users':
+                                $userGestionController = new UserGestionController($db);
+                                $userGestionController -> searchUsers();
+                                break;
                             default:
                                 header('HTTP/1.1 404 Not Found');
                                 exit();
@@ -218,13 +218,6 @@ switch($globalPath){
             $backOfficeController -> getAdminDashboard();
             break;
         }
-        break;
-
-
-
-    // TODO To delete!!!
-    case 'lol':
-        require_once __DIR__ . '/view/tests/lol.php';
         break;
 
     case 'disclaimer':
