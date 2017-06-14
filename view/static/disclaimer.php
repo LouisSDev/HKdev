@@ -5,6 +5,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/static/disclaimer.css">
         <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
         <?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>
+        <script src="https://use.fontawesome.com/86ed160d29.js"></script>
     </head>
     <body>
     <div class="hk-centered-block">
@@ -31,5 +32,7 @@
             </form>
         </div>
     </div>
+
+    <?php include_once ($GLOBALS['root_dir'] . "/view/general/footer.php");?>
     </body>
 </html>

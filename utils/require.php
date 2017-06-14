@@ -79,11 +79,6 @@ require_once $GLOBALS['root_dir'] . '/controller/AdminController.php';
     require_once $GLOBALS['root_dir'] . '/controller/ContactFormController.php';
 
 
-    // MultiEditingControllers
-    require_once $GLOBALS['root_dir'] . '/controller/MultiEditControllers/DashboardController.php';
-    require_once $GLOBALS['root_dir'] . '/controller/MultiEditControllers/AdminLoggingsFormController.php';
-    require_once $GLOBALS['root_dir'] . '/controller/MultiEditControllers/AdminStaticController.php';
-
     //BackOffice
     require_once $GLOBALS['root_dir'] . '/controller/BackOfficeController.php';
     require_once $GLOBALS['root_dir'] . '/controller/UserGestionController.php';

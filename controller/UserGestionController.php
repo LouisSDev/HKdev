@@ -6,7 +6,7 @@
  * Date: 22/05/2017
  * Time: 10:04
  */
-class UserGestionController  extends AdminStaticController
+class UserGestionController  extends AdminController
 {
     public function manageUsers()
     {
@@ -324,5 +324,171 @@ class UserGestionController  extends AdminStaticController
 
         ApiHandler::returnValidResponse(null);
 
+    }
+
+    protected function removeRoom($rooms)
+    {
+        if (!empty($_POST['roomId'])) {
+            /** @var Room $room */
+            $room = null;
+            /**@var Room $rm */
+            foreach ($rooms as $rm) {
+                if ($rm->getId() === $_POST['roomId']) {
+                    $room = $rm;
+                    break;
+                }
+            }
+            if ($room) {
+                $this -> deleteRoom($room);
+                $this->args['success_message'] = "Félicitation vous avez bien supprimé une pièce";
+            } else {
+                $this->args['error_message'] = "Les données entrées ne sont pas valides";
+            }
+        }else{
+            $this->args['error_message'] = "Veuillez sélectionner une pièce à supprimer";
+        }
+    }
+
+    protected function deleteRoom(Room $room){
+        /**@var Effector $eff */
+        foreach ($room->getEffectors() as $eff){
+            $eff->delete($this->db);
+        }
+        /**@var Sensor $sns */
+        foreach ($room->getSensors() as $sns){
+            $this->getSensorValueRepository()->deleteValuesFromSensors($sns->getId());
+            $sns->delete($this->db);
+        }
+        $room->delete($this->db);
+    }
+
+    protected function addRoom(){
+        $room = new Room();
+        $home = $this -> getHomeRepository() -> findById($_POST['homeId']);
+        $room -> setName($_POST['name'])
+            -> setType($_POST['type'])
+            -> setHome($home);
+
+        if($room-> save($this->db)){
+            $this->args['success_message'] = "Félicitation la pièce sélectionné a bien été ajoutée";
+        } else {
+            $this->args['error_message'] = "Les données entrées ne sont pas valides";
+            $this->args['errors'] = $room->getErrorMessage();
+
+        }
+    }
+
+
+
+
+    public function changeSensors($sensorsTypes)
+    {
+
+        if (!empty($_POST['sensorType'])) {
+            /** @var SensorType $sensorType
+             */
+
+            $sensorType = null;
+
+
+            /**@var SensorType $stp */
+            foreach ($sensorsTypes as $stp) {
+                if ($stp->getId() === $_POST['sensorType']) {
+                    $sensorType = $stp;
+                    break;
+                }
+            }
+
+            if ($sensorType) {
+                $message = [];
+                if (!empty($_POST['name'])) {
+                    $sensorType -> setName($_POST['name']);
+                    $message[] = 'Le nom du capteur a bien été modifié';
+                }
+                if (!empty($_POST['ref'])) {
+                    $sensorType -> setRef($_POST['ref']);
+                    $message[] = 'La référence du capteur a bien été modifié';
+                }
+
+                if (!empty($_POST['price'])) {
+                    $sensorType -> setRef($_POST['price']);
+                    $message[] = 'Le prix du capteur a bien été modifié';
+                }
+
+                if($sensorType -> save($this -> db)) {
+                    $successMessage = [];
+                    $i = 0;
+                    foreach ($message as $mssg) {
+                        $successMessage .= $mssg;
+                        if ($i != count($message) - 1) {
+                            $successMessage .= '<br>';
+                        }
+                        $i++;
+                    }
+                    $this->args['success_message'] = $successMessage;
+                }else{
+                    $this->args['error_message'] = "Les données entrée nous pas pu être enregistrées dans les stocks informatiques";
+                    $this->args['errors'] = $sensorType->getErrorMessage();
+                }
+            }
+            else{
+                $this->args['error_message'] = "Les données entrée ne sont pas valide";
+                $this->args['errors'] = $sensorType->getErrorMessage();
+            }
+        }
+    }
+
+
+    public function changeEffectors($effectorTypes)
+    {
+
+        if (!empty($_POST['effectorType'])) {
+            /** @var EffectorType $effectorType
+             */
+
+            $effectorType = null;
+
+
+            /**@var EffectorType $stp */
+            foreach ($effectorTypes as $stp) {
+                if ($stp->getId() === $_POST['effectorType']) {
+                    $effectorType = $stp;
+                    break;
+                }
+            }
+
+            if ($effectorType) {
+                $message = [];
+                if (!empty($_POST['name'])) {
+                    $effectorType -> setName($_POST['name']);
+                    $message[] = "Le nom de l'effecteur a bien été modifié";
+                }
+
+                if (!empty($_POST['ref'])) {
+                    $effectorType -> setRef($_POST['ref']);
+                    $message[] = "La référence de l'effecteur a bien été modifié";
+                }
+
+                if($effectorType -> save($this -> db)) {
+                    $successMessage = [];
+                    $i = 0;
+                    foreach ($message as $mssg) {
+                        $successMessage .= $mssg;
+                        if ($i != sizeof($message) - 1) {
+                            $successMessage .= '<br>';
+                        }
+                        $i++;
+                    }
+                    $this->args['success_message'] = $successMessage;
+                }else{
+                    $this->args['error_message'] = "Les données entrée nous pas pu être enregistrées dans les stocks informatiques";
+                    $this->args['errors'] = $effectorType->getErrorMessage();
+                }
+            }
+            else{
+                $this->args['error_message'] = "Les données entrée ne sont pas valide";
+                $this->args['errors'] = $effectorType->getErrorMessage();
+            }
+        }
     }
 }
