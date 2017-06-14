@@ -299,6 +299,30 @@ class UserGestionController  extends AdminStaticController
                 $this->args['error_message'] = "Les données entrée ne sont pas valides";
             }
         }else {
+            $this->args['error_message'] = "Les données entrée ne sont pas valides";
         }
+    }
+
+    public function searchUsers(){
+
+        $this -> enableApiMode();
+
+        if(!empty($_POST['id'])){
+
+            /** @var User $user */
+            $user = $this -> getUserRepository() -> findById($_POST['id']);
+
+            if($user){
+                ApiHandler::returnValidResponse(array($user -> getObjectVars()));
+            }
+
+        }elseif(!empty($_POST['firstName']) || !empty($_POST['lastName']) || !empty($_POST['mail'])){
+            $users = $this -> getUserRepository() -> searchUsers($_POST);
+            ApiHandler::returnValidResponse($users);
+        }
+
+
+        ApiHandler::returnValidResponse(null);
+
     }
 }

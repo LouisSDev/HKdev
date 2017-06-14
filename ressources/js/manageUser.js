@@ -70,6 +70,38 @@ $(document).ready(function () {
         });
     });
 
+    $("#user-input-search").click(function(e){
+        e.preventDefault();
+
+        array = {
+            'id' : $("#user-input-id").val(),
+            'firstName' : $("#user-input-firstName").val(),
+            'lastName' : $("#user-input-lastName").val(),
+            'mail' : $("#user-input-mail").val()
+        };
+
+        $.post($(this).attr("action"), array ,
+            (function(response){
+
+                fullData = response.content;
+                var i = 1;
+
+                $("#users-displayer").html('');
+
+                fullData.forEach(function(data){
+                    $("#users-displayer").append(
+                        '<tr class="user-display-column">'
+                        + '<td class="text-left">' + data.id + '</td class="cell">'
+                        + '<td class="text-left">' + data.firstName + '</th>'
+                        + '<td class="text-left">' + data.lastName + '</th>'
+                        + '<td class="text-left">' + data.mail + '</th>'
+                    + '</tr>'
+                    );
+                });
+
+            }) )
+    });
+
 
 
 });

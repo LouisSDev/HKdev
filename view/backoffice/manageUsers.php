@@ -8,6 +8,7 @@
     <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/manageUser.js"></script>
     <script src="https://use.fontawesome.com/86ed160d29.js"></script>
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/general/form.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/general/table.css">
 </head>
 
 <body>
@@ -26,6 +27,59 @@ $effectorsTypes = $GLOBALS['view']['effector_types']
 
 
 ?>
+
+<div class="searchUser">
+        <p class="hk-title">Rechercher un utilisateur</p>
+        <table class="table-fill"  id="users-table">
+            <thead>
+                <tr>
+                    <th class="text-left">
+                        <input name="id" placeholder="Id" id="user-input-id"/>
+                    </th>
+                    <th class="text-left">
+                        <input name="firstName" placeholder="Prénom" id="user-input-firstName"/>
+                    </th>
+                    <th class="text-left">
+                        <input name="lastName" placeholder="Nom" id="user-input-lastName"/>
+                    </th>
+                    <th class="text-left">
+                        <input name="mail" placeholder="Email" id="user-input-mail"/>
+                    </th>
+                    <th class="text-left">
+                        <button action="<?php echo $GLOBALS['server_root']  ?>/api/get/users" id="user-input-search">Rechercher!</button>
+                    </th>
+                </tr>
+            </thead>
+            <tbody  id="users-displayer">
+
+            </tbody>
+        </table>
+
+</div>
+<div class="deleteUser">
+    <form method="post" class="hk-form">
+        <p class="hk-title">Supprimer un utilisateur</p>
+        <label class="hk-text"> Sélectionnez l'utilisateur :</label><br>
+        <input type="hidden" name="submittedForm" value="DELETE_USER"/>
+        <select name="deleteUser">
+            <?php
+
+            /** @var  User $user*/
+            foreach ($users as $user) {
+
+                echo '<option label="" value="'
+                    . $user -> getId() . '">'
+                    . $user -> getFirstName() . ' '
+                    . $user -> getLastName()
+                    . '</option>';
+
+            }
+            ?>
+        </select><br>
+        <input class="btn" type="submit" value="Supprimer" />
+    </form>
+</div>
+
 
     <div class="addHome">
         <form method="post" class="hk-form">
@@ -214,29 +268,7 @@ $effectorsTypes = $GLOBALS['view']['effector_types']
     </form>
 </div>
 
-<div class="deleteUser">
-    <form method="post" class="hk-form">
-        <p class="hk-title">Supprimer un utilisateur</p>
-        <label class="hk-text"> Sélectionnez l'utilisateur :</label><br>
-        <input type="hidden" name="submittedForm" value="DELETE_USER"/>
-        <select name="deleteUser">
-            <?php
 
-            /** @var  Home $hm*/
-            foreach ($users as $user) {
-
-                echo '<option label="" value="'
-                    . $user -> getId() . '">'
-                    . $user -> getFirstName() . ' '
-                    . $user -> getLastName()
-                    . '</option>';
-
-            }
-            ?>
-        </select><br>
-        <input class="btn" type="submit" value="Supprimer" />
-    </form>
-</div>
 
 <div class="addEffector">
     <form method="POST" class="hk-form">

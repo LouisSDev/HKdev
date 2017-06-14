@@ -142,5 +142,38 @@ class UserRepository extends Repository
         return self::OBJECT_CLASS_NAME;
     }
 
+    public function searchUsers($data)
+    {
+        $firstName = "%";
+        $lastName = "%";
+        $mail = "%";
+
+        if(!empty($data['firstName'])){
+            $firstName = '%' . $data['firstName'] . '%';
+        }
+        if(!empty($data['lastName'])){
+            $lastName = '%' . $data['lastName'] . '%';
+        }
+        if(!empty($data['mail'])){
+            $mail = '%' . $data['mail'] . '%';
+        }
+
+        $usersSearch = $this->db->prepare(
+            'SELECT * FROM user '
+            . ' WHERE firstName LIKE :firstName AND lastName LIKE :lastName AND mail LIKE :mail  '
+        );
+
+        $usersSearch -> bindParam(':firstName', $firstName, PDO::PARAM_STR, strlen($firstName));
+        $usersSearch -> bindParam(':lastName', $lastName, PDO::PARAM_STR, strlen($lastName));
+        $usersSearch -> bindParam(':mail', $mail, PDO::PARAM_STR, strlen($mail));
+
+        $usersSearch->execute();
+
+        return $usersSearch -> fetchAll(PDO::FETCH_ASSOC);
+
+
+
+    }
+
 
 }

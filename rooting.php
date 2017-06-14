@@ -171,6 +171,10 @@ switch($globalPath){
                                     exit();
                                 }
                                 break;
+                            case 'users':
+                                $userGestionController = new UserGestionController($db);
+                                $userGestionController -> searchUsers();
+                                break;
                             default:
                                 header('HTTP/1.1 404 Not Found');
                                 exit();
