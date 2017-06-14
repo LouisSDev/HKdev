@@ -4,10 +4,12 @@
     <title><?php echo $GLOBALS['view']['page_title']?></title>
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/general/form.css">
-    <?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>
+    <script src="https://use.fontawesome.com/86ed160d29.js"></script>
 
 </head>
+
 <div class="principal">
+    <?php include_once ($GLOBALS['root_dir'] . "/view/general/header.php");?>
     <?php
         /** @var Home $home */
         $home = $GLOBALS['view']['home'];
@@ -17,6 +19,8 @@
 
     include_once($GLOBALS['root_dir'] . '/view/general/error.php')
     ?>
+
+    <div class="margin-block-10"></div>
 
     <div class="user-add-sensor">
         <form method="post" class="hk-form">

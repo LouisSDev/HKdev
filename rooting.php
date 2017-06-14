@@ -220,13 +220,6 @@ switch($globalPath){
         }
         break;
 
-
-
-    // TODO To delete!!!
-    case 'lol':
-        require_once __DIR__ . '/view/tests/lol.php';
-        break;
-
     case 'disclaimer':
         $staticController = new StaticController();
         $staticController -> disclaimer();
