@@ -32,8 +32,8 @@ class DatabaseConnection
         }
         catch (Exception $e){
 
-            // TODO :: the get message line must be uncommented in the prod version!!
-            echo $e -> getMessage();
+            //the get message line must be uncommented in the dev version!!
+            //echo $e -> getMessage();
             require_once $GLOBALS['root_dir'] . '/view/static/connectionError.php';
             exit;
         }
