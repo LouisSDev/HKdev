@@ -74,6 +74,7 @@ class SecurityController extends Controller
         $this->sendMail($user->getMail(),$user->getFirstName(),$subject,$body);
 
         $this -> args['registration'] = true;
+        $this -> args['success_message'] = 'Votre envoi de devis a bien été pris en compte';
         $this -> generateView('static/homepage.php', 'Home');
 
     }
