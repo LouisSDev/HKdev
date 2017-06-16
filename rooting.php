@@ -116,6 +116,10 @@ switch($globalPath){
                                 $sensorController = new SensorController($db);
                                 $sensorController -> addRandomValuesToSensors();
                                 break;
+                            case 'frame':
+                                $sensorController = new SensorController($db);
+                                $sensorController -> getFrames();
+                                break;
                             default :
                                 header('HTTP/1.1 404 Not Found');
                                 exit();
