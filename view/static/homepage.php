@@ -49,14 +49,10 @@
             </div>
         </div>
         <?php
-            if (isset($GLOBALS['view']['registration'])) {
-                ?>
-                <p id="successful-registration">
-                    Votre devis a bien été déposé, vous serez bientôt contacté par notre équipe!
-                </p>
-                <?php
-            } else {
-                include_once($GLOBALS['root_dir'] . '/view/general/error.php'); ?>
+            include_once($GLOBALS['root_dir'] . '/view/general/error.php');
+            if (!isset($GLOBALS['view']['registration']) &&
+            !isset($GLOBALS['view']['user'])) {
+                 ?>
                 <div id="form">
                     <div class="form_content">
                         <h1>Vous êtes intéressé ?</h1>

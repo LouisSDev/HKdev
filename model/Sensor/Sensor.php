@@ -59,7 +59,7 @@ class Sensor extends DatabaseEntity{
      */
     public function getRoom()
     {
-        if(!$this -> room -> getName()) {
+        if($this -> room && !$this -> room -> getName()) {
             /** @var Repository $repo */
             $repo = $GLOBALS['repositories']['room'];
             $this -> room = $repo->findById($this -> room -> getId(), false);

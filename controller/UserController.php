@@ -142,7 +142,7 @@ class UserController extends Controller
     }
 
     public function cookie(){
-        if($_POST['submittedform']==='Jaccepte'){
+        if($_POST['submittedform']==='accepte'){
             $this -> generateView('static/homepage.php', 'Home');
         }
         if($_POST['submittedform']==='Je refuse'){

@@ -283,4 +283,71 @@ class SensorController extends AccountManagingController
         ApiHandler::throwError(400, $errorMessage);
     }
 
+    public function getFrames(){
+        $ch = curl_init();
+
+        curl_setopt(
+            $ch,
+            CURLOPT_URL,
+            "http://projets-tomcat.isep.fr:8080/appService?ACTION=GETLOG&TEAM=A18A"
+        );
+
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        $data = curl_exec($ch);
+        curl_close($ch);
+
+
+        $dataTab = str_split($data,33);
+
+
+        $lastOpenedFile = fopen('bin/framesUpdate.txt', 'rb+');
+        $lastUpdate = fgets($lastOpenedFile);
+
+
+        $lastUpdate = new DateTime($lastUpdate);
+        $latestDate = new DateTime($lastUpdate -> format('m/d/Y H:i:s'));
+
+        for($i=0, $size=count($dataTab); $i<$size -1; $i++){
+
+
+            $frame = $dataTab[$i];
+
+
+            list($type, $o, $r, $c, $sensorId, $value, $a, $x,
+                $year, $month, $day, $hour, $min, $sec) =
+                sscanf($frame,"%1s%4s%1s%1s%2s%4s%4s%2s%4s%2s%2s%2s%2s%2s");
+
+
+            $dateToString = $year . '-' . $month . '-' . $day . ' ' . $hour . ':' . $min . ':' . $sec;
+            $date = new DateTime($dateToString);
+            $value = hexdec($value);
+
+            if($type == 1 && $lastUpdate < $date) {
+
+                if($date > $latestDate){
+                    $latestDate = $date;
+                }
+
+                Utils::addWarning('Sensor n°' . intval($sensorId) . ' has a new value of ' . $value . ' on date ' . $dateToString);
+
+                $sensor = $this -> getSensorRepository() -> findById(intval($sensorId));
+
+                $sensorValue = new SensorValue();
+                $sensorValue -> setDatetime($date)
+                    -> setSensor($sensor)
+                    -> setValue($value);
+
+                $sensorValue -> save($this -> db);
+
+            }
+        }
+
+        fseek($lastOpenedFile, 0);
+
+        fwrite($lastOpenedFile, $latestDate->format('m/d/Y H:i:s'));
+
+        fclose($lastOpenedFile);
+    }
+
 }

@@ -63,6 +63,9 @@ $(document).ready(function () {
         $(".mail").slideToggle();
     });
 
+    $(".effector-type").hide();
+    $(".sensor-type").hide();
+
     $(".toggleSensors").unbind("click").bind('click',function () {
         $(".effector-type").hide("slow");
        $(".sensor-type").slideToggle();

@@ -23,11 +23,11 @@
             <p class="hk-text">Téléphone de l'hébergeur : 06 07 07 07 07<br/>
                 Adresse de l'hébergeur : 28 rue notre Dame des Champs 75006 Paris
             </p>
-            <form>
+            <form method="post">
                 <p class="hk-text">Nos cookies:
                     <br>
                     Nous permettent d'améliorer votre expérience sur notre site.
-                    <input type="submit" name="submittedform" value="J'accepte"><input type="submit" name="submittedform" value="Je refuse">
+                    <input type="submit" href="" value="J'accepte"><input type="submit" name="submittedform" value="Je refuse">
                 </p>
             </form>
         </div>
