@@ -198,6 +198,7 @@ abstract class AccountManagingController extends Controller
 
             if($eff -> getEffectorType() -> getChart()){
                 if(!empty($_POST['value'])){
+                    $value =  dechex((int) ($_POST['value']));
                     $eff -> setValue($_POST['value']);
                 }
                 else if(isset($_POST['auto'])){
@@ -207,6 +208,11 @@ abstract class AccountManagingController extends Controller
 
             else{
                 if(isset($_POST['state'])){
+                    if($_POST['state']  == true){
+                        $value = dechex(1);
+                    }else{
+                        $value = dechex(0);
+                    }
                     $eff -> setState($_POST['state']);
                 }
                 else if(isset($_POST['auto'])){
@@ -215,7 +221,50 @@ abstract class AccountManagingController extends Controller
             }
 
             $eff -> save($this -> db);
+
+
+            $value = '' . $value;
+            $valueSize = count($value);
+            if($valueSize < 4){
+                if($valueSize < 3){
+                    if($valueSize <2){
+                        $value = '000' . $value;
+                    }else{
+                        $valueSize = '00' . $value;
+                    }
+                }else{
+                    $valueSize = '0';
+                }
+            }
+
+            $ch = curl_init();
+
+            $effectorId = $eff -> getId();
+            if($effectorId < 10){
+                $effectorId = '0' . $effectorId;
+            }
+
+            $frame = "1A18A2" . $eff -> getEffectorType() ->getId() . $effectorId  . $value . '000000';
+
+            list($type, $o, $r, $c, $sensorId, $value, $a, $x,
+                $year, $month, $day, $hour, $min, $sec) =
+                sscanf($frame,"%1s%4s%1s%1s%2s%4s%4s%2s%4s%2s%2s%2s%2s%2s");
+
+            curl_setopt(
+                $ch,
+                CURLOPT_URL,
+                "http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM=A18A&TRAME=" . $frame
+            );
+
+            Utils::addWarning( "http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM=A18A&TRAME=" . $frame);
+
+            curl_setopt($ch, CURLOPT_HEADER, FALSE);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+            $data = curl_exec($ch);
+            curl_close($ch);
+
         }
+
 
 
         ApiHandler::returnValidResponse(null);

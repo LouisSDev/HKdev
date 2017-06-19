@@ -48,7 +48,7 @@ function displayEffectors(Room $room){
                     <i class="fa fa-toggle-on switch-on ' . $onClass . '" roomId="' . $room -> getId()
                 . '" id="switch-on-' . $room -> getId() . '"  aria-hidden="true" style="cursor:pointer;"></i>
                 
-                    <p class="info">Volets automatique</p>
+                    <p class="info">Volets</p>
                     <input type = \'hidden\'  value="' . $shutterState . '" id="vol-eff-val-' . $room -> getId() . '">
                     <button id="volet-effector-' . $room -> getId() . '" roomId="' . $room -> getId()
                 . '" class ="save-volet-effector btn">

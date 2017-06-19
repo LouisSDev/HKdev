@@ -323,7 +323,7 @@ class SensorController extends AccountManagingController
             $date = new DateTime($dateToString);
             $value = hexdec($value);
 
-            if($type == 1 && $lastUpdate < $date) {
+            if($type == 1 && $r == 1 && $lastUpdate < $date) {
 
                 if($date > $latestDate){
                     $latestDate = $date;
