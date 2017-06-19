@@ -152,9 +152,6 @@
                         <input class="btn" type="submit" value="Supprimer cet utilisateur" />
                     </form>
             </div>
-        <div>
-
-        </div>
         </div>
     </body>
 
