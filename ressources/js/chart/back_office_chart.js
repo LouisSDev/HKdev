@@ -114,8 +114,8 @@ function EffectorStock($dataset) {
 
 
     var margin = {top: 120, right: 30, bottom: 30, left: 380},
-        width = 900 - margin.left - margin.right,
-        height = 300 - margin.top - margin.bottom;
+        width = 1200 - margin.left - margin.right,
+        height = 350 - margin.top - margin.bottom;
 
     var x = d3.scaleBand().rangeRound([0, width], .1);
 
@@ -127,6 +127,16 @@ function EffectorStock($dataset) {
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+    svg.selectAll("text")
+        .data($dataset)
+        .enter()
+        .append("text")
+        .text("Stock de d'éffecteur")
+        .attr("x", 350)
+        .attr("y", function (d) {return d3.min($dataset, function(d) { return parseInt(d.value); })
+
+        } );
+
 
     var xAxis = d3.axisBottom()
         .scale(x);
@@ -162,6 +172,14 @@ function EffectorStock($dataset) {
             .attr("y", function(d) { return y(parseInt(d.value)); })
             .attr("height", function(d) { return height - y(parseInt(d.value)); })
             .attr("width", x.bandwidth())
+        .attr("fill", function(d) {
+            if (d.value>10){
+
+            }
+            return "rgb("+0+","+(d.value*10)+","+0+")";
+
+
+        });
 
 }
 
@@ -171,8 +189,8 @@ function sensorStock($dataset) {
 
 
     var margin = {top: 150, right: 30, bottom: 30, left: 380},
-        width = 900 - margin.left - margin.right,
-        height = 300 - margin.top - margin.bottom;
+        width = 1200 - margin.left - margin.right,
+        height = 400 - margin.top - margin.bottom;
 
     var x = d3.scaleBand().rangeRound([0, width], .08);
 
@@ -183,10 +201,17 @@ function sensorStock($dataset) {
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+       ;
+    svg.selectAll("text")
+        .data($dataset)
+        .enter()
+        .append("text")
+        .text("Stock de capteurs")
+        .attr("x", 250)
+        .attr("y", function (d) {return d3.min($dataset, function(d) { return parseInt(d.value); })
 
-
-
+        } );
 
     var xAxis = d3.axisBottom()
         .scale(x);
@@ -210,8 +235,8 @@ function sensorStock($dataset) {
         .attr("transform", "rotate(-90)")
         .attr("y", 5)
         .attr("dy", ".72em")
-        .style("text-anchor", "end")
-        .text("Stocks");
+        .style("text-anchor", "end");
+
 
 
     svg.selectAll(".bar")
@@ -223,4 +248,27 @@ function sensorStock($dataset) {
         .attr("y", function(d) { return  y(parseInt(d.value)); })
         .attr("height", function(d) { return height - y(parseInt(d.value)); })
         .attr("width", x.bandwidth())
+        .attr("fill", function(d) {
+            if (d.value>560 ){
+                return "rgb("+10+","+(d.value/5)+","+0+")";
+
+            }
+            if(d.value>299 && d.value<560) {
+                return "rgb("+(d.value-100)+","+(d.value-100)+","+0+")";
+
+            }
+            if (d.value>100 && d.value<299){
+                return "rgb("+(d.value*10)+","+(d.value)+","+0+")";
+"#e33"
+            }
+            else {
+                return "rgb("+(d.value*20)+","+20+","+0+")";
+
+            }
+
+
+
+        });
+
+
 }

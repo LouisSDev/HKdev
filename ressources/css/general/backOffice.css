@@ -1,6 +1,3 @@
-.bar {
-    fill: steelblue;
-}
 
 .axis text {
     font: 10px sans-serif;
@@ -19,9 +16,6 @@
 
 
 
-.bar {
-    fill :green;
-}
 
 .axis text {
     font: 7px sans-serif;
@@ -38,5 +32,9 @@
     display: none;
 }
 svg{
- text-align: center;
+ text-align: left;
+}
+
+.label{
+    margin-top: 300px;
 }
