@@ -329,7 +329,7 @@ class SensorController extends AccountManagingController
                     $latestDate = $date;
                 }
 
-                Utils::addWarning('Sensor n°' . intval($sensorId) . ' has a new value of ' . $value . ' on date ' . $dateToString);
+                //Utils::addWarning('Sensor n°' . intval($sensorId) . ' has a new value of ' . $value . ' on date ' . $dateToString);
 
                 $sensor = $this -> getSensorRepository() -> findById(intval($sensorId));
 

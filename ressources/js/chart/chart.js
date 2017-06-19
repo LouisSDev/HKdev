@@ -11,7 +11,7 @@ var parseTime = d3.timeParse("%Y-%m-%d %H:%M:%S"),
 
     margin = {top: 20, right: 20, bottom: 70, left: 40},
     width = 500 - margin.left - margin.right,
-    height = 300 - margin.top - margin.bottom,
+    height = 500 - margin.top - margin.bottom,
     titleSize = 40,
 
     types =
@@ -62,7 +62,7 @@ $(document).ready(function(e) {
         y = g.clientHeight;
 
     width =  x/2 - 2*( margin.left + margin.right) - 10;
-    height = y/2  - 2*(  margin.top + margin.bottom + titleSize);
+    height = y/1.5  - 2*(  margin.top + margin.bottom + titleSize);
 
 
     // load the data
@@ -272,7 +272,7 @@ function printDiagramm(data, ind, dataSpecs){
                 .attr("transform", "translate(0," + height + ")");
         } else {
             svgXAxisEdit
-                .attr("transform", "translate(0," + 10 + ")");
+                .attr("transform", "translate(50," + 20 + ")");
         }
 
         svg.append("g")
@@ -281,8 +281,8 @@ function printDiagramm(data, ind, dataSpecs){
             .append("text")
             .attr("transform", "rotate(-90)")
             .attr("y", 5)
-            .attr("dy", ".71em")
-            .style("text-anchor", "end")
+            .attr("dy", ".352em")
+            .attr('id', "axis")
             .text(dataSpecs.yAxisLabel);
 
 
@@ -301,6 +301,7 @@ function printDiagramm(data, ind, dataSpecs){
             .attr("height", function (d) {
                 return height - y(d.value);
             });
+
         return true;
     }
     return false;
