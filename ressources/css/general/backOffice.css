@@ -1,6 +1,6 @@
 
 .axis text {
-    font: 10px sans-serif;
+    font: 15px sans-serif;
 }
 
 .axis path,
@@ -16,10 +16,6 @@
 
 
 
-
-.axis text {
-    font: 7px sans-serif;
-}
 
 .axis path,
 .axis line {

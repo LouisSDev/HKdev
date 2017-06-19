@@ -2,8 +2,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
     <title><?php echo $GLOBALS['view']['page_title']?></title>
+
+    <link rel="stylesheet" href="<?php echo $GLOBALS['server_root']?>/ressources/css/general/chart.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/global.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo $GLOBALS['server_root']?>/ressources/css/user/dashboard.css">
     <link rel="stylesheet" href="<?php echo $GLOBALS['server_root']?>/ressources/css/general/backOffice.css">
 
     <script src="https://d3js.org/d3.v4.min.js"></script>

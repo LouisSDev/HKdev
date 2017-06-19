@@ -8,8 +8,8 @@ $('document').ready(function () {
       * @type {jQuery}
      */
     margin = {top: 40, right: 20, bottom: -50, left: 200},
-        width = 600 - margin.left - margin.right;
-        height = 800 - margin.top - margin.bottom;
+        width = 600 - margin.left - margin.right,
+        height = 800 - margin.top - margin.bottom,
         titleSize = 60;
     var dataSensor = $("#sensorStock").attr('value');
     var dataEffector =$("#effectorStock").attr('value');
@@ -18,7 +18,7 @@ $('document').ready(function () {
 
     var effectorDataset =JSON.parse(dataEffector);
 
-    EffectorStock(effectorDataset);
+    effectorStock(effectorDataset);
     sensorStock(sensorDataset);
 
     //displayDiagramm(dataset);
@@ -107,19 +107,20 @@ svg.append("g")
 */
 
 
-})
+});
 
 
-function EffectorStock($dataset) {
+function effectorStock($dataset) {
 
 
-    var margin = {top: 120, right: 30, bottom: 30, left: 380},
-        width = 1200 - margin.left - margin.right,
+    var d = document,
+        g = d.getElementsByTagName('body')[0],
+        x = g.clientWidth,
+        margin = {top: 120, right: 30, bottom: 30, left: 30},
+        width = x - margin.right - margin.left -10,
         height = 350 - margin.top - margin.bottom;
-
-    var x = d3.scaleBand().rangeRound([0, width], .1);
-
-    var y = d3.scaleLinear().range([height, 0]);
+    x = d3.scaleBand().rangeRound([0, width], .1);
+    y = d3.scaleLinear().range([height, 0]);
 
 
     var svg = d3.select("body").append("svg")
@@ -173,12 +174,7 @@ function EffectorStock($dataset) {
             .attr("height", function(d) { return height - y(parseInt(d.value)); })
             .attr("width", x.bandwidth())
         .attr("fill", function(d) {
-            if (d.value>10){
-
-            }
-            return "rgb("+0+","+(d.value*10)+","+0+")";
-
-
+            return colorSet(d);
         });
 
 }
@@ -188,9 +184,14 @@ function sensorStock($dataset) {
 
 
 
-    var margin = {top: 150, right: 30, bottom: 30, left: 380},
-        width = 1200 - margin.left - margin.right,
-        height = 400 - margin.top - margin.bottom;
+    var d = document,
+        g = d.getElementsByTagName('body')[0],
+        x = g.clientWidth,
+        margin = {top: 120, right: 30, bottom: 30, left: 30},
+        width = x - margin.right - margin.left -10,
+        height = 350 - margin.top - margin.bottom;
+    x = d3.scaleBand().rangeRound([0, width], .1);
+    y = d3.scaleLinear().range([height, 0]);
 
     var x = d3.scaleBand().rangeRound([0, width], .08);
 
@@ -249,26 +250,26 @@ function sensorStock($dataset) {
         .attr("height", function(d) { return height - y(parseInt(d.value)); })
         .attr("width", x.bandwidth())
         .attr("fill", function(d) {
-            if (d.value>560 ){
-                return "rgb("+10+","+(d.value/5)+","+0+")";
-
-            }
-            if(d.value>299 && d.value<560) {
-                return "rgb("+(d.value-100)+","+(d.value-100)+","+0+")";
-
-            }
-            if (d.value>100 && d.value<299){
-                return "rgb("+(d.value*10)+","+(d.value)+","+0+")";
-"#e33"
-            }
-            else {
-                return "rgb("+(d.value*20)+","+20+","+0+")";
-
-            }
-
-
-
+           return colorSet(d);
         });
 
 
+}
+
+function colorSet(d){
+    if (d.value>560 ){
+        return "rgb("+10+","+(d.value/5)+","+0+")";
+
+    }
+    if(d.value>299 && d.value<560) {
+        return "rgb("+(d.value-100)+","+(d.value-100)+","+0+")";
+
+    }
+    if (d.value>100 && d.value<299){
+        return "rgb("+(d.value*10)+","+(d.value)+","+0+")";
+    }
+    else {
+        return "rgb("+(d.value*20)+","+20+","+0+")";
+
+    }
 }

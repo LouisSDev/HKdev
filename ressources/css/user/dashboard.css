@@ -40,15 +40,13 @@ select
     margin-bottom:0px;
 }
 
-.btn{ /*Button style*/
+.btn{
     background-color: lightgray;
     text-decoration: none;
     text-align: center;
     border: 0;
     font-size: 15px;
     padding: 2px;
-    /*box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);*/
-    /*display: inline-block;*/
     cursor: pointer;
     transition-duration: 0.4s;
     opacity: 0.7;
@@ -65,4 +63,9 @@ select
     transition-duration: 0.4s;
     opacity: 1;
     margin:8px;
+}
+
+
+.bar{
+    fill: steelblue;
 }
