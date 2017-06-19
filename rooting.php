@@ -5,9 +5,37 @@ session_start();
 $GLOBALS['root_dir'] = __DIR__;
 include_once __DIR__ . '/utils/require.php';
 
-
+/*
 $path =   explode( '/', $_SERVER['REQUEST_URI']);
 $globalPath = $path[2];
+$globalPathInd = 2;
+*/
+
+// Exploding the path of the url
+$path =   explode( '/', $_SERVER['REQUEST_URI']);
+
+// Doing the same for physical adress on the computer/server
+$completePath = explode('\\', __DIR__);
+// Getting to know the name of the final Folder
+$finalPath = $completePath[count($completePath) - 1];
+
+// And finding it's position in the $path exploded url
+$globalPathInd = array_search($finalPath, $path) + 1;
+
+// Getting the main path to redirect user to the right path
+$globalPath = $path[$globalPathInd];
+
+
+// Creating the server root to be used later on with including css, js...
+$GLOBALS['server_root'] = "";
+$i = 0;
+foreach ($path as $pth){
+    if($i < $globalPathInd) {
+        $GLOBALS['server_root'] .= $pth . '/';
+    }
+    $i++;
+}
+
 
 
 $GLOBALS['credentials'] = new UserCredentials();
@@ -40,18 +68,18 @@ switch($globalPath){
         $userController -> getDashboard();
         break;
     case 'user':
-        if(isset($path[3])) {
-            switch ($path[3]) {
+        if(isset($path[$globalPathInd + 1])) {
+            switch ($path[$globalPathInd + 1]) {
                 case 'edit' :
                     $userController = new UserController($db);
                     $userController->profileEditionPage();
                     break;
                 case 'home' :
-                    if(isset($path[4]))
+                    if(isset($path[$globalPathInd + 2]))
                     {
-                        if(isset($path[5])) {
+                        if(isset($path[$globalPathInd + 3])) {
 
-                            switch ($path[5])
+                            switch ($path[$globalPathInd + 3])
                             {
                                 case 'general' :
                                     $homeController = new HomeController($db);
@@ -107,11 +135,11 @@ switch($globalPath){
 
         break;
     case 'api':
-        if(isset($path[3])) {
-            switch($path[3]){
+        if(isset($path[$globalPathInd + 1])) {
+            switch($path[$globalPathInd + 1]){
                 case 'sensors':
-                    if(isset($path[4])) {
-                        switch ($path[4]) {
+                    if(isset($path[$globalPathInd + 2])) {
+                        switch ($path[$globalPathInd + 2]) {
                             case 'fakeValues':
                                 $sensorController = new SensorController($db);
                                 $sensorController -> addRandomValuesToSensors();
@@ -132,8 +160,8 @@ switch($globalPath){
                     break;
 
                 case 'edit' :
-                    if(isset($path[4])) {
-                        switch($path[4]){
+                    if(isset($path[$globalPathInd + 2])) {
+                        switch($path[$globalPathInd + 2]){
                             case 'room' :
                                 $roomController = new RoomController($db);
                                 $roomController -> updateEffectorsInARoom();
@@ -153,11 +181,11 @@ switch($globalPath){
                     break;
 
                 case 'get' :
-                    if(isset($path[4])) {
-                        switch($path[4]){
+                    if(isset($path[$globalPathInd + 2])) {
+                        switch($path[$globalPathInd + 2]){
                             case 'sensors':
-                                if(isset($path[5])){
-                                    switch ($path[5]){
+                                if(isset($path[$globalPathInd + 3])){
+                                    switch ($path[$globalPathInd + 3]){
                                         case 'values' :
                                             $sensorController = new SensorController($db);
                                             $sensorController -> getSensorValues();
@@ -195,8 +223,8 @@ switch($globalPath){
         break;
 
     case 'admin':
-        if(isset($path[3])) {
-            switch ($path[3]) {
+        if(isset($path[$globalPathInd + 1])) {
+            switch ($path[$globalPathInd + 1]) {
                 case 'user' :
                     $userGestionController = new UserGestionController($db);
                     $userGestionController -> manageHomeUsers();

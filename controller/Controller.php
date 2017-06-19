@@ -82,8 +82,6 @@ abstract class Controller
 
             if ($pathName === null) {
 
-                require_once $pathToViews . "general/htmlHead.php";
-
                 $pathName = $filename;
                 require_once $pathToViews . $filename;
                 exit();
@@ -198,8 +196,7 @@ abstract class Controller
         $message -> Body = $body;
         $message-> CharSet ="UTF-8";
         if(!$message -> send()) {
-            $this->args['error_message_mail'] = "L'email n'a pas pu être envoyé, veuillez réessayez";
-            echo 'Mailer Error: ' . $message->ErrorInfo;
+            $this->args['error_message_mail'] = "L'email n'a pas pu être envoyé, veuillez réessayez :" . $message->ErrorInfo;
         } else {
             $this ->args['success_message_mail'] = 'Un mail vient de vous être envoyé';
         }

@@ -246,9 +246,6 @@ abstract class AccountManagingController extends Controller
 
             $frame = "1A18A2" . $eff -> getEffectorType() ->getId() . $effectorId  . $value . '000000';
 
-            list($type, $o, $r, $c, $sensorId, $value, $a, $x,
-                $year, $month, $day, $hour, $min, $sec) =
-                sscanf($frame,"%1s%4s%1s%1s%2s%4s%4s%2s%4s%2s%2s%2s%2s%2s");
 
             curl_setopt(
                 $ch,
@@ -256,11 +253,11 @@ abstract class AccountManagingController extends Controller
                 "http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM=A18A&TRAME=" . $frame
             );
 
-            Utils::addWarning( "http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM=A18A&TRAME=" . $frame);
+            //Utils::addWarning( "http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM=A18A&TRAME=" . $frame);
 
             curl_setopt($ch, CURLOPT_HEADER, FALSE);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-            $data = curl_exec($ch);
+            curl_exec($ch);
             curl_close($ch);
 
         }
