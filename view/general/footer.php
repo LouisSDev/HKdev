@@ -11,12 +11,6 @@
             ·
             <a href="<?php echo $GLOBALS['server_root'] ?>/disclaimer">Mentions Légales</a>
             ·
-           <!-- <a href="#">Prix</a>
-            ·
-            <a href="#">About</a>
-            ·
-            <a href="#">Faq</a>
-            · -->
             <a href="<?php echo $GLOBALS['server_root'] ?>/contact">Contact</a>
         </p>
 

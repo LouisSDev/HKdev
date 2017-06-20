@@ -18,18 +18,26 @@
                 Prénom : Adrien <br/>
                 Adresse : 28 rue notre Dame des Champs 75006 Paris<br/>
                 Numéro : 06 06 06 06 06<br/>
-                Adresse de courier électronique : home.keeper@home.keeper.fr
+                Adresse de courier électronique : support@homekeeper.fr
             </p><br/>
             <p class="hk-text">Téléphone de l'hébergeur : 06 07 07 07 07<br/>
                 Adresse de l'hébergeur : 28 rue notre Dame des Champs 75006 Paris
             </p>
-            <form method="post">
-                <p class="hk-text">Nos cookies:
+                <p  class="hk-text">
+                    Nos cookies:
                     <br>
                     Nous permettent d'améliorer votre expérience sur notre site.
-                    <input type="submit" href="" value="J'accepte"><input type="submit" name="submittedform" value="Je refuse">
+                    <button>
+                        <a href="<?php echo $GLOBALS['server_root'] ?>/user">
+                            J'accepte
+                        </a>
+                    </button>
+                    <button>
+                        <a href="<?php echo $GLOBALS['server_root'] ?>/user/disconnect">
+                            Je refuse
+                        </a>
+                    </button>
                 </p>
-            </form>
         </div>
     </div>
 
