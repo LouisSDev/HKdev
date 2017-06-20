@@ -51,7 +51,7 @@
             <label class="hk-text sensors-text">Numéro de série du capteur</label><br>
             <input type="text" name="sensorId"/><br>
 
-            <label class="hk-text sensors-text">Sélectionnez la pièces ou vous souhaitez ajouter les capteurs :</label><br>
+            <label class="hk-text sensors-text">Sélectionnez la pièce où vous souhaitez ajouter les capteurs :</label><br>
             <select name="room">
                 <option selected label="aucune" value="">Aucune</option>
                 <?php

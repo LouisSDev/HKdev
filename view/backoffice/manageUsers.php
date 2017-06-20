@@ -301,7 +301,7 @@ $effectorsTypes = $GLOBALS['view']['effector_types']
         <label class="hk-text sensors-text">Nom de l'efffecteur</label><br>
         <input type="text" name="name"/><br>
 
-        <label class="hk-text sensors-text">Sélectionnez la pièces ou vous souhaitez ajouter les effecteurs :</label><br>
+        <label class="hk-text sensors-text">Sélectionnez la pièce où vous souhaitez ajouter les effecteurs :</label><br>
 
         <select name="homeId" id="homeId-addEffector">
             <option selected label="aucune" value="-1">Aucune</option>
@@ -360,7 +360,7 @@ $effectorsTypes = $GLOBALS['view']['effector_types']
         <input type="hidden" name="submittedForm" value="DELETE_EFFECTOR"/>
         <h1  class="hk-title hk-text  sensors-text">Supprimer un effecteur</h1>
         <label class="hk-text sensors-text">Numéro de série de l'effecteur</label><br>
-        <label class="hk-text sensors-text">Sélectionnez la pièces ou vous souhaitez supprimer les effecteurs :</label><br>
+        <label class="hk-text sensors-text">Sélectionnez la pièce où vous souhaitez supprimer les effecteurs :</label><br>
 
         <select name="homeId" id="homeId-deleteEffector">
             <option selected label="aucune" value="-1">Aucune</option>
