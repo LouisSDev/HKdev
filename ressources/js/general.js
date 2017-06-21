@@ -162,8 +162,6 @@ $(document).ready(function () {
         }
     }
 
-
-
     function saveNewEffectorSetup(type, roomId, value, state) {
         $.post($('#body').attr('server_root') + '/api/edit/room', {
             'effectorType' : type,
@@ -172,5 +170,6 @@ $(document).ready(function () {
             'state' : state
         });
     }
+
 
 });

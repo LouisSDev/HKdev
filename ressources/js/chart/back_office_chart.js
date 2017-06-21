@@ -116,7 +116,7 @@ function effectorStock($dataset) {
     var d = document,
         g = d.getElementsByTagName('body')[0],
         x = g.clientWidth,
-        margin = {top: 120, right: 30, bottom: 30, left: 30},
+        margin = {top: 120, right: 30, bottom: 30, left: 50},
         width = x - margin.right - margin.left -10,
         height = 350 - margin.top - margin.bottom;
     x = d3.scaleBand().rangeRound([0, width], .1);
@@ -132,12 +132,11 @@ function effectorStock($dataset) {
         .data($dataset)
         .enter()
         .append("text")
-        .text("Stock de d'éffecteur")
-        .attr("x", 350)
-        .attr("y", function (d) {return d3.min($dataset, function(d) { return parseInt(d.value); })
+        .text("Stock d'éffecteurs")
+        .attr("x", 600)
+        .attr("y",height/1000-20
 
-        } );
-
+        );
 
     var xAxis = d3.axisBottom()
         .scale(x);
@@ -187,7 +186,7 @@ function sensorStock($dataset) {
     var d = document,
         g = d.getElementsByTagName('body')[0],
         x = g.clientWidth,
-        margin = {top: 120, right: 30, bottom: 30, left: 30},
+        margin = {top: 120, right: 30, bottom: 30, left: 50},
         width = x - margin.right - margin.left -10,
         height = 350 - margin.top - margin.bottom;
     x = d3.scaleBand().rangeRound([0, width], .1);
@@ -209,10 +208,10 @@ function sensorStock($dataset) {
         .enter()
         .append("text")
         .text("Stock de capteurs")
-        .attr("x", 250)
-        .attr("y", function (d) {return d3.min($dataset, function(d) { return parseInt(d.value); })
+        .attr("x", 600)
+        .attr("y",height/1000
 
-        } );
+         );
 
     var xAxis = d3.axisBottom()
         .scale(x);
@@ -258,15 +257,15 @@ function sensorStock($dataset) {
 
 function colorSet(d){
     if (d.value>560 ){
-        return "rgb("+10+","+(d.value/5)+","+0+")";
+        return "rgb("+10+","+(d.value/7)+","+0+")";
 
     }
     if(d.value>299 && d.value<560) {
-        return "rgb("+(d.value-100)+","+(d.value-100)+","+0+")";
+        return "rgb("+(d.value-100)+","+(d.value-100)+","+6+")";
 
     }
     if (d.value>100 && d.value<299){
-        return "rgb("+(d.value*10)+","+(d.value)+","+0+")";
+        return "rgb("+(d.value*10)+","+(d.value)+","+10+")";
     }
     else {
         return "rgb("+(d.value*20)+","+20+","+0+")";
