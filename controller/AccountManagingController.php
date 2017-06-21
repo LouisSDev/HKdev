@@ -198,7 +198,7 @@ abstract class AccountManagingController extends Controller
 
             if($eff -> getEffectorType() -> getChart()){
                 if(!empty($_POST['value'])){
-                    $value =  dechex((int) ($_POST['value']));
+                    $value =  (int) ($_POST['value']);
                     $eff -> setValue($_POST['value']);
                 }
                 else if(isset($_POST['auto'])){
