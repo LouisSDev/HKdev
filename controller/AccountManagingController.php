@@ -223,17 +223,17 @@ abstract class AccountManagingController extends Controller
             $eff -> save($this -> db);
 
 
-            $value = '' . $value;
-            $valueSize = count($value);
+            $value = (string) $value;
+            $valueSize = strlen($value);
             if($valueSize < 4){
                 if($valueSize < 3){
-                    if($valueSize <2){
+                    if($valueSize < 2){
                         $value = '000' . $value;
                     }else{
-                        $valueSize = '00' . $value;
+                        $value = '00' . $value;
                     }
                 }else{
-                    $valueSize = '0';
+                    $value = '0';
                 }
             }
 

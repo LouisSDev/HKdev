@@ -117,6 +117,7 @@ class SensorController extends AccountManagingController
 
     public function getSensorValues()
     {
+
         $this -> enableApiMode();
         $errorMessage = "";
 
@@ -154,9 +155,6 @@ class SensorController extends AccountManagingController
                         foreach (SensorType::TYPE_ARRAY as $type) {
                             $sensorsPerType[$type] = $this -> user -> getAllSensorsPerType($type);
                         }
-
-
-
                     }
 
                     // We then search for all SensorValue objects from each sensor concerned
@@ -188,12 +186,15 @@ class SensorController extends AccountManagingController
                             $sensorValuesFetched = $sensorValuesRepository->searchValues($fromDate, $toDate, $sensor);
 
                             if (count($sensorValuesFetched) > 0) {
-
                                 $sensorsValuesPerTypes[$type][$i] = [];
                             }
+
+                            $numberOfValues = count($sensorValuesFetched);
+                            $gapNumber = $numberOfValues / self::NUMBER_OF_VALUES_IN_A_GRAPH;
+
                             /** @var SensorValue $value */
                             foreach ($sensorValuesFetched as $value) {
-                                // We don't select all the dates but only 50 max, therefore we check if
+                                // We don't select all the dates but only 30 max, therefore we check if
                                 // the date of this value is after the next date to set the date to
                                 // And if all the values necessary are already in the array
                                 if ((!$lastDateChoosen || $lastDateChoosen < $value->getDatetime()
@@ -204,6 +205,25 @@ class SensorController extends AccountManagingController
                                     $j++;
 
                                     $sensorsValuesPerTypes[$type][$i][] = $value;
+
+                                    // If it does, we increment $j and the set new last date choosen
+                                    $lastDateChoosen = new DateTime(date(DatabaseEntity::MYSQL_TIMESTAMP_FORMAT));
+                                    $lastDateChoosen = $lastDateChoosen
+                                        ->setTimestamp
+                                        (
+                                            $fromDate->getTimestamp()
+                                            + $periodBetweenTwoDates * $j
+                                        );
+                                }else if($k > $j * $gapNumber){
+                                    $j++;
+
+                                    $fakeValue = new SensorValue();
+                                    $fakeValue -> setDatetime($lastDateChoosen)
+                                        -> setValue(0)
+                                        -> setSensor($sensor)
+                                        -> setState(false);
+
+                                    $sensorsValuesPerTypes[$type][$i][] = $fakeValue;
 
                                     // If it does, we increment $j and the set new last date choosen
                                     $lastDateChoosen = new DateTime(date(DatabaseEntity::MYSQL_TIMESTAMP_FORMAT));
