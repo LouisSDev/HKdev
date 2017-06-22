@@ -103,7 +103,7 @@ class Repository
 
     public function getAll()
     {
-        $objectsQuery = $this -> db -> prepare('SELECT * FROM ' . $this -> getObjectClassName());
+        $objectsQuery = $this -> db -> prepare('SELECT * FROM ' . strtolower($this -> getObjectClassName()));
         $objectsQuery -> execute();
 
         return $this -> getResultantObjects($objectsQuery);
@@ -111,7 +111,7 @@ class Repository
 
     public function findById($id, $cascading = true)
     {
-        $objectsQuery = $this -> db -> prepare('SELECT * FROM ' . $this -> getObjectClassName() . ' WHERE id = :id');
+        $objectsQuery = $this -> db -> prepare('SELECT * FROM ' . strtolower($this -> getObjectClassName()) . ' WHERE id = :id');
         $objectsQuery -> bindParam(':id', $id, PDO::PARAM_INT);
         $objectsQuery -> execute();
 

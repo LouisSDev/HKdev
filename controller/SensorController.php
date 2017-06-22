@@ -4,10 +4,10 @@
 class SensorController extends AccountManagingController
 {
 
-    const NUMBER_OF_VALUES_TO_ADD = 2500;
+    const NUMBER_OF_VALUES_TO_ADD = 5000;
     const DEFAULT_GAP_DIVIDER = 50;
     const BASE_DATETIME = '05/01/2017 00:00:00';
-    const BASE_PERIOD = '10 minutes';
+    const BASE_PERIOD = '30 minutes';
     const NUMBER_OF_VALUES_IN_A_GRAPH = 30;
 
     public function addRandomValuesToSensors(){
@@ -26,6 +26,9 @@ class SensorController extends AccountManagingController
 
         /** @var Sensor $sns */
         foreach ($sensors as $sns) {
+            if($sns -> getId() > 9){
+                break;
+            }
 
             $i = 0;
 
@@ -214,7 +217,9 @@ class SensorController extends AccountManagingController
                                             $fromDate->getTimestamp()
                                             + $periodBetweenTwoDates * $j
                                         );
-                                }else if($k > $j * $gapNumber){
+                                }
+
+                                /*else if($k > $j * $gapNumber){
                                     $j++;
 
                                     $fakeValue = new SensorValue();
@@ -233,7 +238,7 @@ class SensorController extends AccountManagingController
                                             $fromDate->getTimestamp()
                                             + $periodBetweenTwoDates * $j
                                         );
-                                }
+                                } */
 
                                 $k++;
                             }
@@ -309,7 +314,7 @@ class SensorController extends AccountManagingController
         curl_setopt(
             $ch,
             CURLOPT_URL,
-            "http://projets-tomcat.isep.fr:8080/appService?ACTION=GETLOG&TEAM=A18A"
+            "http://projets-tomcat.isep.fr:8080/appService?ACTION=GETLOG&TEAM=" . AccountManagingController::FRAME_GROUP_NAME
         );
 
         curl_setopt($ch, CURLOPT_HEADER, FALSE);

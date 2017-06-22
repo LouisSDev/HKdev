@@ -10,6 +10,7 @@
 abstract class AccountManagingController extends Controller
 {
 
+    const FRAME_GROUP_NAME = 'A18A';
     protected $connectionRequired = true;
 
 
@@ -244,16 +245,19 @@ abstract class AccountManagingController extends Controller
                 $effectorId = '0' . $effectorId;
             }
 
-            $frame = "1A18A2" . $eff -> getEffectorType() ->getId() . $effectorId  . $value . '000000';
+            $frame = "1" . self::FRAME_GROUP_NAME . "2" . $eff -> getEffectorType() ->getId() . $effectorId  . $value . '000000';
 
+            $url =
+                "http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM="
+                . AccountManagingController::FRAME_GROUP_NAME . "&TRAME=" . $frame;
 
             curl_setopt(
                 $ch,
                 CURLOPT_URL,
-                "http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM=A18A&TRAME=" . $frame
+                $url
             );
 
-            //Utils::addWarning( "http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM=A18A&TRAME=" . $frame);
+            //Utils::addWarning($url);
 
             curl_setopt($ch, CURLOPT_HEADER, FALSE);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);

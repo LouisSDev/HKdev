@@ -20,7 +20,7 @@ class SensorValueRepository extends Repository
     public function searchValues(DateTime $fromDate, DateTime $toDate, Sensor $sensor)
     {
         $getValues = $this -> db -> prepare(
-            'SELECT * FROM ' . self::OBJECT_CLASS_NAME
+            'SELECT * FROM ' . strtolower(self::OBJECT_CLASS_NAME)
             . ' WHERE datetime BETWEEN :fromDate AND :toDate AND sensor = :sensorId '
         );
 

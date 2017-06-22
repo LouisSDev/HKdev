@@ -16,7 +16,8 @@ class EffectorRepository extends Repository
     }
 
     public function getUnusedEffectorsByType($type){
-        $objectQuery = $this -> db -> prepare('SELECT COUNT(*) AS nb FROM ' . $this ->getObjectClassName() . ' WHERE room IS null AND effectorType= :type');
+        $objectQuery = $this -> db -> prepare('SELECT COUNT(*) AS nb FROM ' . strtolower($this ->getObjectClassName())
+            . ' WHERE room IS null AND effectorType= :type');
         $objectQuery -> bindParam(':type', $type, PDO::PARAM_INT);
          $objectQuery -> execute();
         $columns = $objectQuery ->fetch();
@@ -25,7 +26,7 @@ class EffectorRepository extends Repository
 
     public function getAllUsed()
     {
-        $objectsQuery = $this -> db -> prepare('SELECT * FROM ' . $this -> getObjectClassName()
+        $objectsQuery = $this -> db -> prepare('SELECT * FROM ' . strtolower($this -> getObjectClassName())
             . ' WHERE room IS NOT NULL');
         $objectsQuery -> execute();
 

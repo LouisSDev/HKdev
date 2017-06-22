@@ -18,7 +18,7 @@ class SensorRepository extends Repository {
 
     public function isSensorUnused($id)
     {
-        $objectsQuery = $this -> db -> prepare('SELECT * FROM ' . $this -> getObjectClassName()
+        $objectsQuery = $this -> db -> prepare('SELECT * FROM ' . strtolower($this -> getObjectClassName())
             . ' WHERE room IS NOT null AND id = :id');
         $objectsQuery -> bindParam(':id', $id, PDO::PARAM_INT);
         $objectsQuery -> execute();
@@ -31,7 +31,8 @@ class SensorRepository extends Repository {
     }
 
     public function getSensorsUnusedByType($type){
-        $objectQuery = $this -> db -> prepare('SELECT COUNT(*) AS nb FROM ' . $this ->getObjectClassName() . ' WHERE room IS null AND sensorType = :type');
+        $objectQuery = $this -> db -> prepare('SELECT COUNT(*) AS nb FROM ' . strtolower($this ->getObjectClassName())
+            . ' WHERE room IS null AND sensorType = :type');
         $objectQuery -> bindParam(':type', $type, PDO::PARAM_INT);
         $objectQuery -> execute();
         $columns = $objectQuery ->fetch();

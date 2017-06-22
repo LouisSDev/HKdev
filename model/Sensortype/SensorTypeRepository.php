@@ -22,7 +22,7 @@ class SensorTypeRepository extends Repository
     public function getSensorTypePerType($type)
     {
         $getSensorType = $this -> db -> prepare(
-            'SELECT * FROM ' . self::OBJECT_CLASS_NAME
+            'SELECT * FROM ' . strtolower(self::OBJECT_CLASS_NAME)
             . ' WHERE type = :type LIMIT 1');
         $getSensorType -> bindParam(':type' , $type, PDO::PARAM_STR, strlen($type));
         $getSensorType -> execute();

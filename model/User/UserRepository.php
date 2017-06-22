@@ -96,7 +96,7 @@ class UserRepository extends Repository
     public function getUsersWithSubmittedQuote()
     {
         $submittedQuoteSearch = $this -> db -> prepare(
-            'SELECT * FROM ' . self::OBJECT_CLASS_NAME
+            'SELECT * FROM ' . strtolower(self::OBJECT_CLASS_NAME)
             . ' WHERE quoteTreated = 2'
         );
 
@@ -108,7 +108,7 @@ class UserRepository extends Repository
     public function getUsersWithTreatedQuote()
     {
         $treatedQuoteSearch = $this->db->prepare(
-            'SELECT * FROM ' . self::OBJECT_CLASS_NAME
+            'SELECT * FROM ' . strtolower(self::OBJECT_CLASS_NAME)
             . ' WHERE quoteTreated = 1 AND validated = 2'
         );
 
