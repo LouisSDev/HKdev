@@ -245,7 +245,8 @@ abstract class AccountManagingController extends Controller
                 $effectorId = '0' . $effectorId;
             }
 
-            $frame = "1" . self::FRAME_GROUP_NAME . "2" . $eff -> getEffectorType() ->getId() . $effectorId  . $value . '000000';
+            $frame = "1" . self::FRAME_GROUP_NAME . "2" . $eff -> getEffectorType() ->getId() . $effectorId
+                . $value . '000000';
 
             $url =
                 "http://projets-tomcat.isep.fr:8080/appService?ACTION=COMMAND&TEAM="
