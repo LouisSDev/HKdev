@@ -23,7 +23,7 @@
     <input type="hidden" id="effectorStock" value="<?php echo $GLOBALS['view']['effectorStock']?>">
 
 
-    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/chart/back_office_chart.js"></script>
+    <script src="<?php echo $GLOBALS['server_root']?>/ressources/js/chart/backOfficeChart.js"></script>
 
 </body>
 

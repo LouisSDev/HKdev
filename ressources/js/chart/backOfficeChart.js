@@ -21,92 +21,6 @@ $('document').ready(function () {
     effectorStock(effectorDataset);
     sensorStock(sensorDataset);
 
-    //displayDiagramm(dataset);
-
-
-
-   // var dataset = jsonValueToArray(dataJson);
-    //console.log(jsonValueToArray(dataJson));
-
-   // console.log(data);//[10,2,5,6,4,8,15,4,84,8,5,5,5];
-   // console.log(dataset);
-    //console.log(data);
-   // console.log(dataJson);
-    //console.log('bonjour');
-
-    //back-office dashboard
- /*   var w = 500;
-    var h = 300;
-    barPadding  = 1;
-    var svg = d3.select("body").append("svg")
-        .attr("width", w )
-        .attr("height", h)
-        .append("g")
-
-    // adding bar chart
-
-    var bars = svg.selectAll("rect")
-        .data(dataset)
-        .enter()
-        .append("rect");
-
-    bars.attr("x", function(d) {
-        return d.name;
-    })
-        .attr("y", function(d){
-            return h - parseInt(d.value);
-        })
-        .attr("width",w/50 -barPadding)
-        .attr("height", function(d){
-            return parseInt(d.value*4) ;
-        })
-        .attr("fill", function(d){
-                if(parseInt(d.value)<15){
-
-                    return "rgb("+parseInt(d.value)+",255,0)";
-
-                }
-                else{
-                    return "rgb(0,"+parseInt(d.value)+",0)";
-
-                }
-            }
-        );
-//
-    /*svg.selectAll("text")
-        .data(dataset)
-        .enter()
-        .append("text")
-        .text(function(d){
-            return parseInt(d.value);
-        })
-
-        .attr("y",function(d){
-            return h - (parseInt(d.value*4))+15 ;
-        });
-
-    var dmax = d3.max([dataset,function(d){
-        return parseInt(d.value);
-    }]);
-
-    var yScale = d3.scale.linear()
-        .domain(0,dmax)
-        .range([0,h]);
-
-
-    var xScale =  x.domain(dataset.map(function (d) {
-        return d.name;
-    }));
-    var xAxis = d3.svg.axis()
-                    .scale(xScale)
-                    .orient("bottom");
-
-svg.append("g")
-        .call(xAxis)
-
-*/
-
-
 });
 
 
@@ -243,7 +157,6 @@ function sensorStock($dataset) {
         .data($dataset)
         .enter().append("rect")
         .attr("class", "bar")
-       // .attr("transform", "translate(0," + height + ")")
         .attr("x", function(d) { return x(d.name); })
         .attr("y", function(d) { return  y(parseInt(d.value)); })
         .attr("height", function(d) { return height - y(parseInt(d.value)); })
@@ -255,16 +168,16 @@ function sensorStock($dataset) {
 
 }
 
-function colorSet(d){
-    if (d.value>560 ){
+function colorSet(d, maxVal){
+    if (d.value > 350 ){
         return "rgb("+10+","+(d.value/7)+","+0+")";
 
     }
-    if(d.value>299 && d.value<560) {
+    if(d.value > 150 && d.value <= 350) {
         return "rgb("+(d.value-100)+","+(d.value-100)+","+6+")";
 
     }
-    if (d.value>100 && d.value<299){
+    if (d.value > 100 && d.value <= 150){
         return "rgb("+(d.value*10)+","+(d.value)+","+10+")";
     }
     else {
