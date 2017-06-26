@@ -170,7 +170,7 @@ class Home extends DatabaseEntity
      */
     public function getBuilding()
     {
-        if(!$this -> building -> getName()) {
+        if($this -> building && !$this -> building -> getName()) {
             /** @var Repository $repo */
             $repo = $GLOBALS['repositories']['home'];
             $this->building = $repo->findById($this->building->getId(), false);

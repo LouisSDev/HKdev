@@ -296,7 +296,7 @@ abstract class DatabaseEntity
                 $addParameter = true;
                 if(($value -> getClassName() ==  $this -> getClassName())  ) {
                     $IdGetterName = 'getBuilding';
-                    if($this -> $IdGetterName() -> getId() == -1){
+                    if($this -> $IdGetterName() && $this -> $IdGetterName() -> getId() == -1){
                         $addParameter = false;
                     }
                 }

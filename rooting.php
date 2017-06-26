@@ -20,7 +20,7 @@ $completePath = explode('\\', __DIR__);
 $finalPath = $completePath[count($completePath) - 1];
 
 // And finding it's position in the $path exploded url
-$globalPathInd = array_search($finalPath, $path) + 1;
+$globalPathInd = 2;
 
 // Getting the main path to redirect user to the right path
 $globalPath = $path[$globalPathInd];

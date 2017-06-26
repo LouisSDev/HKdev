@@ -12,7 +12,7 @@
 
             /** @var Home $home */
             foreach($allHomes as $home){
-                if($home -> getBuilding()){
+                if(!$home -> getHasHomes()){
                     $homes[] = $home;
                 }else{
                     $buildings[] = $home;

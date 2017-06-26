@@ -239,8 +239,7 @@ class UserGestionController  extends AdminController
 
         if( !empty($_POST['name']) &&  !empty($_POST['roomId']) && !empty($_POST['effectorId']) ) {
 
-            $room = $this
-                ->findRoomFromIdInUsersRooms($_POST['roomId']);
+            $room = $this -> getRoomRepository() -> findById($_POST['roomId']);
 
             /** @var EffectorType $effectorType
              */
