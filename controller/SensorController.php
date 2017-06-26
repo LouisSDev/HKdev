@@ -124,6 +124,8 @@ class SensorController extends AccountManagingController
         $this -> enableApiMode();
         $errorMessage = "";
 
+        $this->getFrames();
+
         /// We check if all the datas were correctly submitted
         if(!empty($_POST['fromDate']) && !empty($_POST['toDate'])
         ) {
